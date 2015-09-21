@@ -161,6 +161,11 @@ section {
         #clients img:hover {
             opacity:1;
         }
+
+#clients li{
+	list-style-type: none;
+}
+
 /*================================
     FOOTER SECTION STYLES
 ==================================*/
@@ -178,3 +183,41 @@ footer {
         color: #fff;
         text-decoration: none;
     }
+
+	
+	
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 670px) {
+	#clients .col-xs-3{
+		width: 25%;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	#clients .col-md-1{
+		width: 12%;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) */
+/* @media (min-width: 668px) {
+	#clients .col-xs-4{
+		width: 50%;
+	}
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
