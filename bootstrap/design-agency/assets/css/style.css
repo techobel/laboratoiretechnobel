@@ -93,6 +93,11 @@ section {
     padding-bottom: 40px;
 }
 
+.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
+    width: 100%;
+    height: 55px;
+}
+
 /*======================================
     PARALLAX LIKE / STATS SECTION STYLES
 =========================================*/
@@ -184,28 +189,30 @@ footer {
         text-decoration: none;
     }
 
-	
-	
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 670px) {
-	#clients .col-xs-3{
-		width: 25%;
-	}
+
+
+/* Small devices (tablets, 670px and up) */
+@media (min-width: 774px) {
+    #clients .col-xs-3{
+        width: 25%;
+    }
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-	#clients .col-md-1{
-		width: 12%;
-	}
+    #clients .col-md-1{
+        width: 12%;
+    }
+    .form-control .col-md-4, .form-inline .col-md-4{
+        width: 40%;
+        height: 55px;
+    }
+    .form-control .col-md-2, input.btn-primary{
+        width: 20%;
+        height: 55px;
+    }
 }
 
-/* Medium devices (desktops, 992px and up) */
-/* @media (min-width: 668px) {
-	#clients .col-xs-4{
-		width: 50%;
-	}
-} */
 
 
 
