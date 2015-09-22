@@ -120,17 +120,33 @@ section {
     }
 
 /*================================
-    PORTFOLIO / WORK SECTION STYLES
+    HOW SECTION STYLES
 ==================================*/
-.portfolio-item img:hover { /* POSTFOLIO IMAGE BIG ON HOVER */
+img.img-responsive{
+    float: right;
+    max-width: 50%;
+}
+.box-how{
+    background-color: rosybrown;
+    border-color: rosybrown;
+    padding-left: 3em;
+    min-height: 318px;
+    min-width: 360px;  
+    text-align: left;
+}
+.box-how h3{
+    color: red;
+    maring-top: 1.2em;
+}
+/*.portfolio-item img:hover {  POSTFOLIO IMAGE BIG ON HOVER
     cursor: pointer;
     -webkit-transform: scale(1.1, 1.1);
     -ms-transform: scale(1.1, 1.1);
     transform: scale(1.1, 1.1);
     transition-duration: 0.3s;
-    -webkit-transition-duration: 0.3s; /* Safari */
+    -webkit-transition-duration: 0.3s; // Safari
     z-index: 1;
-}
+}*/
 
 /*================================
     VIDEO SECTION STYLES

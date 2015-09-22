@@ -7,13 +7,15 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Free bootstrap corporate template</title>
+    <title>Resultats popul'aide</title>
     <!-- BOOTSTRAP STYLE SHEET -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS STYLE SHEET -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLES -->
     <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- INSIDE PAGES STYLE -->
+    <link href="assets/css/inside-pages.css" rel="stylesheet" />
 	<!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -22,34 +24,9 @@
     <![endif]-->
 </head>
 <body>
-<!--    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">
-                    <img src="assets/img/vivaldi-logo.png" alt="" class="img-responsive" />
-                </a>
-            </div>
-             <div class="navbar-collapse collapse navbar-right scroll-me">
-                <ul class="nav navbar-nav ">
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#services">SERVICES</a></li>
-                    <li><a href="#works">WORKS</a></li>
-                    <li><a href="#contact">CONTACT</a></li>
-                </ul>
-            </div> 
-
-        </div>
-    </div>-->
-    <!-- NAVBAR CODE END -->
     <div id="home">
         <div class="overlay">
-            <!-- overylay class usage -->
-            <div class="container">
+        <!--<div class="container">
                 <hgroup class="col-md-8 col-md-offset-2 text-center">
                     <h1>Popul'Aide</h1>
                     <h2>You Think, We Deliver </h2>
@@ -57,116 +34,180 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </p>
                 </hgroup>
-
-            </div>
+            </div>-->
+            <section id="services">
+                <div class="container">
+                    <form  class="row form-inline">
+                        <select class="col-xs-12 col-md-4 form-control " name="Catégorie" autofocus>
+                            <optgroup label="Animaux">
+                                <option value="">Garde chez le propriétaire</option>
+                                <option value="">Garde à domicile</option>
+                                <option value="">Promenade</option>
+                                <option value="">Toilettage</option>
+                            </optgroup>
+                            <optgroup label="Cours">
+                                <option value="">Couture</option>
+                                <option value="">Peinture/dessin</option>
+                                <option value="">Musique</option>
+                                <option value="">Informatique</option>
+                                <option value="">Langues</option>
+                                <option value="">Cuisine</option>
+                                <option value="">Rattrapage scolaire</option>
+                                <option value="">Sport</option>
+                            </optgroup>
+                            <optgroup label="Soins et beauté">
+                                <option value="">Pédicure</option>
+                                <option value="">Manucure</option>
+                                <option value="">Maquillage</option>
+                                <option value="">Coiffure</option>
+                                <option value="">Massage</option>
+                            </optgroup>
+                            <optgroup label="Jardinage">
+                                <option value="">Aménagement extérieur</option>
+                                <option value="">Entretien</option>
+                            </optgroup>
+                            <optgroup label="Transport">
+                                <option value="">De personnes</option>
+                                <option value="">De biens</option>
+                            </optgroup>
+                            <optgroup label="Bricolage">
+                                <option value="">Habitat</option>
+                                <option value="">Auto/Moto</option>
+                                <option value="">Divers</option>
+                            </optgroup>
+                            <optgroup label="Animation">
+                                <option value="">Clown, magicien, ventriloque...</option>
+                                <option value="">DJ</option>
+                                <option value="">Musicien/Groupe</option>
+                            </optgroup>
+                            <optgroup label="Assistance">
+                                <option value="">Repassage</option>
+                                <option value="">Couture</option>
+                                <option value="">Nettoyage</option>
+                                <option value="">Cuisine</option>
+                                <option value="">Babysitting</option>
+                                <option value="">Seniors</option>
+                                <option value="">Rédaction/Relecture</option>
+                                <option value="">Traduction/Interprétariat</option>
+                            </optgroup>
+                            <optgroup label="Multimédia">
+                                <option value="">Réparation/Assistance/Dépannage matériel</option>
+                                <option value="">Photo/Vidéo</option>
+                                <option value="">Web</option>
+                            </optgroup>
+                        </select>
+                        <input class="col-xs-12 col-md-4 form-control " type="text"/>
+                        <input class="btn btn-primary col-md-2 form-control" type="submit" value="Trouver un service"/>
+                    </form>
+                </div>
+            </section>
+            <!--SERVICE SECTION END -->
         </div>
-
     </div>
     <!--HOME SECTION END  -->
-    <section id="services">
-        <div class="container">
-<!--            <div class="row text-center pad-bottom">
-                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                    <h2 class="head-set">OUR SERVICES</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
-                    </p>
-                </div>
-            </div>
-            <div class="row text-center">
-
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <i class="fa fa-recycle  fa-5x"></i>
-                    <h4 class="head-set">RESPONSIVE DESIGN</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
-                    </p>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <i class="fa fa-desktop  fa-5x"></i>
-                    <h4 class="head-set">EASY TO CUSTOMIZE </h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
-                    </p>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
-                    <i class="fa fa-bolt  fa-5x"></i>
-                    <h4 class="head-set">100% FREE TO USE</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
-                    </p>
-                </div>
-            </div>-->
-            <form class="row">
-                <select placeholder="Choisissez une catégorie">
-                    <optgroup label="Animaux">
-                        <option value="Blabla">Garde chez le propriétaire</option>
-                        <option value="Blabla">Garde chez le petsitter</option>
-                        <option value="Blabla">Prommenade</option>
-                        <option value="Blabla">Toilettage</option>
-                    </optgroup>              
-                    <optgroup label="">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat3">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat4">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat5">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat6">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat1">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat1">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>                     
-                </select>
-                <input type="text"/>
-                <input type="submit" value="Trouver un service"/>
-            </form>
-        </div>
-    </section>
 <!-- RESULTATS DE LA RECHERCHE NOUVEAUX MEMBRES-->
         <section id="works">
             <div class="row text-center pad-bottom">
                 <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                    <h2 class="head-set">Résultats de votre recherche</h2>
+<!--                    <h2 class="head-set">Résultats de votre recherche</h2>-->
                     <p>
                       Texte de résultat automatique en fonction du résultat pour les nouveaux membres du site
                     </p>
                 </div>
             </div>
-            <div class="parallax-like-newuser">
-                <p>NOUVEAUX MEMBRES</p>
+            <h2>NOUVEAUX MEMBRES</h2>
+            <div class="parallax-like-newuser">               
                 <div class="container">
                     <div class="row text-center portfolio-item">
-                        <div class="col-md-4 col-sm-4 ">
-                            <div class="alert alert-info"> <!--360px * 318px -->
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
+                                <img src="#" alt="Profil photo"/>
+                                <ul>
+                                    <li><p>User</p></li>
+                                    <li id="stars">
+                                        <ol>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                        </ol>
+                                    </li>
+                                    <li><h3>Titre de l'annonce</h3></li> <!--Marie Taille titre !!!!!-->
+                                    <li><p>xxxx Région</p></li>
+                                </ul>
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
+                                <img src="#" alt="Profil photo"/>
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
+                                <img src="#" alt="Profil photo"/>
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
+                                <img src="#" alt="Profil photo"/>
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>    
+            <h2>TOUTES LES ANNONCES</h2>
+            <div class="parallax-like-users">
+                <div class="container">
+                    <div class="row text-center portfolio-item">
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
                                 <div class="ann1-newuser"></div>
                                 <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
                             </div>
 
                         </div>
-                        <div class="col-md-4 col-sm-4 ">
-                            <div class="alert alert-danger">
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
                                 <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-4 ">
-                            <div class="alert alert-success">
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
                                 <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
                             </div>
                         </div>
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
+                                <img src="#" alt="Profil photo"/>
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+                        </div>      
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+                        </div>          
+                        <div class="col-md-3 col-sm-3 ">
+                            <div class="box-annonce">
+                                <h5><a href="#"><strong>Click</strong> </a>to see more details</h5>
+                            </div>
+                        </div>      
                     </div>
                 </div>
             </div>    
