@@ -2,3 +2,38 @@
 #home .overlay {
     min-height: 200px;
 }
+/*================================
+    GENERAL STYLES
+==================================*/
+section {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.pad-bottom {
+    padding-bottom: 30px;
+    padding-top: 0;
+    margin: 0 auto;
+    max-height: 150px;
+}
+/*======================================
+    PARALLAX LIKE / STATS SECTION STYLES
+=========================================*/
+.parallax-like-newuser {
+    max-height: 450px;
+    padding: 2%;
+    background: #C03000;
+    -webkit-background-size: cover;
+    background-attachment: fixed;
+}
+    .parallax-like-newuser>p {
+        display: inline-block;
+        font-size: 2em;
+    }
+
+.box-annonce {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  min-height: 250px;
+  min-width: 360px;     
+}
