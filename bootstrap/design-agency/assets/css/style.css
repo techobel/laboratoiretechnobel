@@ -69,13 +69,13 @@ section {
     -webkit-background-size: cover;
     background-size: cover;
     -moz-background-size: cover;
-    min-height: 600px;
+    height: 450px;
 }
     /*STYLE FOR OVERLAY CLASS - WHICH IS ABOVE IMAGE WITH OPACITY/TRANSPARENCY 0.75*/
     #home .overlay {
         padding-top: 90px;
         background-color: rgba(35, 133, 161,0.75); /*.75 opacity of the color so that background image is visible*/
-        min-height: 600px;
+        height: 450px;
         color: #fff;
     }
 
@@ -93,13 +93,23 @@ section {
     padding-bottom: 40px;
 }
 
+
+
+/*================================
+    SEARCH SECTION STYLES
+==================================*/
 .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
     width: 100%;
     height: 55px;
 }
+.row{ /*Et pour POST SECTION aussi*/
+    margin-left: 0;
+    margin-right: 0;
+}
+
 
 /*======================================
-    PARALLAX LIKE / STATS SECTION STYLES
+    POST SECTION STYLES
 =========================================*/
 .parallax-like-newuser {
     background: #C03000;
@@ -131,21 +141,77 @@ section {
 /*================================
     HOW SECTION STYLES
 ==================================*/
-img.img-responsive{
-    float: right;
-    max-width: 50%;
+/*BOX*/
+#how{
+    padding-bottom: 80px;
 }
 .box-how{
     background-color: rosybrown;
     border-color: rosybrown;
     padding-left: 3em;
     min-height: 318px;
-    min-width: 360px;  
+    min-width: 250px;  
     text-align: left;
 }
 .box-how h3{
     color: red;
     maring-top: 1.2em;
+}
+
+/*PAGINATION*/
+.pagination > li > a,
+.pagination > li > span {
+/*  position: relative;
+  float: left;
+  padding: 6px 12px;*/
+  margin-left: 30px;
+/*  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;*/
+}
+.pagination > li > a,
+.pagination > li > span,
+.pagination > li > a,
+.pagination > li > span{
+  border-radius: 50%;
+}
+/*.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-top-right-radius: 50%;
+  border-radius: 50%;
+}*/
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
 }
 /*.portfolio-item img:hover {  POSTFOLIO IMAGE BIG ON HOVER
     cursor: pointer;
@@ -178,22 +244,22 @@ img.img-responsive{
         padding-bottom: 30px;
     } */
 /*================================
-    CLIENTS SECTION STYLES
+    CATEGORY SECTION STYLES
 ==================================*/
-#clients {
+#category {
     background-color:#f4f4f4;
     padding-bottom:50px;
     padding-top:50px;
 }
-    #clients img {
+    #category img {
         cursor:pointer;
     }
-        #clients img:hover {
+        #category img:hover {
             opacity:1;
         }
 
-#clients li{
-	list-style-type: none;
+#category li{
+    list-style-type: none;
 }
 
 /*================================
@@ -212,36 +278,80 @@ footer {
     footer a, footer a:hover {
         color: #fff;
         text-decoration: none;
+        display: block;
+        font-size: 1.2em;
+    }
+    footer p:last-child{
+        font-weight: normal;
+        margin-top: 1.8em;
     }
 
+    
+    
+/* Extra-small devices (phones, 450px and up) */
+@media(max-width: 450px){
+    .btn-group-lg > .btn { /*Le bouton large devient petit*/
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+}
 
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    /*SEARCH*/
+    .form-inline .form-control {
+        width: 8%;
+    }
+    .form-control .col-md-4, .form-inline .col-md-4{
+        width: 42%;
+        height: 55px;
+        margin-right: 1.6em;
+    }
+    
+    /*HOW*/
+    .box-how>.img-responsive{
+        float: right;
+        max-width: 50%; 
+    }
+   .col-sm-6 {
+        width: auto;
+   }
+   .col-sm-offset-3 {
+        margin-left: 22%;
+   }
 
-/* Small devices (tablets, 670px and up) */
-@media (min-width: 774px) {
-    #clients .col-xs-3{
+   /*CATEGORY*/
+   #category .col-xs-3{
         width: 25%;
+    }
+    
+    /*FOOTER*/
+    footer a, footer a:hover {
+        display: inline;
+        margin: 0 1em;
     }
 }
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    #clients .col-md-1{
+@media (min-width: 992px) {    
+    /*HOW*/
+    .box-how>.img-responsive{
+        max-width: 50%; 
+    }
+   .col-sm-6 {
+        width: 50%;
+   }
+   .col-sm-offset-3 {
+        margin-left: 25%;
+   }
+
+    /*CATEGORY*/
+    #category .col-md-1{
         width: 12%;
     }
-    .form-control .col-md-4, .form-inline .col-md-4{
-        width: 40%;
-        height: 55px;
-    }
-    .form-control .col-md-2, input.btn-primary{
-        width: 20%;
-        height: 55px;
-    }
 }
-
-
-
-
-
 
 
 
