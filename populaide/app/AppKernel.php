@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Tec\UserBundle\TecUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-
+            new Tec\ServiceBundle\TecServiceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

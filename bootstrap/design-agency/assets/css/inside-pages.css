@@ -1,4 +1,134 @@
+body {
+    background-color: #B1D4CF;
+}
 #home,
 #home .overlay {
     min-height: 200px;
 }
+/*================================
+    GENERAL STYLES
+==================================*/
+section {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+.pad-bottom {
+    padding-bottom: 30px;
+    padding-top: 0;
+    margin: 0 auto;
+    max-height: 150px;
+}
+/*================================
+    SECTION STYLES
+==================================*/
+#works>h2 {
+         margin-left: 20%;
+}
+
+/*======================================
+    ANNONCES STYLES
+=========================================*/
+.parallax-like-newuser {
+    max-width: 80%;
+    margin: 0 auto; 
+    padding-bottom: 1%;
+    padding-top: 1%;
+    background: #01917E;
+    -webkit-background-size: cover;
+    background-attachment: fixed;
+}
+.parallax-like-users {
+    max-width: 80%;
+    margin: 0 auto;
+    padding-bottom: 1%;
+    padding-top: 1%;
+/*    background: #769490;*/
+    -webkit-background-size: cover;
+    background-attachment: fixed;
+}
+.box-annonce {
+  border: 1px solid red;  
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  min-height: 250px;
+  min-width: 250px;    
+  margin: 5%;
+}   
+.box-annonce>img {
+    border: 1px solid blue;
+    width: 100%;
+    max-height: 100px;
+} 
+.box-annonce ul {
+    text-align: left;
+    text-decoration: none;
+    
+}
+    #stars {
+        display: inline-block;
+    }
+/*================================
+    MEDIA QUERIES
+==================================*/
+/* Small devices (tablets, 670px and up) */
+@media (min-width: 774px) {
+    #clients .col-xs-3{
+        width: 25%;
+    }
+    .col-sm-4 {
+        display: block;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    #clients .col-md-1{
+        width: 12%;
+    }
+    .form-control .col-md-4, .form-inline .col-md-4{
+        width: 40%;
+        height: 55px;
+    }
+    .form-control .col-md-2, input.btn-primary{
+        width: 20%;
+        height: 55px;
+    }
+}
+@media (min-width: 1200px) {
+  .visible-lg-block {
+    display: block !important;
+  }
+}
+@media (min-width: 1200px) {
+  .visible-lg-inline {
+    display: inline !important;
+  }
+}
+@media (min-width: 1200px) {
+  .visible-lg-inline-block {
+    display: inline-block !important;
+  }
+}
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .hidden-sm {
+    display: none !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .hidden-md {
+    display: none !important;
+  }
+}
+@media (min-width: 1200px) {
+  .hidden-lg {
+    display: none !important;
+  }
+}
+
+

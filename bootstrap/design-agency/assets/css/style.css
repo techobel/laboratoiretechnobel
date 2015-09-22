@@ -111,15 +111,6 @@ section {
 /*======================================
     POST SECTION STYLES
 =========================================*/
-.parallax-like-newuser {
-    background: #C03000;
-    padding: 5%;
-    -webkit-background-size: cover;
-    background-attachment: fixed;
-}   
-    .parallax-like-newuser>p {
-        font-size: 2em;
-    }
 
 .parallax-like {
     background: url(../img/stats.jpg) no-repeat center center; /* DEFINE IMAGE PATH CAREFULLY*/
