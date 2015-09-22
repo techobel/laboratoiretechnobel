@@ -7,13 +7,15 @@
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
-    <title>Free bootstrap corporate template</title>
+    <title>Resultats popul'aide</title>
     <!-- BOOTSTRAP STYLE SHEET -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONT AWESOME ICONS STYLE SHEET -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <!-- CUSTOM STYLES -->
     <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- INSIDE PAGES STYLE -->
+    <link href="assets/css/inside-pages.css" rel="stylesheet" />
 	<!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -101,39 +103,68 @@
                     </p>
                 </div>
             </div>-->
-            <form class="row">
-                <select placeholder="Choisissez une catégorie">
-                    <optgroup label="Animaux">
-                        <option value="Blabla">Garde chez le propriétaire</option>
-                        <option value="Blabla">Garde chez le petsitter</option>
-                        <option value="Blabla">Prommenade</option>
-                        <option value="Blabla">Toilettage</option>
-                    </optgroup>              
-                    <optgroup label="">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat3">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat4">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat5">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat6">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat1">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>     
-                    <optgroup label="cat1">
-                        <option value="Blabla">Blabla</option>
-                    </optgroup>                     
-                </select>
-                <input type="text"/>
-                <input type="submit" value="Trouver un service"/>
-            </form>
+        <form  class="row form-inline">
+            <select class="col-xs-12 col-md-4 form-control " name="Catégorie" autofocus>
+                <optgroup label="Animaux">
+                    <option value="">Garde chez le propriétaire</option>
+                    <option value="">Garde à domicile</option>
+                    <option value="">Promenade</option>
+                    <option value="">Toilettage</option>
+                </optgroup>
+                <optgroup label="Cours">
+                    <option value="">Couture</option>
+                    <option value="">Peinture/dessin</option>
+                    <option value="">Musique</option>
+                    <option value="">Informatique</option>
+                    <option value="">Langues</option>
+                    <option value="">Cuisine</option>
+                    <option value="">Rattrapage scolaire</option>
+                    <option value="">Sport</option>
+                </optgroup>
+                <optgroup label="Soins et beauté">
+                    <option value="">Pédicure</option>
+                    <option value="">Manucure</option>
+                    <option value="">Maquillage</option>
+                    <option value="">Coiffure</option>
+                    <option value="">Massage</option>
+                </optgroup>
+                <optgroup label="Jardinage">
+                    <option value="">Aménagement extérieur</option>
+                    <option value="">Entretien</option>
+                </optgroup>
+                <optgroup label="Transport">
+                    <option value="">De personnes</option>
+                    <option value="">De biens</option>
+                </optgroup>
+                <optgroup label="Bricolage">
+                    <option value="">Habitat</option>
+                    <option value="">Auto/Moto</option>
+                    <option value="">Divers</option>
+                </optgroup>
+                <optgroup label="Animation">
+                    <option value="">Clown, magicien, ventriloque...</option>
+                    <option value="">DJ</option>
+                    <option value="">Musicien/Groupe</option>
+                </optgroup>
+                <optgroup label="Assistance">
+                    <option value="">Repassage</option>
+                    <option value="">Couture</option>
+                    <option value="">Nettoyage</option>
+                    <option value="">Cuisine</option>
+                    <option value="">Babysitting</option>
+                    <option value="">Seniors</option>
+                    <option value="">Rédaction/Relecture</option>
+                    <option value="">Traduction/Interprétariat</option>
+                </optgroup>
+                <optgroup label="Multimédia">
+                    <option value="">Réparation/Assistance/Dépannage matériel</option>
+                    <option value="">Photo/Vidéo</option>
+                    <option value="">Web</option>
+                </optgroup>
+            </select>
+            <input class="col-xs-12 col-md-4 form-control " type="text"/>
+            <input class="btn btn-primary col-md-2 form-control" type="submit" value="Trouver un service"/>
+        </form>
         </div>
     </section>
 <!-- RESULTATS DE LA RECHERCHE NOUVEAUX MEMBRES-->
