@@ -1,3 +1,7 @@
+tec_user:
+    resource: "@TecUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
