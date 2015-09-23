@@ -146,15 +146,16 @@ section {
 }
 .box-how h3{
     color: red;
-    maring-top: 1.2em;
+    margin-top: 1.2em;
 }
 
 /*PAGINATION*/
-.pagination > li > a,
-.pagination > li > span {
+#how .pagination > li > a,
+#how .pagination > li > span {
 /*  position: relative;
   float: left;
   padding: 6px 12px;*/
+  font-family: "Jokerman";
   margin-left: 30px;
 /*  line-height: 1.42857143;
   color: #337ab7;
@@ -162,49 +163,50 @@ section {
   background-color: #fff;
   border: 1px solid #ddd;*/
 }
-.pagination > li > a,
-.pagination > li > span,
-.pagination > li > a,
-.pagination > li > span{
+#how .pagination > li > a,
+#how .pagination > li > span,
+#how .pagination-lg > li:last-child > a,
+#how .pagination-lg > li:last-child > span,
+#how .pagination-lg > li:first-child > a,
+#how .pagination-lg > li:first-child > span{
   border-radius: 50%;
 }
-/*.pagination > li:last-child > a,
-.pagination > li:last-child > span {
-  border-top-right-radius: 50%;
-  border-radius: 50%;
-}*/
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
+#how .pagination > li > a:hover,
+#how .pagination > li > span:hover,
+#how .pagination > li > a:focus,
+#how .pagination > li > span:focus {
   color: #23527c;
   background-color: #eee;
   border-color: #ddd;
 }
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
+#how .pagination > .active > a,
+#how .pagination > .active > span,
+#how .pagination > .active > a:focus,
+#how .pagination > .active > span:focus {
   z-index: 2;
   color: #fff;
-  cursor: default;
+  cursor: pointer;
   background-color: #337ab7;
   border-color: #337ab7;
 }
-.pagination > .disabled > span,
-.pagination > .disabled > span:hover,
-.pagination > .disabled > span:focus,
-.pagination > .disabled > a,
-.pagination > .disabled > a:hover,
-.pagination > .disabled > a:focus {
+#how .pagination > .active > a:hover,
+#how .pagination > .active > span:hover{
+   background-color: black;
+   border-color: black;
+   cursor: pointer;
+}
+#how .pagination > .disabled > span,
+#how .pagination > .disabled > span:hover,
+#how .pagination > .disabled > span:focus,
+#how .pagination > .disabled > a,
+#how .pagination > .disabled > a:hover,
+#how .pagination > .disabled > a:focus {
   color: #777;
   cursor: not-allowed;
   background-color: #fff;
   border-color: #ddd;
 }
-/*.portfolio-item img:hover {  POSTFOLIO IMAGE BIG ON HOVER
+/*.portfolio-item img:hover {  PORTFOLIO IMAGE BIG ON HOVER
     cursor: pointer;
     -webkit-transform: scale(1.1, 1.1);
     -ms-transform: scale(1.1, 1.1);
@@ -281,11 +283,18 @@ footer {
     
 /* Extra-small devices (phones, 450px and up) */
 @media(max-width: 450px){
+    /*HOW*/
     .btn-group-lg > .btn { /*Le bouton large devient petit*/
         padding: 5px 10px;
         font-size: 12px;
         line-height: 1.5;
         border-radius: 3px;
+    }
+    #how .pagination > li > a,
+    #how .pagination > li > span {
+      padding: 6px 12px;
+      font-family: "Jokerman";
+      margin-left: 10px;
     }
 }
 
@@ -293,7 +302,7 @@ footer {
 @media (min-width: 768px) {
     /*SEARCH*/
     .form-inline .form-control {
-        width: 8%;
+        min-width: 8%;
     }
     .form-control .col-md-4, .form-inline .col-md-4{
         width: 42%;
@@ -310,7 +319,7 @@ footer {
         width: auto;
    }
    .col-sm-offset-3 {
-        margin-left: 22%;
+        margin-left: 0%;
    }
 
    /*CATEGORY*/
