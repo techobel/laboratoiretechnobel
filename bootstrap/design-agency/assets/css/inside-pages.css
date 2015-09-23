@@ -3,7 +3,10 @@ body {
 }
 #home,
 #home .overlay {
-    min-height: 200px;
+/*    min-height: 200px;*/
+    background: #fff;
+    color: #000;
+    height: auto;
 }
 /*================================
     GENERAL STYLES
