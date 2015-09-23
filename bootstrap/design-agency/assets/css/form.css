@@ -1,0 +1,14 @@
+/*================================
+    FORM SECTION STYLES
+==================================*/
+.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
+    width: 100%;
+    height: auto;
+    /*margin-bottom: 15px;*/
+}
+textarea{
+    width: 100%;
+}
+label.input-group{
+    display: inline-block;
+}
