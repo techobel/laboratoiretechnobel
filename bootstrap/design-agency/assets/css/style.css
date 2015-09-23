@@ -58,6 +58,11 @@ section {
 .navbar-default .navbar-toggle .icon-bar {
     background-color:#fff;
 }
+
+.navbar > .container > .btn{
+    display: none; /*Connetion fixed invisible*/
+}
+
 /*================================
     HOME SECTION STYLES
 ==================================*/
@@ -98,9 +103,14 @@ section {
 /*================================
     SEARCH SECTION STYLES
 ==================================*/
+section#search{
+    padding-top: 60px;
+    padding-bottom: 46px;
+}
 .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
     width: 100%;
     height: 55px;
+    margin-bottom: 15px;
 }
 .row{ /*Et pour POST SECTION aussi*/
     margin-left: 0;
@@ -128,21 +138,32 @@ section {
         padding-bottom: 60px;
         padding-top: 60px;
     }
+    .post{
+        margin-top: 20px;
+    }
 
+/*======================================
+    CONNECTION SECTION STYLES
+=========================================*/
+.connection{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+    
 /*================================
     HOW SECTION STYLES
 ==================================*/
 /*BOX*/
 #how{
+    display: none;
     padding-bottom: 80px;
 }
 .box-how{
     background-color: rosybrown;
     border-color: rosybrown;
-    padding-left: 3em;
     min-height: 318px;
     min-width: 250px;  
-    text-align: left;
+    text-align: center;
 }
 .box-how h3{
     color: red;
@@ -300,17 +321,36 @@ footer {
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    /*CONNECTION NAVBAR*/
+   .navbar > .container > .btn{
+        display: initial; 
+        position: relative;
+        float: right;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+    
     /*SEARCH*/
-    .form-inline .form-control {
-        min-width: 8%;
+    .form-inline:last-child .form-control:last-child {
+        min-width: 11%;
+        max-width: 16%;
     }
     .form-control .col-md-4, .form-inline .col-md-4{
         width: 42%;
         height: 55px;
-        margin-right: 1.6em;
+        margin-right: 15px;
     }
     
+    /*CONNECTION SECTION*/
+    div.connection{
+        display: none;
+    }
     /*HOW*/
+    #how{
+        display: initial;
+    }
     .box-how>.img-responsive{
         float: right;
         max-width: 50%; 
@@ -321,7 +361,11 @@ footer {
    .col-sm-offset-3 {
         margin-left: 0%;
    }
-
+   .box-how{
+       padding-left: 3em;
+       text-align: left;
+   }
+   
    /*CATEGORY*/
    #category .col-xs-3{
         width: 25%;
