@@ -60,7 +60,7 @@ section {
     border-radius: 5%;
     border: 1px solid blue;
     width: 100%;
-    max-height: 120px;
+    height: 120px;
 } 
 .box-annonce ul {
     text-align: left;
@@ -101,13 +101,11 @@ section {
 /*================================
         PAGINATION
 ==================================*/   
-.pagination {
+.pagination{
     margin: 0 0 2% 0;
     padding-left: 45%;
     border-radius: 0;
-}
-.parallax-like-newuser box-annonce:last-child {
-    border: 2px solid blueviolet;
+    
 }
 /*================================
     MEDIA QUERIES
@@ -136,6 +134,23 @@ section {
         height: 55px;
     }
 }
+@media (max-width: 768px) {
+  .col-sm-4,
+  .col-sm-3{
+    width: 40%;
+    margin-left: 10px;
+  }
+  .pagination {
+      padding-left: 30%;
+      font-size: 2em;
+  }
+  .row {
+      margin-left: -30px;
+  }
+  h2 {
+      margin-left: 10%;
+  }
+}  
 @media (min-width: 1200px) {
   .visible-lg-block {
     display: block !important;
@@ -171,10 +186,3 @@ section {
     display: none !important;
   }
 }
-@media (min-width: 1200px){
-    .parallax-like-newuser col-md-3 col-sm-3:last-child {
-        display: none;
-    }  
-    
-}
-
