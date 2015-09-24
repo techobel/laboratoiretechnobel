@@ -95,6 +95,11 @@ a, a:hover{
         font-family: 'Browallia New';
         text-align: left;
     }
+    h1 img{
+        max-width: 400px;
+        min-width: 200px;
+        width: 50%;
+    }
 /*SMPLE CLASS TO ADJUST SECTION PADDING & HEIGHT*/
 
 /*CLASS TO FORMAT TEXT*/
@@ -361,32 +366,33 @@ footer {
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-    /*CONNECTION NAVBAR*/
-   .navbar > .container > .btn{
-        display: initial; 
-        position: relative;
-        float: right;
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
-        border-bottom-right-radius: 8px;
-        border-bottom-left-radius: 8px;
+    /*HOME*/
+    h1 img{
+        width: 60%;
     }
     
     /*SEARCH*/
-    .form-inline:last-child .form-control:last-child {
+/*    .form-inline:last-child .form-control:last-child {
         min-width: 11%;
         max-width: 16%;
-    }
+    }*/
     .form-control .col-md-4, .form-inline .col-md-4{
         width: 42%;
         height: 55px;
         margin-right: 15px;
     }
-    
-    /*CONNECTION SECTION*/
-    div.connection{
-        display: none;
+    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary {
+        width: 40%;
     }
+        /*SEARCH*/
+    .form-inline:last-child .form-control:last-child {
+        min-width: 11%;
+        max-width: 16%;
+    }
+    .form-inline{
+        padding-left: 70px;
+    }
+    
     /*HOW*/
     #how{
         display: initial;
@@ -420,6 +426,17 @@ footer {
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {    
+    /*CONNECTION NAVBAR*/
+   .navbar > .container > .btn{
+        display: initial; 
+        position: relative;
+        float: right;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+    
     /*HOW*/
     .box-how>.img-responsive{
         max-width: 50%; 
@@ -430,6 +447,11 @@ footer {
    .col-sm-offset-3 {
         margin-left: 25%;
    }
+   
+   /*CONNECTION SECTION*/
+    div.connection{
+        display: none;
+    }
 
     /*CATEGORY*/
     #category .col-md-1{
