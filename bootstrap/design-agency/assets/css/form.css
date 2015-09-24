@@ -4,7 +4,9 @@
 .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
     width: 100%;
     height: auto;
-    /*margin-bottom: 15px;*/
+    border-radius: 25px;
+    border: 2px solid #EB5E4E;    
+    margin-bottom: 15px;
 }
 textarea{
     width: 100%;
@@ -33,5 +35,6 @@ label.input-group{
     box-shadow: 5px 5px 5px #7f3028 inset;
     /*box-shadow: 0px 0px 25px #7f3028 inset;*/
     text-shadow: none;
+    border: none;
 }
 }
