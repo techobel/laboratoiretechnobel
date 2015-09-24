@@ -60,7 +60,7 @@
         </div>
     </div>
     <!--HOME SECTION END  -->
-    <div id="title">
+    <div class="title">
         <div class="overlay">
             <div class="container">
                 <div class="row">
@@ -70,7 +70,7 @@
         </div>
     </div>
     <!--TITLE SECTION END  -->
-    <section id="search">
+    <section id="form_connection">
         <div class="container">
 <!--            <div class="row text-center pad-bottom">
                 <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
@@ -120,6 +120,62 @@
         </div>
     </section>
     <!--CONNECTION FORM SECTION END  -->
+    <div class="title">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <h3>Inscription</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--TITLE SECTION END  -->
+    <section id="form_inscription">
+        <div class="container">
+            <form id="form2" class=" form row form-inline">
+                
+                <!--Identité-->
+                <fieldset>
+                    <!--Nom-->
+                    <input class="col-xs-12 col-md-4 form-control " type="text" name="lname" placeholder="Nom"/>
+                    <!--Prénom-->
+                    <input class="col-xs-12 col-md-4 form-control " type="text" name="fname" placeholder="Prénom"/>
+                    <!--Date de naissance-->
+                    <input class="col-xs-12 col-md-4 form-control " type="date" name="birth"/>
+                    <!--Pseudo-->
+                    <input class="col-xs-12 col-md-4 form-control " type="text" name="login" placeholder="Pseudo"/>
+                    <!--Password-->
+                    <input class="col-xs-12 col-md-4 form-control " type="password" name="pw" placeholder="Choisissez un mot de passe"/>
+                    <!--Password2-->
+                    <input class="col-xs-12 col-md-4 form-control " type="password" name="pw2" placeholder="Confirmez votre mot de passe"/>
+                </fieldset>
+                
+                <!--Adresse-->
+                <fieldset>
+                    <!--Rue-->
+                    <input class="col-xs-12 col-md-4 form-control " type="text" name="street" placeholder="Rue"/>
+                    <!--Numéro-->
+                    <input class="col-xs-12 col-md-4 form-inline " type="text" name="number" placeholder="Numéro"/>
+                    <!--Boite-->
+                    <input class="col-xs-12 col-md-4 form-inline " type="text" name="box" placeholder="Boite"/>
+                    <!--CP-->
+                    <input class="col-xs-12 col-md-4 form-control " type="text" name="cp" placeholder="Code postal ou ville"/>
+                </fieldset>
+                
+                <!--Coordonnées-->
+                <fieldset>
+                    <!--Téléphone-->
+                    <input class="col-xs-12 col-md-4 form-control " type="text" name="phone" placeholder="Téléphone"/>
+                    <!--Mail-->
+                    <input class="col-xs-12 col-md-4 form-control " type="email" name="mail" placeholder="Email"/>
+                </fieldset>
+                <input id="cgu" class='col-xs-12 col-md-4 form-inline' type='checkbox' name='cgu'/>
+                <label for="cgu" class='col-xs-12 col-md-4 form-inline'>J'ai pris connaissance des conditions générales d'utilisation</label>
+                <input class="btn btn-primary col-md-2 form-control" type="submit" value="Je m'inscris"/>
+            </form>
+        </div>
+    </section>
+    <!--INSCRIPTION FORM SECTION END  -->
     <footer>
         <p>
             <a href="">Comment ça marche ?</a>
