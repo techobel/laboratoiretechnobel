@@ -1,0 +1,241 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Poster une annonce | Popul'Aide</title>
+    <!-- BOOTSTRAP STYLE SHEET -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME ICONS STYLE SHEET -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/inside-pages.css" rel="stylesheet" />
+    <link href="assets/css/form.css" rel="stylesheet" />
+	<!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="container">
+            <button type="button" class="btn btn-primary">Connexion</button>
+<!--        <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="assets/img/vivaldi-logo.png" alt="" class="img-responsive" />
+                </a>
+            </div>
+            <div class="navbar-collapse collapse navbar-right scroll-me">
+                <ul class="nav navbar-nav ">
+                    <li><a href="#home">HOME</a></li>
+                    <li><a href="#services">SERVICES</a></li>
+                    <li><a href="#works">WORKS</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div> -->
+
+        </div>
+    </div>
+    <!-- NAVBAR CODE END -->
+    <div id="home">
+        <div class="overlay">
+            <div class="container">
+                <hgroup class="col-md-8 col-md-offset-2 text-center">
+                    <h1>Popul'Aide</h1>
+                    <h2>L'entraide connectée </h2>
+                </hgroup>
+            </div>
+        </div>
+    </div>
+    <!--HOME SECTION END  -->
+    <section id="search">
+        <div class="container">
+<!--            <div class="row text-center pad-bottom">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                    <h2 class="head-set">OUR SERVICES</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
+                    </p>
+                </div>
+            </div>
+            <div class="row text-center">
+
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <i class="fa fa-recycle  fa-5x"></i>
+                    <h4 class="head-set">RESPONSIVE DESIGN</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <i class="fa fa-desktop  fa-5x"></i>
+                    <h4 class="head-set">EASY TO CUSTOMIZE </h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <i class="fa fa-bolt  fa-5x"></i>
+                    <h4 class="head-set">100% FREE TO USE</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                         Curabitur nec nisl odio. Mauris vehicula at nunc id posuere.
+                    </p>
+                </div>
+            </div>-->
+        <form id="form" class=" form row form-inline">
+            <!--Type-->
+            <div class="btn-group btn-group-lg" role="group">
+                <button name="type" value="offre" class="btn btn-primary active">Offre</button>
+                <button name="type" value="demande" class="btn btn-primary">Demande</button>
+            </div>
+            <!--Durée-->
+            <div class="col-xs-12 col-md-4 form-control">
+                <!--Ponctuelle-->
+                <input id="ponctuelle" type="radio" name="duree" value="ponctuelle" checked/>
+                <label for="ponctuelle" >Ponctuelle</label>
+                <div>
+                    <input type="date" name="date"/>
+                </div>
+                <!--Régulière-->
+                <input id="reguliere" type="radio" name="duree" value="reguliere"/>
+                <label for="reguliere" >Régulière</label>
+                <div>
+                    <input type="text" name="duree" value="" placeholder="Tous les deuxièmes mardis du mois"/>
+                </div>
+            </div>
+            <!--Catégorie-->
+            <select class="col-xs-12 col-md-4 form-control " name="Catégorie" autofocus>
+                <optgroup label="Animaux">
+                    <option value="">Garde chez le propriétaire</option>
+                    <option value="">Garde à domicile</option>
+                    <option value="">Promenade</option>
+                    <option value="">Toilettage</option>
+                </optgroup>
+                <optgroup label="Cours">
+                    <option value="">Couture</option>
+                    <option value="">Peinture/dessin</option>
+                    <option value="">Musique</option>
+                    <option value="">Informatique</option>
+                    <option value="">Langues</option>
+                    <option value="">Cuisine</option>
+                    <option value="">Rattrapage scolaire</option>
+                    <option value="">Sport</option>
+                </optgroup>
+                <optgroup label="Soins et beauté">
+                    <option value="">Pédicure</option>
+                    <option value="">Manucure</option>
+                    <option value="">Maquillage</option>
+                    <option value="">Coiffure</option>
+                    <option value="">Massage</option>
+                </optgroup>
+                <optgroup label="Jardinage">
+                    <option value="">Aménagement extérieur</option>
+                    <option value="">Entretien</option>
+                </optgroup>
+                <optgroup label="Transport">
+                    <option value="">De personnes</option>
+                    <option value="">De biens</option>
+                </optgroup>
+                <optgroup label="Bricolage">
+                    <option value="">Habitat</option>
+                    <option value="">Auto/Moto</option>
+                    <option value="">Divers</option>
+                </optgroup>
+                <optgroup label="Animation">
+                    <option value="">Clown, magicien, ventriloque...</option>
+                    <option value="">DJ</option>
+                    <option value="">Musicien/Groupe</option>
+                </optgroup>
+                <optgroup label="Assistance">
+                    <option value="">Repassage</option>
+                    <option value="">Couture</option>
+                    <option value="">Nettoyage</option>
+                    <option value="">Cuisine</option>
+                    <option value="">Babysitting</option>
+                    <option value="">Seniors</option>
+                    <option value="">Rédaction/Relecture</option>
+                    <option value="">Traduction/Interprétariat</option>
+                </optgroup>
+                <optgroup label="Multimédia">
+                    <option value="">Réparation/Assistance/Dépannage matériel</option>
+                    <option value="">Photo/Vidéo</option>
+                    <option value="">Web</option>
+                </optgroup>
+            </select>
+            <!--Titre-->
+            <input class="col-xs-12 col-md-4 form-control " type="text" placeholder="Titre"/>
+            <!--Aide à la rédaction-->
+            <div class="col-xs-12 col-md-4 form-control">
+                <input type="checkbox" id="aide"/>
+                <label for="aide">Aide à la rédaction</label>
+                <p>Explication de l'aide à la rédaction</p>
+                <textarea rows="4" placeholder="Description"></textarea>
+            </div>
+            <!--Distance-->
+            <p class="col-xs-12 col-md-4 form-control ">Je me déplace jusqu'à
+                <select>
+                    <option>0-5</option>
+                    <option>5-10</option>
+                    <option>10-15</option>
+                    <option>15-25</option>
+                    <option>25-50</option>
+                    <option>Sans importance</option>
+                </select>
+                 km autour de chez moi.
+            </p>
+            <!--Remarques-->
+            <div class="col-xs-12 col-md-4 form-control">
+                <textarea rows="4" placeholder="Remarques"></textarea>
+            </div>
+            <!--Diffusion-->
+            <div class="col-xs-12 col-md-4 form-control">
+                <input type="checkbox" id="diff"/>
+                <label for="diff">Diffusion sur les sites partenaires (Vlan, 2e main)</label>
+            </div>
+            <!--<input class="col-xs-12 col-md-4 form-control " type="text"/>-->
+            <input class="btn btn-primary col-md-2 form-control" type="submit" value="Aperçu"/>
+            <input class="btn btn-default col-md-2 form-control" type="reset" value="Annuler"/>
+        </form>
+        </div>
+    </section>
+    <!--POST FORM SECTION END  -->
+    <footer>
+        <p>
+            <a href="">Comment ça marche ?</a>
+            <a href="">Contact</a>
+            <a href="">Inscription</a>
+            <a href="">Conditions générales d'utilisation</a>
+        </p>
+        <p>Playpark Technobel septembre-octobre 2015</p>
+    </footer>
+    <!-- FOOTER SECTION END-->
+    
+    <!-- REQUIRED SCRIPTS FILES -->
+    <!-- CORE JQUERY FILE -->
+    <script src="assets/js/jquery-1.11.1.js"></script>
+    <!-- REQUIRED BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.js"></script>
+    <!-- BACKGROUND VIDEO PLUGIN  -->
+    <!-- <script src="assets/js/jquery.mb.YTPlayer.js"></script> -->
+    <!-- SCROLLING SCRIPTS PLUGIN  -->
+    <script src="assets/js/jquery.easing.min.js"></script>
+    <!-- CUSTOM SCRIPTS   -->
+    <script src="assets/js/custom.js"></script>
+</body>
+</html>
