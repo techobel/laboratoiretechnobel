@@ -150,6 +150,9 @@ h4 {
         min-width: 11%;
         max-width: 16%;
     }
+    .form-inline{
+        padding-left: 70px;
+    }
 }
 @media (min-width: 1800px) {
     /*================================
