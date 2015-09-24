@@ -1,5 +1,5 @@
 body {
-    background-color: #B1D4CF;
+    background-color: #ccffff;
 }
 #home,
 #home .overlay {
@@ -8,108 +8,102 @@ body {
     color: #000;
     height: auto;
 }
-/*================================
-    GENERAL STYLES
-==================================*/
 section {
-    padding-top: 30px;
-    padding-bottom: 20px;
-}
-.pad-bottom {
-    padding-bottom: 30px;
+    padding-bottom: 0;
     padding-top: 0;
-    margin: 0 auto;
-    max-height: 150px;
 }
 /*================================
-    SECTION STYLES
+    SEARCH SECTION STYLES
 ==================================*/
-#works>h2 {
-         margin-left: 20%;
+section#search{
+    padding-top: 15px;
+    padding-bottom: 0px;
+    background-color: #23777B;
 }
-
-/*======================================
-    ANNONCES STYLES
-=========================================*/
-.parallax-like-newuser {
-    max-width: 80%;
-    margin: 0 auto; 
-    padding-bottom: 1%;
-    padding-top: 1%;
-    background: #01917E;
-    -webkit-background-size: cover;
-    background-attachment: fixed;
+.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary {
+    height: 30px;
+    margin-bottom: 5px;
+    width: 100%;
+    border-radius: 25px;
+    border: 2px solid #EB5E4E;
+}
+.btn-primary {
+    background-color: #EB5E4E;
+    color: #fff;
+}
+.form-control {
+    font-size: 12px;
+}
+btn btn-danger dropdown-toggle {
+    display: inline-block;
+    float: right;
+    position: relative;
+}
+/*================================
+    ANNONCES
+==================================*/
+.pad-bottom {
+    padding-bottom: 1px;
+}
+h2 {
+    margin-bottom: 1px;
+    margin-top: 0;
+    font-size: 1.2em;
 }
 .parallax-like-users {
-    max-width: 80%;
-    margin: 0 auto;
-    padding-bottom: 1%;
-    padding-top: 1%;
-/*    background: #769490;*/
-    -webkit-background-size: cover;
-    background-attachment: fixed;
+    background-color: #F3E4DA;
 }
-.box-annonce {
-  border: 1px solid red;  
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  min-height: 250px;
-  min-width: 250px;    
-  margin: 5%;
-  border-radius: 5%;
-}   
-.box-annonce>img {
-    border-radius: 5%;
-    border: 1px solid blue;
-    width: 100%;
-    height: 120px;
-} 
-.box-annonce ul {
-    text-align: left;
-    text-decoration: none;
-    margin-left: -10%;
-}
-    .box-annonce li {
-        list-style-type: none;
+    .box-annonce {
+      border: 1px solid red;  
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+      min-height: 250px;
+      min-width: 250px;    
+      margin: 5%;
+      border-radius: 5%;
+    }   
+    .box-annonce>img {
+        border-radius: 5%;
+        border: 1px solid blue;
+        width: 100%;
+        height: 120px;
+    } 
+    .box-annonce ul {
         text-align: left;
-     }
-    .box-annonce li:nth-child(2), .box-annonce li:first-child {
-        display: inline-block;
-        margin-top: 2%;
+        text-decoration: none;
+        margin-left: -10%;
     }
-        .stars {
+        .box-annonce li {
+            list-style-type: none;
+            text-align: left;
+         }
+        .box-annonce li:nth-child(2), .box-annonce li:first-child {
             display: inline-block;
+            margin-top: 2%;
         }
-        h3 {
-            margin-top: 0;
-            margin-bottom: 2%;
-        }
-        #details {
-            margin: 0 auto;
-            border-radius: 10px;
-            color: white;
-        }
-        .more {
-            float: right;
-            position: relative;
-            color: white;
-            margin: -150px 90px 0px 0;
-            font-size: 1.5em;
-        }
-        p {
-            font-size: 1.2em;
-        }
-
-/*================================
-        PAGINATION
-==================================*/   
-.pagination{
-    margin: 0 0 2% 0;
-    padding-left: 45%;
-    border-radius: 0;
-    
-}
+            .stars {
+                display: inline-block;
+            }
+            h3 {
+                margin-top: 0;
+                margin-bottom: 2%;
+            }
+            #details {
+                margin: 0 auto;
+                border-radius: 10px;
+                color: white;
+            }
+            .more {
+                float: right;
+                position: relative;
+                color: white;
+                margin: -150px 70px 0px 0;
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
 /*================================
     MEDIA QUERIES
 ==================================*/
@@ -146,9 +140,6 @@ section {
   .pagination {
       padding-left: 30%;
       font-size: 2em;
-  }
-  .row {
-      margin-left: -30px;
   }
   h2 {
       margin-left: 10%;
@@ -188,4 +179,109 @@ section {
   .hidden-lg {
     display: none !important;
   }
+}
+@media (min-width: 1800px) {
+    /*================================
+        GENERAL STYLES
+    ==================================*/
+    section {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    .pad-bottom {
+        padding-bottom: 30px;
+        padding-top: 0;
+        margin: 0 auto;
+        max-height: 150px;
+    }
+    /*================================
+        SECTION STYLES
+    ==================================*/
+    #works>h2 {
+             margin-left: 20%;
+    }
+
+    /*======================================
+        ANNONCES STYLES
+    =========================================*/
+    .parallax-like-newuser {
+        max-width: 80%;
+        margin: 0 auto; 
+        padding-bottom: 1%;
+        padding-top: 1%;
+        background: #01917E;
+        -webkit-background-size: cover;
+        background-attachment: fixed;
+    }
+    .parallax-like-users {
+        max-width: 80%;
+        margin: 0 auto;
+        padding-bottom: 1%;
+        padding-top: 1%;
+    /*    background: #769490;*/
+        -webkit-background-size: cover;
+        background-attachment: fixed;
+    }
+    .box-annonce {
+      border: 1px solid red;  
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+      min-height: 250px;
+      min-width: 250px;    
+      margin: 5%;
+      border-radius: 5%;
+    }   
+    .box-annonce>img {
+        border-radius: 5%;
+        border: 1px solid blue;
+        width: 100%;
+        height: 120px;
+    } 
+    .box-annonce ul {
+        text-align: left;
+        text-decoration: none;
+        margin-left: -10%;
+    }
+        .box-annonce li {
+            list-style-type: none;
+            text-align: left;
+         }
+        .box-annonce li:nth-child(2), .box-annonce li:first-child {
+            display: inline-block;
+            margin-top: 2%;
+        }
+            .stars {
+                display: inline-block;
+            }
+            h3 {
+                margin-top: 0;
+                margin-bottom: 2%;
+            }
+            #details {
+                margin: 0 auto;
+                border-radius: 10px;
+                color: white;
+            }
+            .more {
+                float: right;
+                position: relative;
+                color: white;
+                margin: -150px 70px 0px 0;
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            
+    /*================================
+            PAGINATION
+    ==================================*/   
+    .pagination{
+        margin: 0 0 2% 0;
+        padding-left: 45%;
+        border-radius: 0;
+
+    }
+
 }
