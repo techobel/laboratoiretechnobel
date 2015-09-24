@@ -31,6 +31,10 @@ section {
     padding-bottom: 120px;
 }
 
+a, a:hover{
+    text-decoration: none;
+}
+
 .head-set {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -103,15 +107,16 @@ section {
 /*================================
     TITLE SECTION STYLES
 ==================================*/
-#title .overlay{
+.title .overlay{
     background-color: #23777B;
     color: #fff;
     height: 140px;
+    margin-bottom: 40px;
     padding-top: 50px;
     text-align: center;
     text-transform: uppercase;
 }
-#title .overlay h3{
+.title .overlay h3{
     font: 700 2.5em "HelveticaNeueLTStd-Bd",sans-serif;
 }
 
@@ -124,7 +129,7 @@ section#search{
 }
 .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
     width: 100%;
-    height: 55px;
+    height: 45px;
     margin-bottom: 15px;
 }
 .row{ /*Et pour POST SECTION aussi*/
@@ -152,9 +157,6 @@ section#search{
         font-size: 40px;
         padding-bottom: 60px;
         padding-top: 60px;
-    }
-    .post{
-        margin-top: 20px;
     }
 
 /*======================================
@@ -191,7 +193,7 @@ section#search{
 /*  position: relative;
   float: left;
   padding: 6px 12px;*/
-  font-family: "Jokerman";
+  font: 1.2em "Grobold", fantasy;
   margin-left: 30px;
 /*  line-height: 1.42857143;
   color: #337ab7;
@@ -222,13 +224,14 @@ section#search{
   z-index: 2;
   color: #fff;
   cursor: pointer;
-  background-color: #337ab7;
-  border-color: #337ab7;
+  background-color: #23777B; /*Turquoise foncé*/
+  border-color: #23777B; /*Turquoise foncé*/
+  box-shadow: 5px 5px 5px #65C2C7 inset; /*Turquoise clair*/
 }
 #how .pagination > .active > a:hover,
 #how .pagination > .active > span:hover{
-   background-color: black;
-   border-color: black;
+   background-color: #65C2C7; /*Turquoise clair*/
+   border-color: #65C2C7; /*Turquoise clair*/
    cursor: pointer;
 }
 #how .pagination > .disabled > span,
@@ -272,6 +275,7 @@ section#search{
         font-weight: 900;
         padding-bottom: 30px;
     } */
+
 /*================================
     CATEGORY SECTION STYLES
 ==================================*/
@@ -288,7 +292,18 @@ section#search{
         }
 
 #category li{
+    display: inline-block;
     list-style-type: none;
+}
+#category li a {
+    color: #2E3B42;
+    display: inline-block;
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+#category li a img{
+    display: block;
 }
 
 /*================================
@@ -297,7 +312,7 @@ section#search{
 
 footer {
     padding: 20px;
-    font-size: 0.8em;
+    /*font-size: 0.8em;*/
     text-align: center;
     font-weight: 700;
     background-color: #2e3b42;
@@ -332,7 +347,7 @@ footer {
     #how .pagination > li > a,
     #how .pagination > li > span {
       padding: 6px 12px;
-      font-family: "Jokerman";
+      font-family: "Grobold";
       margin-left: 10px;
     }
 }
@@ -411,7 +426,7 @@ footer {
 
     /*CATEGORY*/
     #category .col-md-1{
-        width: 12%;
+        width: 18%;
     }
 }
 
