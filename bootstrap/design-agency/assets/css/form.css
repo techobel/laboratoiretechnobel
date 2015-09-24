@@ -7,8 +7,12 @@
     border: 2px solid #EB5E4E;
     margin-bottom: 15px;
     height: 45px;
-    width: 100%;
+    /*width: 100%;*/
 }
+input[type="submit"]{
+    margin-bottom: 25px;
+}
+
 /* FOCUS */
 .form-control:focus {
   outline: 0;
@@ -23,7 +27,7 @@ label.input-group{
     display: inline-block;
 }
 fieldset{
-    margin-bottom: 25px;
+    margin-bottom: 45px;
 }
 
 /* BOUTONS */
@@ -56,9 +60,6 @@ fieldset{
     color: #fff;
     background-color: #65C2C7; /*Turquoise clair*/
     box-shadow: 5px 5px 5px #23777B inset;
-}
-input[type="submit"]{
-    margin-bottom: 25px;
 }
 
 
