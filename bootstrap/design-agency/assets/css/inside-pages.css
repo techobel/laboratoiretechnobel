@@ -1,5 +1,5 @@
 body {
-    background-color: #ccffff;
+    background-color: #C9E9F0;
 }
 #home,
 #home .overlay {
@@ -45,22 +45,22 @@ btn btn-danger dropdown-toggle {
 .pad-bottom {
     padding-bottom: 1px;
 }
-h2 {
+h4 {
     margin-bottom: 1px;
     margin-top: 0;
+    text-align: center;
     font-size: 1.2em;
 }
 .parallax-like-users {
     background-color: #F3E4DA;
 }
     .box-annonce {
-      border: 1px solid red;  
       color: #3c763d;
       background-color: #dff0d8;
       border-color: #d6e9c6;
       min-height: 250px;
       min-width: 250px;    
-      margin: 5%;
+      margin-bottom: 30px;
       border-radius: 5%;
     }   
     .box-annonce>img {
@@ -141,9 +141,9 @@ h2 {
       padding-left: 30%;
       font-size: 2em;
   }
-  h2 {
+/*  h2 {
       margin-left: 10%;
-  }
+  }*/
 }  
 @media (min-width: 1200px) {
   .visible-lg-block {
