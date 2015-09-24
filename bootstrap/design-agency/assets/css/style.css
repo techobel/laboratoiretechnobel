@@ -119,6 +119,13 @@ a, a:hover{
 .title .overlay h3{
     font: 700 2.5em "HelveticaNeueLTStd-Bd",sans-serif;
 }
+h4 {
+    font: 700 2em "HelveticaNeueLTStd-Bd",sans-serif; 
+    padding-bottom: 5px;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
 
 /*================================
     SEARCH SECTION STYLES
