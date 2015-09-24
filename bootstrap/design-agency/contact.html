@@ -60,7 +60,7 @@
         </div>
     </div>
     <!--HOME SECTION END  -->
-    <div id="title">
+    <div class="title">
         <div class="overlay">
             <div class="container">
                 <div class="row">
@@ -70,7 +70,7 @@
         </div>
     </div>
     <!--TITLE SECTION END  -->
-    <section id="search"  class="clearfix">
+    <section id="form_contact"  class="clearfix">
         <div class="container">
 <!--            <div class="row text-center pad-bottom">
                 <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
@@ -110,15 +110,15 @@
             </div>-->
         <form id="form" class=" form row form-inline">
             <!--Nom Prénom-->
-            <input class="col-xs-12 col-md-4 form-control " type="text" placeholder="Nom Prénom"/>
+            <input class="col-xs-12 col-md-4 form-control " type="text" name="names" placeholder="Nom Prénom"/>
             <!--Mail-->
-            <input class="col-xs-12 col-md-4 form-control " type="text" placeholder="Email"/>
+            <input class="col-xs-12 col-md-4 form-control " type="email" name="mail" placeholder="Email"/>
             <!--Objet-->
-            <input class="col-xs-12 col-md-4 form-control " type="text" placeholder="Objet"/>
+            <input class="col-xs-12 col-md-4 form-control " type="text" name="subject" placeholder="Objet"/>
             <!--Message-->
-            <textarea class="col-xs-12 col-md-4 form-control" rows="4" placeholder="Message"></textarea>
+            <textarea class="col-xs-12 col-md-4 form-control" rows="4" name="message" placeholder="Message"></textarea>
             <input class="btn btn-primary col-md-2 form-control" type="submit" value="Envoyer"/>
-            <input class="btn btn-default col-md-2 form-control" type="reset" value="Annuler"/>
+            <input class="btn btn-secondary col-md-2 form-control" type="reset" value="Annuler"/>
         </form>
         </div>
     </section>
