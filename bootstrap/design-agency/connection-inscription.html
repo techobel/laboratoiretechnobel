@@ -1,4 +1,5 @@
-﻿<html>
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -53,7 +54,7 @@
         <div class="overlay">
             <div class="container">
                 <hgroup class="col-md-8 col-md-offset-2 text-center">
-                    <h1>Popul'Aide</h1>
+                    <h1><img src="assets/img/logo.png" alt="Popul'Aide" width='500'/></h1>
                     <h2>L'entraide connectée </h2>
                 </hgroup>
             </div>
@@ -155,17 +156,17 @@
                     <!--Rue-->
                     <input class="col-xs-12 col-md-4 form-control " type="text" name="street" placeholder="Rue"/>
                     <!--Numéro-->
-                    <input class="col-xs-12 col-md-4 form-inline " type="text" name="number" placeholder="Numéro"/>
+                    <input class="col-xs-12 col-md-4 form-inline " type="number" name="number" placeholder="Numéro"/>
                     <!--Boite-->
                     <input class="col-xs-12 col-md-4 form-inline " type="text" name="box" placeholder="Boite"/>
                     <!--CP-->
-                    <input class="col-xs-12 col-md-4 form-control " type="text" name="cp" placeholder="Code postal ou ville"/>
+                    <input class="col-xs-12 col-md-4 form-control " type="number" name="cp" placeholder="Code postal ou ville" max="9999" min="1000"/>
                 </fieldset>
                 
                 <!--Coordonnées-->
                 <fieldset>
                     <!--Téléphone-->
-                    <input class="col-xs-12 col-md-4 form-control " type="text" name="phone" placeholder="Téléphone"/>
+                    <input class="col-xs-12 col-md-4 form-control " type="tel" name="phone" placeholder="Téléphone"/>
                     <!--Mail-->
                     <input class="col-xs-12 col-md-4 form-control " type="email" name="mail" placeholder="Email"/>
                 </fieldset>
