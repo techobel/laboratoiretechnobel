@@ -12,3 +12,26 @@ textarea{
 label.input-group{
     display: inline-block;
 }
+
+/* BOUTONS */
+.btn {
+    font: 700 1.5em "HelveticaNeueLTStd-Bd",sans-serif;
+}
+.btn-primary, .btn-default{
+    background-color: #EB5E4E; /*Rouge brique*/
+    border: none;
+    border-radius: 25px;
+    text-shadow: 2px 2px #7f3028;
+    text-transform: uppercase;
+}
+.btn-default{
+    color: #fff;
+    background-color: #65C2C7;
+}
+.btn-primary:hover, .btn-default:hover{
+    background-color: #EB5E4E; /*Rouge brique*/
+    box-shadow: 5px 5px 5px #7f3028 inset;
+    /*box-shadow: 0px 0px 25px #7f3028 inset;*/
+    text-shadow: none;
+}
+}
