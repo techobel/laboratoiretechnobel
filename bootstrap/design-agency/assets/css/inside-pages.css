@@ -154,6 +154,23 @@ h4 {
         padding-left: 70px;
     }
 }
+@media (min-width: 960px) {
+    .container {
+        width: 100%;
+    }
+    .col-sm-4 {
+        width: 20%;
+        padding-left: 25px;
+    }
+    .col-sm-4:last-child {
+        display: none;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 80%;
+    }
+}
 @media (min-width: 1800px) {
     /*================================
         GENERAL STYLES
