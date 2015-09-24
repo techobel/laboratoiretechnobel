@@ -133,7 +133,7 @@ h4 {
     .pagination {
         padding-left: 34%;
     }
-    .navbar > .container > .btn {
+    .navbar > .container > .btn-connexion {
         margin-right: -25px;
     }
     .form-inline:last-child .form-control:last-child {
