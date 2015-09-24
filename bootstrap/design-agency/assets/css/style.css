@@ -23,7 +23,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto); /* GOOGLE FREE FONTS */
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: "HelveticaNeueLTStd-Roman", sans-serif;
 }
 
 section {
@@ -100,6 +100,20 @@ section {
 }
 
 
+/*================================
+    TITLE SECTION STYLES
+==================================*/
+#title .overlay{
+    background-color: #23777B;
+    color: #fff;
+    height: 140px;
+    padding-top: 50px;
+    text-align: center;
+    text-transform: uppercase;
+}
+#title .overlay h3{
+    font: 700 2.5em "HelveticaNeueLTStd-Bd",sans-serif;
+}
 
 /*================================
     SEARCH SECTION STYLES
@@ -283,9 +297,9 @@ section#search{
 
 footer {
     padding: 20px;
-    font-size: 15px;
+    font-size: 0.8em;
     text-align: center;
-    font-weight: 900;
+    font-weight: 700;
     background-color: #2e3b42;
     color: #fff;
 }
@@ -295,6 +309,9 @@ footer {
         text-decoration: none;
         display: block;
         font-size: 1.2em;
+    }
+    footer a:hover{
+        color: #65C2C7;
     }
     footer p:last-child{
         font-weight: normal;
