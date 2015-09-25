@@ -1,0 +1,471 @@
+ï»¿
+/*=============================================================
+    Authour URL: www.designbootstrap.com
+
+    http://www.designbootstrap.com/
+
+    License: MIT
+
+    http://opensource.org/licenses/MIT
+
+    100% Free To use For Personal And Commercial Use.
+
+    IN EXCHANGE JUST TELL PEOPLE ABOUT THIS WEBSITE
+   
+========================================================  */
+
+
+
+/*================================
+    GENERAL STYLES
+==================================*/
+
+@import url(http://fonts.googleapis.com/css?family=Roboto); /* GOOGLE FREE FONTS */
+
+body {
+    font-family: "HelveticaNeueLTStd-Roman", sans-serif;
+}
+
+section {
+    padding-top: 80px;
+    padding-bottom: 120px;
+}
+
+a, a:hover{
+    text-decoration: none;
+}
+
+.head-set {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pad-bottom {
+    padding-bottom: 60px;
+}
+/*================================
+    NAVBAR STYLES
+==================================*/
+.navbar-default {
+    background-color: rgb(35, 133, 161);
+    border-color: transparent;
+    color: #fff;
+}
+
+    .navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:hover {
+        color: #fff;
+    }
+
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color:#fff;
+}
+
+.navbar > .container > .btn{
+    display: none; /*Connetion fixed invisible*/
+}
+
+/*================================
+    HOME SECTION STYLES
+==================================*/
+
+/*STYLE OF BACKGROUND IMAGE*/
+#home {
+    background: url(../img/home.jpg) no-repeat center center; /*Full Witdth background image*/
+    padding: 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    -moz-background-size: cover;
+    height: 450px;
+}
+    /*STYLE FOR OVERLAY CLASS - WHICH IS ABOVE IMAGE WITH OPACITY/TRANSPARENCY 0.75*/
+    #home .overlay {
+        /*padding-top: 90px;*/
+        background-color: rgba(35, 133, 161,0.75); /*.75 opacity of the color so that background image is visible*/
+        height: 450px;
+        color: #fff;
+    }
+
+    #home hgroup {
+        /*padding-top: 80px;*/
+        font-weight: 900;
+        font-size: 100px;
+        font-family: 'Browallia New';
+        text-align: left;
+    }
+    h1 img{
+        max-width: 400px;
+        min-width: 200px;
+        width: 50%;
+    }
+/*SMPLE CLASS TO ADJUST SECTION PADDING & HEIGHT*/
+
+/*CLASS TO FORMAT TEXT*/
+.p-cls {
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+
+/*================================
+    TITLE SECTION STYLES
+==================================*/
+.title .overlay{
+    background-color: #23777B;
+    color: #fff;
+    height: 140px;
+    margin-bottom: 40px;
+    padding-top: 50px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.title .overlay h3{
+    font: 700 2.5em "HelveticaNeueLTStd-Bd",sans-serif;
+}
+h4 {
+    font: 700 2em "HelveticaNeueLTStd-Bd",sans-serif; 
+    padding-bottom: 5px;
+    padding-top: 10px;
+    margin: 0 auto;
+}
+
+
+/*================================
+    SEARCH SECTION STYLES
+==================================*/
+section#search{
+    padding-top: 60px;
+    padding-bottom: 46px;
+}
+.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
+    width: 100%;
+    height: 45px;
+    margin-bottom: 15px;
+}
+.row{ /*Et pour POST SECTION aussi*/
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/*======================================
+    POST SECTION STYLES
+=========================================*/
+
+.parallax-like {
+    background: url(../img/stats.jpg) no-repeat center center; /* DEFINE IMAGE PATH CAREFULLY*/
+    padding: 0;
+    -webkit-background-size: cover;
+    background-size: cover;
+    color: #fff;
+    background-attachment: fixed;
+}
+
+    .parallax-like .overlay {
+        min-height: 200px;
+        background: rgba(35, 133, 161,0.9);
+        font-size: 40px;
+        padding-bottom: 60px;
+        padding-top: 60px;
+    }
+
+/*======================================
+    CONNECTION SECTION STYLES
+=========================================*/
+.connection{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+    
+/*================================
+    HOW SECTION STYLES
+==================================*/
+/*BOX*/
+#how{
+    display: none;
+    padding-bottom: 80px;
+}
+.box-how{
+    background-color: rosybrown;
+    border-color: rosybrown;
+    min-height: 318px;
+    min-width: 250px;  
+    text-align: center;
+}
+.box-how h3{
+    color: red;
+    margin-top: 1.2em;
+}
+
+/*PAGINATION*/
+#how .pagination > li > a,
+#how .pagination > li > span {
+/*  position: relative;
+  float: left;
+  padding: 6px 12px;*/
+  font: 1.2em "Grobold", fantasy;
+  margin-left: 30px;
+/*  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;*/
+}
+#how .pagination > li > a,
+#how .pagination > li > span,
+#how .pagination-lg > li:last-child > a,
+#how .pagination-lg > li:last-child > span,
+#how .pagination-lg > li:first-child > a,
+#how .pagination-lg > li:first-child > span{
+  border-radius: 50%;
+}
+#how .pagination > li > a:hover,
+#how .pagination > li > span:hover,
+#how .pagination > li > a:focus,
+#how .pagination > li > span:focus {
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+#how .pagination > .active > a,
+#how .pagination > .active > span,
+#how .pagination > .active > a:focus,
+#how .pagination > .active > span:focus {
+  z-index: 2;
+  color: #fff;
+  cursor: pointer;
+  background-color: #23777B; /*Turquoise foncé*/
+  border-color: #23777B; /*Turquoise foncé*/
+  box-shadow: 5px 5px 5px #65C2C7 inset; /*Turquoise clair*/
+}
+#how .pagination > .active > a:hover,
+#how .pagination > .active > span:hover{
+   background-color: #65C2C7; /*Turquoise clair*/
+   border-color: #65C2C7; /*Turquoise clair*/
+   cursor: pointer;
+}
+#how .pagination > .disabled > span,
+#how .pagination > .disabled > span:hover,
+#how .pagination > .disabled > span:focus,
+#how .pagination > .disabled > a,
+#how .pagination > .disabled > a:hover,
+#how .pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+/*.portfolio-item img:hover {  PORTFOLIO IMAGE BIG ON HOVER
+    cursor: pointer;
+    -webkit-transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    transform: scale(1.1, 1.1);
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s; // Safari
+    z-index: 1;
+}*/
+
+/*================================
+    VIDEO SECTION STYLES
+==================================*/
+/* #video-sec {
+    color: #fff;
+    text-align: center;
+}
+
+    #video-sec .overlay {
+        background-color: rgba(0, 0, 0, 0.85);
+        min-height: 300px;
+        color: #fff;
+    }
+
+    #video-sec h1 {
+        padding-top: 80px;
+        font-size: 50px;
+        font-weight: 900;
+        padding-bottom: 30px;
+    } */
+
+/*================================
+    CATEGORY SECTION STYLES
+==================================*/
+#category {
+    background-color:#f4f4f4;
+    padding-bottom:50px;
+    padding-top:50px;
+}
+    #category img {
+        cursor:pointer;
+    }
+        #category img:hover {
+            opacity:1;
+        }
+
+#category li{
+    display: inline-block;
+    list-style-type: none;
+}
+#category li a {
+    color: #2E3B42;
+    display: inline-block;
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+}
+#category li a img{
+    display: block;
+}
+
+/*================================
+    FOOTER SECTION STYLES
+==================================*/
+
+footer {
+    padding: 20px;
+    /*font-size: 0.8em;*/
+    text-align: center;
+    font-weight: 700;
+    background-color: #2e3b42;
+    color: #fff;
+}
+
+    footer a, footer a:hover {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        font-size: 1.2em;
+    }
+    footer a:hover{
+        color: #65C2C7;
+    }
+    footer p:last-child{
+        font-weight: normal;
+        margin-top: 1.8em;
+    }
+
+    
+    
+/* Extra-small devices (phones, 450px and up) */
+@media(max-width: 450px){
+    /*HOW*/
+    .btn-group-lg > .btn { /*Le bouton large devient petit*/
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+    }
+    #how .pagination > li > a,
+    #how .pagination > li > span {
+      padding: 6px 12px;
+      font-family: "Grobold";
+      margin-left: 10px;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    /*HOME*/
+    h1 img{
+        width: 60%;
+    }
+    
+    /*SEARCH*/
+/*    .form-inline:last-child .form-control:last-child {
+        min-width: 11%;
+        max-width: 16%;
+    }*/
+    .form-control .col-md-4, .form-inline .col-md-4{
+        width: 42%;
+        height: 55px;
+        margin-right: 15px;
+    }
+    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary {
+        width: 40%;
+    }
+        /*SEARCH*/
+    .form-inline:last-child .form-control:last-child {
+        min-width: 11%;
+        max-width: 16%;
+    }
+    .form-inline{
+        padding-left: 70px;
+    }
+    
+    /*HOW*/
+    #how{
+        display: initial;
+    }
+    .box-how>.img-responsive{
+        float: right;
+        max-width: 50%; 
+    }
+   .col-sm-6 {
+        width: auto;
+   }
+   .col-sm-offset-3 {
+        margin-left: 0%;
+   }
+   .box-how{
+       padding-left: 3em;
+       text-align: left;
+   }
+   
+   /*CATEGORY*/
+   #category .col-xs-3{
+        width: 25%;
+    }
+    
+    /*FOOTER*/
+    footer a, footer a:hover {
+        display: inline;
+        margin: 0 1em;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {    
+    /*CONNECTION NAVBAR*/
+   .navbar > .container > .btn{
+        display: initial; 
+        position: relative;
+        float: right;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+    }
+    
+    /*HOW*/
+    .box-how>.img-responsive{
+        max-width: 50%; 
+    }
+   .col-sm-6 {
+        width: 50%;
+   }
+   .col-sm-offset-3 {
+        margin-left: 25%;
+   }
+   
+   /*CONNECTION SECTION*/
+    div.connection{
+        display: none;
+    }
+
+    /*CATEGORY*/
+    #category .col-md-1{
+        width: 18%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
