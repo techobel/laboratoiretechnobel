@@ -1,0 +1,9 @@
+#EB5E4E : orange brique
+#EBCEA2 : orange clair
+#7F3028 : orange foncé (ombrage txt)
+
+#23777B : turquoise foncé
+#DDF0D8 : vert clair
+#65C2C7 : turquoise clair (logo et boutons)
+
+#2E3B42 : gris (footer)
