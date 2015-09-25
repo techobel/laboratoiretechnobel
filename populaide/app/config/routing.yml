@@ -1,6 +1,6 @@
 tec_service:
     resource: "@TecServiceBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /service
 
 tec_user:
     resource: "@TecUserBundle/Resources/config/routing.yml"
