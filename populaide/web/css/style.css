@@ -73,7 +73,7 @@ a, a:hover{
     font-size: 1.2em;
     }
 h2 {
-    color: #23777B;
+    color: #65C2C7;
     font-style: italic;
 }
 
@@ -439,6 +439,13 @@ footer {
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {    
+    /*HEADER*/
+    #home{
+        height: 600px;
+    }
+        #home .overlay {
+            background-color: transparent;
+        }
     /*CONNECTION NAVBAR*/
    .navbar > .container > .btn{
         display: initial; 
@@ -475,6 +482,11 @@ footer {
     /*CATEGORY*/
     #category .col-md-1{
         width: 18%;
+    }
+    /*SERACH*/
+    section#search {
+        padding-top: 250px;
+        padding-left: 350px;
     }
 }
 
