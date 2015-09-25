@@ -1,0 +1,87 @@
+/*================================
+    FORM SECTION STYLES
+==================================*/
+/* INPUT */
+.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
+    border-radius: 25px;
+    border: 2px solid #EB5E4E;
+    margin-bottom: 15px;
+    height: 45px;
+    /*width: 100%;*/
+}
+input[type="submit"]{
+    margin-bottom: 25px;
+}
+
+/* FOCUS */
+.form-control:focus {
+  outline: 0;
+  -webkit-box-shadow: 0 0 10px #EB5E4E;
+          box-shadow: 0 0 10px #EB5E4E;
+}
+
+textarea{
+    width: 100%;
+}
+label.input-group{
+    display: inline-block;
+}
+fieldset{
+    margin-bottom: 45px;
+}
+
+/* BOUTONS */
+.btn {
+    font: 700 1.5em "HelveticaNeueLTStd-Bd",sans-serif;
+}
+.btn-primary, .btn-secondary, .btn-default{
+    background-color: #EB5E4E; /*Orange brique*/
+    border: none;
+    border-radius: 55px;
+    text-shadow: 2px 2px #7f3028; /*Orange clair*/
+    text-transform: uppercase;
+}
+.btn-secondary{
+    color: #fff;
+    background-color: #65C2C7; /*Turquoise clair*/
+    text-shadow: 2px 2px #23777B; /*Turquoise foncé*/
+}
+.btn-default{
+    color: #fff;
+    background-color: #65C2C7;
+}
+.btn-primary:hover, .btn-secondary:hover, .btn-default:hover{
+    background-color: #EB5E4E;
+    border: none;
+    box-shadow: 5px 5px 5px #7f3028 inset; 
+    text-shadow: none;
+}
+.btn-secondary:hover{
+    color: #fff;
+    background-color: #65C2C7; /*Turquoise clair*/
+    box-shadow: 5px 5px 5px #23777B inset;
+}
+
+
+
+/* TRAITEMENT DES ERREURS -> eventuellement à redéfinir */
+/*.has-warning .form-control {
+  border-color: #8a6d3b;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+.has-warning .form-control:focus {
+  border-color: #66512c;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #c0a16b;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #c0a16b;
+}*/
+/*.has-error .form-control {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+.has-error .form-control:focus {
+  border-color: #843534;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+}*/
