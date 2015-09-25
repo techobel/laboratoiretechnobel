@@ -2,12 +2,39 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />        
         <title>{% block title %}Populaide - Belgique{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!-- BOOTSTRAP STYLE SHEET -->
+        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+        <!-- FONT AWESOME ICONS STYLE SHEET -->
+        <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type="text/css" />
+        <!-- CUSTOM STYLES -->
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+        <!-- FORMS STYLE SHEET -->
+        <link href="{{ asset('css/form.css') }}" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        {% block header %}{% endblock %}
+        {% block header %}
+            <div class="navbar navbar-fixed-top">
+                <div class="container">
+                 <button type="button" class="btn btn-connexion">Connexion</button>
+                </div>
+            </div>
+            <div id="home">
+                <div class="overlay">
+                    <div class="container">
+                        <hgroup class="col-md-8 col-md-offset-2 text-center">
+                            <h1><img src="{{ asset('images/logo.png') }}" alt="Popul'Aide" width='500'/></h1>
+                            <h2>L'entraide connectée</h2>
+                        </hgroup>
+                    </div>
+                </div>                           
+            </div>
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block footer %}{% endblock %}
         {% block javascripts %}{% endblock %}
