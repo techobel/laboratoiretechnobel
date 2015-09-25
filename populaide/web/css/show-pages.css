@@ -1,0 +1,282 @@
+body {
+    background-color: #DFF0D8;
+}
+#home,
+#home .overlay {
+/*    min-height: 200px;*/
+    background: #fff;
+    color: #000;
+    height: auto;
+}
+section {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+/*================================
+    SEARCH SECTION STYLES
+==================================*/
+section#search{
+    padding-top: 15px;
+    padding-bottom: 0px;
+    background-color: #23777B;
+}
+.category_choice {
+    display: none;
+}
+.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary {
+    height: 30px;
+    margin-bottom: 5px;
+    width: 100%;
+    border-radius: 25px;
+    border: 2px solid #EB5E4E;
+}
+.btn-primary {
+    background-color: #EB5E4E;
+    color: #fff;
+}
+.form-control {
+    font-size: 12px;
+}
+btn btn-danger dropdown-toggle {
+    display: inline-block;
+    float: right;
+    position: relative;
+}
+
+/*================================
+    ANNONCES
+==================================*/
+.pad-bottom {
+    padding-bottom: 1px;
+}
+h4 {
+    margin-bottom: 5px;
+    margin-top: 0;
+    text-align: center;
+    font-size: 1.2em;
+}
+.parallax-like-users {
+    background-color: #EBCEA2;
+}
+.annonces {
+    padding-top: 20px;
+}
+    .box-annonce {
+      margin-left: -6px;
+      min-height: 250px;
+      min-width: 250px;    
+      margin-bottom: 50px;        
+      color: #3c763d;
+      background-color: #fff;
+      border-color: #d6e9c6;
+      border-radius: 7%;
+    }   
+    .box-annonce>img {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        width: 100%;
+        height: 120px;
+    } 
+    .box-annonce ul {
+        text-align: left;
+        text-decoration: none;
+        margin-left: -10%;
+        margin-bottom: -10px;
+    }
+        .box-annonce li {
+            list-style-type: none;
+            text-align: left;
+         }
+        .box-annonce li:nth-child(2), .box-annonce li:first-child {
+            display: inline-block;
+            margin-top: 2%;
+        }
+            .stars {
+                display: inline-block;
+            }
+            h3 {
+                margin-top: -1%;;
+                margin-bottom: 0%;
+            }
+            .details {
+                background-color: #EB5E4E;
+                margin: 0 0 25px 0;
+                border-bottom-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+                color: white;
+                height: 50px;
+            }
+            .btn-info {
+                border-color: #EB5E4E;
+            }
+            .more {
+                float: right;
+                position: relative;
+                color: white;
+                margin: -150px 70px 0px 0;
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+/*================================
+    PAGINATION
+==================================*/            
+  .pagination {
+      padding-left: 13%;
+      font-size: 1em;
+  }            
+/*================================
+    MEDIA QUERIES
+==================================*/
+@media (min-width: 768px) {
+    .col-md-3, .col-sm-4 {
+        padding-left: 45px;
+        margin: 5%;
+    }
+    .pagination {
+        padding-left: 34%;
+    }
+    .navbar > .container > .btn-connexion {
+        margin-right: -25px;
+    }
+    .form-inline:last-child .form-control:last-child {
+        min-width: 100%;
+    }
+
+}
+@media (min-width: 800px) {
+    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary {
+        width: 40%;
+    }
+        /*SEARCH*/
+    .form-inline:last-child .form-control:last-child {
+        min-width: 11%;
+        max-width: 16%;
+    }
+    .form-inline{
+        padding-left: 70px;
+    }
+}
+@media (min-width: 960px) {
+    .container {
+        width: 100%;
+    }
+    .col-sm-4 {
+        width: 20%;
+        padding-left: 25px;
+    }
+    .col-sm-4:last-child {
+        display: none;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 80%;
+    }
+}
+@media (min-width: 1800px) {
+    /*================================
+        GENERAL STYLES
+    ==================================*/
+    section {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+    .pad-bottom {
+        padding-bottom: 30px;
+        padding-top: 0;
+        margin: 0 auto;
+        max-height: 150px;
+    }
+    /*================================
+        SECTION STYLES
+    ==================================*/
+    #works>h2 {
+             margin-left: 20%;
+    }
+
+    /*======================================
+        ANNONCES STYLES
+    =========================================*/
+    .parallax-like-newuser {
+        max-width: 80%;
+        margin: 0 auto; 
+        padding-bottom: 1%;
+        padding-top: 1%;
+        background: #01917E;
+        -webkit-background-size: cover;
+        background-attachment: fixed;
+    }
+    .parallax-like-users {
+        max-width: 80%;
+        margin: 0 auto;
+        padding-bottom: 1%;
+        padding-top: 1%;
+    /*    background: #769490;*/
+        -webkit-background-size: cover;
+        background-attachment: fixed;
+    }
+    .box-annonce {
+      border: 1px solid red;  
+      color: #3c763d;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+      min-height: 250px;
+      min-width: 250px;    
+      margin: 5%;
+      border-radius: 5%;
+    }   
+    .box-annonce>img {
+        border-radius: 5%;
+        border: 1px solid blue;
+        width: 100%;
+        height: 120px;
+    } 
+    .box-annonce ul {
+        text-align: left;
+        text-decoration: none;
+        margin-left: -10%;
+    }
+        .box-annonce li {
+            list-style-type: none;
+            text-align: left;
+         }
+        .box-annonce li:nth-child(2), .box-annonce li:first-child {
+            display: inline-block;
+            margin-top: 2%;
+        }
+            .stars {
+                display: inline-block;
+            }
+            h3 {
+                margin-top: 0;
+                margin-bottom: 2%;
+            }
+            #details {
+                margin: 0 auto;
+                border-radius: 10px;
+                color: white;
+            }
+            .more {
+                float: right;
+                position: relative;
+                color: white;
+                margin: -150px 70px 0px 0;
+                font-size: 1.5em;
+            }
+            p {
+                font-size: 1.2em;
+            }
+            
+    /*================================
+            PAGINATION
+    ==================================*/   
+    .pagination{
+        margin: 0 0 2% 0;
+        padding-left: 45%;
+        border-radius: 0;
+
+    }
+
+}
