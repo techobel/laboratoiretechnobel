@@ -75,6 +75,7 @@ a, a:hover{
 h2 {
     color: #65C2C7;
     font-style: italic;
+    margin-top: -10px;
 }
 
 /*================================
@@ -88,7 +89,7 @@ h2 {
 }
 .home-index{
     height: 450px;
-    background: url(../images/header.jpg) no-repeat center center; /*Full Witdth background image*/
+    background: url(../images/header.jpg) no-repeat center center; /*Full Width background image*/
 }   
 /*STYLE FOR OVERLAY CLASS - WHICH IS ABOVE IMAGE WITH OPACITY/TRANSPARENCY 0.75*/
     #home .overlay {
@@ -157,14 +158,34 @@ section#search{
     height: 45px;
     margin-bottom: 15px;
 }
+/*input localité*/
+section#search input:last-of-type{
+    width: 80%;
+}
 .row{ /*Et pour POST SECTION aussi*/
     margin-left: 0;
     margin-right: 0;
 }
+/*Bouton submit*/
 section#search button[type="submit"]{
     border: none;
     background-color: transparent;
-    margin-top: -30px;
+    /*height: 50%;*/
+/*    margin-top: -30px;
+    margin-left: 5px;*/
+    padding-right: 0;
+    width: 55px;
+/*    width:15%;
+    min-width: 55px;
+    max-width: 85px;*/
+    margin-left: 0%;
+    float:right;
+}
+section#search button[type="submit"] img{
+    height: 100%;
+    width: 100%;
+    -webkit-background-size: cover;
+    background-size: cover;
 }
 
 /*======================================
@@ -381,6 +402,12 @@ footer {
     }
 }
 
+/* Extra-small devices (phones, 450px and up) */
+@media(min-width: 450px){
+/*    section#search button[type="submit"]{
+        margin-left: 5%;
+    }*/
+
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     /*HOME*/
@@ -389,25 +416,24 @@ footer {
     }
     
     /*SEARCH*/
-/*    .form-inline:last-child .form-control:last-child {
+    .form-inline:last-child .form-control:last-child {
         min-width: 11%;
         max-width: 16%;
-    }*/
+    }
     .form-control .col-md-4, .form-inline .col-md-4{
         width: 42%;
         height: 55px;
         margin-right: 15px;
     }
-    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary {
+    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary, section#search button[type="submit"]{
         width: 40%;
     }
-        /*SEARCH*/
-    .form-inline:last-child .form-control:last-child {
-        min-width: 11%;
-        max-width: 16%;
-    }
     .form-inline{
-        padding-left: 70px;
+        padding-left: auto;
+    }
+    /*input localité*/
+    section#search input:last-of-type{
+        width: 90%;
     }
     
     /*HOW*/
@@ -492,7 +518,7 @@ footer {
     #category .col-md-1{
         width: 18%;
     }
-    /*SERACH*/
+    /*SEARCH*/
     section#search {
         padding-top: 250px;
         padding-left: 350px;
