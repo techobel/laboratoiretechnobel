@@ -88,8 +88,8 @@ h2 {
 
 }
 .home-index{
-    height: 450px;
-    background: url(../images/header.jpg) no-repeat center center; /*Full Width background image*/
+/*    height: 370px;*/
+    background: url(../images/header.jpg) no-repeat center 28%; /*Full Width background image*/
 }   
 /*STYLE FOR OVERLAY CLASS - WHICH IS ABOVE IMAGE WITH OPACITY/TRANSPARENCY 0.75*/
     #home .overlay {
@@ -120,7 +120,8 @@ h2 {
     padding-bottom: 40px;
 }
 .container {
-    margin-left: 0;
+    margin: 0 auto;
+    position: relative;
 }
 
 /*================================
@@ -149,7 +150,7 @@ h4 {
 /*================================
     SEARCH SECTION STYLES
 ==================================*/
-section#search{
+section.search, footer.search{
     padding-top: 60px;
     padding-bottom: 46px;
 }
@@ -159,7 +160,7 @@ section#search{
     margin-bottom: 15px;
 }
 /*input localité*/
-section#search input:last-of-type{
+section.search input:last-of-type, footer.search input:last-of-type{
     width: 80%;
 }
 .row{ /*Et pour POST SECTION aussi*/
@@ -167,7 +168,7 @@ section#search input:last-of-type{
     margin-right: 0;
 }
 /*Bouton submit*/
-section#search button[type="submit"]{
+section.search button[type="submit"], footer.search button[type="submit"]{
     border: none;
     background-color: transparent;
     /*height: 50%;*/
@@ -181,7 +182,7 @@ section#search button[type="submit"]{
     margin-left: 0%;
     float:right;
 }
-section#search button[type="submit"] img{
+section.search button[type="submit"] img, footer.search button[type="submit"] img{
     height: 100%;
     width: 100%;
     -webkit-background-size: cover;
@@ -360,28 +361,9 @@ section#search button[type="submit"] img{
     FOOTER SECTION STYLES
 ==================================*/
 
-footer {
-    padding: 20px;
-    /*font-size: 0.8em;*/
-    text-align: center;
-    font-weight: 700;
-    background-color: #2e3b42;
-    color: #fff;
+.footer_desk {
+    display: none;
 }
-
-    footer a, footer a:hover {
-        color: #fff;
-        text-decoration: none;
-        display: block;
-        font-size: 1.2em;
-    }
-    footer a:hover{
-        color: #65C2C7;
-    }
-    footer p:last-child{
-        font-weight: normal;
-        margin-top: 1.8em;
-    }
 
     
     
@@ -404,7 +386,7 @@ footer {
 
 /* Extra-small devices (phones, 450px and up) */
 @media(min-width: 450px){
-/*    section#search button[type="submit"]{
+/*    section .search button[type="submit"]{
         margin-left: 5%;
     }*/
 
@@ -414,25 +396,30 @@ footer {
     h1 img{
         width: 60%;
     }
+/*    .home-index{
+        height: 450px;
+        background-position-y: center;
+    }*/
+    
     
     /*SEARCH*/
     .form-inline:last-child .form-control:last-child {
         min-width: 11%;
         max-width: 16%;
     }
-    .form-control .col-md-4, .form-inline .col-md-4{
+/*    .form-control .col-md-4, .form-inline .col-md-4{
         width: 42%;
         height: 55px;
         margin-right: 15px;
-    }
-    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary, section#search button[type="submit"]{
+    }*/
+/*    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
         width: 40%;
-    }
+    }*/
     .form-inline{
         padding-left: auto;
     }
     /*input localité*/
-    section#search input:last-of-type{
+    section.search input:last-of-type, footer.search input:last-of-type{
         width: 90%;
     }
     
@@ -460,8 +447,34 @@ footer {
         width: 25%;
     }
     
-    /*FOOTER*/
-    footer a, footer a:hover {
+    /*FOOTER MOBILE*/
+    #footer_mob{
+        display: none;
+    }
+    /*FOOTER DESKTOP*/
+    .footer_desk{
+        padding: 20px;
+        /*font-size: 0.8em;*/
+        text-align: center;
+        font-weight: 700;
+        background-color: #2e3b42;
+        color: #fff;
+    }
+
+    .footer_desk a, footer a:hover {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        font-size: 1.2em;
+    }
+    .footer_desk a:hover{
+        color: #65C2C7;
+    }
+    .footer_desk p:last-child{
+        font-weight: normal;
+        margin-top: 1.8em;
+    }
+    .footer_desk a, .footer_desk a:hover {
         display: inline;
         margin: 0 1em;
     }
@@ -477,7 +490,8 @@ footer {
     /*CONNECTION NAVBAR*/
    .navbar > .container > .btn{
         display: initial; 
-        position: relative;
+        position: absolute;
+        right: 52%;
         float: right;
         border-top-right-radius: 0;
         border-top-left-radius: 0;
@@ -486,6 +500,7 @@ footer {
     }
         h2{
             margin-left: 50px;
+            text-shadow: 0px 0px 3px #2E3B42, 0px 0px 3px #2E3B42; //shadow doublée pour être plus visible
         }    
         .btn-connexion {
             margin-right: -400px;
@@ -512,9 +527,16 @@ footer {
         width: 18%;
     }
     /*SEARCH*/
-    section#search {
+    section.search, footer.search {
         padding-top: 250px;
-        padding-left: 350px;
+        /*padding-left: 350px;*/
+    }
+}
+
+@media (min-width: 1520px) {
+    /*CONNECTION NAVBAR*/
+   .navbar > .container > .btn{
+        right: 22%;
     }
 }
 
