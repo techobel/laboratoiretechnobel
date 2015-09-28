@@ -161,7 +161,11 @@ section#search{
     margin-left: 0;
     margin-right: 0;
 }
-
+section#search button[type="submit"]{
+    border: none;
+    background-color: transparent;
+    margin-top: -30px;
+}
 
 /*======================================
     POST SECTION STYLES
