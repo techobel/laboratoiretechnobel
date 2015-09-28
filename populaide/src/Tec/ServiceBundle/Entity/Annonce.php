@@ -103,6 +103,16 @@ class Annonce
      * @ORM\JoinColumn(name="sub_categorie_id", referencedColumnName="id")
      */
     private $sub_categorie;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Poster", mappedBy="annonce")
+     */
+    private $poste;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Postuler", mappedBy="annonce")
+     */
+    private $postules;
 
     /**
      * Get id
@@ -400,5 +410,70 @@ class Annonce
     public function getSubCategorie()
     {
         return $this->sub_categorie;
+    }
+
+    /**
+     * Set poste
+     *
+     * @param \Tec\ServiceBundle\Entity\Poster $poste
+     *
+     * @return Annonce
+     */
+    public function setPoste(\Tec\ServiceBundle\Entity\Poster $poste = null)
+    {
+        $this->poste = $poste;
+
+        return $this;
+    }
+
+    /**
+     * Get poste
+     *
+     * @return \Tec\ServiceBundle\Entity\Poster
+     */
+    public function getPoste()
+    {
+        return $this->poste;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->postules = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add postule
+     *
+     * @param \Tec\ServiceBundle\Entity\Postuler $postule
+     *
+     * @return Annonce
+     */
+    public function addPostule(\Tec\ServiceBundle\Entity\Postuler $postule)
+    {
+        $this->postules[] = $postule;
+
+        return $this;
+    }
+
+    /**
+     * Remove postule
+     *
+     * @param \Tec\ServiceBundle\Entity\Postuler $postule
+     */
+    public function removePostule(\Tec\ServiceBundle\Entity\Postuler $postule)
+    {
+        $this->postules->removeElement($postule);
+    }
+
+    /**
+     * Get postules
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostules()
+    {
+        return $this->postules;
     }
 }

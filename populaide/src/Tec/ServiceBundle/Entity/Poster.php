@@ -20,6 +20,18 @@ class Poster
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="postes")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="Annonce", inversedBy="poste")
+     * @ORM\JoinColumn(name="annonce_id", referencedColumnName="id")
+     */
+    private $annonce;
 
 
     /**
@@ -31,5 +43,52 @@ class Poster
     {
         return $this->id;
     }
-}
 
+    /**
+     * Set user
+     *
+     * @param \Tec\UserBundle\Entity\User $user
+     *
+     * @return Poster
+     */
+    public function setUser(\Tec\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Tec\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set annonce
+     *
+     * @param \Tec\ServiceBundle\Entity\Annonce $annonce
+     *
+     * @return Poster
+     */
+    public function setAnnonce(\Tec\ServiceBundle\Entity\Annonce $annonce = null)
+    {
+        $this->annonce = $annonce;
+
+        return $this;
+    }
+
+    /**
+     * Get annonce
+     *
+     * @return \Tec\ServiceBundle\Entity\Annonce
+     */
+    public function getAnnonce()
+    {
+        return $this->annonce;
+    }
+}

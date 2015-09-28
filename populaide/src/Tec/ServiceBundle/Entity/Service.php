@@ -35,7 +35,16 @@ class Service
      */
     private $date_service;
 
-
+    /**
+     * @ORM\OneToOne(targetEntity="Tec\UserBundle\Entity\Demander", mappedBy="service")
+     */
+    private $demande;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Tec\UserBundle\Entity\User", mappedBy="service")
+     */
+    private $fournisseurs;
+    
     /**
      * Get id
      *
@@ -92,5 +101,70 @@ class Service
     public function getDateService()
     {
         return $this->date_service;
+    }
+
+    /**
+     * Set demande
+     *
+     * @param \Tec\ServiceBundle\Entity\Demander $demande
+     *
+     * @return Service
+     */
+    public function setDemande(\Tec\ServiceBundle\Entity\Demander $demande = null)
+    {
+        $this->demande = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Get demande
+     *
+     * @return \Tec\ServiceBundle\Entity\Demander
+     */
+    public function getDemande()
+    {
+        return $this->demande;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fournisseurs = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add fournisseur
+     *
+     * @param \Tec\UserBundle\Entity\User $fournisseur
+     *
+     * @return Service
+     */
+    public function addFournisseur(\Tec\UserBundle\Entity\User $fournisseur)
+    {
+        $this->fournisseurs[] = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Remove fournisseur
+     *
+     * @param \Tec\UserBundle\Entity\User $fournisseur
+     */
+    public function removeFournisseur(\Tec\UserBundle\Entity\User $fournisseur)
+    {
+        $this->fournisseurs->removeElement($fournisseur);
+    }
+
+    /**
+     * Get fournisseurs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFournisseurs()
+    {
+        return $this->fournisseurs;
     }
 }
