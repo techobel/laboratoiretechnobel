@@ -1,3 +1,6 @@
-tec_service_homepage:
-    path:     /
-    defaults: { _controller: TecServiceBundle:Default:index }
+#tec_service_homepage:
+#    path:     /
+#    defaults: { _controller: TecServiceBundle:Default:index }
+tec_service_resultspage:
+    path:     /results
+    defaults: { _controller: TecServiceBundle:Service:results }
