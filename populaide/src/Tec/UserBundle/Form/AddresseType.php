@@ -15,12 +15,13 @@ class AddresseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('street')
-            ->add('number')
-            ->add('box')
-            ->add('city')
-            ->add('cp')
-            ->add('user')
+            ->add('street', 'text', array('attr' => array('max_length' => '170')))
+            ->add('number', 'integer')
+            ->add('box', 'integer')
+            ->add('city', 'text', array('attr' => array('max_length' => '80')))
+            ->add('cp', 'integer')
+            //->add('user')
+            ->add('save', 'submit')
         ;
     }
     

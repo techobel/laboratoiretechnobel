@@ -15,9 +15,19 @@ class Sub_categorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('categorie')
+            ->add('name', 'text', array('attr' => array('max_length' => '50')))
+            ->add('description', 'textarea', array('attr' => array('max_length' => '150')))
+            ->add('categorie', 'entity', array(
+                'class' => 'TecServiceBundle:Categorie',
+                'property' => 'categorie',
+                'multiple' => 'false',
+                'expanded' => 'true',
+                'query_builder' => function(EntityRepository $er){
+                return $er->createQueryBuilder('u')
+                        ->orderBy('u.categorie', 'ASC');
+                }
+            ))
+            ->add('save', 'submit')
         ;
     }
     

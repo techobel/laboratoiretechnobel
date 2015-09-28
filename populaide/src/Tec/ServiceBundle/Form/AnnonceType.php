@@ -15,20 +15,32 @@ class AnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('remarques')
-            ->add('perimetre')
-            ->add('aide')
-            ->add('diffusion')
-            ->add('active')
-            ->add('creationDate')
-            ->add('updateDate')
-            ->add('deleteDate')
-            ->add('type')
-            ->add('sub_categorie')
-            ->add('poste')
-        ;
+            ->add('title', 'text', array('attr' => array('max_length' => '70')))
+            ->add('description', 'textarea', array('attr' => array('max_length' => '255')))
+            ->add('remarques', 'textarea', array('attr' => array('max_length' => '150')))
+            ->add('perimetre', 'integer')
+            ->add('aide', 'checkbox', array('label' => 'Aide à la rédaction?', 'required' => false))
+            ->add('diffusion', 'checkbox', array('required' => false))
+            //->add('active')
+            //->add('creationDate')
+            //->add('updateDate')
+            //->add('deleteDate')
+            //->add('type')
+                
+            //à tester (generer une liste avec les val de la BD
+            ->add('sub_categorie', 'entity', array(
+                'class' => 'TecServiceBundle:Sub_categorie',
+                'property' => 'sub_categorie',
+                'multiple' => 'false',
+                'expanded' => 'true',
+                'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('u')
+                            ->orderBy('u.sub_categorie', 'ASC');
+                }
+            ))
+            //->add('poste')
+            ->add('save', 'submit');
+        
     }
     
     /**

@@ -15,10 +15,12 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('alt')
-            ->add('path')
-            ->add('user')
-            ->add('categorie')
+            ->add('file', 'file')
+            //->add('alt')
+            //->add('path')
+            //->add('user')
+            //->add('categorie')
+            
         ;
     }
     
