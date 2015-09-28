@@ -1,0 +1,10 @@
+.home-index{
+    -webkit-background-size: cover;
+    background-size: cover;
+    -moz-background-size: cover;
+    height: 660px;
+
+    }
+#home .overlay {
+    background-color: transparent   ;
+} 
