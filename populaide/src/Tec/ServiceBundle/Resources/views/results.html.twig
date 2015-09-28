@@ -7,19 +7,15 @@
 {% block body %}
     {{ parent() }}
         <section id="works">
-            <div class="row text-center pad-bottom">
-                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-<!--                    <h2 class="head-set">Résultats de votre recherche</h2>-->
-                </div>
-            </div>
                 <h3>Résultats de votre recherche</h3>
                 <div class="container">
                     <div class="row text-center portfolio-item annonces">
                         <div class="col-md-3 col-sm-4 ">
                             <div class="box-annonce"> <!--360px * 318px -->
-                                <img src="assets/img/2.jpg" alt="Profil photo"/>
+                                <img src="{{ asset('images/steps/user01.png') }}" alt="photo de profil" />
                                 <ul>
-                                    <li><p>User</p></li>
+                                    <li><p>Claudia</p></li>
+                                    <li><span class="glyphicon glyphicon-certificate"><span></li>
                                     <li>
                                         <ol>
                                             <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
@@ -29,10 +25,19 @@
                                             <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
                                         </ol>
                                     </li>
-                                    <li><p>xxxx Région</p></li>
-                                    <li><h3>Titre de l'annonce</h3></li> <!--Marie Taille titre !!!!!-->                                    
+                                    <li>
+                                    <p>5000</p>
+                                    <p> Namur-les-Trucmuch</p>  
+                                    </li>
+                                    <li><h3>Baby-Sitting à domicile</h3></li> 
                                 </ul>
-                                <button class="btn btn-info col-xs-12 details">Voir détails</button>
+                                <p id="debut-annonce">Claudia 19 ans propose baby-sitting tous les vendredis soirs à partir de 18h00</p>
+                                <div>
+                                  <img class="menu-annonce" src="{{ asset('images/pictos/anim.png') }}" alt="photo de profil" />
+                                  <img class="menu-annonce" src="{{ asset('images/pictos/anim.png') }}" alt="photo de profil" />
+                                  <img class="menu-annonce" src="{{ asset('images/pictos/anim.png') }}" alt="photo de profil" />
+                                  <img class="menu-annonce" src="{{ asset('images/pictos/anim.png') }}" alt="photo de profil" />
+                                </div>
                             </div>
 
                         </div>
