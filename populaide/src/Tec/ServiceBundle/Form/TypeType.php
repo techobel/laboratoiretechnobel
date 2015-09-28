@@ -16,8 +16,8 @@ class TypeType extends AbstractType
     {
         $builder
             ->add('intitule', 'text', array('attr' => array('max_length' => '20')))
-            ->add('save', 'submit')
-        ;
+            ->add('save', 'submit');
+        
     }
     
     /**
