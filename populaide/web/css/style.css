@@ -83,14 +83,16 @@ h2 {
 
 /*STYLE OF BACKGROUND IMAGE*/
 #home {
-    background: url(../images/header.jpg) no-repeat center center; /*Full Witdth background image*/
     padding: 0;
-    -webkit-background-size: cover;
+/*    -webkit-background-size: cover;
     background-size: cover;
-    -moz-background-size: cover;
-    height: 450px;
+    -moz-background-size: cover;*/
 }
-    /*STYLE FOR OVERLAY CLASS - WHICH IS ABOVE IMAGE WITH OPACITY/TRANSPARENCY 0.75*/
+.home-index{
+    height: 450px;
+    background: url(../images/header.jpg) no-repeat center center; /*Full Witdth background image*/
+}   
+/*STYLE FOR OVERLAY CLASS - WHICH IS ABOVE IMAGE WITH OPACITY/TRANSPARENCY 0.75*/
     #home .overlay {
         /*padding-top: 90px;*/
         background-color: white; /*.75 opacity of the color so that background image is visible*/
@@ -441,7 +443,8 @@ footer {
 @media (min-width: 992px) {    
     /*HEADER*/
     #home{
-        height: 600px;
+/*        height: 220px;*/
+
     }
         #home .overlay {
             background-color: transparent;
