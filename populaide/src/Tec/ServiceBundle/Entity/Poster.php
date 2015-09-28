@@ -21,6 +21,10 @@ class Poster
      */
     private $id;
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="postes")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")

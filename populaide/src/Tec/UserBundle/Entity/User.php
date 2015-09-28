@@ -84,12 +84,12 @@ class User extends BaseUser
      ********************************************************/
     
     /**
-     * @ORM\OneToMany(targetEntity="Addresse", mappedBy="User")
+     * @ORM\OneToMany(targetEntity="Addresse", mappedBy="User", cascade={"persist"})
      */
     private $addresses;
     
     /**
-     * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Media", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Media", inversedBy="user", cascade={"persist"})
      * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
      */
     private $media;

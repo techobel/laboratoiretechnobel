@@ -35,6 +35,10 @@ class Media
      */
     private $path;
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\OneToOne(targetEntity="Tec\UserBundle\Entity\User", mappedBy="media")
      */
@@ -43,6 +47,7 @@ class Media
     /**
      * @ORM\OneToOne(targetEntity="Categorie", mappedBy="media")
      */
+    private $categorie;
 
     /**
      * Get id
@@ -124,5 +129,29 @@ class Media
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \Tec\ServiceBundle\Entity\Categorie $categorie
+     *
+     * @return Media
+     */
+    public function setCategorie(\Tec\ServiceBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \Tec\ServiceBundle\Entity\Categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }

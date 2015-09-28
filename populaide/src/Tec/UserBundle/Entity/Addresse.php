@@ -56,6 +56,10 @@ class Addresse
      */
     private $cp;
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="addresses")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")

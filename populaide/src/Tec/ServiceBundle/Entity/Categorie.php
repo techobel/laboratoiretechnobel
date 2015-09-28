@@ -36,13 +36,13 @@ class Categorie
     private $description;
     
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="categorie")
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="categorie", cascade={"persist"})
      * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
      */
     private $media;
     
     /**
-     * @ORM\OneToMany(targetEntity="Sub_categorie", mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity="Sub_categorie", mappedBy="categorie", cascade={"persist"})
      */
     private $sub_categories;
 
