@@ -440,13 +440,6 @@ footer {
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {    
     /*HEADER*/
-    .home-index{
-    -webkit-background-size: cover;
-    background-size: cover;
-    -moz-background-size: cover;
-    height: 660px;
-
-    }
         #home .overlay {
             background-color: #fff;
         }
