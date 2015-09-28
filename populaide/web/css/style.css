@@ -84,9 +84,7 @@ h2 {
 /*STYLE OF BACKGROUND IMAGE*/
 #home {
     padding: 0;
-/*    -webkit-background-size: cover;
-    background-size: cover;
-    -moz-background-size: cover;*/
+
 }
 .home-index{
     height: 450px;
@@ -442,13 +440,17 @@ footer {
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {    
     /*HEADER*/
-    #home{
-/*        height: 220px;*/
+    .home-index{
+    -webkit-background-size: cover;
+    background-size: cover;
+    -moz-background-size: cover;
+    height: 660px;
 
     }
         #home .overlay {
-            background-color: transparent;
+            background-color: #fff;
         }
+        
     /*CONNECTION NAVBAR*/
    .navbar > .container > .btn{
         display: initial; 
