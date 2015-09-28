@@ -9,6 +9,9 @@
     height: 45px;
     /*width: 100%;*/
 }
+#hidden {
+    display: none;  
+}
 input[type="submit"]{
     margin-bottom: 25px;
 }
