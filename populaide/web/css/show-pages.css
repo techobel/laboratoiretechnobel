@@ -170,6 +170,11 @@ h4 {
         display: none;
     }
 }
+@media (min-width: 992px) {
+        #home .overlay {
+            background-color: transparent;
+        }
+}
 @media (min-width: 1200px) {
     .container {
         width: 80%;
