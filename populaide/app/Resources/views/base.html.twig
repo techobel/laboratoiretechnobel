@@ -6,9 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />        
         <title>{% block title %}Populaide - Belgique{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <!-- BOOTSTRAP STYLE SHEET -->
+        {% block stylesheets %}
         <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
         <!-- FONT AWESOME ICONS STYLE SHEET -->
         <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type="text/css" />
@@ -16,6 +14,9 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
         <!-- FORMS STYLE SHEET -->
         <link href="{{ asset('css/form.css') }}" rel="stylesheet" type="text/css" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <!-- BOOTSTRAP STYLE SHEET -->
     </head>
     <body>
         {% block header %}
