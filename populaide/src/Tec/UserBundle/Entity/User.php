@@ -13,6 +13,11 @@ use FOS\UserBundle\Model\User as BaseUser;
  */
 class User extends BaseUser
 {
+    
+    /********************************************************
+     *                      ATTRIBUTS                       *
+     ********************************************************/
+    
     /**
      * @var integer
      *
@@ -120,7 +125,10 @@ class User extends BaseUser
      */
     private $postules;
 
-
+    /********************************************************
+     *                      GETTER/SETTER                   *
+     ********************************************************/
+    
     /**
      * Get id
      *

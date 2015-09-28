@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Service
 {
+    /********************************************************
+     *                      ATTRIBUTS                       *
+     ********************************************************/
+    
     /**
      * @var integer
      *
@@ -34,6 +38,10 @@ class Service
      * @ORM\Column(name="date_service", type="date")
      */
     private $date_service;
+    
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
 
     /**
      * @ORM\OneToOne(targetEntity="Tec\UserBundle\Entity\Demander", mappedBy="service")
@@ -44,6 +52,10 @@ class Service
      * @ORM\OneToMany(targetEntity="Tec\UserBundle\Entity\User", mappedBy="service")
      */
     private $fournisseurs;
+    
+    /********************************************************
+     *                      GETTER/SETTER                   *
+     ********************************************************/
     
     /**
      * Get id

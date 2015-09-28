@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Categorie
 {
+    /********************************************************
+     *                      ATTRIBUTS                       *
+     ********************************************************/
+    
     /**
      * @var integer
      *
@@ -35,6 +39,10 @@ class Categorie
      */
     private $description;
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\OneToOne(targetEntity="Media", inversedBy="categorie", cascade={"persist"})
      * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
@@ -46,6 +54,10 @@ class Categorie
      */
     private $sub_categories;
 
+    /********************************************************
+     *                      GETTER/SETTER                   *
+     ********************************************************/
+    
     /**
      * Get id
      *

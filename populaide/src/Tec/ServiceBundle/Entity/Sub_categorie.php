@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Sub_categorie
 {
+    
+    /********************************************************
+     *                      ATTRIBUTS                       *
+     ********************************************************/
+    
     /**
      * @var integer
      *
@@ -35,6 +40,10 @@ class Sub_categorie
      */
     private $description;
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="sub_categories")
      * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id")
@@ -45,6 +54,10 @@ class Sub_categorie
      * @ORM\OneToMany(targetEntity="Annonce", mappedBy="sub_categorie")
      */
     private $annonces;
+    
+    /********************************************************
+     *                      GETTER/SETTER                   *
+     ********************************************************/
 
     /**
      * Get id

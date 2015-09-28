@@ -21,6 +21,10 @@ class Demander
      */
     private $id;
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="demandes")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
@@ -32,7 +36,10 @@ class Demander
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      */
     private $service;
-
+    
+    /********************************************************
+     *                      GETTER/SETTER                   *
+     ********************************************************/
 
     /**
      * Get id

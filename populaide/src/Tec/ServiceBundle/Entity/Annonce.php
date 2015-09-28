@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Annonce
 {
+    /********************************************************
+     *                      ATTRIBUTS                       *
+     ********************************************************/
+    
     /**
      * @var integer
      *
@@ -92,6 +96,10 @@ class Annonce
     private $deleteDate;
 
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\ManyToOne(targetEntity="Type", inversedBy="annonces")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
@@ -113,6 +121,10 @@ class Annonce
      * @ORM\OneToMany(targetEntity="Postuler", mappedBy="annonce")
      */
     private $postules;
+    
+    /********************************************************
+     *                      GETTER/SETTER                   *
+     ********************************************************/
 
     /**
      * Get id

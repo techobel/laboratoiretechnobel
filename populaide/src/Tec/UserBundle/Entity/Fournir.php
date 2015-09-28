@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Fournir
 {
+    /********************************************************
+     *                      ATTRIBUTS                       *
+     ********************************************************/
+    
     /**
      * @var integer
      *
@@ -28,6 +32,10 @@ class Fournir
      */
     private $note;
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="fournisseur")
      */
@@ -37,10 +45,12 @@ class Fournir
      * @ORM\ManyToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="fournisseur_service")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      */
-    private $service;
+    private $service;    
     
-
-
+    /********************************************************
+     *                      GETTER/SETTER                   *
+     ********************************************************/
+    
     /**
      * Get id
      *

@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Postuler
 {
+    /********************************************************
+     *                      ATTRIBUTS   A                   *
+     ********************************************************/
+    
     /**
      * @var integer
      *
@@ -28,6 +32,10 @@ class Postuler
      */
     private $etat;
     
+    /********************************************************
+     *                      RELATION TABLES                 *
+     ********************************************************/
+    
     /**
      * @ORM\ManyToMany(targetEntity="Tec\UserBundle\Entity\User", mappedBy="postules")
      */
@@ -39,7 +47,10 @@ class Postuler
      */
     private $annonce;
 
-
+    /********************************************************
+     *                      GETTER/SETTER                   *
+     ********************************************************/
+    
     /**
      * Get id
      *
