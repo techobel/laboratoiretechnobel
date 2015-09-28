@@ -39,6 +39,16 @@
         {% endblock %}
         {% block body %}{% endblock %}
         {% block footer %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <!-- REQUIRED SCRIPTS FILES -->
+        <!-- CORE JQUERY FILE -->
+        <script src="assets/js/jquery-1.11.1.js"></script>
+        <!-- REQUIRED BOOTSTRAP SCRIPTS -->
+        <script src="assets/js/bootstrap.js"></script>
+        <!-- SCROLLING SCRIPTS PLUGIN  -->
+        <script src="assets/js/jquery.easing.min.js"></script>
+        <!-- CUSTOM SCRIPTS   -->
+        <script src="assets/js/custom.js"></script>
+        {% endblock %}
     </body>
 </html>
