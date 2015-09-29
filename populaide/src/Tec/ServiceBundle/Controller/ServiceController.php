@@ -87,11 +87,9 @@ class ServiceController extends Controller
      * Récupère les annonces de la BD
      */
     public function getAllAnnonceAction(){
-        //On vérifie que l'utilisateur est un admin
-        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
-          // Sinon on déclenche une exception « Accès interdit »
-          throw new AccessDeniedException('Accès limité.');
-        }
+        //On vérifie que l'utilisateur est connecté
+        //..
+        
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère toutes les annonces de la bd
