@@ -1,0 +1,17 @@
+{% extends "::base.html.twig"%}
+{% block title %}Populaide - Belgique - Results{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block body %}
+    <section id="works">
+        Sub categorie:
+        <ul>
+        {% for subcategorie in subcategories %}
+            <li>{{ subcategorie.id ~ " " ~ subcategorie.name ~ " " ~ subcategorie.description }}</li>
+        {% endfor %}
+        </ul>
+    </section>
+    
+{% endblock %}

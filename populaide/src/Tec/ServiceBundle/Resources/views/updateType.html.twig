@@ -1,0 +1,11 @@
+{% extends "::base.html.twig"%}
+{% block title %}Populaide - Belgique - Results{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block body %}
+    <h3>Mise a jour du type:</h3>
+    {{ form(form) }}
+
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace Tec\ServiceBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -30,12 +31,11 @@ class AnnonceType extends AbstractType
             //à tester (generer une liste avec les val de la BD
             ->add('sub_categorie', 'entity', array(
                 'class' => 'TecServiceBundle:Sub_categorie',
-                'property' => 'sub_categorie',
-                'multiple' => 'false',
-                'expanded' => 'true',
+                'property' => 'name',
+                //'required' => 'true',
                 'query_builder' => function(EntityRepository $er){
                     return $er->createQueryBuilder('u')
-                            ->orderBy('u.sub_categorie', 'ASC');
+                            ->orderBy('u.name', 'ASC');
                 }
             ))
             //->add('poste')

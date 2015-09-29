@@ -2,6 +2,7 @@
 
 namespace Tec\ServiceBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -24,7 +25,7 @@ class Sub_categorieType extends AbstractType
                 'expanded' => 'true',
                 'query_builder' => function(EntityRepository $er){
                 return $er->createQueryBuilder('u')
-                        ->orderBy('u.categorie', 'ASC');
+                        ->orderBy('u.name', 'ASC');
                 }
             ))
             ->add('save', 'submit')
