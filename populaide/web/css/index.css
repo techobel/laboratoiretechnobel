@@ -14,17 +14,8 @@ footer{
     /*height: 660px;*/
     }
     
-/*        .form-control .col-md-4, .form-inline .col-md-4{
-        width: 42%;
-        height: 55px;
-        margin-right: 15px;
-    }*/
-    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary, section.search input:last-of-type{
-        width: 42%;
-        margin-left: 2%;
-    }
-    section.search button[type="submit"]{
+/*    section.search button[type="submit"]{
         margin-top: -30px;
         width: inherit;
-    }
+    }*/
 }
