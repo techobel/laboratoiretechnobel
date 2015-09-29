@@ -1,8 +1,79 @@
 {% extends "::base.html.twig"%}
-{% block title %}Populaide - Belgique - Results{% endblock %}
+{% block title %} Résultats {{ parent() }}{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+    <section class="search">
+        <div class="container">                            
+            <form  class="row form-inline">
+                <select class="col-xs-12 col-md-4 form-control " name="Catégorie" autofocus>
+                    <optgroup label="Animaux">
+                        <option value="" id="hidden">Choisissez une catégorie</option>
+                        <option value="">Garde chez le propriétaire</option>
+                        <option value="">Garde à domicile</option>
+                        <option value="">Promenade</option>
+                        <option value="">Toilettage</option>
+                    </optgroup>
+                    <optgroup label="Cours">
+                        <option value="">Couture</option>
+                        <option value="">Peinture/dessin</option>
+                        <option value="">Musique</option>
+                        <option value="">Informatique</option>
+                        <option value="">Langues</option>
+                        <option value="">Cuisine</option>
+                        <option value="">Rattrapage scolaire</option>
+                        <option value="">Sport</option>
+                    </optgroup>
+                    <optgroup label="Soins et beauté">
+                        <option value="">Pédicure</option>
+                        <option value="">Manucure</option>
+                        <option value="">Maquillage</option>
+                        <option value="">Coiffure</option>
+                        <option value="">Massage</option>
+                    </optgroup>
+                    <optgroup label="Jardinage">
+                        <option value="">Aménagement extérieur</option>
+                        <option value="">Entretien</option>
+                    </optgroup>
+                    <optgroup label="Transport">
+                        <option value="">De personnes</option>
+                        <option value="">De biens</option>
+                    </optgroup>
+                    <optgroup label="Bricolage">
+                        <option value="">Habitat</option>
+                        <option value="">Auto/Moto</option>
+                        <option value="">Divers</option>
+                    </optgroup>
+                    <optgroup label="Animation">
+                        <option value="">Clown, magicien, ventriloque...</option>
+                        <option value="">DJ</option>
+                        <option value="">Musicien/Groupe</option>
+                    </optgroup>
+                    <optgroup label="Assistance">
+                        <option value="">Repassage</option>
+                        <option value="">Couture</option>
+                        <option value="">Nettoyage</option>
+                        <option value="">Cuisine</option>
+                        <option value="">Babysitting</option>
+                        <option value="">Seniors</option>
+                        <option value="">Rédaction/Relecture</option>
+                        <option value="">Traduction/Interprétariat</option>
+                    </optgroup>
+                    <optgroup label="Multimédia">
+                        <option value="">Réparation/Assistance/Dépannage matériel</option>
+                        <option value="">Photo/Vidéo</option>
+                        <option value="">Web</option>
+                    </optgroup>
+                </select>
+                <input class="col-xs-12 col-md-4 form-control " type="text"/>
+                <button class="" type="submit"><img src="{{ asset("images/pictos/search.png") }}" width="100" height="100"/></button>
+            </form>
+        </div>
+    </section>  
 {% endblock %}
 {% block body %}
     {{ parent() }}
@@ -199,16 +270,16 @@
         </ul>
     </nav>  
     <!--PAGES NAVIGATION END-->
-    <div class="parallax-like">
+   <div class="title">
         <div class="overlay">
             <div class="container">
                 <div class="row">
-                    <button class="btn btn-info col-xs-12 post">Je poste une annonce</button>
+                    <button class="btn btn-primary col-xs-12 post">Je poste une annonce</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--PARALLAX LIKE / STATS SECTION END  -->
+    <!--POST SECTION END  -->
     <section id="category">
     <div class="container">
         <nav class="row">
