@@ -5,10 +5,13 @@
     <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block body %}
-    {{ parent() }}
-    <section id="works">
-        page de test
-        {{ form(form) }}
+     <section id="works">
+        Users:
+        <ul>
+        {% for user in users%}
+            <li>{{ user.id ~ " " ~ user.username ~ " " ~ user.email }}</li>
+        {% endfor %}
+        </ul>
     </section>
     
 

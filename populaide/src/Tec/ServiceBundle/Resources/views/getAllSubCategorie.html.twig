@@ -5,12 +5,13 @@
     <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block body %}
-    {{ parent() }}
     <section id="works">
-        page de test
-        {{ form(form) }}
+        Sub categorie:
+        <ul>
+        {% for subcategorie in subcategories %}
+            <li>{{ subcategorie.id ~ " " ~ subcategorie.name ~ " " ~ subcategorie.description }}</li>
+        {% endfor %}
+        </ul>
     </section>
     
-
-
 {% endblock %}

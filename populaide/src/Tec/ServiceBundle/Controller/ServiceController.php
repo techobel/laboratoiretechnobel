@@ -15,8 +15,6 @@ use Tec\UserBundle\Entity\User;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
-
 use Tec\ServiceBundle\Form\AnnonceType;
 use Tec\ServiceBundle\Form\CategorieType;
 use Tec\ServiceBundle\Form\Sub_categorieType;
@@ -47,7 +45,10 @@ class ServiceController extends Controller
      */
     public function addAnnonceAction(Request $request){
         //On vérifie que l'utilisateur est connecté
-        //...
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }  
         //Si l'utilisateur est connecté
         //Création de l'article
         $annonce = new Annonce();
@@ -86,8 +87,11 @@ class ServiceController extends Controller
      * Récupère les annonces de la BD
      */
     public function getAllAnnonceAction(){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir toutes les annonces
-        //..
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère toutes les annonces de la bd
@@ -120,8 +124,17 @@ class ServiceController extends Controller
      * Supprime l'annonce qui possède l'id id
      */
     public function delAnnonceAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut supprimer l'annonce
-        //..
+        //On vérifie que l'utilisateur est connecté
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
+        
+        //Test si l'utilisateur possède l'annonce ou si c'est un admin
+        //......
+        
+        
+       
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère l'annonce qui possède l'id $id
@@ -145,8 +158,16 @@ class ServiceController extends Controller
      * Mise a jour d'une annonce
      */
     public function updateAnnonceAction(Request $request, $id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut mettre à jour l'annonce
-        //..
+        //On vérifie que l'utilisateur est connecté
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
+        
+        //Test si l'user possède l'annonce ou si c'est un admin
+        //...
+        
+        
         //Recupère le repository annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère l'annonce à modifier
@@ -178,6 +199,7 @@ class ServiceController extends Controller
             $this->getRequest()->setParameter('id', $id);
             return $this->forward('TecServiceBundle:Service:getAnnonce');
         }
+        return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView()));
     }
     
     /************************
@@ -188,8 +210,11 @@ class ServiceController extends Controller
      * Ajout d'une categorie
      */
     public function addCategorieAction(Request $request){
-        //On vérifie que l'utilisateur est connecté et qu'il peut ajouter une categorie (admin)
-        //...
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Si l'utilisateur est connecté
         //Création de la categorie
         $categorie = new Categorie();
@@ -256,8 +281,11 @@ class ServiceController extends Controller
      * Supprime la categorie qui possède l'id id
      */
     public function delCategorieAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut supprimer la categorie)
-        //..
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Récupère le repository de Categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
         //Récupère la categorie qui possède l'id $id
@@ -285,8 +313,11 @@ class ServiceController extends Controller
      * Mise a jour d'une categorie
      */
     public function updateCategorieAction(Request $request, $id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut mettre à jour les categories
-        //..
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Recupère le repository categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
         //Récupère la categorie à modifier
@@ -315,6 +346,7 @@ class ServiceController extends Controller
             $this->getRequest()->setParameter('id', $id);
             return $this->forward('TecServiceBundle:Service:getCategorie');
         }
+        return $this->render('TecServiceBundle::updateCategorie.html.twig', array('form' => $form->createView()));
     }
     
     /************************
@@ -325,8 +357,11 @@ class ServiceController extends Controller
      * Ajout d'une sous categorie
      */
     public function addSubCategorieAction(Request $request){
-        //On vérifie que l'utilisateur est connecté et qu'il peut ajouter une sous categorie (admin)
-        //...
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Si l'utilisateur est connecté
         //Création de la sous categorie
         $subcategorie = new Sub_categorie();
@@ -361,7 +396,7 @@ class ServiceController extends Controller
         //Récupère les sous categories de la bd
         $subcategories = $repository->findAll();
         //Renvoie vers la page qui affiche toutes les sous categories
-        return $this->render('TecServiceBundle::getAllSubCategorie.html.twig', array('subcategorie' => $subcategories));
+        return $this->render('TecServiceBundle::getAllSubCategorie.html.twig', array('subcategories' => $subcategories));
     }
     
     /**
@@ -388,8 +423,11 @@ class ServiceController extends Controller
      * Supprime la sous categorie qui possède l'id id
      */
     public function delSubCategorieAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut supprimer la categorie)
-        //..
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Récupère le repository de sous categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
         //Récupère la categorie qui possède l'id $id
@@ -414,8 +452,11 @@ class ServiceController extends Controller
      * Mise a jour d'une sous categorie
      */
     public function updateSubCategorieAction(Request $request, $id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut mettre à jour les sous categories
-        //..
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Recupère le repository sous categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
         //Récupère la sous categorie à modifier
@@ -441,6 +482,7 @@ class ServiceController extends Controller
             $this->getRequest()->setParameter('id', $id);
             return $this->forward('TecServiceBundle:Service:getSubCategorie');
         }
+        return $this->render('TecServiceBundle::updateSubCategorie.html.twig', array('form' => $form->createView()));
     }
     
     /************************
@@ -451,8 +493,11 @@ class ServiceController extends Controller
      * Ajout d'un type
      */
     public function addTypeAction(Request $request){
-        //On vérifie que l'utilisateur est connecté et qu'il peut ajouter un type (admin)
-        //...
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Si l'utilisateur est connecté
         //Création du type
         $type = new Type();
@@ -483,7 +528,7 @@ class ServiceController extends Controller
         //On vérifie les droits de l'utilisateur (a voir qui peut voir les types de la bdd
         //..
         //Récupère le repository de type
-        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:type');
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Type');
         //Récupère les type de la bd
         $types = $repository->findAll();
         //Renvoie vers la page qui affiche les types
@@ -514,8 +559,11 @@ class ServiceController extends Controller
      * Supprime le type qui possède l'id id
      */
     public function delTypeAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut supprimer le type)
-        //..
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Récupère le repository de type
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Type');
         //Récupère le type qui possède l'id $id
@@ -540,8 +588,11 @@ class ServiceController extends Controller
      * Mise a jour d'un type
      */
     public function updateTypeAction(Request $request, $id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut mettre à jour les types
-        //..
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Recupère le repository type
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Type');
         //Récupère le type à modifier
@@ -567,6 +618,7 @@ class ServiceController extends Controller
             $this->getRequest()->setParameter('id', $id);
             return $this->forward('TecServiceBundle:Service:getType');
         }
+        return $this->render('TecServiceBundle::updateType.html.twig', array('form' => $form->createView()));
     }
     
     /************************
@@ -664,8 +716,7 @@ class ServiceController extends Controller
             $this->getRequest()->setParameter('id', $id);
             return $this->forward('TecServiceBundle:Service:getUser');
         }
+        return $this->render('TecServiceBundle::updateUser.html.twig', array('form' => $form->createView()));
     }
-    
-    
     
 }

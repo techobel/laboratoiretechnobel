@@ -30,56 +30,56 @@ class User extends BaseUser
     /**
      * @var string
      * 
-     * @ORM\Column(name="name", type="string", length=50)
+     * @ORM\Column(name="name", type="string", length=50, nullable=true)
      */
     private $name;
     
     /**
      * @var string
      * 
-     * @ORM\Column(name="first_name", type="string", length=50)
+     * @ORM\Column(name="first_name", type="string", length=50, nullable=true)
      */
     private $first_name;
     
     /**
      * @var date
      * 
-     * @ORM\Column(name="birth_date", type="date")
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
     private $birth_date;
     
     /**
      * @var string
      * 
-     * @ORM\Column(name="sex", type="string", length=10)
+     * @ORM\Column(name="sex", type="string", length=10, nullable=true)
      */
     private $sex;
     
     /**
      * @var string
      * 
-     * @ORM\Column(name="phone", type="string", length=50)
+     * @ORM\Column(name="phone", type="string", length=50, nullable=true)
      */
     private $phone;
     
     /**
      * @var date
      * 
-     * @ORM\Column(name="creation_date", type="date")
+     * @ORM\Column(name="creation_date", type="date", nullable=true)
      */
     private $creation_date;
     
     /**
      * @var update_date
      * 
-     * @ORM\Column(name="update_date", type="date")
+     * @ORM\Column(name="update_date", type="date", nullable=true)
      */
     private $update_date;
     
     /**
      * @var disponible
      * 
-     * @ORM\Column(name="disponible", type="boolean")
+     * @ORM\Column(name="disponible", type="boolean", nullable=true)
      */
     private $disponible;
     

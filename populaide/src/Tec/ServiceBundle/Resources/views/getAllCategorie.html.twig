@@ -7,8 +7,13 @@
 {% block body %}
     {{ parent() }}
     <section id="works">
-        page de test
-        {{ form(form) }}
+        
+        Categories:
+        <ul>
+        {% for categorie in categories %}
+            <li>{{ categorie.id ~ " " ~ categorie.name ~ " " ~ categorie.description }}</li>
+        {% endfor %}
+        </ul>
     </section>
     
 

@@ -7,8 +7,10 @@
 {% block body %}
     {{ parent() }}
         <section id="works">
-                <h3>Resultat:</h3>
+                <h3>Mise a jour d'une annonce:</h3>
                 <div class="container">
+                
+                {{ form(form) }}
                     
                 {% for flashMessage in app.session.flashbag.get('notice') %}
                     {{ flashMessage }}

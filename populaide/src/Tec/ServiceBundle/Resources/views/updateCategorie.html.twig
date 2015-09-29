@@ -5,12 +5,12 @@
     <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block body %}
-    
-    <section id="works">
-        <h3>Ajout type</h3>
-        {{ form(form) }}
+    {{ parent() }}
+        <section id="works">
+                <h3>Mise a jour categorie:</h3>
+                    {{ form(form) }}
+                </div>
+            </div>    
     </section>
-    
-
 
 {% endblock %}
