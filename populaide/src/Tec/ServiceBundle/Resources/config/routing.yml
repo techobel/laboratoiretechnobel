@@ -5,3 +5,103 @@ tec_service_resultspage:
     path:     /results
     defaults: { _controller: TecServiceBundle:Service:results }
     
+#ANNONCE
+tec_service_addannonce:
+    path:     /addannonce
+    defaults: { _controller: TecServiceBundle:Service:addAnnonce }
+    
+tec_service_getallannonce:
+    path:     /getallannonce
+    defaults: { _controller: TecServiceBundle:Service:getAllAnnonce }
+    
+tec_service_getannonce:
+    path:     /getannonce/{id}
+    defaults: { _controller: TecServiceBundle:Service:getAnnonce }
+    
+tec_service_delannonce:
+    path:     /delannonce/{id}
+    defaults: { _controller: TecServiceBundle:Service:delAnnonce }
+    
+tec_service_updateannonce:
+    path:     /updateannonce/{id}
+    defaults: { _controller: TecServiceBundle:Service:updateAnnonce }
+    
+#CATEGORIE
+tec_service_addcategorie:
+    path:     /addcategorie
+    defaults: { _controller: TecServiceBundle:Service:addCategorie }
+    
+tec_service_getallcategorie:
+    path:     /getallcategorie
+    defaults: { _controller: TecServiceBundle:Service:getAllCategorie }
+    
+tec_service_getcategorie:
+    path:     /getcategorie/{id}
+    defaults: { _controller: TecServiceBundle:Service:getCategorie }
+    
+tec_service_delcategorie:
+    path:     /delcategorie/{id}
+    defaults: { _controller: TecServiceBundle:Service:delCategorie }
+    
+tec_service_updatecategorie:
+    path:     /updatecategorie/{id}
+    defaults: { _controller: TecServiceBundle:Service:updateCategorie }
+    
+#SUBCATEGORIE
+tec_service_addsubcategorie:
+    path:     /addsubcategorie
+    defaults: { _controller: TecServiceBundle:Service:addSubCategorie }
+    
+tec_service_getallsubcategorie:
+    path:     /getallsubcategorie
+    defaults: { _controller: TecServiceBundle:Service:getAllSubCategorie }
+    
+tec_service_getsubcategorie:
+    path:     /getsubcategorie/{id}
+    defaults: { _controller: TecServiceBundle:Service:getSubCategorie }
+    
+tec_service_delsubcategorie:
+    path:     /delsubcategorie/{id}
+    defaults: { _controller: TecServiceBundle:Service:delSubCategorie }
+    
+tec_service_updatesubcategorie:
+    path:     /updatesubcategorie/{id}
+    defaults: { _controller: TecServiceBundle:Service:updateSubCategorie }
+    
+#TYPE
+tec_service_addtype:
+    path:     /addtype
+    defaults: { _controller: TecServiceBundle:Service:addType }
+    
+tec_service_getalltype:
+    path:     /getalltype
+    defaults: { _controller: TecServiceBundle:Service:getAllType }
+    
+tec_service_gettype:
+    path:     /gettype/{id}
+    defaults: { _controller: TecServiceBundle:Service:getType }
+    
+tec_service_deltype:
+    path:     /deltype/{id}
+    defaults: { _controller: TecServiceBundle:Service:delType }
+    
+tec_service_updatetype:
+    path:     /updatetype/{id}
+    defaults: { _controller: TecServiceBundle:Service:updateType }
+    
+#USER
+tec_service_getalluser:
+    path:     /getalluser
+    defaults: { _controller: TecServiceBundle:Service:getAllUser }
+    
+tec_service_getuser:
+    path:     /getuser/{id}
+    defaults: { _controller: TecServiceBundle:Service:getUser }
+    
+tec_service_deluser:
+    path:     /deluser/{id}
+    defaults: { _controller: TecServiceBundle:Service:delUser }
+    
+tec_service_updateuser:
+    path:     /updateuser/{id}
+    defaults: { _controller: TecServiceBundle:Service:updateUser }
