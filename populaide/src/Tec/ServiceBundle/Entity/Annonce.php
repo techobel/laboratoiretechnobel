@@ -84,14 +84,14 @@ class Annonce
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="update_date", type="date")
+     * @ORM\Column(name="update_date", type="date", nullable=true)
      */
     private $updateDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="delete_date", type="date")
+     * @ORM\Column(name="delete_date", type="date", nullable=true)
      */
     private $deleteDate;
 
