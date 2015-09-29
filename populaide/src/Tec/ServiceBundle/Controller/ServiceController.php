@@ -215,7 +215,7 @@ class ServiceController extends Controller
             return $this->forward('TecServiceBundle:Service:results');
         }        
         //si le formulaire n'a pas été validé
-        return $this->render('TecServiceBundle::addcategorie.html.twig', array('form' => $form->createView()));
+        return $this->render('TecServiceBundle::addCategorie.html.twig', array('form' => $form->createView()));
     }
     
     /**
@@ -229,7 +229,7 @@ class ServiceController extends Controller
         //Récupère toutes les categories de la bd
         $categories = $repository->findAll();
         //Renvoie vers la page qui affiche toutes les categories
-        return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('categories' => $categories));
+        return $this->render('TecServiceBundle::getAllCategorie.html.twig', array('categories' => $categories));
     }
     
     /**
@@ -626,7 +626,7 @@ class ServiceController extends Controller
         //Récupère le manager
         $em = $this->getDoctrine()->getManager();
         //Suppression du type
-        $em->remove($type);
+        $em->remove($user);
         //Suppression
         $em->flush();
         //redirection vers getAllUser ( a voir)
