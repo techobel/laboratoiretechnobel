@@ -7,7 +7,7 @@
     border: 4px solid #EB5E4E;
     margin-bottom: 15px;
     height: 45px;
-    /*width: 100%;*/
+    width: 100%;
 }
 #hidden {
     display: none;  
@@ -37,7 +37,7 @@ fieldset{
 .btn {
     font: 700 1.5em "HelveticaNeueLTStd-Bd",sans-serif;
 }
-.btn-primary, .btn-secondary, .btn-default{
+.btn-primary, .btn-secondary, .btn-default, .btn-radio{
     background-color: #EB5E4E; /*Orange brique*/
     border: none;
     border-radius: 55px;
@@ -64,7 +64,36 @@ fieldset{
     background-color: #65C2C7; /*Turquoise clair*/
     box-shadow: 5px 5px 5px #23777B inset;
 }
+.btn-radio{
+    background-color: #23777B; /*Turqoise foncé*/
+    color: #fff;
+    height: 55px;
+    text-shadow: none;
+}
+.btn-radio:active, #how .btn-radio.active {
+    background-color: #65C2C7; /*Turquoise clair*/
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3) inset;
+}
+.btn-radio:not(.active):hover {
+    background-color: #65C2C7; /*Turquoise clair*/
+}
+.btn-radio:first-child{
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+.btn-radio:last-child{
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
 
+/*FOOTER MOBILE*/
+footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob input:last-of-type{
+    width: 38%;
+    margin-right: 10px;
+}
+.footer_mob input:last-of-type{
+    margin-right: 0;
+}
 
 
 /* TRAITEMENT DES ERREURS -> eventuellement � red�finir */
@@ -88,3 +117,19 @@ fieldset{
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
 }*/
+
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {  
+    /*Champs côte à côte*/
+    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary, section.search input:last-of-type{
+        width: 42%;
+        margin-left: 2%;
+    }
+    
+    /*Grosse loupe*/
+    section.search button[type="submit"]{
+        margin-top: -30px;
+        width: inherit;
+    }
+}
