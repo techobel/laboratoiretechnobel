@@ -10,9 +10,9 @@
                 <h3>Résultats de votre recherche</h3>
                 <div class="container">
                     
-					{% for flashMessage in app.session.flashbag.get('notice') %}
-						{{ flashMessage }}
-					{% endfor %}
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        {{ flashMessage }}
+                    {% endfor %}
                     <div class="row text-center portfolio-item annonces">
                         <div class="col-md-3 col-sm-4 ">
                             <div class="box-annonce"> <!--360px * 318px -->

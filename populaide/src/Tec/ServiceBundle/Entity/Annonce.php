@@ -113,11 +113,6 @@ class Annonce
     private $sub_categorie;
     
     /**
-     * @ORM\OneToOne(targetEntity="Poster", mappedBy="annonce")
-     */
-    private $poste;
-    
-    /**
      * @ORM\OneToMany(targetEntity="Postuler", mappedBy="annonce")
      */
     private $postules;
@@ -424,29 +419,6 @@ class Annonce
         return $this->sub_categorie;
     }
 
-    /**
-     * Set poste
-     *
-     * @param \Tec\ServiceBundle\Entity\Poster $poste
-     *
-     * @return Annonce
-     */
-    public function setPoste(\Tec\ServiceBundle\Entity\Poster $poste = null)
-    {
-        $this->poste = $poste;
-
-        return $this;
-    }
-
-    /**
-     * Get poste
-     *
-     * @return \Tec\ServiceBundle\Entity\Poster
-     */
-    public function getPoste()
-    {
-        return $this->poste;
-    }
     /**
      * Constructor
      */

@@ -113,12 +113,6 @@ class User extends BaseUser
     private $fournisseur;
     
     /**
-     * l'utilisateur poste une annonce
-     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Poster", mappedBy="User")
-     */
-    private $postes;
-    
-    /**
      * l'utilisateur postule à une annonce
      * @ORM\ManyToMany(targetEntity="Tec\ServiceBundle\Entity\Postuler", inversedBy="users")
      * @ORM\JoinTable(name="users_postule")
@@ -465,40 +459,6 @@ class User extends BaseUser
     public function getFournisseur()
     {
         return $this->fournisseur;
-    }
-
-    /**
-     * Add poste
-     *
-     * @param \Tec\ServiceBundle\Entity\Poster $poste
-     *
-     * @return User
-     */
-    public function addPoste(\Tec\ServiceBundle\Entity\Poster $poste)
-    {
-        $this->postes[] = $poste;
-
-        return $this;
-    }
-
-    /**
-     * Remove poste
-     *
-     * @param \Tec\ServiceBundle\Entity\Poster $poste
-     */
-    public function removePoste(\Tec\ServiceBundle\Entity\Poster $poste)
-    {
-        $this->postes->removeElement($poste);
-    }
-
-    /**
-     * Get postes
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPostes()
-    {
-        return $this->postes;
     }
 
     /**
