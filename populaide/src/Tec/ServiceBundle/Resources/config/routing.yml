@@ -26,6 +26,10 @@ tec_service_updateannonce:
     path:     /updateannonce/{id}
     defaults: { _controller: TecServiceBundle:Service:updateAnnonce }
     
+tec_service_searchannonce:
+    path:     /searchannonce/{chaine}
+    defaults: { _controller: TecServiceBundle:Service:searchAnnonce }
+    
 #CATEGORIE
 tec_service_addcategorie:
     path:     /addcategorie

@@ -7,12 +7,11 @@
 {% block body %}
     {{ parent() }}
     <section id="works">
-        <h3>Sub categorie:</h3>
+        Search annonces:
         <ul>
-        {% for subcategorie in subcategories %}
-            <li>{{ subcategorie.id ~ " " ~ subcategorie.name ~ " " ~ subcategorie.description }}<a href="{{ path('tec_service_updatesubcategorie',{'id': subcategorie.id}) }}"> Modifier</a><a href="{{ path('tec_service_delsubcategorie',{'id': subcategorie.id}) }}"> Supprimer</a></li>
+        {% for annonce in annonces%}
+            <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description  }}<a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}"> Voir +</a></li>
         {% endfor %}
         </ul>
     </section>
-    
 {% endblock %}
