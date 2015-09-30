@@ -341,19 +341,7 @@ class User extends BaseUser
         return $this->addresses;
     }
 
-    /**
-     * Set media
-     *
-     * @param \Tec\ServiceBundle\Media $media
-     *
-     * @return User
-     */
-    public function setMedia(\Tec\ServiceBundle\Media $media = null)
-    {
-        $this->media = $media;
-
-        return $this;
-    }
+  
 
     /**
      * Get media
@@ -557,5 +545,19 @@ class User extends BaseUser
     public function getAnnonces()
     {
         return $this->annonces;
+    }
+
+    /**
+     * Set media
+     *
+     * @param \Tec\ServiceBundle\Entity\Media $media
+     *
+     * @return User
+     */
+    public function setMedia(\Tec\ServiceBundle\Entity\Media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
     }
 }
