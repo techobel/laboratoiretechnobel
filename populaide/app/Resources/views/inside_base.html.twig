@@ -9,7 +9,10 @@
     <div class="overlay">
         <div class="container">
             <div class="row">
-                <h3>{% block h3 %}{% endblock %}</h3>
+                <h3>
+                    <img {% block img_h3 %}{% endblock %}/>
+                    {% block h3 %}{% endblock %}
+                </h3>
             </div>
         </div>
     </div>
