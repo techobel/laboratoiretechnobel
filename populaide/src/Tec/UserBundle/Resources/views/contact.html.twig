@@ -1,11 +1,8 @@
-{% extends "::inside_base.html.twig"%}
+{% extends "TecServiceBundle::layout.html.twig" %}
 
-{% block title %} Contact {{ parent() }}{% endblock %}
+{% block title %}Contact {{ parent() }}{% endblock %}
 
-{% block header %}
-    {{ parent() }}
-{% endblock %} 
-
+{% block img_h3 %}src="{{ asset('images/pictos/contact.png') }}" alt="Nous contacter" width="100" height="100"{% endblock %}
 {% block h3 %}Contact{% endblock %}
 
 {% block body %}
