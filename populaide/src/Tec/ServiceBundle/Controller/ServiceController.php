@@ -59,9 +59,11 @@ class ServiceController extends Controller
         //Si l'utilisateur est connecté
         //Création de l'article
         $annonce = new Annonce();
+        //Ajout de la class du formulaire
+        $options = array('attr' => array('class' => 'form-control form-inline clearfix'));
         
         //Création du formulaire
-        $form = $this->get('form.factory')->create(new AnnonceType(), $annonce);
+        $form = $this->get('form.factory')->create(new AnnonceType(), $annonce, $options);
         //Si le formulaire a été validé
         if($form->handleRequest($request)->isValid()){
             //Récupère l'utilisateur en session
