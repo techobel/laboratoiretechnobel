@@ -9,6 +9,7 @@ use Tec\ServiceBundle\Entity\Annonce;
 use Tec\ServiceBundle\Entity\Categorie;
 use Tec\ServiceBundle\Entity\Sub_categorie;
 use Tec\ServiceBundle\Entity\Type;
+use Tec\ServiceBundle\Entity\Postuler;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
