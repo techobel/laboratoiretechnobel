@@ -118,6 +118,13 @@ class Annonce
      */
     private $postules;
     
+    //l'utilisateur qui a posté l'annonce
+    /**
+     * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="annonces")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+    
     /********************************************************
      *                      GETTER/SETTER                   *
      ********************************************************/
@@ -460,5 +467,29 @@ class Annonce
     public function getPostules()
     {
         return $this->postules;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Tec\UserBundle\Entity\User $user
+     *
+     * @return Annonce
+     */
+    public function setUser(\Tec\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Tec\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
