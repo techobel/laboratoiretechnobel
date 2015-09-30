@@ -3,6 +3,7 @@
 namespace Tec\ServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+//test
 
 /**
  * Annonce
