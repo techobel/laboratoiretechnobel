@@ -8,10 +8,20 @@
     {{ parent() }}
     <section id="works">
         
-        Categories:
+        <h3>Categories:</h3>
         <ul>
         {% for categorie in categories %}
-            <li>{{ categorie.id ~ " " ~ categorie.name ~ " " ~ categorie.description }}</li>
+            <li>{{ categorie.id ~ " " ~ categorie.name ~ " " ~ categorie.description }}<a href="{{ path('tec_service_updatecategorie',{'id': categorie.id}) }}"> Modifier</a><a href="{{ path('tec_service_delcategorie',{'id': categorie.id}) }}"> Supprimer</a></li>
+            {#<ul>
+                {% for subcategorie in categorie.getSubCategories %}
+                    <li>{{ subcategorie.id ~ " " ~ subcategorie.name ~ " " ~ subcategorie.description }}</li>
+                    <ul>
+                        {% for annonce in subcategorie.getAnnonces %}
+                            <li>{{ annonce.id ~ " " ~ annonce.title }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </ul>#}
         {% endfor %}
         </ul>
     </section>

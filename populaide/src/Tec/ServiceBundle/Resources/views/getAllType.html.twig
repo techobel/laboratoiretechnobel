@@ -10,12 +10,12 @@
         Types:
         <ul>
         {% for type in types %}
-            <li>{{ type.id ~ " " ~ type.intitule }}</li>
-                <ul>
+            <li>{{ type.id ~ " " ~ type.intitule }}<a href="{{ path('tec_service_updatetype',{'id': type.id}) }}"> Modifier</a><a href="{{ path('tec_service_delcategorie',{'id': type.id}) }}"> Supprimer</a></li>
+                {#<ul>
                 {% for annonce in type.getAnnonces %}
                     <li>{{ annonce.id ~ " " ~ annonce.title }}</li>
                 {% endfor %}
-                </ul>
+                </ul>#}
         {% endfor %}
         </ul>
     </section>

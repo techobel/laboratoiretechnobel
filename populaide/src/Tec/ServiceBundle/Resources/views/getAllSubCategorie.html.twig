@@ -7,10 +7,10 @@
 {% block body %}
     {{ parent() }}
     <section id="works">
-        Sub categorie:
+        <h3>Sub categorie:</h3>
         <ul>
         {% for subcategorie in subcategories %}
-            <li>{{ subcategorie.id ~ " " ~ subcategorie.name ~ " " ~ subcategorie.description }}</li>
+            <li>{{ subcategorie.id ~ " " ~ subcategorie.name ~ " " ~ subcategorie.description }}<a href="{{ path('tec_service_updatesubcategorie',{'id': subcategorie.id}) }}"> Modifier</a><a href="{{ path('tec_service_delsubcategorie',{'id': subcategorie.id}) }}"> Supprimer</a></li>
         {% endfor %}
         </ul>
     </section>
