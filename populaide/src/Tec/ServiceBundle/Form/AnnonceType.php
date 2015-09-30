@@ -16,7 +16,7 @@ class AnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array('attr' => array('max_length' => '70')))
+            ->add('title', 'text', array('attr' => array('max_length' => '70', 'class' => 'col-xs-12 col-md-4 form-control')))
             ->add('description', 'textarea', array('attr' => array('max_length' => '255')))
             ->add('remarques', 'textarea', array('attr' => array('max_length' => '150')))
             ->add('perimetre', 'integer')
