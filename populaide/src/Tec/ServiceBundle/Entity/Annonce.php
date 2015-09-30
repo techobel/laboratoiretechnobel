@@ -3,6 +3,7 @@
 namespace Tec\ServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+//test
 
 /**
  * Annonce
@@ -111,11 +112,6 @@ class Annonce
      * @ORM\JoinColumn(name="sub_categorie_id", referencedColumnName="id")
      */
     private $sub_categorie;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="Poster", mappedBy="annonce")
-     */
-    private $poste;
     
     /**
      * @ORM\OneToMany(targetEntity="Postuler", mappedBy="annonce")
@@ -424,29 +420,6 @@ class Annonce
         return $this->sub_categorie;
     }
 
-    /**
-     * Set poste
-     *
-     * @param \Tec\ServiceBundle\Entity\Poster $poste
-     *
-     * @return Annonce
-     */
-    public function setPoste(\Tec\ServiceBundle\Entity\Poster $poste = null)
-    {
-        $this->poste = $poste;
-
-        return $this;
-    }
-
-    /**
-     * Get poste
-     *
-     * @return \Tec\ServiceBundle\Entity\Poster
-     */
-    public function getPoste()
-    {
-        return $this->poste;
-    }
     /**
      * Constructor
      */

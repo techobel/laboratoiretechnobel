@@ -94,6 +94,7 @@ class ServiceController extends Controller
      * Récupère les annonces de la BD
      */
     public function getAllAnnonceAction(){
+
         //On vérifie que l'utilisateur est un admin
         if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
           // Sinon on déclenche une exception « Accès interdit »

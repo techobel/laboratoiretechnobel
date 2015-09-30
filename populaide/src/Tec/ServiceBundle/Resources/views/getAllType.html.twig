@@ -1,10 +1,11 @@
-{% extends "::base.html.twig"%}
+{% extends "TecServiceBundle::layout.html.twig" %}
 {% block title %}Populaide - Belgique - Results{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block body %}
+    {{ parent() }}
      <section id="works">
         Types:
         <ul>
