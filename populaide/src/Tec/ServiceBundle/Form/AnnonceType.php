@@ -52,6 +52,7 @@ class AnnonceType extends AbstractType
             //Aide à la rédaction
             ->add('aide', 'checkbox', array(
                 'label' => 'Aide à la rédaction', 
+                'attr' => array('class' => 'checkbox-inline'),
                 'required' => false))
             //Description
             ->add('description', 'textarea', array(
@@ -79,8 +80,9 @@ class AnnonceType extends AbstractType
             //->add('updateDate')
             //->add('deleteDate')
             //->add('poste')
-            ->add('save', 'submit', array(
-                'attr' => array('value' => 'Aperçu')));
+            ->add('aperçu', 'submit', array(
+                'attr' => array('class' => "btn btn-primary col-md-2 form-control",
+                            'value' => 'Aperçu')));
         
     }
     

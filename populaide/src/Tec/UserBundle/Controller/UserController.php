@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class UserController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('TecUserBundle:Default:index.html.twig', array('name' => $name));
+        return $this->render('TecUserBundle::index.html.twig');
     }
     
     public function contactAction()

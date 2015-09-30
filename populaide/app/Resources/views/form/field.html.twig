@@ -1,0 +1,13 @@
+{# app/Resources/views/form/field.html.twig #}
+
+{#Ce bloc redéfinit uniquement les checkbox: leur label doit suivre la case et non la précéder#}
+{% block checkbox_row %}
+{% spaceless %}
+    <div class="form_row_checkbox">
+        {{ form_widget(form) }}
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+    </div>
+{% endspaceless %}
+{% endblock checkbox_row %}
+
