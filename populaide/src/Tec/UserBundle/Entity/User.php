@@ -118,6 +118,12 @@ class User extends BaseUser
      * @ORM\JoinTable(name="users_postule")
      */
     private $postules;
+    
+    /**
+     * Annonce de l'utilisateur
+     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Annonce", mappedBy="User")
+     */
+    private $annonces;
 
     /********************************************************
      *                      GETTER/SETTER                   *
@@ -517,5 +523,39 @@ class User extends BaseUser
     public function getDisponible()
     {
         return $this->disponible;
+    }
+
+    /**
+     * Add annonce
+     *
+     * @param \Tec\ServiceBundle\Entity\Annonce $annonce
+     *
+     * @return User
+     */
+    public function addAnnonce(\Tec\ServiceBundle\Entity\Annonce $annonce)
+    {
+        $this->annonces[] = $annonce;
+
+        return $this;
+    }
+
+    /**
+     * Remove annonce
+     *
+     * @param \Tec\ServiceBundle\Entity\Annonce $annonce
+     */
+    public function removeAnnonce(\Tec\ServiceBundle\Entity\Annonce $annonce)
+    {
+        $this->annonces->removeElement($annonce);
+    }
+
+    /**
+     * Get annonces
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnnonces()
+    {
+        return $this->annonces;
     }
 }

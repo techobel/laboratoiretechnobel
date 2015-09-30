@@ -26,7 +26,14 @@ class AnnonceType extends AbstractType
             //->add('creationDate')
             //->add('updateDate')
             //->add('deleteDate')
-            //->add('type')
+            ->add('type', 'entity', array(
+                'class' => 'TecServiceBundle:Type',
+                'property' => 'intitule',
+                'query_builder' =>function(EntityRepository $er){
+                    return $er->createQueryBuilder('u')
+                            ->orderBy('u.intitule', 'ASC');
+                }
+            ))
                 
             //à tester (generer une liste avec les val de la BD
             ->add('sub_categorie', 'entity', array(

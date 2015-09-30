@@ -10,7 +10,7 @@
         Annonces:
         <ul>
         {% for annonce in annonces%}
-            <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description }}</li>
+            <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description ~ " " ~ annonce.getType.getIntitule }}</li>
         {% endfor %}
         </ul>
     </section>
