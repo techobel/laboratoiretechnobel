@@ -37,7 +37,7 @@ class Type
      ********************************************************/
     
     /**
-     * @ORM\OneToMany(targetEntity="Annonce", mappedBy="annonce")
+     * @ORM\OneToMany(targetEntity="Annonce", mappedBy="type")
      */
     private $annonces;
 

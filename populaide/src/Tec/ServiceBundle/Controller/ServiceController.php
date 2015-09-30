@@ -10,8 +10,6 @@ use Tec\ServiceBundle\Entity\Categorie;
 use Tec\ServiceBundle\Entity\Sub_categorie;
 use Tec\ServiceBundle\Entity\Type;
 
-use Tec\UserBundle\Entity\User;
-
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -29,15 +27,8 @@ use Tec\UserBundle\Form\UserType;
 //        return $this->render('TecServiceBundle:Default:index.html.twig');
 //    }
 //}
-
-
 class ServiceController extends Controller
 {
-    public function indexAction()
-    {
-        return $this->render('TecServiceBundle:Default:index.html.twig');
-    }
-    
     public function resultsAction()
     {
         return $this->render('TecServiceBundle::results.html.twig');
@@ -72,13 +63,27 @@ class ServiceController extends Controller
             $em = $this->getDoctrine()->getManager();
             //Initialisation des attributs = date création/active article
             $annonce->setActive(true);
-            $annonce->setCreationDate(new \DateTime());           
+            $annonce->setCreationDate(new \DateTime()); 
+            
+            /**
+             * Relation automatique subcategorie - annonce, type - annonce 
+             */
+            
             //Récupère la subcategorie
-            $subcategorie = $form->get('sub_categorie')->getData();            
+            //$subcategorie = $form->get('sub_categorie')->getData(); 
+            //Récupère le type
+            //$type = $form->get('type')->getData();
             //Relation annonce - user - sub_categorie
-            $annonce->setSubCategorie($subcategorie);
-            $subcategorie->addAnnonce($annonce);    
-            //$user->
+            
+            //$annonce->setSubCategorie($subcategorie);
+            //$subcategorie->addAnnonce($annonce);
+            
+            $user->addAnnonce($annonce);
+            $annonce->setUser($user);
+            
+            //$type->addAnnonce($annonce);
+            //$annonce->setType($type);
+            
             //Doctrine se charge de l'entity annonce
             $em->persist($annonce);
             //Sauvegarde en bd
@@ -96,12 +101,9 @@ class ServiceController extends Controller
      * Récupère les annonces de la BD
      */
     public function getAllAnnonceAction(){
-
-        //On vérifie que l'utilisateur est un admin
-        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
-          // Sinon on déclenche une exception « Accès interdit »
-          throw new AccessDeniedException('Accès limité.');
-        }
+        //On vérifie que l'utilisateur est connecté
+        //..
+        
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère toutes les annonces de la bd
