@@ -5,6 +5,9 @@ namespace Tec\ServiceBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Query\ResultSetMapping;
+
 use Tec\ServiceBundle\Entity\Annonce;
 use Tec\ServiceBundle\Entity\Categorie;
 use Tec\ServiceBundle\Entity\Sub_categorie;
@@ -213,6 +216,49 @@ class ServiceController extends Controller
             return $this->forward('TecServiceBundle:Service:getAnnonce');
         }
         return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView()));
+    }
+    
+    /**
+     * 
+     * @param type $chaine
+     * @return type
+     * 
+     * Recherche d'une annonce par titre
+     * 
+     * la chaine peut contenir plusieurs mots
+     * mais le titre doit etre identique au mot
+     */
+    public function searchAnnonceAction($chaine){   //Recherche par titre
+        
+        $sql = "SELECT id, title FROM annonce ";
+        
+        $tab = explode(" ", $chaine);
+        
+        $string = "WHERE title = ? ";
+        $indice = 0;
+        while($indice<count($tab)){   
+            $sql = $sql.$string;                
+            $string = "OR title = ? ";
+            $indice ++;
+        }
+        
+        $rsm = new ResultSetMapping;
+        $rsm->addEntityResult('TecServiceBundle:Annonce', 'a');
+        $rsm->addFieldResult('a', 'id', 'id');
+        $rsm->addFieldResult('a', 'title', 'title');
+
+        $query = $this->getDoctrine()->getEntityManager()->createNativeQuery($sql, $rsm);
+        
+        $indice = 0;
+        
+        while($indice<count($tab)){
+            $query->setParameter(($indice+1), $tab[$indice]);
+            $indice++;
+        }
+
+        $annonces = $query->getResult();
+        
+        return $this->render('TecServiceBundle::searchAnnonce.html.twig', array('annonces' => $annonces));
     }
     
     /************************
