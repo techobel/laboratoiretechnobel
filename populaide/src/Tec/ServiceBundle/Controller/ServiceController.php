@@ -9,7 +9,7 @@ use Tec\ServiceBundle\Entity\Annonce;
 use Tec\ServiceBundle\Entity\Categorie;
 use Tec\ServiceBundle\Entity\Sub_categorie;
 use Tec\ServiceBundle\Entity\Type;
-use Tec\ServiceBundle\Entity\Postuler;
+//use Tec\ServiceBundle\Entity\Postuler;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -52,7 +52,7 @@ class ServiceController extends Controller
         //Création de l'article
         $annonce = new Annonce();
         //Ajout de la class du formulaire
-        $options = array('attr' => array('class' => 'form-inline clearfix'));
+        $options = array('attr' => array('class' => 'form row form-inline clearfix'));
         
         //Création du formulaire
         $form = $this->get('form.factory')->create(new AnnonceType(), $annonce, $options);
