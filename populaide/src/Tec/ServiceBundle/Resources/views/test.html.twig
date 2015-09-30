@@ -1,14 +1,22 @@
 {% extends "TecServiceBundle::layout.html.twig" %}
-{% block title %}Populaide - Belgique - Results{% endblock %}
-{% block stylesheets %}
+
+{% block title %}Poster une annonce {{ parent() }}{% endblock %}
+
+{#{% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
-{% endblock %}
+{% endblock %}#}
+
+{% block img_h3 %}src="{{ asset('images/pictos/post.png') }}" alt="Rédiger une annonce" width="100" height="100"{% endblock %}
+{% block h3 %}Mon annonce{% endblock %}
+
 {% block body %}
     {{ parent() }}
+    
     <section id="works">
         page de test
         {{ form(form) }}
+{#        {{ form_widget(form.text, { 'attr': {'class': 'form-inline form-control'} }) }}#}
     </section>
     
 
