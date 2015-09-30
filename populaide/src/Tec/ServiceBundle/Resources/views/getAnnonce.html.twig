@@ -8,9 +8,9 @@
     {{ parent() }}
     <section id="works">
         Annonce:
-        {{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description }}
+        {{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description }}<a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}"> Postuler</a>
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            {{ flashMessage }}
+        {% endfor %}
     </section>
-    
-
-
 {% endblock %}

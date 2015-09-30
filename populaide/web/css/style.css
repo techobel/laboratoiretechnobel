@@ -146,15 +146,15 @@ h2 {
 .title .overlay{
     background-color: #23777B;
     color: #fff;
-    height: 140px;
-    margin-bottom: 40px;
-    padding-top: 20px;
+    /*height: 140px;*/
+    /*margin-bottom: 40px;*/
+    /*padding-top: 20px;*/
     text-align: center;
     text-transform: uppercase;
 }
 .title .overlay h3{
     font: 700 2.5em "HelveticaNeueLTStd-Bd",sans-serif;
-    margin-top: 0px;
+    margin: 20px auto;
 }
 h4 {
     font: 700 2em "HelveticaNeueLTStd-Bd",sans-serif; 
@@ -214,9 +214,15 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
 /*======================================
     POST SECTION STYLES
 =========================================*/
+.post-section{
+    background-color: #23777b;
+    height: 140px;
+    padding: 50px 0;
+    margin-bottom: 20px;
+}
 
-.parallax-like {
-    background: url(../img/stats.jpg) no-repeat center center; /* DEFINE IMAGE PATH CAREFULLY*/
+/*.parallax-like {
+    background: url(../img/stats.jpg) no-repeat center center;  DEFINE IMAGE PATH CAREFULLY
     padding: 0;
     -webkit-background-size: cover;
     background-size: cover;
@@ -230,7 +236,7 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
         font-size: 40px;
         padding-bottom: 60px;
         padding-top: 60px;
-    }
+    }*/
 
 /*======================================
     CONNECTION SECTION STYLES
@@ -249,9 +255,10 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
     padding-top:15px;
 }
 
-#category ul{
+#footer_desk ul, #category ul{
     margin-left: -45px;
     margin-right: 15px;
+    text-align: center;
 }
     #category li{
         display: inline-block;
@@ -507,7 +514,7 @@ footer p{
         display: none;
     }
     #footer_desk{
-        display: initial;
+        display: block;
     }
     
 }

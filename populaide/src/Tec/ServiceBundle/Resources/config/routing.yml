@@ -105,3 +105,8 @@ tec_service_deluser:
 tec_service_updateuser:
     path:     /updateuser/{id}
     defaults: { _controller: TecServiceBundle:Service:updateUser }
+    
+#POSTULER
+tec_service_postulerannonce:
+    path:     /postuler/{id}
+    defaults: { _controller: TecServiceBundle:Service:postulerAnnonce }
