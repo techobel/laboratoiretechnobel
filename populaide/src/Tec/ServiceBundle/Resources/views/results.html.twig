@@ -7,14 +7,267 @@
 {% block body %}
     {{ parent() }}
         <section id="works">
-                <h3>Resultat:</h3>
+                <h3>Résultats de votre recherche</h3>
                 <div class="container">
                     
-                {% for flashMessage in app.session.flashbag.get('notice') %}
-                    {{ flashMessage }}
-                {% endfor %}
+					{% for flashMessage in app.session.flashbag.get('notice') %}
+						{{ flashMessage }}
+					{% endfor %}
+                    <div class="row text-center portfolio-item annonces">
+                        <div class="col-md-3 col-sm-4 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
+                                <img src="{{ asset('images/steps/user01.png') }}" alt="photo de profil" />
+                                <ul>
+                                    <li><p>Claudia</p></li>
+                                    <li><span class="glyphicon glyphicon-certificate"><span></li>
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                    <p>5000</p>
+                                    <p> Namur-les-Trucmuch</p>  
+                                    </li>
+                                    <li><h3>Baby-Sitting à domicile</h3></li> 
+                                </ul>
+                                <p id="debut-annonce">Claudia 19 ans propose baby-sitting tous les vendredis soirs à partir de 18h00</p>
+                                <div>
+                                  <img class="menu-annonce" src="{{ asset('images/pictos/anim.png') }}" alt="photo de profil" />
+                                  <img class="menu-annonce" src="{{ asset('images/pictos/anim.png') }}" alt="photo de profil" />
+                                  <img class="menu-annonce" src="{{ asset('images/pictos/anim.png') }}" alt="photo de profil" />
+                                  <img class="menu-annonce" src="{{ asset('images/pictos/anim.png') }}" alt="photo de profil" />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 col-sm-4 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
+                                <img src="assets/img/2.jpg" alt="Profil photo"/>
+                                <ul>
+                                    <li><p>User</p></li>
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li><h3>Titre de l'annonce</h3></li> <!--Marie Taille titre !!!!!-->
+                                    <li><p>xxxx Région</p></li>
+                                </ul>
+                                <button class="btn btn-info col-xs-12 details">Voir détails</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
+                                <img src="assets/img/2.jpg" alt="Profil photo"/>
+                                <ul>
+                                    <li><p>User</p></li>
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li><h3>Titre de l'annonce</h3></li> <!--Marie Taille titre !!!!!-->
+                                    <li><p>xxxx Région</p></li>
+                                </ul>
+                                <button class="btn btn-info col-xs-12 details">Voir détails</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
+                                <img src="assets/img/2.jpg" alt="Profil photo"/>
+                                <ul>
+                                    <li><p>User</p></li>
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li><h3>Titre de l'annonce</h3></li> <!--Marie Taille titre !!!!!-->
+                                    <li><p>xxxx Région</p></li>
+                                </ul>
+                                <button class="btn btn-info col-xs-12 details">Voir détails</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
+                                <img src="assets/img/2.jpg" alt="Profil photo"/>
+                                <ul>
+                                    <li><p>User</p></li>
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li><h3>Titre de l'annonce</h3></li> <!--Marie Taille titre !!!!!-->
+                                    <li><p>xxxx Région</p></li>
+                                </ul>
+                                <button class="btn btn-info col-xs-12 details">Voir détails</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-4 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
+                                <img src="assets/img/2.jpg" alt="Profil photo"/>
+                                <ul>
+                                    <li><p>User</p></li>
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li><h3>Titre de l'annonce</h3></li> <!--Marie Taille titre !!!!!-->
+                                    <li><p>xxxx Région</p></li>
+                                </ul>
+                                <button class="btn btn-info col-xs-12 details">Voir détails</button>
+                            </div>
+                        </div>      
+                        <div class="col-md-3 col-sm-4 ">
+                            <div class="box-annonce"> <!--360px * 318px -->
+                                <img src="assets/img/2.jpg" alt="Profil photo"/>
+                                <ul>
+                                    <li><p>User</p></li>
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li><h3>Titre de l'annonce</h3></li> <!--Marie Taille titre !!!!!-->
+                                    <li><p>xxxx Région</p></li>
+                                </ul>
+                                <button class="btn btn-info col-xs-12 details">Voir détails</button>
+                            </div>
+                        </div>          
+                        <div class="col-md-3 col-sm-4 ">
+                            <div class="box-annonce"> 
+                                <img src="assets/img/2.jpg" alt="Profil photo"/>
+                                <ul>
+                                    <li><p>User</p></li>
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li><h3>Titre de l'annonce</h3></li> 
+                                    <li><p>xxxx Région</p></li>
+                                </ul>
+                                <button class="btn btn-info col-xs-12 details">Voir détails</button>
+                            </div>
+                        </div>      
+                    </div>
                 </div>
             </div>    
     </section>
-
+    <!--SERVICES SECTION END  -->
+    <!--PAGES NAVIGATION-->
+    <nav>
+        <ul class="pagination">
+          <li class="disable"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          <li class="active"><a href="afficher_recherche.html">1</a></li>
+          <li><a href="afficher_recherche_pp.html">2</a></li>
+          <li><a href="afficher_recherche_pp.html">3</a></li>
+          <li><a href="afficher_recherche_pp.html">4</a></li>
+          <li><a href="afficher_recherche_pp.html">5</a></li>
+          <li><a href="afficher_recherche_pp.html" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        </ul>
+    </nav>  
+    <!--PAGES NAVIGATION END-->
+    <div class="parallax-like">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <button class="btn btn-info col-xs-12 post">Je poste une annonce</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--PARALLAX LIKE / STATS SECTION END  -->
+    <section id="category">
+    <div class="container">
+        <nav class="row">
+            <ul>
+                <li class="col-md-1 col-xs-3">
+                        <a><img src="assets/img/audio.png" alt="" class="img-responsive" /></a>
+                </li>
+                <li class="col-md-1 col-xs-3">
+                        <a><img src="assets/img/audio.png" alt="" class="img-responsive" /></a>
+                </li>
+                <li class="col-md-1 col-xs-3">
+                        <a><img src="assets/img/audio.png" alt="" class="img-responsive" /></a>
+                </li>
+                <li class="col-md-1 col-xs-3">
+                        <a><img src="assets/img/audio.png" alt="" class="img-responsive" /></a>
+                </li>
+                <li class="col-md-1 col-xs-3">
+                        <a><img src="assets/img/audio.png" alt="" class="img-responsive" /></a>
+                </li>
+                <li class="col-md-1 col-xs-3">
+                        <a><img src="assets/img/audio.png" alt="" class="img-responsive" /></a>
+                </li>
+                <li class="col-md-1 col-xs-3">
+                        <a><img src="assets/img/audio.png" alt="" class="img-responsive" /></a>
+                </li>
+                <li class="col-md-1 col-xs-3">
+                        <a><img src="assets/img/audio.png" alt="" class="img-responsive" /></a>
+                </li>
+            </ul>
+            <!-- <div class="col-md-1">
+                <img src="assets/img/audio.png" alt="" class="img-responsive" />
+            </div>
+            <div class="col-md-1">
+                <img src="assets/img/codecanon.png" alt="" class="img-responsive" />
+            </div>
+            <div class="col-md-1">
+                <img src="assets/img/graphic.png" alt="" class="img-responsive" />
+            </div>
+            <div class="col-md-1">
+                <img src="assets/img/themeforest.png" alt="" class="img-responsive" />
+            </div>
+			<div class="col-md-1">
+                <img src="assets/img/audio.png" alt="" class="img-responsive" />
+            </div>
+            <div class="col-md-1">
+                <img src="assets/img/codecanon.png" alt="" class="img-responsive" />
+            </div>
+            <div class="col-md-1">
+                <img src="assets/img/graphic.png" alt="" class="img-responsive" />
+            </div>
+            <div class="col-md-1">
+                <img src="assets/img/themeforest.png" alt="" class="img-responsive" />
+            </div> -->
+        </nav>
+    </div>
+    </section>
+    <!-- CATEGORY SECTION END-->
 {% endblock %}
