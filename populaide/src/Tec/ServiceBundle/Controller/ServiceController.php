@@ -51,7 +51,7 @@ class ServiceController extends Controller
         //Création de l'article
         $annonce = new Annonce();
         //Ajout de la class du formulaire
-        $options = array('attr' => array('class' => 'form-control form-inline clearfix'));
+        $options = array('attr' => array('class' => 'form-inline clearfix'));
         
         //Création du formulaire
         $form = $this->get('form.factory')->create(new AnnonceType(), $annonce, $options);
