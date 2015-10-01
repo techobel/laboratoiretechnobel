@@ -1,311 +1,157 @@
-body {
-    background-color: #C9E9F0;
-}
-#home,
-#home .overlay {
-/*    min-height: 200px;*/
-    background: #fff;
-    color: #000;
+/*================================
+    BOX-POST STYLES
+==================================*/   
+#results {
+    padding-top: 5px;
     height: auto;
 }
-section {
-    padding-bottom: 0;
-    padding-top: 0;
-}
-/*================================
-    SEARCH SECTION STYLES
-==================================*/
-section#search{
-    padding-top: 15px;
-    padding-bottom: 0px;
-    background-color: #23777B;
-}
-.category_choice {
-    display: none;
-}
-/*.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary {
-    height: 30px;
-    margin-bottom: 5px;
+.post {
     width: 100%;
-    border-radius: 25px;
-    border: 2px solid #EB5E4E;
-}*/
-.btn-primary {
-    background-color: #EB5E4E;
-    color: #fff;
 }
-.form-control {
-    font-size: 12px;
-}
-btn btn-danger dropdown-toggle {
-    display: inline-block;
-    float: right;
-    position: relative;
-}
-
-/*================================
-    ANNONCES
-==================================*/
-.pad-bottom {
-    padding-bottom: 1px;
-}
-h4 {
-    margin-bottom: 5px;
-    margin-top: 0;
-    text-align: center;
-    font-size: 1.2em;
-}
-.annonces {
-    padding-top: 20px;
-}
-    .box-annonce {
-      margin-left: -6px;
-      min-height: 250px;
-      min-width: 250px;    
-      margin-bottom: 50px;   
+.box-post {
       background-color: #fff;
-      border-color: #d6e9c6;
       border-radius: 7%;
-    }   
-    .box-annonce>img {
-        width: 45%;
-        height: 100px;
+      margin: 5% 0;
+      height: 210px;
+    } 
+    .profil-post-image{
+        border: 1px solid red;
+        width: 35%;
+        height: 80px;
         float: left;
         margin-right: 10px;
-        -webkit-border-top-left-radius: 20px;
-        -moz-border-radius-topleft: 20px;
-        border-top-left-radius: 20px;
-    } 
-    .box-annonce ul {
-        text-align: left;
+        border-top-left-radius: 18%;
+    }
+    .user-login,
+    .user-location,
+    .user-date-post{
+        margin: 0;
+    }
+    .post-title {
+        margin: 0 auto;
+    }
+    .propose {
+        height: 25px;
+        padding-top: 5px;
+        background-color: #23777B;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 1em;
+    }
+    .box-post ul {
         text-decoration: none;
+        text-align: left;
         margin-left: -40px;
-        margin-bottom: -10px;
     }
-        .box-annonce li {
+        .box-post li {
             list-style-type: none;
-         }
-        .box-annonce li:nth-child(2), .box-annonce li:first-child {
+        }
+        .stars {
             display: inline-block;
-            margin-top: 2%;
+            color: #EB5E4E ;
         }
-        .glyphicon-certificate {
-            margin-left: 20px;
-            color: #4FAF47;
+        #debut-annonce {
+            display: inline-block;
+            width: 40%;
+            margin-left: 10px;
+            font-size: 0.9em;
+            clear: both;
         }
-        .box-annonce>ul>li:last-child {
-            background-color: #EB5E4E;
-            margin-top: -20px;
-            height: 30px;
+        .icons-post {
+            float: right;
+            width: 60%;            
+            display: inline-block;  
+            margin-right: -15px;
+            margin-top: 10px;
         }
-        ol {
-            margin-top: -10px;
-        }
-            .stars {
-                
+            .menu-post {
                 display: inline-block;
-            }
-            li>p:first-child {
-                margin-top: 5px;
-            }
-            li>p:last-child {
-                font-size: 1em;
-                margin-top: -8px;
-            }
-            li>h3 {
-                margin-bottom: 0%;
-                padding-top: 5px;
-                font-size: 18px;
+                padding: 0;
+                margin: 2px;
+                font-size: 0.8em;
+                width: 25%;
+                height: 25%;
                 text-align: center;
-                color: #fff;
-                font-family: "HelveticaNeueLTStd", sans-serif;
+                text-decoration: none;
+                color: black;
             }
-            .details {
-                margin: 70px 0 0 0;
-                border-bottom-right-radius: 20px;
-                border-bottom-left-radius: 20px;
-                height: 50px;
-            }
-            .btn-info {
-                border-color: #EB5E4E;
-            }
-            .more {
-                float: right;
-                position: relative;
-                color: white;
-                margin: -150px 70px 0px 0;
-                font-size: 1.5em;
-            }
-            p {
-                font-size: 14px;
-            }
-            #debut-annonce {
-                margin-top: 10px;
-                max-height: 30px;
-            }
-            .menu-annonce {
-                width: 20%;
-                height: 20%;
-                margin-top: 5px;
-            }
-            
-/*================================
-    PAGINATION
-==================================*/            
-  .pagination {
-      padding-left: 13%;
-      font-size: 1em;
-  }            
-/*================================
-    MEDIA QUERIES
-==================================*/
+@media (min-width: 360px) {
+    .box-post{
+        height: 280px;
+    }
+    .profil-post-image{
+        width: 40%;
+        height: 120px;
+        margin-right: 10px;
+    }
+    .user-login,
+    .user-location,
+    .user-date-post{
+        margin: 5px;
+        font-size: 1.2em;
+    }
+    .propose {
+        margin-top: 15px;
+        padding-top: 8px;
+        height: 30px;
+    }
+    #debut-annonce {
+        font-size: 1em;
+    }
+}
 @media (min-width: 768px) {
-    .col-md-3, .col-sm-4 {
-        padding-left: 45px;
-        margin: 5%;
+    .box-post{
+        height: 350px;
     }
-    .pagination {
-        padding-left: 34%;
+    .profil-post-image{
+        width: 40%;
+        height: 150px;
+        margin-right: 10px;
+    }    
+    .propose {
+        margin-top: 30px;
     }
-/*    .navbar > .container > .btn-connexion {
-        margin-right: -25px;
-    }*/
-    .form-inline:last-child .form-control:last-child {
-        min-width: 100%;
+    .user-login,
+    .user-location,
+    .user-date-post{
+        margin: 10px;
+        text-align: center;
+        
     }
-
+    #stars {
+        margin-left: 440px;
+    }
+    .menu-post {
+        padding: 15px;
+        width: 30%;
+        height: 30%;
+    }
+    #debut-annonce {
+        margin-top: 25px;
+    }    
 }
 @media (min-width: 800px) {
-/*    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary {
-        width: 40%;
-    }*/
-        /*SEARCH*/
-    .form-inline:last-child .form-control:last-child {
-        min-width: 11%;
-        max-width: 16%;
-    }
-    .form-inline{
-        padding: 0 70px;
-    }
+    #stars {
+        margin-left: 460px;
+    }    
 }
-@media (min-width: 992px) {
-    /*Petite loupe*/
-    section.search button[type="submit"]{
-        margin-top: 0px;
-        max-width: 55px;
+@media (min-width: 980px) {
+    .col-md-6 {
+        width: 50%;
+        display: inline-block;
     }
-}
-@media (min-width: 960px) {
-    .container {
-        width: 100%;
-    }
-    .col-sm-4 {
-        width: 20%;
-        padding-left: 25px;
-    }
-    .col-sm-4:last-child {
-        display: none;
-    }
-}
-@media (min-width: 1200px) {
-    .container {
-        width: 80%;
-    }
-}
-@media (min-width: 1800px) {
-    /*================================
-        GENERAL STYLES
-    ==================================*/
-    section {
-        padding-top: 30px;
-        padding-bottom: 20px;
-    }
-    .pad-bottom {
-        padding-bottom: 30px;
-        padding-top: 0;
-        margin: 0 auto;
-        max-height: 150px;
-    }
-    /*================================
-        SECTION STYLES
-    ==================================*/
-    #works>h2 {
-             margin-left: 20%;
-    }
-
-    /*======================================
-        ANNONCES STYLES
-    =========================================*/
-    .parallax-like-newuser {
-        max-width: 80%;
-        margin: 0 auto; 
-        padding-bottom: 1%;
-        padding-top: 1%;
-        -webkit-background-size: cover;
-        background-attachment: fixed;
-    }
-    .parallax-like-users {
-        max-width: 80%;
-        margin: 0 auto;
-        padding-bottom: 1%;
-        padding-top: 1%;
-        -webkit-background-size: cover;
-        background-attachment: fixed;
-    }
-    .box-annonce {
-      border: 1px solid red;  
-      color: #3c763d;
-      background-color: #dff0d8;
-      border-color: #d6e9c6;
-      min-height: 250px;
-      min-width: 250px;    
-      margin: 5%;
-      border-radius: 20px;
-    }   
-    .box-annonce ul {
+    .user-login,
+    .user-location,
+    .user-date-post{
+        margin: 10px;
         text-align: left;
-        text-decoration: none;
-        margin-left: -10%;
+        
     }
-        .box-annonce li {
-            list-style-type: none;
-            text-align: left;
-         }
-        .box-annonce li:nth-child(2), .box-annonce li:first-child {
-            display: inline-block;
-            margin-top: 2%;
-        }
-            .stars {
-                display: inline-block;
-            }
-            h3 {
-                margin-top: 0;
-                margin-bottom: 2%;
-            }
-            #details {
-                margin: 0 auto;
-                border-radius: 10px;
-                color: white;
-            }
-            .more {
-                float: right;
-                position: relative;
-                color: white;
-                margin: -150px 70px 0px 0;
-                font-size: 1.5em;
-            }
-            p {
-                font-size: 1.2em;
-            }
-            
-    /*================================
-            PAGINATION
-    ==================================*/   
-    .pagination{
-        margin: 0 0 2% 0;
-        padding-left: 45%;
-        border-radius: 0;
-
-    }
-
+    #stars {
+        margin-left: 50px;
+    }  
+    #debut-annonce {
+        margin-top: 5px;
+    }     
 }
