@@ -220,6 +220,39 @@ class ServiceController extends Controller
     
     /**
      * 
+     * @param type $id
+     * Permet à un utilisateur de postuler à une annonce
+     */
+    public function postulerAnnonceAction($id){
+        //récupère le repository
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
+        //Récupère l'annonce qui possède l'id $id
+        $annonce = $repository->find($id);
+        //test si l'annonce existe
+        if($annonce === null){
+            throw new NotFoundHttpException("L'annonce n'existe pas");
+        }
+        //si l'annonce existe
+        
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        //Test si l'utilisateur à déja postulé pour cette annonce
+        $res = false;
+        foreach($post as $annonce->getPostules()){
+            
+        }
+        
+        
+        
+        //création de postuler
+        $postuler = new Postuler();
+        $postuler->setEtat(false);
+        $postuler->addUser($user);
+    }
+    
+    /**
+     * 
      * @param type $chaine
      * @return type
      * 
