@@ -24,67 +24,67 @@
         </div>  
        <section class="search">
             <div class="container">                            
-            <form  class="row form-inline">
-                <select class="col-xs-12 col-md-4 form-control " name="Catégorie" autofocus>
+            <form  class="row form-inline" action="{{ path('tec_service_searchannonce2') }}" method="post">
+                <select class="col-xs-12 col-md-4 form-control " name="categorie" autofocus>
                     <optgroup label="Animaux">
                         <option value="" id="hidden">Choisissez une catégorie</option>
-                        <option value="">Garde chez le propriétaire</option>
-                        <option value="">Garde à domicile</option>
-                        <option value="">Promenade</option>
-                        <option value="">Toilettage</option>
+                        <option value="1">Garde chez le propriétaire</option>
+                        <option value="2">Garde à domicile</option>
+                        <option value="3">Promenade</option>
+                        <option value="4">Toilettage</option>
                     </optgroup>
                     <optgroup label="Cours">
-                        <option value="">Couture</option>
-                        <option value="">Peinture/dessin</option>
-                        <option value="">Musique</option>
-                        <option value="">Informatique</option>
-                        <option value="">Langues</option>
-                        <option value="">Cuisine</option>
-                        <option value="">Rattrapage scolaire</option>
-                        <option value="">Sport</option>
+                        <option value="5">Couture</option>
+                        <option value="6">Peinture/dessin</option>
+                        <option value="7">Musique</option>
+                        <option value="8">Informatique</option>
+                        <option value="9">Langues</option>
+                        <option value="10">Cuisine</option>
+                        <option value="11">Rattrapage scolaire</option>
+                        <option value="12">Sport</option>
                     </optgroup>
                     <optgroup label="Soins et beauté">
-                        <option value="">Pédicure</option>
-                        <option value="">Manucure</option>
-                        <option value="">Maquillage</option>
-                        <option value="">Coiffure</option>
-                        <option value="">Massage</option>
+                        <option value="13">Pédicure</option>
+                        <option value="14">Manucure</option>
+                        <option value="15">Maquillage</option>
+                        <option value="16">Coiffure</option>
+                        <option value="17">Massage</option>
                     </optgroup>
                     <optgroup label="Jardinage">
-                        <option value="">Aménagement extérieur</option>
-                        <option value="">Entretien</option>
+                        <option value="18">Aménagement extérieur</option>
+                        <option value="19">Entretien</option>
                     </optgroup>
                     <optgroup label="Transport">
-                        <option value="">De personnes</option>
-                        <option value="">De biens</option>
+                        <option value="20">De personnes</option>
+                        <option value="21">De biens</option>
                     </optgroup>
                     <optgroup label="Bricolage">
-                        <option value="">Habitat</option>
-                        <option value="">Auto/Moto</option>
-                        <option value="">Divers</option>
+                        <option value="22">Habitat</option>
+                        <option value="23">Auto/Moto</option>
+                        <option value="24">Divers</option>
                     </optgroup>
                     <optgroup label="Animation">
-                        <option value="">Clown, magicien, ventriloque...</option>
-                        <option value="">DJ</option>
-                        <option value="">Musicien/Groupe</option>
+                        <option value="25">Clown, magicien, ventriloque...</option>
+                        <option value="26">DJ</option>
+                        <option value="27">Musicien/Groupe</option>
                     </optgroup>
                     <optgroup label="Assistance">
-                        <option value="">Repassage</option>
-                        <option value="">Couture</option>
-                        <option value="">Nettoyage</option>
-                        <option value="">Cuisine</option>
-                        <option value="">Babysitting</option>
-                        <option value="">Seniors</option>
-                        <option value="">Rédaction/Relecture</option>
-                        <option value="">Traduction/Interprétariat</option>
+                        <option value="28">Repassage</option>
+                        <option value="29">Couture</option>
+                        <option value="30">Nettoyage</option>
+                        <option value="31">Cuisine</option>
+                        <option value="32">Babysitting</option>
+                        <option value="33">Seniors</option>
+                        <option value="34">Rédaction/Relecture</option>
+                        <option value="35">Traduction/Interprétariat</option>
                     </optgroup>
                     <optgroup label="Multimédia">
-                        <option value="">Réparation/Assistance/Dépannage matériel</option>
-                        <option value="">Photo/Vidéo</option>
-                        <option value="">Web</option>
+                        <option value="36">Réparation/Assistance/Dépannage matériel</option>
+                        <option value="37">Photo/Vidéo</option>
+                        <option value="38">Web</option>
                     </optgroup>
                 </select>
-                <input class="col-xs-12 col-md-4 form-control " type="text"/>
+                <input class="col-xs-12 col-md-4 form-control " type="text" name="localite"/>
                 <button type="submit"><img src="{{ asset("images/pictos/search.png") }}" width="100" height="100"/></button>
             </form>
             </div>
@@ -100,7 +100,7 @@
         <div class="overlay">
             <div class="container">
                 <div class="row">
-                    <button class="btn btn-primary col-xs-12 post">Je poste une annonce</button>
+                    <a href="{{ path("tec_service_addannonce") }}"><button class="btn btn-primary col-xs-12 post">Je poste une annonce</button></a>
                 </div>
             </div>
         </div>
@@ -121,49 +121,49 @@
             <nav class="row">
                 <ul>
                     <li class="col-md-1 col-xs-4">
-                            <a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
                                 <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
                                 Bricolage
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
                                 <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
                                 Jardinage
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
                                 <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
                                 Multimédia
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
                                 <img src="{{ asset('images/pictos/pets.png') }}" width="45" alt="" class="img-responsive" />
                                 Animaux
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
                                 <img src="{{ asset('images/pictos/anim.png') }}" width="45" alt="" class="img-responsive" />
                                 Animation
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
                                 <img src="{{ asset('images/pictos/wellness.png') }}" width="45" alt="" class="img-responsive" />
                                 Bien-être
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
                                 <img src="{{ asset('images/pictos/cours.png') }}" width="45" alt="" class="img-responsive" />
                                 Cours
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
                                 <img src="{{ asset('images/pictos/assist.png') }}" width="45" alt="" class="img-responsive" />
                                 Assistance
                             </a>

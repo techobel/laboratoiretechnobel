@@ -261,6 +261,37 @@ class ServiceController extends Controller
         return $this->render('TecServiceBundle::searchAnnonce.html.twig', array('annonces' => $annonces));
     }
     
+    /**
+     * 
+     * @param Request $request
+     * 
+     * Recherche une annonce par categorie et par localite
+     */
+    public function searchAnnonce2Action(Request $request){
+        //Récupère les valeurs du formulaire
+        $localite = $request->get('localite');
+        $idsubcategorie = $request->get('categorie');
+        
+        $id = intval($idsubcategorie);
+        
+        if((strlen($localite) === 0)&&($id === 0)){   //Aucun choix pour la recherche
+            return $this->forward('TecServiceBundle:Service:getAllAnnonce');
+        }else if((strlen($localite) > 0) && ($id > 0)){ //Recherche par sous-categorie et par localite
+            //Traitement
+            //....
+            //
+        }else if(strlen($localite) > 0){   //Recherche seulement par localite
+            //Traitement
+            //....
+            //
+        }else{  //Recherche seulement par categorie
+            return $this->forward('TecServiceBundle:Service:getAnnonceCategorie', array('id' => $id));
+        }
+        
+        
+        return $this->render('TecServiceBundle::results.html.twig');
+    }
+    
     /************************
      *      CATEGORIE       *
      ************************/
@@ -282,10 +313,8 @@ class ServiceController extends Controller
         $form = $this->get('form.factory')->create(new CategorieType(), $categorie);
         //Si le formulaire a été validé
         if($form->handleRequest($request)->isValid()){   
-            
-            
-            //Gestion de l'image
-            
+                        
+            //Gestion de l'image            
             
             //Récupère le manager
             $em = $this->getDoctrine()->getManager();    
@@ -408,6 +437,35 @@ class ServiceController extends Controller
         return $this->render('TecServiceBundle::updateCategorie.html.twig', array('form' => $form->createView()));
     }
     
+    /**
+     * 
+     * @param type $id
+     * 
+     * Retourne les annonces de la categorie qui possède l'id passé en paramètre
+     */
+    public function getAnnonceCategorieAction($id){
+        //On vérifie les droits de l'utilisateur (a voir qui peut voir la categorie
+        //..
+        //Récupère le repository de categorie
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
+        //Récupère la categorie qui possède l'id $id
+        $categorie = $repository->find($id);
+        //Test si la categorie existe
+        if($categorie === null){
+            throw new NotFoundHttpException("La categorie n'existe pas");  //genere une exception
+        }
+        $annonces = new \Doctrine\Common\Collections\ArrayCollection();
+        
+        foreach($categorie->getSubCategories() as $subcategorie){
+            foreach($subcategorie->getAnnonces() as $annonce){
+                $annonces->add($annonce);
+            }
+        }
+                
+        //Renvoie vers la page qui affiche les annonces de la categories
+        return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
+    }
+    
     /************************
      *      SUB_CATEGORIE       *
      ************************/
@@ -475,6 +533,34 @@ class ServiceController extends Controller
         }
         //Renvoie vers la page qui affiche la sous categorie
         return $this->render('TecServiceBundle::getSubCategorie.html.twig', array('subcategorie' => $subcategorie));
+    }
+    
+    /**
+     * 
+     * @param type $id
+     * 
+     * Retourne les annonces de la categorie qui possède l'id passé en paramètre
+     */
+    public function getAnnonceSubCategorieAction($id){
+        //On vérifie les droits de l'utilisateur (a voir qui peut voir la sous categorie
+        //..
+        //Récupère le repository de sub_categorie
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
+        //Récupère la sous categorie qui possède l'id $id
+        $subcategorie = $repository->find($id);
+        //Test si la sous categorie existe
+        if($subcategorie === null){
+            throw new NotFoundHttpException("La sous categorie n'existe pas");  //genere une exception
+        }
+        
+        $annonces = new \Doctrine\Common\Collections\ArrayCollection();
+        
+        foreach($subcategorie->getAnnonces() as $annonce){
+            $annonces->add($annonce);
+        }
+                
+        //Renvoie vers la page qui affiche les annonces de la categories
+        return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
     }
     
     /**
