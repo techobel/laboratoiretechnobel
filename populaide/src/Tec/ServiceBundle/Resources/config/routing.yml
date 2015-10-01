@@ -30,6 +30,11 @@ tec_service_searchannonce:
     path:     /searchannonce/{chaine}
     defaults: { _controller: TecServiceBundle:Service:searchAnnonce }
     
+tec_service_searchannonce2:
+    path:     /searchannonce2
+    defaults: { _controller: TecServiceBundle:Service:searchAnnonce2 }
+    methods: [POST]
+    
 #CATEGORIE
 tec_service_addcategorie:
     path:     /addcategorie
@@ -51,6 +56,10 @@ tec_service_updatecategorie:
     path:     /updatecategorie/{id}
     defaults: { _controller: TecServiceBundle:Service:updateCategorie }
     
+tec_service_getannoncecategorie:
+    path:     /getannoncecategorie/{id}
+    defaults: { _controller: TecServiceBundle:Service:getAnnonceCategorie }
+    
 #SUBCATEGORIE
 tec_service_addsubcategorie:
     path:     /addsubcategorie
@@ -71,6 +80,10 @@ tec_service_delsubcategorie:
 tec_service_updatesubcategorie:
     path:     /updatesubcategorie/{id}
     defaults: { _controller: TecServiceBundle:Service:updateSubCategorie }
+    
+tec_service_getannoncesubcategorie:
+    path:     /getannoncesubcategorie/{id}
+    defaults: { _controller: TecServiceBundle:Service:getAnnonceSubCategorie }
     
 #TYPE
 tec_service_addtype:

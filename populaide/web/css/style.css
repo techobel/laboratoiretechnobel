@@ -511,9 +511,9 @@ footer p{
     }
     
     /*FOOTER*/
-    .footer_mob{
+/*    .footer_mob{
         display: none;
-    }
+    }*/
     #footer_desk{
         display: block;
     }

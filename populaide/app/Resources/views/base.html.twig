@@ -23,10 +23,23 @@
         {% block header %}
             <div class="navbar navbar-fixed-top">
                 <div class="container">
-                 <button type="button" class="btn btn-connexion">{% block connexion %}{% endblock %}</button>
+                    <button type="button" class="btn btn-connexion">
+                        {% block connexion %}
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                Bienvenue {{ app.user.username }}
+                                <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                                {# On définit ce block, dans lequel vont venir s'insérer les autres vues du bundle #}
+                                {% block fos_user_content %}
+                                {% endblock fos_user_content %}
+                            {% endif %}
+                        {% endblock %}
+                    </button>
                 </div>
             </div>
-            <div id="home">
+            <!--CONNECTION NAVBAR END  -->
+            <div id="home" class="home-index">
                 <div class="overlay">
                     <div class="container">
                         <hgroup class="col-md-8 col-md-offset-2 text-center">
@@ -34,24 +47,16 @@
                             <h2>L'entraide connectée</h2>
                         </hgroup>
                     </div>
-                </div>              
+                </div> 
+                {% block search %}{% endblock %}
+                <!--SEARCH SECTION END-->
             </div>
-            <!--HOME SECTION END  -->                            
+            <!--HOME SECTION END  -->   
         {% endblock %}
         
         {% block body %}{% endblock %}
         
         {% block footer %}
-        <!--FOOTER DESKTOP-->
-        <footer id="footer_desk">
-            <ul>
-                <li><a href="">Comment ça marche ?</a></li>
-                <li><a href="{{ path('tec_user_contact') }}">Contact</a></li>
-                <li><a href="">Inscription</a></li>
-                <li><a href="">Conditions générales d'utilisation</a></li>
-            </ul>
-            <p>Playpark Technobel septembre-octobre 2015</p>
-        </footer>
         <!--FOOTER MOBILE-->
         <footer class="footer_mob search ">
             <div class="container">                            
@@ -126,6 +131,16 @@
                 </div>
             </div>
             <!--POST SECTION END  -->
+            <p>Playpark Technobel septembre-octobre 2015</p>
+        </footer>
+        <!--FOOTER DESKTOP-->
+        <footer id="footer_desk">
+            <ul>
+                <li><a href="">Comment ça marche ?</a></li>
+                <li><a href="{{ path('tec_user_contact') }}">Contact</a></li>
+                <li><a href="">Inscription</a></li>
+                <li><a href="">Conditions générales d'utilisation</a></li>
+            </ul>
             <p>Playpark Technobel septembre-octobre 2015</p>
         </footer>
         {% endblock %}

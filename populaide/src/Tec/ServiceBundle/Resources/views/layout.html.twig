@@ -1,19 +1,5 @@
 {# On étend notre layout #}
 {% extends "::inside_base.html.twig" %}
-
-{#{% block stylesheets %}{{ parent() }}{% endblock %}#}
-
-{% block connexion %}
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        Bienvenue {{ app.user.username }}
-        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
-    {% else %}
-        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-        {# On définit ce block, dans lequel vont venir s'insérer les autres vues du bundle #}
-        {% block fos_user_content %}
-        {% endblock fos_user_content %}
-    {% endif %}
-{% endblock %}
     
 {# Dans notre layout, il faut définir le block body #}
 {% block body %}
