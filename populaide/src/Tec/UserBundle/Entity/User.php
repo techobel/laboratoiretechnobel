@@ -114,8 +114,7 @@ class User extends BaseUser
     
     /**
      * l'utilisateur postule à une annonce
-     * @ORM\ManyToMany(targetEntity="Tec\ServiceBundle\Entity\Postuler", inversedBy="users")
-     * @ORM\JoinTable(name="users_postule")
+     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Postuler", mappedBy="user")
      */
     private $postules;
     
@@ -456,40 +455,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add postule
-     *
-     * @param \Tec\ServiceBundle\Entity\Postuler $postule
-     *
-     * @return User
-     */
-    public function addPostule(\Tec\ServiceBundle\Entity\Postuler $postule)
-    {
-        $this->postules[] = $postule;
-
-        return $this;
-    }
-
-    /**
-     * Remove postule
-     *
-     * @param \Tec\ServiceBundle\Entity\Postuler $postule
-     */
-    public function removePostule(\Tec\ServiceBundle\Entity\Postuler $postule)
-    {
-        $this->postules->removeElement($postule);
-    }
-
-    /**
-     * Get postules
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPostules()
-    {
-        return $this->postules;
-    }
-
-    /**
      * Set disponible
      *
      * @param boolean $disponible
@@ -559,5 +524,39 @@ class User extends BaseUser
         $this->media = $media;
 
         return $this;
+    }
+
+    /**
+     * Add postule
+     *
+     * @param \Tec\ServiceBundle\Entity\Postuler $postule
+     *
+     * @return User
+     */
+    public function addPostule(\Tec\ServiceBundle\Entity\Postuler $postule)
+    {
+        $this->postules[] = $postule;
+
+        return $this;
+    }
+
+    /**
+     * Remove postule
+     *
+     * @param \Tec\ServiceBundle\Entity\Postuler $postule
+     */
+    public function removePostule(\Tec\ServiceBundle\Entity\Postuler $postule)
+    {
+        $this->postules->removeElement($postule);
+    }
+
+    /**
+     * Get postules
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostules()
+    {
+        return $this->postules;
     }
 }

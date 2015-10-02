@@ -12,10 +12,11 @@ use Tec\ServiceBundle\Entity\Annonce;
 use Tec\ServiceBundle\Entity\Categorie;
 use Tec\ServiceBundle\Entity\Sub_categorie;
 use Tec\ServiceBundle\Entity\Type;
-//use Tec\ServiceBundle\Entity\Postuler;
+use Tec\ServiceBundle\Entity\Postuler;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Process\Exception\LogicException;
 
 use Tec\ServiceBundle\Form\AnnonceType;
 use Tec\ServiceBundle\Form\CategorieType;
@@ -216,6 +217,63 @@ class ServiceController extends Controller
             return $this->forward('TecServiceBundle:Service:getAnnonce');
         }
         return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView()));
+    }
+    
+    /**
+     * 
+     * @param type $id
+     * Permet à un utilisateur de postuler à une annonce
+     */
+    public function postulerAnnonceAction($id){
+        //récupère le repository
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
+        //Récupère l'annonce qui possède l'id $id
+        $annonce = $repository->find($id);
+        //test si l'annonce existe
+        if($annonce === null){
+            throw new NotFoundHttpException("L'annonce n'existe pas");
+        }
+        //si l'annonce existe
+        
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        //Test si l'utilisateur à déja postulé pour cette annonce
+        $res = false;        
+        
+        foreach($annonce->getPostules() as $postule){   //à modifier
+            if($user->getId() === $postule->getUser()->getId()){
+                $res = true;
+            }
+        }
+        
+        if($res){   //l'utilisateur a déjà postulé
+            throw new LogicException("Vous avez deja postulé pour cette annonce.");
+        }else{
+            //création de postuler
+            $postuler = new Postuler();
+            //modification de l'attribut de postuler
+            $postuler->setEtat(false);
+            //ajout de l'utilisateur a postuler
+            $postuler->setUser($user);
+            //ajout de postuler à l'user
+            $user->addPostule($postuler);
+            //ajout de postuler à l'annonce
+            $annonce->addPostule($postuler);
+            //ajout de l'annonce à postuler
+            $postuler->setAnnonce($annonce);            
+            //Récupère le manager
+            $em = $this->getDoctrine()->getManager();
+            //doctrine se charge de postuler et de user
+            $em->persist($postuler);
+            $em->persist($user);
+            //modification dans la bd
+            $em->flush();
+            //ajout d'un message flash
+            $this->addFlash('notice', "Vous avez postulé pour l'annonce.");
+            //redirection vers l'annonce
+            return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
+        }
     }
     
     /**
