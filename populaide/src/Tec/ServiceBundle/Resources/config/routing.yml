@@ -1,6 +1,11 @@
 #tec_service_homepage:
 #    path:     /
 #    defaults: { _controller: TecServiceBundle:Default:index }
+
+tec_service_mail:
+    path:     /mail
+    defaults: { _controller: TecServiceBundle:Service:mail }
+
 tec_service_resultspage:
     path:     /results
     defaults: { _controller: TecServiceBundle:Service:results }
