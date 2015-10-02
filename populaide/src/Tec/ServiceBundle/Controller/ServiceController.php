@@ -336,10 +336,7 @@ class ServiceController extends Controller
         $idsubcategorie = $request->get('categorie');
         
         $id = intval($idsubcategorie);
-        var_dump($idsubcategorie);
-        var_dump($id);
-        var_dump($localite);
-        
+       
         if((strlen($localite) === 0)&&($id === 0)){   //Aucun choix pour la recherche
             return $this->forward('TecServiceBundle:Service:getAllAnnonce');
         }else if((strlen($localite) > 0) && ($id > 0)){ //Recherche par sous-categorie et par localite
@@ -427,8 +424,6 @@ class ServiceController extends Controller
      * Récupère les categories de la BD
      */
     public function getAllCategorieAction(){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir toutes les categorie
-        //..
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
         //Récupère toutes les categories de la bd
@@ -442,8 +437,6 @@ class ServiceController extends Controller
      * Récupère la categorie qui possède l'id id
      */
     public function getCategorieAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir la categorie
-        //..
         //Récupère le repository de categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
         //Récupère la categorie qui possède l'id $id
@@ -536,8 +529,6 @@ class ServiceController extends Controller
      * Retourne les annonces de la categorie qui possède l'id passé en paramètre
      */
     public function getAnnonceCategorieAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir la categorie
-        //..
         //Récupère le repository de categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
         //Récupère la categorie qui possède l'id $id
@@ -552,8 +543,7 @@ class ServiceController extends Controller
             foreach($subcategorie->getAnnonces() as $annonce){
                 $annonces->add($annonce);
             }
-        }
-                
+        }                
         //Renvoie vers la page qui affiche les annonces de la categories
         return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
     }
@@ -598,8 +588,6 @@ class ServiceController extends Controller
      * Récupère les sous categories de la BD
      */
     public function getAllSubCategorieAction(){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir toutes les sous categorie
-        //..
         //Récupère le repository de sub_categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
         //Récupère les sous categories de la bd
@@ -613,8 +601,6 @@ class ServiceController extends Controller
      * Récupère la sous categorie qui possède l'id id
      */
     public function getSubCategorieAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir la sous categorie
-        //..
         //Récupère le repository de sub_categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
         //Récupère la sous categorie qui possède l'id $id
@@ -634,8 +620,6 @@ class ServiceController extends Controller
      * Retourne les annonces de la categorie qui possède l'id passé en paramètre
      */
     public function getAnnonceSubCategorieAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir la sous categorie
-        //..
         //Récupère le repository de sub_categorie
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
         //Récupère la sous categorie qui possède l'id $id
@@ -762,8 +746,6 @@ class ServiceController extends Controller
      * Récupère les type de la BD
      */
     public function getAllTypeAction(){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir les types de la bdd
-        //..
         //Récupère le repository de type
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Type');
         //Récupère les type de la bd
@@ -777,8 +759,6 @@ class ServiceController extends Controller
      * Récupère le type qui possède l'id id
      */
     public function getTypeAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir le type
-        //..
         //Récupère le repository de type
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Type');
         //Récupère le type qui possède l'id $id
@@ -787,8 +767,26 @@ class ServiceController extends Controller
         if($type === null){
             throw new NotFoundHttpException("Le type n'existe pas");  //genere une exception
         }
-        //Renvoie vers la page qui affiche la sous categorie
+        //Renvoie vers la page qui affiche le type
         return $this->render('TecServiceBundle::getType.html.twig', array('type' => $type));
+    }
+    
+    /**
+     * 
+     * @param type $id
+     * id = l'id du type offre ou demande
+     */
+    public function getAnnonceType($id){
+        //Récupère le repository de type
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Type');
+        //Récupère le type qui possède l'id $id
+        $type = $repository->find($id);
+        //Test si le type existe
+        if($type === null){
+            throw new NotFoundHttpException("Le type n'existe pas");  //genere une exception
+        }
+        //Renvoie vers la page qui affiche les annonces
+        return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $type->getAnnonces()));
     }
     
     /**
@@ -866,8 +864,6 @@ class ServiceController extends Controller
      * Récupère les user de la BD
      */
     public function getAllUserAction(){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir les users de la bdd
-        //..
         //Récupère le repository de user
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
         //Récupère les type de la bd
@@ -881,8 +877,6 @@ class ServiceController extends Controller
      * Récupère le user qui possède l'id id
      */
     public function getUserAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir l'user
-        //..
         //Récupère le repository de user
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
         //Récupère l'user qui possède l'id $id
@@ -900,8 +894,11 @@ class ServiceController extends Controller
      * Supprime le user qui possède l'id id
      */
     public function delUserAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut supprimer le user)
-        //..
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Récupère le repository de user
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
         //Récupère le user qui possède l'id $id
@@ -926,8 +923,6 @@ class ServiceController extends Controller
      * Mise a jour d'un user
      */
     public function updateUserAction(Request $request, $id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut mettre à jour les users
-        //..
         //Recupère le repository user
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
         //Récupère le type à modifier
@@ -936,6 +931,16 @@ class ServiceController extends Controller
         if($user === null){
             throw new NotFoundHttpException("Le user n'existe pas.");
         }
+        
+        //Récupère l'utilisateur en session
+        $usersess = $this->container->get('security.context')->getToken()->getUser();
+        
+        //On vérifie que l'utilisateur est un admin
+        if ((!$this->get('security.context')->isGranted('ROLE_ADMIN'))||($usersess->getId() != $user->getId() )) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
+        
         //Si le user existe
         //Création du formulaire pour la mise à jour
         $form = $this->get('form.factory')->create(new UserType(), $user);
