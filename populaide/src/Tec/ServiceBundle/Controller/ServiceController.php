@@ -5,7 +5,6 @@ namespace Tec\ServiceBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 use Tec\ServiceBundle\Entity\Annonce;
@@ -13,7 +12,8 @@ use Tec\ServiceBundle\Entity\Categorie;
 use Tec\ServiceBundle\Entity\Sub_categorie;
 use Tec\ServiceBundle\Entity\Type;
 use Tec\ServiceBundle\Entity\Postuler;
-use Tec\UserBundle\Entity\Addresse;
+use Tec\UserBundle\Entity\Demander;
+use Tec\UserBundle\Entity\Fournir;
 use Tec\ServiceBundle\Entity\Service;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -36,17 +36,37 @@ use Tec\UserBundle\Form\UserType;
 //}
 class ServiceController extends Controller
 {
-    public function resultsAction()
-    {
+    
+    
+    public function mailAction(){
+        $message = \Swift_Message::newInstance()
+                ->setSubject('Test mail')
+                ->setFrom('technobellaboratoire@outlook.fr')
+                ->setTo("hbenji@hotmail.com")
+                ->setContentType('text/html')
+                ->setBody("testmail");
+        
+        var_dump($this->get('mailer')->send($message));
+
         return $this->render('TecServiceBundle::results.html.twig');
     }
     
-    /****************************
-     *          HOW             *
-     ****************************/
-    public function howAction()
+    public function sendMail($subject, $to, $body){
+        $message = \Swift_Message::newInstance()
+                ->setSubject($subject)
+                ->setFrom('technobellaboratoire@outlook.fr')
+                ->setTo($to)
+                ->setContentType('text/html')
+                ->setBody($body);
+        
+        return $this->get('mailer')->send($message);
+        
+    }
+    
+    
+    public function resultsAction()
     {
-        return $this->render('TecServiceBundle::how.html.twig');
+        return $this->render('TecServiceBundle::results.html.twig');
     }
     
     /****************************
@@ -252,41 +272,48 @@ class ServiceController extends Controller
         //Récupère l'utilisateur en session
         $user = $this->container->get('security.context')->getToken()->getUser();
         
-        //Test si l'utilisateur à déja postulé pour cette annonce
-        $res = false;        
-        
-        foreach($annonce->getPostules() as $postule){   //à modifier
-            if($user->getId() === $postule->getUser()->getId()){
-                $res = true;
-            }
-        }
-        
-        if($res){   //l'utilisateur a déjà postulé
-            throw new LogicException("Vous avez deja postulé pour cette annonce.");
+        //test si l'utilisateur possède l'annonce
+        if($user->getId() === $annonce->getUser()->getId()){
+            throw new LogicException("Vous ne pouvez pas postuler pour votre annonce.");
         }else{
-            //création de postuler
-            $postuler = new Postuler();
-            //modification de l'attribut de postuler
-            $postuler->setEtat(false);
-            //ajout de l'utilisateur a postuler
-            $postuler->setUser($user);
-            //ajout de postuler à l'user
-            $user->addPostule($postuler);
-            //ajout de postuler à l'annonce
-            $annonce->addPostule($postuler);
-            //ajout de l'annonce à postuler
-            $postuler->setAnnonce($annonce);            
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();
-            //doctrine se charge de postuler et de user
-            $em->persist($postuler);
-            $em->persist($user);
-            //modification dans la bd
-            $em->flush();
-            //ajout d'un message flash
-            $this->addFlash('notice', "Vous avez postulé pour l'annonce.");
-            //redirection vers l'annonce
-            return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
+            //Test si l'utilisateur à déja postulé pour cette annonce
+            $res = false;        
+
+            foreach($annonce->getPostules() as $postule){   //à modifier
+                if($user->getId() === $postule->getUser()->getId()){
+                    $res = true;
+                }
+            }
+
+            if($res){   //l'utilisateur a déjà postulé
+                throw new LogicException("Vous avez deja postulé pour cette annonce.");
+            }else{
+                //création de postuler
+                $postuler = new Postuler();
+                //modification deS l'attribut de postuler
+                $postuler->setEtat(false);
+                $postuler->setDateCreate(new \DateTime());
+                
+                //ajout de l'utilisateur a postuler
+                $postuler->setUser($user);
+                //ajout de postuler à l'user
+                $user->addPostule($postuler);
+                //ajout de postuler à l'annonce
+                $annonce->addPostule($postuler);
+                //ajout de l'annonce à postuler
+                $postuler->setAnnonce($annonce);            
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();
+                //doctrine se charge de postuler et de user
+                $em->persist($postuler);
+                $em->persist($user);
+                //modification dans la bd
+                $em->flush();
+                //ajout d'un message flash
+                $this->addFlash('notice', "Vous avez postulé pour l'annonce.");
+                //redirection vers l'annonce
+                return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
+            }
         }
     }
     
@@ -309,6 +336,7 @@ class ServiceController extends Controller
         //Si postuler existe
         //Change l'etat de postuler à true
         $postuler->setEtat(true);
+        $postuler->setDateUpdate(new \DateTime());
         //Création du service
         $service = new Service();
         //Mise a jour des attributs de service
@@ -323,8 +351,23 @@ class ServiceController extends Controller
         $em = $this->getDoctrine()->getManager();
         //Doctrine se charge de service
         $em->persist($service);
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Création de demander
+        $demander = new Demander();
+        $demander->setUser($user);
+        $demander->setService($service);
+        //Création de fournir
+        $fournir = new Fournir();
+        $fournir->setFournisseur($user);
+        $fournir->setService($service);
+        
+        //doctrine se charge de demander et fournir
+        $em->persist($demander);
+        $em->persist($fournir);
         //Sauvegarde en bd
-        $em->flush();
+        $em->flush();        
+        
         //Redirection vers la page de profil
         return $this->forward('TecServiceBundle:Service:results');
     }
@@ -347,7 +390,7 @@ class ServiceController extends Controller
         //Si postuler existe
         //Change l'etat de postuler à true
         $postuler->setEtat(false);        
-        
+        $postuler->setDateUpdate(new \DateTime());
         //Création d'une notification
         //...
         
