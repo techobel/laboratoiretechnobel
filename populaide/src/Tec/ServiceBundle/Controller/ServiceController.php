@@ -14,6 +14,7 @@ use Tec\ServiceBundle\Entity\Sub_categorie;
 use Tec\ServiceBundle\Entity\Type;
 use Tec\ServiceBundle\Entity\Postuler;
 use Tec\UserBundle\Entity\Addresse;
+use Tec\ServiceBundle\Entity\Service;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -279,6 +280,77 @@ class ServiceController extends Controller
             //redirection vers l'annonce
             return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
         }
+    }
+    
+    /**
+     * 
+     * @param type $id
+     * id est l'id de postuler
+     * L'utilisateur qui a posté une annonce accepte 
+     * Création d'un service
+     */
+    public function acceptePostuleUser($id){
+        //Récupère le repository postuler
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Postuler');
+        //Récupère postuler qui possède l'id $id
+        $postuler = $repository->find($id);
+        //Test si postuler existe
+        if($postuler === null){
+            throw new NotFoundHttpException("La demande n'existe pas.");
+        }
+        //Si postuler existe
+        //Change l'etat de postuler à true
+        $postuler->setEtat(true);
+        //Création du service
+        $service = new Service();
+        //Mise a jour des attributs de service
+        $service->setActive(true);
+        $service->setDateService(new \DateTime());  //date du service à voir ou est-ce qu'on va la chercher
+        //Création d'une notification
+        //...
+        
+        //
+        
+        //Récupère le manager
+        $em = $this->getDoctrine()->getManager();
+        //Doctrine se charge de service
+        $em->persist($service);
+        //Sauvegarde en bd
+        $em->flush();
+        //Redirection vers la page de profil
+        return $this->forward('TecServiceBundle:Service:results');
+    }
+    
+    /**
+     * 
+     * @param type $id
+     * id est l'id de postuler
+     * l'utilisateur qui a posté une annonce refuse
+     */
+    public function refusePostuleUser($id){
+        //Récupère le repository postuler
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Postuler');
+        //Récupère postuler qui possède l'id $id
+        $postuler = $repository->find($id);
+        //Test si postuler existe
+        if($postuler === null){
+            throw new NotFoundHttpException("La demande n'existe pas.");
+        }
+        //Si postuler existe
+        //Change l'etat de postuler à true
+        $postuler->setEtat(false);        
+        
+        //Création d'une notification
+        //...
+        
+        //
+        
+        //Récupère le manager
+        $em = $this->getDoctrine()->getManager();
+        //Sauvegarde en bd
+        $em->flush();
+        //Redirection vers la page de profil
+        return $this->forward('TecServiceBundle:Service:results');
     }
     
     /**
