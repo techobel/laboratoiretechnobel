@@ -42,10 +42,12 @@
             <div id="home" class="home-index">
                 <div class="overlay">
                     <div class="container">
-                        <hgroup class="col-md-8 col-md-offset-2 text-center">
-                            <h1><img src="{{ asset('images/logo.png') }}" alt="Popul'Aide" width='500'/></h1>
-                            <h2>L'entraide connectée</h2>
-                        </hgroup>
+                        <a href="{{ path('tec_user_index') }}" title="Retour à l'accueil">
+                            <hgroup class="col-md-8 col-md-offset-2 text-center">
+                                <h1><img src="{{ asset('images/logo.png') }}" alt="Popul'Aide" width='500'/></h1>
+                                <h2>L'entraide connectée</h2>
+                            </hgroup>
+                        </a>
                     </div>
                 </div> 
                 {% block search %}{% endblock %}

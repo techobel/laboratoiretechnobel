@@ -7,5 +7,10 @@ tec_user_contact:
 #HOW
 tec_user_how:
     path:     /comment_ça_marche
-    defaults: { _controller: TecUserBundle:User:how }        
+    defaults: { _controller: TecUserBundle:User:how }   
+    
+#PUBLIC PROFILE
+tec_user_profile:
+    path:     /user/{id}
+    defaults: { _controller: TecUserBundle:User:profile } 
     

@@ -1,0 +1,103 @@
+section:nth-child(odd){
+    background-color: #EBCEA2; /*Orange clair*/
+}
+section{
+    padding: 30px 0;
+}
+h4{
+    font-size: 1.2em;
+    padding: 0;
+    margin-bottom: 5px; 
+    text-align: left;
+}
+p{
+    text-align: left;
+}
+
+/*================================
+    GENERAL SECTION STYLES
+==================================*/
+
+/*Image du user*/
+#general img{
+    float: left;
+    height: 30%;
+    margin: 0 15px 30px 0;
+    width: 30%;
+}
+
+/*RATE*/
+ul, ol{
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+}
+ul li, ol li{
+    display: inline-block;
+    font: 700 1em "HelveticaNeueLTStd-Roman", sans-serif;
+    list-style-type: none;
+    text-align: center;
+}
+ol li:last-child span{
+    font-size: 0.8em;
+    font-style: italic;
+}
+
+/*PICTOS*/
+#general .container ul{
+    display: block;
+    float: left;
+    margin-bottom: 30px;
+    width: 60%;
+}
+#general .container ul li{
+    padding-top: 20px;
+    text-align: left;
+}
+#general .container ul a{
+    display: inline;
+    padding-left: -30px;
+    text-align: left;
+    vertical-align: middle;
+}
+#general .container ul img{
+    display: block;
+    margin: 0 15px 0 0;
+    width: 20%;
+}
+
+
+/*================================
+    SKILL SECTION STYLES
+==================================*/
+#category li a{
+    padding-bottom: 0;
+}
+    
+    
+/* Extra-small devices (phones, 450px and up) */
+@media(min-width: 450px){
+    #general .container ul li a{
+        padding-top: 12%;
+    }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .container{
+        width: 60%;
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {  
+    .container{
+        width: 50%;
+    }
+    /*CATEGORY*/
+    ul#category{
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

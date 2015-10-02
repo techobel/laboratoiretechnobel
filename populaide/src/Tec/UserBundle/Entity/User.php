@@ -107,8 +107,7 @@ class User extends BaseUser
     
     /**
      * l'utilisateur fournit un service
-     * @ORM\ManyToMany(targetEntity="Fournir", inversedBy="fournisseur")
-     * @ORM\JoinTable(name="users_fournisseur_service")
+     * @ORM\OneToMany(targetEntity="Fournir", mappedBy="User")
      */
     private $fournisseur;
     
@@ -420,39 +419,9 @@ class User extends BaseUser
         return $this->service_fournisseur;
     }
 
-    /**
-     * Add fournisseur
-     *
-     * @param \Tec\UserBundle\Entity\Fournir $fournisseur
-     *
-     * @return User
-     */
-    public function addFournisseur(\Tec\UserBundle\Entity\Fournir $fournisseur)
-    {
-        $this->fournisseur[] = $fournisseur;
+   
 
-        return $this;
-    }
-
-    /**
-     * Remove fournisseur
-     *
-     * @param \Tec\UserBundle\Entity\Fournir $fournisseur
-     */
-    public function removeFournisseur(\Tec\UserBundle\Entity\Fournir $fournisseur)
-    {
-        $this->fournisseur->removeElement($fournisseur);
-    }
-
-    /**
-     * Get fournisseur
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFournisseur()
-    {
-        return $this->fournisseur;
-    }
+    
 
     /**
      * Set disponible
@@ -558,5 +527,39 @@ class User extends BaseUser
     public function getPostules()
     {
         return $this->postules;
+    }
+
+    /**
+     * Add fournisseur
+     *
+     * @param \Tec\UserBundle\Entity\Fournir $fournisseur
+     *
+     * @return User
+     */
+    public function addFournisseur(\Tec\UserBundle\Entity\Fournir $fournisseur)
+    {
+        $this->fournisseur[] = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Remove fournisseur
+     *
+     * @param \Tec\UserBundle\Entity\Fournir $fournisseur
+     */
+    public function removeFournisseur(\Tec\UserBundle\Entity\Fournir $fournisseur)
+    {
+        $this->fournisseur->removeElement($fournisseur);
+    }
+
+    /**
+     * Get fournisseur
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFournisseur()
+    {
+        return $this->fournisseur;
     }
 }

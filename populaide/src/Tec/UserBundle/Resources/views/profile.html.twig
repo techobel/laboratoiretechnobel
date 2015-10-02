@@ -1,0 +1,92 @@
+{% extends "TecUserBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet" type="text/css" />
+    <!-- PROFILE STYLE SHEET -->
+{% endblock %}
+
+{% block title %}{{ user.username }} {{ parent() }}{% endblock %}
+
+{% block img_h3 %}src="{{ asset('images/pictos/user.png') }}" alt="Nous contacter" width="100" height="100"{% endblock %}
+{% block h3 %}{{ user.username }}{% endblock %}
+
+{% block body %}
+{{ parent() }}
+        {#User:
+        {{ user.id ~ " " ~ user.username ~ " " ~ user.email }}#}
+    <section id="general">
+        <div class='container'>
+            <div class='row'>
+                <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
+                <h4>Evaluation globale</h4>
+                <ol id="stars">
+                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                    <li><span>(XX votes)</span></li>
+                </ol>
+                <ul>
+                    <li>
+                        <a class="normal">
+                            <img class="img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="Contacter le membre" width="50" height="50"/>
+                            Contacter le membre
+                        </a>    
+                    </li>
+                    <li>
+                        <a class="normal">
+                            <img class="img-responsive" src="{{ asset('images/pictos/rate.png') }}" alt="Noter la prestation du membre" width="50" height="50"/>
+                            Noter sa prestation
+                        </a> 
+                    </li>
+                </ul>
+                <h4>Disponibilité</h4>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class='container'>
+            <div class='row'>
+                <h4>&Agrave; propos de {{ user.username }}</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non eros at enim mattis ornare. 
+                    Cras porttitor bibendum ligula a interdum. 
+                    Donec feugiat risus eget enim volutpat, a pellentesque massa mollis. 
+                    Praesent posuere fermentum ex sed interdum. 
+                    Fusce dignissim ante neque, et scelerisque diam laoreet ac.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skill">
+        <div class='container'>
+            <div class='row'>
+                <h4>Compétences de {{ user.username }}</h4>
+                <ul id="category">
+                    <li class="col-md-1 col-xs-4">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
+                                <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
+                                Bricolage
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                                <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
+                                Jardinage
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
+                                <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
+                                Multimédia
+                            </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

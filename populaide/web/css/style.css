@@ -92,6 +92,17 @@ h2 {
     font-style: italic;
     margin-top: -10px;
 }
+a.normal{
+    color: #EB5E4E; /*Orange brique*/
+}
+a.normal:hover{
+    color: #65C2C7; /*Turquoise clair*/
+    cursor: pointer;
+/*    text-shadow: 0 0 5px #EBCEA2; Orange clair*/
+}
+a.normal:visited{
+    color: #7F3028; /*Orange très foncé*/
+}
 
 /*================================
     HOME SECTION STYLES
