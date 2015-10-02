@@ -40,6 +40,14 @@ class ServiceController extends Controller
     }
     
     /****************************
+     *          HOW             *
+     ****************************/
+    public function howAction()
+    {
+        return $this->render('TecServiceBundle::how.html.twig');
+    }
+    
+    /****************************
      *          ANNONCE         *
      ****************************/
     
