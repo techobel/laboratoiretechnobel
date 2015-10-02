@@ -37,7 +37,10 @@ use Tec\UserBundle\Form\UserType;
 class ServiceController extends Controller
 {
     
-    
+    /**
+     * 
+     * action pour test envoie mail
+     */
     public function mailAction(){
         $message = \Swift_Message::newInstance()
                 ->setSubject('Test mail')
@@ -51,6 +54,13 @@ class ServiceController extends Controller
         return $this->render('TecServiceBundle::results.html.twig');
     }
     
+    /**
+     * 
+     * @param $subject  sujet du mail ('Inscription chez Popul'aide', 'Compte bloqué', ...)
+     * @param $to   email de l'utilisateur 
+     * @param $body corps de l'email
+     * @return boolean
+     */
     public function sendMail($subject, $to, $body){
         $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
