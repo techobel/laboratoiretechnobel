@@ -80,9 +80,9 @@ class AnnonceType extends AbstractType
             //->add('updateDate')
             //->add('deleteDate')
             //->add('poste')
-            ->add('aperçu', 'submit', array(
-                'attr' => array('class' => "btn btn-primary col-md-2 form-control",
-                            'value' => 'Aperçu')));
+            ->add('visualiser', 'submit', array(
+                'attr' => array('class' => "btn btn-primary col-xs-2 col-md-2 form-control",
+                            'value' => 'visualiser')));
         
     }
     

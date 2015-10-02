@@ -20,7 +20,7 @@ input[type=checkbox]{
     display: inline-block;
     padding: 9px;
     position: relative;
-    margin: 20px 100px;
+    margin: 10px;
     width: 25px;
 
     -webkit-appearance: none;
@@ -29,6 +29,16 @@ input[type="checkbox"]:checked, input[type="checkbox"]:focus{
     background-color: #EB5E4E;
     box-shadow: 0 0 5px #EB5E4E;
 }
+.form_row_checkbox{
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+    /*Paragraphe après checkbox*/
+    .checkbox-inline:first-of-type + label::after{
+        content: "Nous vous aidons gratuitement à rédiger votre annonce de manière optimale. Votre annonce sera ensuite publiée dans un délai de 24h.";
+    }
+
 
 /* INPUT */
 .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
@@ -43,7 +53,10 @@ input[type="checkbox"]:checked, input[type="checkbox"]:focus{
 }
 input[type="submit"]{
     margin-bottom: 25px;
+    /*width: 100%;*/
 }
+
+
 
 /* FOCUS */
 .form-control:focus {
@@ -52,8 +65,8 @@ input[type="submit"]{
           box-shadow: 0 0 10px #EB5E4E;
 }
 
-textarea{
-    height: 80px;
+textarea.col-xs-12.col-md-4.form-control{
+    height: 160px;
     resize: none;
     width: 100%;
 }
@@ -72,6 +85,7 @@ fieldset{
     background-color: #EB5E4E; /*Orange brique*/
     border: none;
     border-radius: 55px;
+    height: 55px;
     text-shadow: 2px 2px #7f3028; /*Orange clair*/
     text-transform: uppercase;
 }
@@ -159,9 +173,46 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
         width: auto;
     }
 }
-
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #tec_servicebundle_annonce.form .form-control .col-xs-12, 
+    #tec_servicebundle_annonce.form .form-inline .col-xs-12, 
+    #tec_servicebundle_annonce.form input.btn-primary{
+        max-width: 60%;
+        width: 60%;
+    }
+    
+    /* input perimetre */
+    #tec_servicebundle_annonce_perimetre{
+        float: none;
+        margin-left: 15px;
+        width: 20%;
+    }
+    #tec_servicebundle_annonce div:nth-child(6){
+        padding-left: 15px;
+        text-align: left;
+    }
+    #tec_servicebundle_annonce div:nth-child(6) label{
+        vertical-align: middle;
+    }
+    
+    /*Bouton primary*/
+    .form-inline .btn-primary, .form-control .btn-primary
+    .form-inline .btn-secondary, .form-control .btn-secondary{
+        margin-left: 2%;
+        width: 40%;
+    }
+    .form-control .btn-primary[value="visualiser"]{
+        margin: auto;
+    }
+}
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {  
+    form.form-one{
+        width: 60%;
+        margin: 0 auto;
+    }
+    
     /*Champs côte à côte*/
     .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary, section.search input:last-of-type{
         width: 42%;
@@ -172,5 +223,11 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
     section.search button[type="submit"]{
         margin-top: -30px;
         width: inherit;
+    }
+    
+    /*input text*/
+    .form-control .col-xs-12, .form-inline .col-xs-12, 
+    input.btn-primary, section.search input:last-of-type{
+        width: 100%;
     }
 }
