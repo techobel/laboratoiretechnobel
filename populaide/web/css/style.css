@@ -287,85 +287,34 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
 /*BOX*/
 #how{
     display: none;
-    padding-bottom: 80px;
-    padding-top: 0;
 }
 #how>.container{
-    background-color: #EBCEA2;
     padding-top: 50px;
     width: inherit;
 }
-#how>.container>.row{
-    padding-bottom: 30px;
-}
 .box-how{
-    background-color: #fff;
     border: none;
-    border-radius: 35px;
-    box-shadow: 15px 15px 25px rgba(0,0,0,0.5);
     color: #23777B; /*Turquoise fonc�*/
-    margin: 0 auto 80px;;
-    min-height: 318px;
-    min-width: 250px;  
-    padding-left: 3em;
     padding-bottom: 2em;
     position: relative;
-    text-align: left;
-    width: 80%;
-}
-.box-how h3{
-    color: #23777B; /*Turquoise fonc�*/
-    font-size: 1.4em;
-    margin: 2em 5em;
-}
-.box-how h3::before{
-    content: "";
-    background: url("../images/pictos/coop.png") no-repeat 0 0;
-    background-size: 100%;
-    display: inline-block;
-    height: 75px;
-    left: 2em;
-    position: absolute;
-    top: 1.5em;
-    width: 75px;
-}
-.box-how>.img-responsive{
-    float: right;
-    margin: 1.5em 1.5em 3em 3em;
-    max-width: 50%;
-    width: 40%;
-}
-.col-sm-6 {
-     width: auto;
-}
-.col-sm-offset-3 {
-     margin-left: 0%;
 }
 
-/*PAGINATION*/
+/* PAGINATION */
 #how .pagination{
     margin: 35px 0 0;
 }
 #how .pagination > li > a,
 #how .pagination > li > span {
-/*  position: relative;
-  float: left;
-  padding: 6px 12px;*/
     background-color: #65C2C7; /*Turquoise clair*/
     border: none;
     border-radius: 50%;
     color: #fff;
-    font: 2.2em "Grobold", fantasy;
+    font: 1em "Grobold", fantasy;
     margin-left: 30px;
-/*  line-height: 1.42857143;
-  color: #337ab7;
-  text-decoration: none;
-  background-color: #fff;
-  border: 1px solid #ddd;*/
 }
-.pagination-lg > li > a, 
-.pagination-lg > li > span{
-    padding: 10px 19px;
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+    padding: 5px 10px;
 }
 #how .pagination > li:first-child > a,
 #how .pagination > li:first-child > span{
@@ -386,17 +335,6 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
 #how .pagination > .active > span:focus {
   background-color: #23777B; /*Turquoise fonc�*/
 }
-
-/*.portfolio-item img:hover {  PORTFOLIO IMAGE BIG ON HOVER
-    cursor: pointer;
-    -webkit-transform: scale(1.1, 1.1);
-    -ms-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-    transition-duration: 0.3s;
-    -webkit-transition-duration: 0.3s; // Safari
-    z-index: 1;
-}*/
-
 
 /*================================
     FOOTER SECTION STYLES
@@ -441,24 +379,6 @@ footer p{
     }
     
 
-    
-    
-/* Extra-small devices (phones, 450px and up) */
-@media(max-width: 450px){
-    /*HOW*/
-    .btn-group-lg > .btn { /*Le bouton large devient petit*/
-        padding: 5px 10px;
-        font-size: 10px;
-        line-height: 1.5;
-        border-radius: 3px;
-    }
-    #how .pagination > li > a,
-    #how .pagination > li > span {
-      padding: 6px 12px;
-      font-family: "Grobold";
-      margin-left: 10px;
-    }
-}
 
 /* Extra-small devices (phones, 450px and up) */
 @media(min-width: 450px){
@@ -504,6 +424,56 @@ footer p{
     #how{
         display: initial;
     }
+    #how>.container{
+        background-color: #EBCEA2;
+        padding-top: 50px;
+        width: inherit;
+    }
+    .box-how{
+        background-color: #fff;
+        border-radius: 35px;
+        box-shadow: 15px 15px 25px rgba(0,0,0,0.5);
+        margin: 0 auto 80px;;
+        min-height: 318px;
+        min-width: 250px;  
+        padding-left: 3em;
+        text-align: left;
+        width: 80%;
+    }
+    .box-how h3{
+        color: #23777B; /*Turquoise fonc�*/
+        font-size: 1.4em;
+        margin: 2em 5em;
+    }
+    .box-how h3::before{
+        content: "";
+        background: url("../images/pictos/coop.png") no-repeat 0 0;
+        background-size: 100%;
+        display: inline-block;
+        height: 75px;
+        left: 2em;
+        position: absolute;
+        top: 1.5em;
+        width: 75px;
+    }
+    .box-how>.img-responsive{
+        float: right;
+        margin: 1.5em 1.5em 3em 3em;
+        max-width: 50%;
+        width: 40%;
+    }
+    .col-sm-6 {
+         width: auto;
+    }
+    .col-sm-offset-3 {
+         margin-left: 0%;
+    }
+        /*PAGINATION*/
+        #how .pagination > li > a,
+        #how .pagination > li > span{
+            font-size: 2.2em;
+            padding: 10px 19px;
+        }
     
    
    /*CATEGORY*/
@@ -512,9 +482,9 @@ footer p{
     }
     
     /*FOOTER*/
-/*    .footer_mob{
+    .footer_mob p{
         display: none;
-    }*/
+    }
     #footer_desk{
         display: block;
     }
@@ -551,9 +521,6 @@ footer p{
         }
 
     /*HOW*/
-/*    .box-how{
-        width: 60%;
-    }*/
     .box-how>.img-responsive{
         max-width: 50%; 
         margin: 3em;

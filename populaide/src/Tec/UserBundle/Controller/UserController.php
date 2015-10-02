@@ -15,4 +15,9 @@ class UserController extends Controller
     {
         return $this->render('TecUserBundle::contact.html.twig');
     }
+    
+    public function howAction()
+    {
+        return $this->render('TecUserBundle::how.html.twig');
+    }
 }

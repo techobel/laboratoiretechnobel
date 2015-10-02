@@ -1,0 +1,47 @@
+{% extends "TecServiceBundle::layout.html.twig" %}
+
+{% block title %}Comment ça marche ? {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/how.css') }}" rel="stylesheet" type="text/css" />
+    <!-- HOW STYLE SHEET -->
+{% endblock %}
+
+{% block h3 %}Comment ça marche ?{% endblock %}
+
+{% block body %}
+{{ parent() }}
+    <section id="how">
+        <div class="container">
+            <div class="row text-center pad-bottom">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                    <div class="btn-group btn-group-lg" role="group" aria-label="how">
+                        <button type="button" class="btn btn-radio active">J'offre un service</button>
+                        <button type="button" class="btn btn-radio">J'ai besoin d'un service</button>
+                    </div>
+                    <ul class="pagination pagination-lg">
+                        <li class="active"><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li class="active"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row text-left portfolio-item">
+                <div class="col-md-12 col-sm-12 ">
+                    <div class="alert box-how clearfix">
+                        <img src="{{ asset('images/steps/03b.png') }}" class="img-responsive " alt="" />
+                        <h3>Manifestez votre intérêt</h3>
+                        <p>Morbi sit amet urna sodales, pulvinar risus ut, sollicitudin nunc. Cras pretium tortor sollicitudin tempus ultrices.</p>
+                        <p>Duis leo odio, egestas sed elit ac, placerat placerat nulla. Mauris blandit arcu a sem elementum sollicitudin. Nam varius erat eu neque luctus maximus. Nam suscipit imperdiet quam. Sed porta viverra efficitur.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--HOW SECTION END  -->
+
+{% endblock %}

@@ -31,8 +31,8 @@
                             {% else %}
                                 <a href="{{ path('fos_user_security_login') }}">Connexion</a>
                                 {# On définit ce block, dans lequel vont venir s'insérer les autres vues du bundle #}
-                                {% block fos_user_content %}
-                                {% endblock fos_user_content %}
+                                {#{% block fos_user_content %}
+                                {% endblock fos_user_content %}#}
                             {% endif %}
                         {% endblock %}
                     </button>
@@ -61,7 +61,7 @@
         <footer class="footer_mob search ">
             <div class="container">                            
                 <form  class="row form-inline">
-                    <select class="col-xs-12 col-md-4 form-control " name="Catégorie" autofocus>
+                    <select class="col-xs-12 col-md-4 form-control inherit " name="Catégorie" autofocus>
                         <optgroup label="Animaux">
                             <option value="" id="hidden">Choisissez une catégorie</option>
                             <option value="">Garde chez le propriétaire</option>
@@ -120,14 +120,14 @@
                             <option value="">Web</option>
                         </optgroup>
                     </select>
-                    <input class="col-xs-12 col-md-4 form-control " type="text"/>
+                    <input class="col-xs-12 col-md-4 form-control inherit" type="text"/>
                     <button type="submit"><img src="{{ asset("images/pictos/search.png") }}" width="100" height="100"/></button>
                 </form>
             </div>
             <!--SEARCH SECTION END  -->
             <div class="container">
                 <div class="row">
-                    <button class="btn btn-primary col-xs-12 post">Je poste une annonce</button>
+                    <a href="{{ path("tec_service_addannonce") }}"><button class="btn btn-primary col-xs-12 post">Je poste une annonce</button></a>
                 </div>
             </div>
             <!--POST SECTION END  -->
@@ -136,7 +136,7 @@
         <!--FOOTER DESKTOP-->
         <footer id="footer_desk">
             <ul>
-                <li><a href="">Comment ça marche ?</a></li>
+                <li><a href="{{ path('tec_user_how') }}">Comment ça marche ?</a></li>
                 <li><a href="{{ path('tec_user_contact') }}">Contact</a></li>
                 <li><a href="">Inscription</a></li>
                 <li><a href="">Conditions générales d'utilisation</a></li>

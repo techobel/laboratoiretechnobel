@@ -47,7 +47,7 @@ class AnnonceType extends AbstractType
             ->add('title', 'text', array(
                 'label' => false, 
                 'attr' => array('max_length' => '70', 
-                            'class' => 'col-xs-12 col-md-4 form-control',
+                            'class' => 'col-xs-12 col-md-4 form-control text',
                             'placeholder' =>'Titre')))
             //Aide à la rédaction
             ->add('aide', 'checkbox', array(

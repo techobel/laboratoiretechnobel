@@ -4,3 +4,8 @@ tec_user_index:
 tec_user_contact:
     path:     /contact
     defaults: { _controller: TecUserBundle:User:contact }
+#HOW
+tec_user_how:
+    path:     /comment_ça_marche
+    defaults: { _controller: TecUserBundle:User:how }        
+    

@@ -34,14 +34,10 @@ input[type="checkbox"]:checked, input[type="checkbox"]:focus{
     text-align: left;
 }
 
-    /*Paragraphe après checkbox*/
-    .checkbox-inline:first-of-type + label::after{
-        content: "Nous vous aidons gratuitement à rédiger votre annonce de manière optimale. Votre annonce sera ensuite publiée dans un délai de 24h.";
-    }
-
 
 /* INPUT */
-.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
+.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary,
+input.col-xs-12.col-md-4.form-control.text{
     border-radius: 25px;
     border: 4px solid #EB5E4E;
     margin-bottom: 15px;
@@ -81,7 +77,10 @@ fieldset{
 .btn {
     font: 700 1.5em "HelveticaNeueLTStd-Bd",sans-serif;
 }
-.btn-primary, .btn-secondary, .btn-default, .btn-radio{
+.btn-primary, .btn-secondary, .btn-default, .btn-radio,
+.btn-group > .btn:last-child:not(:first-child),
+.btn-group > .btn:first-child:not(:last-child),
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
     background-color: #EB5E4E; /*Orange brique*/
     border: none;
     border-radius: 55px;
@@ -109,26 +108,27 @@ fieldset{
     background-color: #65C2C7; /*Turquoise clair*/
     box-shadow: 5px 5px 5px #23777B inset;
 }
-.btn-radio{
+.btn-group > .btn:last-child:not(:first-child),
+.btn-group > .btn:first-child:not(:last-child),
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
     background-color: #23777B; /*Turqoise foncé*/
     color: #fff;
-    height: 55px;
     text-shadow: none;
+    display: block;
+    width: 100%;
 }
-.btn-radio:active, .btn-radio.active {
+.btn-radio:active, .btn-radio.active,
+.btn-group > .btn:last-child:not(:first-child):active,
+.btn-group > .btn:first-child:not(:last-child):active,
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle):active,
+.btn-group > .btn:last-child:not(:first-child).active,
+.btn-group > .btn:first-child:not(:last-child).active,
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle).active{
     background-color: #65C2C7; /*Turquoise clair*/
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3) inset;
 }
 .btn-radio:not(.active):hover {
     background-color: #65C2C7; /*Turquoise clair*/
-}
-.btn-radio:first-child{
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-}
-.btn-radio:last-child{
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
 }
 
 /*FOOTER MOBILE*/
@@ -165,6 +165,29 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
 
 
 /* Extra-small devices (phones, 450px and up) */
+@media(min-width: 560px){
+    /*HOW*/
+    .btn-radio{
+        display: initial;
+    }
+    .btn-radio:first-child,
+    .btn-group > .btn:first-child:not(:last-child),
+    .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .btn-radio:last-child,
+    .btn-group > .btn:last-child:not(:first-child){
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+    
+    .btn-group > .btn:last-child:not(:first-child), 
+    .btn-group > .btn:first-child:not(:last-child), 
+    .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
+        width: auto;
+    }
+}
 @media(min-width: 450px){
     /*TITLE SECTION*/
     .row h3 img{
@@ -225,9 +248,4 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
         width: inherit;
     }
     
-    /*input text*/
-    .form-control .col-xs-12, .form-inline .col-xs-12, 
-    input.btn-primary, section.search input:last-of-type{
-        width: 100%;
-    }
 }
