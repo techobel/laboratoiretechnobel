@@ -364,6 +364,8 @@ class ServiceController extends Controller
             return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
         }else if(strlen($localite) > 0){   //Recherche seulement par localite
             //Traitement
+            //Récupère le manager
+            $em = $this->getDoctrine()->getManager();
             //création de la requete
             $query = $em->createQuery(
                     'SELECT a 
