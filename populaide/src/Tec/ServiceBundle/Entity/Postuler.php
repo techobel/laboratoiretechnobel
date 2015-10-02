@@ -37,9 +37,10 @@ class Postuler
      ********************************************************/
     
     /**
-     * @ORM\ManyToMany(targetEntity="Tec\UserBundle\Entity\User", mappedBy="postules")
+     * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="postules")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $users;
+    private $user;
     
     /**
      * @ORM\ManyToOne(targetEntity="Annonce", inversedBy="postules")
@@ -84,47 +85,6 @@ class Postuler
     {
         return $this->etat;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add user
-     *
-     * @param \Tec\UserBundle\Entity\User $user
-     *
-     * @return Postuler
-     */
-    public function addUser(\Tec\UserBundle\Entity\User $user)
-    {
-        $this->users[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \Tec\UserBundle\Entity\User $user
-     */
-    public function removeUser(\Tec\UserBundle\Entity\User $user)
-    {
-        $this->users->removeElement($user);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
 
     /**
      * Set annonce
@@ -148,5 +108,29 @@ class Postuler
     public function getAnnonce()
     {
         return $this->annonce;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Tec\UserBundle\Entity\User $user
+     *
+     * @return Postuler
+     */
+    public function setUser(\Tec\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Tec\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
