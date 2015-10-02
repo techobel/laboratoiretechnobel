@@ -289,7 +289,7 @@ class ServiceController extends Controller
      * L'utilisateur qui a posté une annonce accepte 
      * Création d'un service
      */
-    public function acceptePostuleUser($id){
+    public function acceptePostuleUserAction($id){
         //Récupère le repository postuler
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Postuler');
         //Récupère postuler qui possède l'id $id
@@ -327,7 +327,7 @@ class ServiceController extends Controller
      * id est l'id de postuler
      * l'utilisateur qui a posté une annonce refuse
      */
-    public function refusePostuleUser($id){
+    public function refusePostuleUserAction($id){
         //Récupère le repository postuler
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Postuler');
         //Récupère postuler qui possède l'id $id
