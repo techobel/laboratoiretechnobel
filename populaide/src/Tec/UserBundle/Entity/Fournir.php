@@ -37,12 +37,13 @@ class Fournir
      ********************************************************/
     
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="fournisseur")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="fournisseur")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $fournisseur;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="fournisseur_service")
+     * @ORM\ManyToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="fournisseur")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      */
     private $service;    
@@ -126,40 +127,7 @@ class Fournir
         return $this->fournisseur_service;
     }
 
-    /**
-     * Add fournisseur
-     *
-     * @param \Tec\UserBundle\Entity\User $fournisseur
-     *
-     * @return Fournir
-     */
-    public function addFournisseur(\Tec\UserBundle\Entity\User $fournisseur)
-    {
-        $this->fournisseur[] = $fournisseur;
-
-        return $this;
-    }
-
-    /**
-     * Remove fournisseur
-     *
-     * @param \Tec\UserBundle\Entity\User $fournisseur
-     */
-    public function removeFournisseur(\Tec\UserBundle\Entity\User $fournisseur)
-    {
-        $this->fournisseur->removeElement($fournisseur);
-    }
-
-    /**
-     * Get fournisseur
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFournisseur()
-    {
-        return $this->fournisseur;
-    }
-
+    
     /**
      * Set service
      *
@@ -182,5 +150,29 @@ class Fournir
     public function getService()
     {
         return $this->service;
+    }
+
+    /**
+     * Set fournisseur
+     *
+     * @param \Tec\UserBundle\Entity\User $fournisseur
+     *
+     * @return Fournir
+     */
+    public function setFournisseur(\Tec\UserBundle\Entity\User $fournisseur = null)
+    {
+        $this->fournisseur = $fournisseur;
+
+        return $this;
+    }
+
+    /**
+     * Get fournisseur
+     *
+     * @return \Tec\UserBundle\Entity\User
+     */
+    public function getFournisseur()
+    {
+        return $this->fournisseur;
     }
 }
