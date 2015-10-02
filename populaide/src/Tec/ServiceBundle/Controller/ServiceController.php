@@ -13,6 +13,7 @@ use Tec\ServiceBundle\Entity\Categorie;
 use Tec\ServiceBundle\Entity\Sub_categorie;
 use Tec\ServiceBundle\Entity\Type;
 use Tec\ServiceBundle\Entity\Postuler;
+use Tec\UserBundle\Entity\Addresse;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -56,8 +57,7 @@ class ServiceController extends Controller
         //Création de l'article
         $annonce = new Annonce();
         //Ajout de la class du formulaire
-        $options = array('attr' => array('class' => 'form row form-inline clearfix form-one'));
-        
+        $options = array('attr' => array('class' => 'form row form-inline clearfix'));        
         //Création du formulaire
         $form = $this->get('form.factory')->create(new AnnonceType(), $annonce, $options);
         //Si le formulaire a été validé
@@ -72,22 +72,23 @@ class ServiceController extends Controller
             
             /**
              * Relation automatique subcategorie - annonce, type - annonce 
+             * donc pas besoin de faire ce qu'il y a en commentaire ci-dessous
              */
+            /*
+            Récupère la subcategorie
+            $subcategorie = $form->get('sub_categorie')->getData(); 
+            Récupère le type
+            $type = $form->get('type')->getData();
+            Relation annonce - user - sub_categorie
             
-            //Récupère la subcategorie
-            //$subcategorie = $form->get('sub_categorie')->getData(); 
-            //Récupère le type
-            //$type = $form->get('type')->getData();
-            //Relation annonce - user - sub_categorie
+            $annonce->setSubCategorie($subcategorie);
+            $subcategorie->addAnnonce($annonce);
             
-            //$annonce->setSubCategorie($subcategorie);
-            //$subcategorie->addAnnonce($annonce);
-            
+            $type->addAnnonce($annonce);
+            $annonce->setType($type);
+            */
             $user->addAnnonce($annonce);
             $annonce->setUser($user);
-            
-            //$type->addAnnonce($annonce);
-            //$annonce->setType($type);
             
             //Doctrine se charge de l'entity annonce
             $em->persist($annonce);
@@ -106,9 +107,6 @@ class ServiceController extends Controller
      * Récupère les annonces de la BD
      */
     public function getAllAnnonceAction(){
-        //On vérifie que l'utilisateur est connecté
-        //..
-        
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère toutes les annonces de la bd
@@ -122,8 +120,6 @@ class ServiceController extends Controller
      * Récupère l'annonce qui possède l'id id
      */
     public function getAnnonceAction($id){
-        //On vérifie les droits de l'utilisateur (a voir qui peut voir l'annonce
-        //..
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère l'annonce qui possède l'id $id
@@ -146,12 +142,7 @@ class ServiceController extends Controller
           // Sinon on déclenche une exception « Accès interdit »
           throw new AccessDeniedException('Accès limité.');
         }
-        
-        //Test si l'utilisateur possède l'annonce ou si c'est un admin
-        //......
-        
-        
-       
+
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère l'annonce qui possède l'id $id
@@ -161,14 +152,23 @@ class ServiceController extends Controller
             throw new NotFoundHttpException("L'annonce n'existe pas.");
         }
         //Si l'annonce existe
-        //Récupère le manager
-        $em = $this->getDoctrine()->getManager();
-        //Suppression de l'annonce
-        $em->remove($annonce);
-        //Suppression
-        $em->flush();
-        //redirection vers getAllAnnonce ( a voir)
-        return $this->forward('TecServiceBundle:Service:getAllAnnonce');
+
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Test si l'utilisateur possède l'annonce ou si c'est un admin
+        if(($this->get('security.context')->isGranted('ROLE_ADMIN'))||($annonce->getUser()->getId() === $user->getId())){
+            //Traitement
+            //Récupère le manager
+            $em = $this->getDoctrine()->getManager();
+            //Suppression de l'annonce
+            $em->remove($annonce);
+            //Suppression
+            $em->flush();
+            //redirection vers getAllAnnonce ( a voir)
+            return $this->forward('TecServiceBundle:Service:getAllAnnonce');
+        }else{
+          throw new AccessDeniedException("Vous n'avez pas les droits sur cette annonce.");
+        }
     }
     
     /**
@@ -180,11 +180,7 @@ class ServiceController extends Controller
           // Sinon on déclenche une exception « Accès interdit »
           throw new AccessDeniedException('Accès limité.');
         }
-        
-        //Test si l'user possède l'annonce ou si c'est un admin
-        //...
-        
-        
+
         //Recupère le repository annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère l'annonce à modifier
@@ -194,29 +190,38 @@ class ServiceController extends Controller
             throw new NotFoundHttpException("L'annonce n'existe pas.");
         }
         //Si l'annonce existe
-        //Création du formulaire pour la mise à jour
-        $form = $this->get('form.factory')->create(new AnnonceType(), $annonce);
-        //si le formulaire a été valide
-        if($form->handleRequest($request)->isValid()){
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();
-            //MISE A JOUR DES RELATION A FAIRE
-            
-            
-            //....
-            
-            //
-            
-            //Sauvegarde en bdd des updates
-            $em->flush();
-            //Ajout d'un message flash (a voir)
-            //$this->addFlash('notice', "Mise a jour OK.");
-            //Redirection vers l'annonce
-            //a tester redirection avec parametre
-            $this->getRequest()->setParameter('id', $id);
-            return $this->forward('TecServiceBundle:Service:getAnnonce');
+
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Test si l'utilisateur possède l'annonce ou si c'est un admin
+        if(($this->get('security.context')->isGranted('ROLE_ADMIN'))||($annonce->getUser()->getId() === $user->getId())){
+            //Traitement
+            //Création du formulaire pour la mise à jour
+            $form = $this->get('form.factory')->create(new AnnonceType(), $annonce);
+            //si le formulaire a été valide
+            if($form->handleRequest($request)->isValid()){
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();
+                //MISE A JOUR DES RELATION A FAIRE
+
+
+                //....
+
+                //
+
+                //Sauvegarde en bdd des updates
+                $em->flush();
+                //Ajout d'un message flash (a voir)
+                //$this->addFlash('notice', "Mise a jour OK.");
+                //Redirection vers l'annonce
+                //a tester redirection avec parametre
+                $this->getRequest()->setParameter('id', $id);
+                return $this->forward('TecServiceBundle:Service:getAnnonce');
+            }
+            return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView()));
+        }else{
+          throw new AccessDeniedException("Vous n'avez pas les droits sur cette annonce.");
         }
-        return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView()));
     }
     
     /**
@@ -323,7 +328,7 @@ class ServiceController extends Controller
      * 
      * @param Request $request
      * 
-     * Recherche une annonce par categorie et par localite
+     * Recherche une annonce par categorie et/ou par localite
      */
     public function searchAnnonce2Action(Request $request){
         //Récupère les valeurs du formulaire
@@ -331,21 +336,48 @@ class ServiceController extends Controller
         $idsubcategorie = $request->get('categorie');
         
         $id = intval($idsubcategorie);
+        var_dump($idsubcategorie);
+        var_dump($id);
+        var_dump($localite);
         
         if((strlen($localite) === 0)&&($id === 0)){   //Aucun choix pour la recherche
             return $this->forward('TecServiceBundle:Service:getAllAnnonce');
         }else if((strlen($localite) > 0) && ($id > 0)){ //Recherche par sous-categorie et par localite
-            //Traitement
-            //....
-            //
+            //Traitement            
+            //Récupère le manager
+            $em = $this->getDoctrine()->getManager();
+            //Récupère le repository subcategorie
+            $repository = $em->getRepository('TecServiceBundle:Sub_categorie');
+            //Récupère la sous categorie
+            $subcategorie = $repository->find($id);
+            //création de la requete
+            $query = $em->createQuery(
+                    'SELECT a 
+                     FROM TecServiceBundle:Sub_Categorie sc, TecServiceBundle:Annonce a, TecUserBundle:User u, TecUserBundle:Addresse ad
+                     WHERE sc.name like :subcategorie AND a.user = u.id AND u.id = ad.user and ad.city like :localite
+                     ORDER BY a.title ASC')
+                    
+                    ->setParameter('subcategorie', $subcategorie->getName())
+                    ->setParameter('localite', $localite);
+                                
+            $annonces = $query->getResult();
+            return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
         }else if(strlen($localite) > 0){   //Recherche seulement par localite
             //Traitement
-            //....
-            //
+            //création de la requete
+            $query = $em->createQuery(
+                    'SELECT a 
+                     FROM TecServiceBundle:Annonce a, TecUserBundle:User u, TecUserBundle:Addresse ad
+                     WHERE a.user = u.id AND u.id = ad.user and ad.city like :localite
+                     ORDER BY a.title ASC')
+
+                    ->setParameter('localite', $localite);
+                                
+            $annonces = $query->getResult();
+            return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
         }else{  //Recherche seulement par categorie
             return $this->forward('TecServiceBundle:Service:getAnnonceCategorie', array('id' => $id));
-        }
-        
+        }        
         
         return $this->render('TecServiceBundle::results.html.twig');
     }
