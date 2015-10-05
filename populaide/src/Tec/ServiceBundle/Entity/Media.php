@@ -3,12 +3,14 @@
 namespace Tec\ServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Media
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Tec\ServiceBundle\Entity\MediaRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Media
 {
@@ -37,7 +39,15 @@ class Media
      *
      * @ORM\Column(name="path", type="string", length=255)
      */
-    private $path;
+    private $path;    
+    
+    /**
+     *
+     * GESTION DE L'IMAGE
+     */
+    private $file; //va contenir le fichier (l'image)
+
+    private $tempFilename; //va contenir le nom du fichier temporairement
     
     /********************************************************
      *                      RELATION TABLES                 *
@@ -171,28 +181,29 @@ class Media
     public function setFile(UploadedFile $file){
         $this->file = $file;
         // On vérifie si on avait déjà un fichier pour cette entité
-        if (null !== $this->src) {
+        if (null !== $this->path) {
             // On sauvegarde l'extension du fichier pour le supprimer plus tard
-            $this->tempFilename = $this->src;        
-            // On réinitialise les valeurs des attributs src et alt
-            $this->src = null;
+            $this->tempFilename = $this->path;        
+            // On réinitialise les valeurs des attributs path et alt
+            $this->path = null;
 
             $this->alt = null;
     }
   }
 
     /**
-    * @ORM\PrePersist()
-    * @ORM\PreUpdate()
-    */
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
     public function preUpload(){
         // Si jamais il n'y a pas de fichier (champ facultatif)
         if (null === $this->file) {
             return;
         }
         // Le nom du fichier est son id, on doit juste stocker également son extension
-        // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « src »
-        $this->src = $this->getTempFilename()."."."png";
+        // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « path »
+        $this->path = $this->getTempFilename()."."."png";
+        var_dump($this->path);
         // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
         $this->alt = $this->file->getClientOriginalName();
         
@@ -210,12 +221,12 @@ class Media
         }
         
         //Si le fichier existe on le supprime
-        if (file_exists($this->id.$this->src)) {
-            unlink($this->id.$this->src);
+        if (file_exists($this->id.$this->path)) {
+            unlink($this->id.$this->path);
         }
 
         // On déplace le fichier envoyé dans le répertoire de notre choix
-        $this->file->move($this->getUploadRootDir(), $this->id.$this->src);
+        $this->file->move($this->getUploadRootDir(), $this->id.$this->path);
     }
 
     /**
@@ -223,7 +234,7 @@ class Media
     */
     public function preRemoveUpload(){
         // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
-        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.''.$this->src;
+        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.''.$this->path;
     }
 
     /**
@@ -245,5 +256,33 @@ class Media
     protected function getUploadRootDir(){
         // On retourne le chemin relatif vers l'image pour notre code PHP
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    /**
+    * Get file
+    * @return string 
+    */
+    public function getFile(){
+        return $this->file;
+    }
+
+    /**
+    * Set tempFilename
+    * @param string $tempFilename
+    * @return Image
+    */
+    public function setTempFilename($tempFilename){
+        var_dump($tempFilename);
+        $this->tempFilename = $tempFilename;
+        return $this;
+    }
+
+    /**
+    * Get tempFilename
+    *
+    * @return string 
+    */
+    public function getTempFilename(){
+        return $this->tempFilename;
     }
 }

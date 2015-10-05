@@ -14,7 +14,9 @@ use Tec\ServiceBundle\Entity\Type;
 use Tec\ServiceBundle\Entity\Postuler;
 use Tec\UserBundle\Entity\Demander;
 use Tec\UserBundle\Entity\Fournir;
+use Tec\UserBundle\Entity\User;
 use Tec\ServiceBundle\Entity\Service;
+use Tec\ServiceBundle\Entity\Media;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -26,6 +28,13 @@ use Tec\ServiceBundle\Form\Sub_categorieType;
 use Tec\ServiceBundle\Form\TypeType;
 
 use Tec\UserBundle\Form\UserType;
+
+use FOS\UserBundle\Form\Type\RegistrationFormType;
+use FOS\UserBundle\Event\GetResponseUserEvent;
+use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Event\FormEvent;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+//use FOS\UserBundle\Event\FilterUserResponseEvent;
 //
 //class DefaultController extends Controller
 //{
@@ -567,17 +576,34 @@ class ServiceController extends Controller
         $form = $this->get('form.factory')->create(new CategorieType(), $categorie);
         //Si le formulaire a été validé
         if($form->handleRequest($request)->isValid()){   
-                        
-            //Gestion de l'image            
+               
+            /**
+             * GESTION DE L'IMAGE
+             */                        
+            //Récupère l'extension de l'image
+            $extension = $categorie->getMedia()->getFile()->guessExtension();
+            //Test si l'extension est = à jpg, jpeg ou png
+            if(($extension != "jpg")&&($extension!="png")&&($extension!="jpeg")){
+                //Ajout d'un message flash en session
+                $this->addFlash('notice', "Erreur extension jpg, jpeg ou png.");
+            }else{            
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();                 
+                //recupérer l'image et modifier son nom temporaire, nom final (id + categorie)
+                $categorie->getMedia()->setTempFilename("categorie");             
+                //Doctrine se charge de l'entity categorie
+                $em->persist($categorie);
+                //Sauvegarde en bd
+                $em->flush();
+                
+                /**
+                 * sauvegarde automatique de l'image
+                 */
+                
+                //Ajout d'un message flash
+                $this->addFlash('notice', "Ajout categorie OK.");
+            }
             
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();    
-            //Doctrine se charge de l'entity categorie
-            $em->persist($categorie);
-            //Sauvegarde en bd
-            $em->flush();
-            //Ajout d'un message flash
-            $this->addFlash('notice', "Ajout categorie OK.");
             //Redirection (a voir)
             return $this->forward('TecServiceBundle:Service:results');
         }        
@@ -633,10 +659,6 @@ class ServiceController extends Controller
             throw new NotFoundHttpException("La categorie n'existe pas.");
         }
         //Si la categorie existe
-    
-        //Gestion de l'image
-        
-        
         //Récupère le manager
         $em = $this->getDoctrine()->getManager();
         //Suppression de la categorie
@@ -669,10 +691,6 @@ class ServiceController extends Controller
         $form = $this->get('form.factory')->create(new CategorieType(), $categorie);
         //si le formulaire a été valide
         if($form->handleRequest($request)->isValid()){
-            
-            
-            //Gestion de l'image
-            
             //Récupère le manager
             $em = $this->getDoctrine()->getManager();
             //Sauvegarde en bdd des updates
@@ -1074,12 +1092,12 @@ class ServiceController extends Controller
         }
         //Si le user existe
      
-        //Récupère le manager
-        $em = $this->getDoctrine()->getManager();
-        //Suppression du type
-        $em->remove($user);
+        //Récupère le manager de fosuser
+        $userManager = $container->get('fos_user.user_manager');
+        //Suppression de l'utilisateur
+        $userManager->deleteUser($user);
         //Suppression
-        $em->flush();
+        //$em->flush();
         //redirection vers getAllUser ( a voir)
         return $this->forward('TecServiceBundle:Service:getAllUser');
     }
@@ -1100,7 +1118,7 @@ class ServiceController extends Controller
         //Récupère l'utilisateur en session
         $usersess = $this->container->get('security.context')->getToken()->getUser();
         
-        //On vérifie que l'utilisateur est un admin
+        //On vérifie que l'utilisateur est un admin ou l'utilisateur veut modifier son profil
         if ((!$this->get('security.context')->isGranted('ROLE_ADMIN'))||($usersess->getId() != $user->getId() )) {
           // Sinon on déclenche une exception « Accès interdit »
           throw new AccessDeniedException('Accès limité.');
@@ -1112,6 +1130,10 @@ class ServiceController extends Controller
         //si le formulaire a été valide
         if($form->handleRequest($request)->isValid()){
  
+            
+            //a voir
+            $this->get('fos_user.user_manager')->updateUser($user, false);
+            
             //Récupère le manager
             $em = $this->getDoctrine()->getManager();
             //Sauvegarde en bdd des updates
@@ -1124,6 +1146,63 @@ class ServiceController extends Controller
             return $this->forward('TecServiceBundle:Service:getUser');
         }
         return $this->render('TecServiceBundle::updateUser.html.twig', array('form' => $form->createView()));
+    }
+    
+    /**
+     * 
+     * @param Request $request
+     * @return type
+     * @throws AccessDeniedException
+     */
+    public function addUserAction(Request $request){
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }        
+        //Si l'utilisateur est un admin
+        
+        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
+        $formFactory = $this->container->get('fos_user.registration.form.factory');
+        /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
+        $userManager = $this->container->get('fos_user.user_manager');
+        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
+        $dispatcher = $this->container->get('event_dispatcher');
+
+        $user = $userManager->createUser();
+        $user->setEnabled(true);
+
+        $event = new GetResponseUserEvent($user, $request);
+        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
+
+        if (null !== $event->getResponse()) {
+            return $event->getResponse();
+        }
+
+        $form = $formFactory->createForm();
+        $form->setData($user);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $event = new FormEvent($form, $request);
+            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+
+            $userManager->updateUser($user);
+
+            if (null === $response = $event->getResponse()) {
+                $this->addFlash('notice', "ajout de l'user ok");
+                $url = $this->generateUrl('tec_service_resultspage');
+                $response = new RedirectResponse($url);
+            }
+
+            //$dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+
+            return $response;
+        }
+  
+        //si le formulaire n'a pas été validé
+        return $this->render('TecServiceBundle::addUser.html.twig', array('form' => $form->createView()));
     }
     
 }

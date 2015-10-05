@@ -14,3 +14,5 @@ tec_user_profile:
     path:     /user/{id}
     defaults: { _controller: TecUserBundle:User:profile } 
     
+
+    

@@ -12,6 +12,16 @@
         <ul>
         {% for categorie in categories %}
             <li>{{ categorie.id ~ " " ~ categorie.name ~ " " ~ categorie.description }}<a href="{{ path('tec_service_updatecategorie',{'id': categorie.id}) }}"> Modifier</a><a href="{{ path('tec_service_delcategorie',{'id': categorie.id}) }}"> Supprimer</a></li>
+            {% if categorie.media != null %}
+                
+                <img
+                src="{{ asset(categorie.media.uploadDir ~ '/' ~ categorie.media.id ~ categorie.media.path) }}"
+                alt="{{ categorie.media.alt }}"
+                width="100px"
+                heigth="100px"
+              />
+            {% endif %}
+            
             {#<ul>
                 {% for subcategorie in categorie.getSubCategories %}
                     <li>{{ subcategorie.id ~ " " ~ subcategorie.name ~ " " ~ subcategorie.description }}</li>

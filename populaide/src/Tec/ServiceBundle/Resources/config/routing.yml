@@ -132,3 +132,8 @@ tec_service_updateuser:
 tec_service_postulerannonce:
     path:     /postuler/{id}
     defaults: { _controller: TecServiceBundle:Service:postulerAnnonce }
+    
+#adduser
+tec_service_adduser:
+    path:     /adduser
+    defaults: { _controller: TecServiceBundle:Service:addUser } 
