@@ -162,4 +162,88 @@ class Media
     {
         return $this->categorie;
     }
+    
+    /**
+     * GESTION DE L'IMAGE
+     */
+    
+    // On modifie le setter de File, pour prendre en compte l'upload d'un fichier lorsqu'il en existe déjà un autre
+    public function setFile(UploadedFile $file){
+        $this->file = $file;
+        // On vérifie si on avait déjà un fichier pour cette entité
+        if (null !== $this->src) {
+            // On sauvegarde l'extension du fichier pour le supprimer plus tard
+            $this->tempFilename = $this->src;        
+            // On réinitialise les valeurs des attributs src et alt
+            $this->src = null;
+
+            $this->alt = null;
+    }
+  }
+
+    /**
+    * @ORM\PrePersist()
+    * @ORM\PreUpdate()
+    */
+    public function preUpload(){
+        // Si jamais il n'y a pas de fichier (champ facultatif)
+        if (null === $this->file) {
+            return;
+        }
+        // Le nom du fichier est son id, on doit juste stocker également son extension
+        // Pour faire propre, on devrait renommer cet attribut en « extension », plutôt que « src »
+        $this->src = $this->getTempFilename()."."."png";
+        // Et on génère l'attribut alt de la balise <img>, à la valeur du nom du fichier sur le PC de l'internaute
+        $this->alt = $this->file->getClientOriginalName();
+        
+        $this->setTempFilename(null);
+    }
+
+    /**
+    * @ORM\PostPersist()
+    * @ORM\PostUpdate()
+    */
+    public function upload(){
+        //Si jamais il n'y a pas de fichier (champ facultatif)
+        if (null === $this->file) {
+            return;
+        }
+        
+        //Si le fichier existe on le supprime
+        if (file_exists($this->id.$this->src)) {
+            unlink($this->id.$this->src);
+        }
+
+        // On déplace le fichier envoyé dans le répertoire de notre choix
+        $this->file->move($this->getUploadRootDir(), $this->id.$this->src);
+    }
+
+    /**
+    * @ORM\PreRemove()
+    */
+    public function preRemoveUpload(){
+        // On sauvegarde temporairement le nom du fichier, car il dépend de l'id
+        $this->tempFilename = $this->getUploadRootDir().'/'.$this->id.''.$this->src;
+    }
+
+    /**
+    * @ORM\PostRemove()
+    */
+    public function removeUpload(){
+        // En PostRemove, on n'a pas accès à l'id, on utilise notre nom sauvegardé
+        if (file_exists($this->tempFilename)) {
+            // On supprime le fichier
+            unlink($this->tempFilename);
+        }
+    }
+
+    public function getUploadDir(){
+        // On retourne le chemin relatif vers l'image pour un navigateur
+        return 'uploads/img';
+    }
+
+    protected function getUploadRootDir(){
+        // On retourne le chemin relatif vers l'image pour notre code PHP
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
 }

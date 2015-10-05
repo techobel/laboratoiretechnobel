@@ -269,6 +269,11 @@ class ServiceController extends Controller
      * Permet à un utilisateur de postuler à une annonce
      */
     public function postulerAnnonceAction($id){
+        //On vérifie que l'utilisateur est connecté
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }       
         //récupère le repository
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère l'annonce qui possède l'id $id
@@ -335,6 +340,11 @@ class ServiceController extends Controller
      * Création d'un service
      */
     public function acceptePostuleUserAction($id){
+        //On vérifie que l'utilisateur est connecté
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Récupère le repository postuler
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Postuler');
         //Récupère postuler qui possède l'id $id
@@ -344,6 +354,15 @@ class ServiceController extends Controller
             throw new NotFoundHttpException("La demande n'existe pas.");
         }
         //Si postuler existe
+        
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        //test si l'utilisateur en session est le proprietaire de l'annonce
+        if($user->getId() != $postuler->getAnnonce()->getUser->getId()){
+            throw new AccessDeniedException("Vous n'etes pas l'auteur de l'annonce.");
+        }
+        
         //Change l'etat de postuler à true
         $postuler->setEtat(true);
         $postuler->setDateUpdate(new \DateTime());
@@ -361,8 +380,7 @@ class ServiceController extends Controller
         $em = $this->getDoctrine()->getManager();
         //Doctrine se charge de service
         $em->persist($service);
-        //Récupère l'utilisateur en session
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        
         //Création de demander
         $demander = new Demander();
         $demander->setUser($user);
@@ -389,6 +407,11 @@ class ServiceController extends Controller
      * l'utilisateur qui a posté une annonce refuse
      */
     public function refusePostuleUserAction($id){
+        //On vérifie que l'utilisateur est connecté
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Récupère le repository postuler
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Postuler');
         //Récupère postuler qui possède l'id $id
@@ -398,6 +421,15 @@ class ServiceController extends Controller
             throw new NotFoundHttpException("La demande n'existe pas.");
         }
         //Si postuler existe
+        
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        
+        //test si l'utilisateur en session est le proprietaire de l'annonce
+        if($user->getId() != $postuler->getAnnonce()->getUser->getId()){
+            throw new AccessDeniedException("Vous n'etes pas l'auteur de l'annonce.");
+        }
+        
         //Change l'etat de postuler à true
         $postuler->setEtat(false);        
         $postuler->setDateUpdate(new \DateTime());
