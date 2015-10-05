@@ -1,157 +1,271 @@
-/*================================
-    BOX-POST STYLES
-==================================*/   
-#results {
-    padding-top: 5px;
-    height: auto;
-}
-.post {
-    width: 100%;
-}
-.box-post {
-      background-color: #fff;
-      border-radius: 7%;
-      margin: 5% 0;
-      height: 210px;
-    } 
-    .profil-post-image{
-        border: 1px solid red;
-        width: 35%;
-        height: 80px;
-        float: left;
-        margin-right: 10px;
-        border-top-left-radius: 18%;
-    }
-    .user-login,
-    .user-location,
-    .user-date-post{
-        margin: 0;
-    }
-    .post-title {
-        margin: 0 auto;
-    }
-    .propose {
-        height: 25px;
+    /*================================
+        BOX-POST STYLES
+    ==================================*/   
+    #results {
         padding-top: 5px;
-        background-color: #23777B;
-        color: #fff;
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 1em;
+        height: auto;
     }
-    .box-post ul {
-        text-decoration: none;
-        text-align: left;
-        margin-left: -40px;
+    .post {
+        width: 100%;
     }
-        .box-post li {
-            list-style-type: none;
+    .box-post {
+          background-color: #fff;
+          border-radius: 7%;
+          margin: 5% 0;
+          height: 240px;
+        } 
+        .profil-post-image{
+            border: 1px solid red;
+            width: 35%;
+            height: 80px;
+            float: left;
+            margin-right: 10px;
+            border-top-left-radius: 18%;
         }
-        .stars {
-            display: inline-block;
-            color: #EB5E4E ;
+        .user-login,
+        .user-location,
+        .user-date-post{
+            margin: 0;
+        }
+        
+        .post-title {
+            margin: 0 auto;
+        }
+        .propose {
+            height: 25px;
+            padding-top: 5px;
+            background-color: #23777B;
+            color: #fff;
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        .box-post ul {
+            text-decoration: none;
+            text-align: left;
+            margin-left: -40px;
+        }
+        .user-login, 
+        .user-date-post {
+            font-weight: bold;
+        }
+            .box-post li {
+                list-style-type: none;
+            }
+            .user-status {
+                border-radius: 50%;
+                background-color: green;
+                width: 15px;
+                height: 15px;
+                float: right;
+                margin-right: 10px;
+                margin-top: -10px;
+            }
+            .stars {
+                display: inline-block;
+                color: #EB5E4E ;
+            }
+            #debut-annonce {
+                display: block;
+                text-align: center;
+                font-size: 0.9em;
+                clear: both;
+            }
+            .icons-post {           
+                display: block;  
+            }
+                .menu-post {
+                    display: inline-block;
+                    padding: 0;
+                    margin-right: 2px;
+                    font-size: 0.8em;
+                    width: 25%;
+                    height: 25%;
+                    text-align: center;
+                    text-decoration: none;
+                    color: black;
+                }
+    @media (min-width: 360px) {
+        .box-post{
+            height: 300px;
+        }
+        .profil-post-image{
+            width: 40%;
+            height: 120px;
+            margin-right: 10px;
+        }
+        .user-login,
+        .user-location,
+        .user-date-post{
+            margin: 5px;
+            font-size: 1.2em;
+        }
+        .user-status {
+            margin-top: -20px;
+        }
+        .propose {
+            margin-top: 13px;
+            padding-top: 8px;
+            height: 30px;
+        }
+    }
+    @media(min-width: 400px) {
+        .box-post{
+            height: 320px;
+        }        
+    }
+    @media(min-width: 640px) {
+        .container {
+            width: 80%;
+        }
+        .profil-post-image{
+            width: 30%
+        }
+        .user-status {
+            width: 25px;
+            height: 25px;
+        }
+        .profil-post-image {
+            margin-right: 30px;
+        }
+        .icons-post{
+            margin-top: 30px;
+        }
+        .menu-post {
+            width: 20%;
+            height: 20%;
+            font-size: 1em;
+            margin-right: 15px;
+        }
+    }
+    @media (min-width: 768px) {
+        .box-post{
+            height: 380px;
+        }
+            .box-post ul {
+                padding-top: 5px;
+            }
+        .profil-post-image {
+            width: 40%;
+            height: 150px;
+            margin-right: 30px;
+        }  
+        .user-status {
+            margin-top: -40px;
+        }
+        .propose {
+            margin-top: 12px;
+            height: 40px;
+            padding-top: 10px;
+        }
+        .user-login,
+        .user-location,
+        .user-date-post{
+            margin: 10px;
+        }
+        .menu-post {
+            width: 25%;
+            height: 25%;
+            padding-left: 35px;
+            text-align: center;
+            margin-top: 20px;
         }
         #debut-annonce {
-            display: inline-block;
-            width: 40%;
-            margin-left: 10px;
-            font-size: 0.9em;
-            clear: both;
-        }
+            margin-top: 5px;
+            font-size: 1em;
+        }  
         .icons-post {
-            float: right;
-            width: 60%;            
-            display: inline-block;  
-            margin-right: -15px;
             margin-top: 10px;
         }
-            .menu-post {
-                display: inline-block;
-                padding: 0;
-                margin: 2px;
-                font-size: 0.8em;
-                width: 25%;
-                height: 25%;
-                text-align: center;
-                text-decoration: none;
-                color: black;
-            }
-@media (min-width: 360px) {
-    .box-post{
-        height: 280px;
     }
-    .profil-post-image{
-        width: 40%;
-        height: 120px;
-        margin-right: 10px;
+    @media (min-width: 980px) {
+        .col-md-6 {
+            width: 50%;
+            display: inline-block;
+        }
+        .box-post{
+            height: 320px;
+        }        
+        .profil-post-image {
+            height: 130px;
+        }
+        .user-status {
+            margin-top: -30px;
+        }
+        .user-login,
+        .user-location,
+        .user-date-post{
+            margin: 5px;
+            text-align: left;
+
+        }
+        #stars {
+            margin-left: 50px;
+        }  
+        .menu-post {
+            width: 25%;
+            height: 25%;
+            padding-left: 0;
+            margin-top: 0;
+            padding: 10px;
+            margin: -10px;
+        }
     }
-    .user-login,
-    .user-location,
-    .user-date-post{
-        margin: 5px;
-        font-size: 1.2em;
-    }
-    .propose {
-        margin-top: 15px;
-        padding-top: 8px;
-        height: 30px;
-    }
-    #debut-annonce {
-        font-size: 1em;
-    }
+
+@media(min-width: 1080px) {  
+        .box-post{
+            height: 300px;
+        }    
+        #debut-annonce {
+            margin-top: 5px;
+            float: left;
+            width: 50%;
+        }     
+        .icons-post {
+            float: right;
+            width: 50%;
+        }
+        .menu-post:first-child {
+            margin-left: 3px;
+        }
+        .menu-post {
+            width: 25%;
+            height: 25%;
+            padding-left: 0;
+            margin-top: 0;
+            padding: 1px;
+            margin: 0;
+            margin-top: -5px;
+        }        
+}     
+@media(min-width: 1500px) {
+        .box-post{
+            height: 350px;
+        }     
+        .profil-post-image {
+            height: 150px;
+        }  
+        .user-status {
+            margin-top: -40px;
+        }        
+        .user-login,
+        .user-location,
+        .user-date-post {
+            margin: 12px;
+        }
+        .propose {
+            margin-top: -8px;
+            font-size: 1.2em;
+        }
+        .menu-post {
+            width: 30%;
+            height: 30%;
+        }
 }
-@media (min-width: 768px) {
-    .box-post{
-        height: 350px;
+@media(min-width: 1700px) {
+    .container {
+        width: 70%;
     }
-    .profil-post-image{
-        width: 40%;
-        height: 150px;
-        margin-right: 10px;
-    }    
-    .propose {
-        margin-top: 30px;
-    }
-    .user-login,
-    .user-location,
-    .user-date-post{
-        margin: 10px;
-        text-align: center;
-        
-    }
-    #stars {
-        margin-left: 440px;
-    }
-    .menu-post {
-        padding: 15px;
-        width: 30%;
-        height: 30%;
-    }
-    #debut-annonce {
-        margin-top: 25px;
-    }    
-}
-@media (min-width: 800px) {
-    #stars {
-        margin-left: 460px;
-    }    
-}
-@media (min-width: 980px) {
-    .col-md-6 {
-        width: 50%;
-        display: inline-block;
-    }
-    .user-login,
-    .user-location,
-    .user-date-post{
-        margin: 10px;
-        text-align: left;
-        
-    }
-    #stars {
-        margin-left: 50px;
-    }  
-    #debut-annonce {
-        margin-top: 5px;
-    }     
+    
 }
