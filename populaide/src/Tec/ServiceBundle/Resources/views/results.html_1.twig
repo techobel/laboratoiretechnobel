@@ -1,0 +1,223 @@
+{% extends "TecServiceBundle::layout.html.twig" %}
+{% block title %}Résultats {{ parent() }}{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+    {{ parent() }}
+        <section id="results">
+                <h3>Resultats:</h3> <!-- Sera a placer dynamiquement dans le bandeau -->
+                <div class="Posts">
+                    {% for flashMessage in app.session.flashbag.get('notice') %}
+                        {{ flashMessage }}
+                    {% endfor %}
+                        <div class="col-md-6 col-sm-12">
+                            <div class="box-post"> <!--360px * 318px -->
+                                <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
+                                <ul>
+                                    <li><p class="user-login">Claudia</p></li>                              
+                                    <li>
+                                        <ol id="stars">
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                    <p class="user-location"> Namur-les-Trucmuch</p>  
+                                    <p class="user-date-post"> 23/05/2016 </p>
+                                    </li>
+                                    <li><h3 class="post-title propose">Propose baby-sitting à domicile</h3></li> 
+                                </ul>
+                                <p id="debut-annonce">Claudia 19 ans propose baby-sitting vendredi, je posède déjà une expérience...</p>
+                                <div class="icons-post">
+                                    <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
+                                        Détails
+                                    </a>    
+                                    <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact_1.png') }}" alt="contact de l'annonceur" />
+                                        Contact
+                                    </a>    
+                                    <a class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop_1.png') }}" alt="coopération" />
+                                        Collaborer
+                                    </a>    
+                                </div>
+                            </div>
+                            <div class="box-post"> <!--360px * 318px -->
+                                <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
+                                <ul>
+                                    <li><p class="user-login">Claudia</p></li>                              
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                    <p class="user-location"> Namur-les-Trucmuch</p>  
+                                    <p class="user-date-post"> 23/05/2016 </p>
+                                    </li>
+                                    <li><h3 class="post-title propose">Propose baby-sitting à domicile</h3></li> 
+                                </ul>
+                                <p id="debut-annonce">Claudia 19 ans propose baby-sitting vendredi, je posède déjà une expérience...</p>
+                                <div class="icons-post">
+                                    <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
+                                        Détails
+                                    </a>    
+                                    <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact_1.png') }}" alt="contact de l'annonceur" />
+                                        Contact
+                                    </a>    
+                                    <a class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop_1.png') }}" alt="coopération" />
+                                        Collaborer
+                                    </a>    
+                                </div>
+                            </div>
+                            <div class="box-post"> <!--360px * 318px -->
+                                <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
+                                <ul>
+                                    <li><p class="user-login">Claudia</p></li>                              
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                    <p class="user-location"> Namur-les-Trucmuch</p>  
+                                    <p class="user-date-post"> 23/05/2016 </p>
+                                    </li>
+                                    <li><h3 class="post-title propose">Propose baby-sitting à domicile</h3></li> 
+                                </ul>
+                                <p id="debut-annonce">Claudia 19 ans propose baby-sitting vendredi, je posède déjà une expérience...</p>
+                                <div class="icons-post">
+                                    <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
+                                        Détails
+                                    </a>    
+                                    <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact_1.png') }}" alt="contact de l'annonceur" />
+                                        Contact
+                                    </a>    
+                                    <a class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop_1.png') }}" alt="coopération" />
+                                        Collaborer
+                                    </a>    
+                                </div>
+                            </div>   
+                            <div class="box-post"> <!--360px * 318px -->
+                                <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
+                                <ul>
+                                    <li><p class="user-login">Claudia</p></li>                              
+                                    <li>
+                                        <ol>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                            <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                    <p class="user-location"> Namur-les-Trucmuch</p>  
+                                    <p class="user-date-post"> 23/05/2016 </p>
+                                    </li>
+                                    <li><h3 class="post-title propose">Propose baby-sitting à domicile</h3></li> 
+                                </ul>
+                                <p id="debut-annonce">Claudia 19 ans propose baby-sitting vendredi, je posède déjà une expérience...</p>
+                                <div class="icons-post">
+                                    <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
+                                        Détails
+                                    </a>    
+                                    <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact_1.png') }}" alt="contact de l'annonceur" />
+                                        Contact
+                                    </a>    
+                                    <a class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop_1.png') }}" alt="coopération" />
+                                        Collaborer
+                                    </a>    
+                                </div>
+                            </div>                                        
+                        </div>
+                </div>
+    </section>
+
+    <!--SERVICES SECTION END  -->
+    <!--PAGES NAVIGATION-->
+    <nav>
+        <ul class="pagination">
+          <li class="disable"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          <li class="active"><a href="afficher_recherche.html">1</a></li>
+          <li><a href="afficher_recherche_pp.html">2</a></li>
+          <li><a href="afficher_recherche_pp.html">3</a></li>
+          <li><a href="afficher_recherche_pp.html">4</a></li>
+          <li><a href="afficher_recherche_pp.html">5</a></li>
+          <li><a href="afficher_recherche_pp.html" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        </ul>
+    </nav>  
+    <!--PAGES NAVIGATION END-->
+    <section id="category">
+        <div class="container">
+            <nav class="row">
+                <ul>
+                    <li class="col-md-1 col-xs-4">
+                            <a>
+                                <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
+                                Bricolage
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a>
+                                <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
+                                Jardinage
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a>
+                                <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
+                                Multimédia
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a>
+                                <img src="{{ asset('images/pictos/pets.png') }}" width="45" alt="" class="img-responsive" />
+                                Animaux
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a>
+                                <img src="{{ asset('images/pictos/anim.png') }}" width="45" alt="" class="img-responsive" />
+                                Animation
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a>
+                                <img src="{{ asset('images/pictos/wellness.png') }}" width="45" alt="" class="img-responsive" />
+                                Bien-être
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a>
+                                <img src="{{ asset('images/pictos/cours.png') }}" width="45" alt="" class="img-responsive" />
+                                Cours
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a>
+                                <img src="{{ asset('images/pictos/assist.png') }}" width="45" alt="" class="img-responsive" />
+                                Assistance
+                            </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <!-- CATEGORY SECTION END-->
+{% endblock %}
