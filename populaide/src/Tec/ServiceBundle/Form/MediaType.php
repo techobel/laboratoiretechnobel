@@ -16,7 +16,7 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('file', 'file')
-            //->add('alt')
+            //->add('alt', 'text')
             //->add('path')
             //->add('user')
             //->add('categorie')

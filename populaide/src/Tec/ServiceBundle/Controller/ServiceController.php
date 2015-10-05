@@ -15,6 +15,7 @@ use Tec\ServiceBundle\Entity\Postuler;
 use Tec\UserBundle\Entity\Demander;
 use Tec\UserBundle\Entity\Fournir;
 use Tec\ServiceBundle\Entity\Service;
+use Tec\ServiceBundle\Entity\Media;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -568,16 +569,37 @@ class ServiceController extends Controller
         //Si le formulaire a été validé
         if($form->handleRequest($request)->isValid()){   
                         
-            //Gestion de l'image            
+            //Gestion de l'image       
+                        
+            //Récupère l'extension de l'image
+            $extension = $categorie->getMedia()->getFile()->guessExtension();
+            //Test si l'extension est = à jpg, jpeg ou png
+            if(($extension != "jpg")&&($extension!="png")&&($extension!="jpeg")){
+                echo "extension ko";
+                //Ajout d'un message flash en session
+                $this->addFlash('notice', "Erreur extension jpg, jpeg ou png.");
+            }else{            
+                echo "extension ok";
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();    
+                
+                //recupérer l'image et modifier son nom temporaire, nom final (id + categorie)
+                $categorie->getMedia()->setTempFilename("categorie");             
             
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();    
-            //Doctrine se charge de l'entity categorie
-            $em->persist($categorie);
-            //Sauvegarde en bd
-            $em->flush();
-            //Ajout d'un message flash
-            $this->addFlash('notice', "Ajout categorie OK.");
+                var_dump($categorie->getMedia()->getTempFileName());                
+                
+                //Doctrine se charge de l'entity categorie
+                $em->persist($categorie);
+                //a modifier
+                $categorie->getMedia()->preUpload();
+                
+                //Sauvegarde en bd
+                $em->flush();
+                $categorie->getMedia()->upload();
+                //Ajout d'un message flash
+                $this->addFlash('notice', "Ajout categorie OK.");
+            }
+            
             //Redirection (a voir)
             return $this->forward('TecServiceBundle:Service:results');
         }        
