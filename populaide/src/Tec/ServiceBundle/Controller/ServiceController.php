@@ -37,10 +37,7 @@ use Tec\UserBundle\Form\UserType;
 class ServiceController extends Controller
 {
     
-    /**
-     * 
-     * action pour test envoie mail
-     */
+    
     public function mailAction(){
         $message = \Swift_Message::newInstance()
                 ->setSubject('Test mail')
