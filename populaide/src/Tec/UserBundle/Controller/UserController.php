@@ -5,6 +5,8 @@ namespace Tec\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use Tec\UserBundle\Entity\Notification;
+
 class UserController extends Controller
 {
     public function indexAction()
@@ -40,4 +42,52 @@ class UserController extends Controller
         //Renvoie vers la page qui affiche la sous categorie
         return $this->render('TecUserBundle::profile.html.twig', array('user' => $user));
     }
+	
+	public function addNotification($commentaire){
+		$notification = new Notification();
+		$notification->setCommentaire($commentaire);
+		//Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+		$user->addNotification($notification);
+		//récupère le manager
+		$em = $this->getDoctrine()->getManager();
+		//doctrine se charge de notification
+		$em->persist($notification);
+		//sauvegarde en bd
+		$em->flush();		
+	}
+	
+	public function updateNotification($id){
+		//récupère le repository notification
+		$repository = $this->getDoctrine()->getManager->getRepository('TecUserBundle:Notification');
+		//Récupère la notification
+		$notification = $repository->find($id);
+		//test si la notification existe
+		if($notification === null){
+				throw new NotFoundHttpException("La notification n'existe pas.");
+		}
+		//si la notification existe
+		$notification->setVue(true);
+		
+		//récupère le manager
+		$em = $this->getDoctrine()->getManager();
+		
+		//sauvegarde en bd
+		$em->flush();		
+	}
+	
+	public function delNotification($id){
+		//recupère le repository notification
+		$repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:Notification');
+		//récupère la notification
+		$notification = $repository->find($id);
+		//test si notification existe
+		if($notification === null){
+			throw new NotFoundHttpException("La notification n'existe pas");
+		}
+		//la notification existe
+		
+	}
+	
+	
 }
