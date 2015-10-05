@@ -20,9 +20,10 @@ class Sub_categorieType extends AbstractType
             ->add('description', 'textarea', array('attr' => array('max_length' => '150')))
             ->add('categorie', 'entity', array(
                 'class' => 'TecServiceBundle:Categorie',
-                'property' => 'categorie',
-                'multiple' => 'false',
-                'expanded' => 'true',
+                'property' => 'name',
+                //'multiple' => 'false',
+                //'expanded' => 'false',
+                'required' => 'true',
                 'query_builder' => function(EntityRepository $er){
                 return $er->createQueryBuilder('u')
                         ->orderBy('u.name', 'ASC');

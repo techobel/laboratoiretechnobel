@@ -228,7 +228,6 @@ class ServiceController extends Controller
           // Sinon on déclenche une exception « Accès interdit »
           throw new AccessDeniedException('Accès limité.');
         }
-
         //Recupère le repository annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère l'annonce à modifier
@@ -250,21 +249,13 @@ class ServiceController extends Controller
             if($form->handleRequest($request)->isValid()){
                 //Récupère le manager
                 $em = $this->getDoctrine()->getManager();
-                //MISE A JOUR DES RELATION A FAIRE
-
-
-                //....
-
-                //
-
+                
                 //Sauvegarde en bdd des updates
                 $em->flush();
                 //Ajout d'un message flash (a voir)
-                //$this->addFlash('notice', "Mise a jour OK.");
+                $this->addFlash('notice', "Mise a jour OK.");
                 //Redirection vers l'annonce
-                //a tester redirection avec parametre
-                $this->getRequest()->setParameter('id', $id);
-                return $this->forward('TecServiceBundle:Service:getAnnonce');
+                return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
             }
             return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView()));
         }else{
@@ -590,12 +581,11 @@ class ServiceController extends Controller
                 //Récupère le manager
                 $em = $this->getDoctrine()->getManager();                 
                 //recupérer l'image et modifier son nom temporaire, nom final (id + categorie)
-                $categorie->getMedia()->setTempFilename("categorie");             
+                $categorie->getMedia()->setTempFilename("categorie.".$extension);             
                 //Doctrine se charge de l'entity categorie
                 $em->persist($categorie);
                 //Sauvegarde en bd
-                $em->flush();
-                
+                $em->flush();                
                 /**
                  * sauvegarde automatique de l'image
                  */
@@ -605,7 +595,7 @@ class ServiceController extends Controller
             }
             
             //Redirection (a voir)
-            return $this->forward('TecServiceBundle:Service:results');
+            return $this->forward('TecServiceBundle:Service:getAllCategorie');
         }        
         //si le formulaire n'a pas été validé
         return $this->render('TecServiceBundle::addCategorie.html.twig', array('form' => $form->createView()));
@@ -696,11 +686,9 @@ class ServiceController extends Controller
             //Sauvegarde en bdd des updates
             $em->flush();
             //Ajout d'un message flash (a voir)
-            //$this->addFlash('notice', "Mise a jour OK.");
+            $this->addFlash('notice', "Mise a jour OK.");
             //Redirection vers la categorie
-            //a tester redirection avec parametre
-            $this->getRequest()->setParameter('id', $id);
-            return $this->forward('TecServiceBundle:Service:getCategorie');
+            return $this->forward('TecServiceBundle:Service:getCategorie', array('id' => $id));
         }
         return $this->render('TecServiceBundle::updateCategorie.html.twig', array('form' => $form->createView()));
     }
@@ -761,7 +749,7 @@ class ServiceController extends Controller
             //Ajout d'un message flash
             $this->addFlash('notice', "Ajout sous categorie OK.");
             //Redirection (a voir)
-            return $this->forward('TecServiceBundle:Service:results');
+            return $this->forward('TecServiceBundle:Service:getAllSubCategorie');
         }        
         //si le formulaire n'a pas été validé
         return $this->render('TecServiceBundle::addSubCategorie.html.twig', array('form' => $form->createView()));
@@ -880,11 +868,9 @@ class ServiceController extends Controller
             //Sauvegarde en bdd des updates
             $em->flush();
             //Ajout d'un message flash (a voir)
-            //$this->addFlash('notice', "Mise a jour OK.");
+            $this->addFlash('notice', "Mise a jour OK.");
             //Redirection vers la categorie
-            //a tester redirection avec parametre
-            $this->getRequest()->setParameter('id', $id);
-            return $this->forward('TecServiceBundle:Service:getSubCategorie');
+            return $this->forward('TecServiceBundle:Service:getSubCategorie', array('id' => $id));
         }
         return $this->render('TecServiceBundle::updateSubCategorie.html.twig', array('form' => $form->createView()));
     }
@@ -1030,11 +1016,9 @@ class ServiceController extends Controller
             //Sauvegarde en bdd des updates
             $em->flush();
             //Ajout d'un message flash (a voir)
-            //$this->addFlash('notice', "Mise a jour OK.");
+            $this->addFlash('notice', "Mise a jour OK.");
             //Redirection vers la categorie
-            //a tester redirection avec parametre
-            $this->getRequest()->setParameter('id', $id);
-            return $this->forward('TecServiceBundle:Service:getType');
+            return $this->forward('TecServiceBundle:Service:getType', array('id' => $id));
         }
         return $this->render('TecServiceBundle::updateType.html.twig', array('form' => $form->createView()));
     }
@@ -1139,11 +1123,9 @@ class ServiceController extends Controller
             //Sauvegarde en bdd des updates
             $em->flush();
             //Ajout d'un message flash (a voir)
-            //$this->addFlash('notice', "Mise a jour OK.");
+            $this->addFlash('notice', "Mise a jour OK.");
             //Redirection vers la categorie
-            //a tester redirection avec parametre
-            $this->getRequest()->setParameter('id', $id);
-            return $this->forward('TecServiceBundle:Service:getUser');
+            return $this->forward('TecServiceBundle:Service:getUser', array('id' => $id));
         }
         return $this->render('TecServiceBundle::updateUser.html.twig', array('form' => $form->createView()));
     }

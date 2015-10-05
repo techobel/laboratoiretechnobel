@@ -101,13 +101,13 @@ class User extends BaseUser
     
     /**
      * l'utilisateur demande un service
-     * @ORM\OneToMany(targetEntity="Demander", mappedBy="User")
+     * @ORM\OneToMany(targetEntity="Demander", mappedBy="user")
      */
     private $demandes;
     
     /**
      * l'utilisateur fournit un service
-     * @ORM\OneToMany(targetEntity="Fournir", mappedBy="User")
+     * @ORM\OneToMany(targetEntity="Fournir", mappedBy="user")
      */
     private $fournisseur;
     
@@ -119,9 +119,14 @@ class User extends BaseUser
     
     /**
      * Annonce de l'utilisateur
-     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Annonce", mappedBy="User")
+     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Annonce", mappedBy="user")
      */
     private $annonces;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Notification", mappedBy="user")
+     */
+    private $notification;
 
     /********************************************************
      *                      GETTER/SETTER                   *
@@ -561,5 +566,39 @@ class User extends BaseUser
     public function getFournisseur()
     {
         return $this->fournisseur;
+    }
+
+    /**
+     * Add notification
+     *
+     * @param \Tec\UserBundle\Entity\Notification $notification
+     *
+     * @return User
+     */
+    public function addNotification(\Tec\UserBundle\Entity\Notification $notification)
+    {
+        $this->notification[] = $notification;
+
+        return $this;
+    }
+
+    /**
+     * Remove notification
+     *
+     * @param \Tec\UserBundle\Entity\Notification $notification
+     */
+    public function removeNotification(\Tec\UserBundle\Entity\Notification $notification)
+    {
+        $this->notification->removeElement($notification);
+    }
+
+    /**
+     * Get notification
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotification()
+    {
+        return $this->notification;
     }
 }

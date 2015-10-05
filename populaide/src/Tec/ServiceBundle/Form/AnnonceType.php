@@ -37,7 +37,7 @@ class AnnonceType extends AbstractType
                 'label' => false,
                 'class' => 'TecServiceBundle:Sub_categorie',
                 'property' => 'name',
-                //'required' => 'true',
+                'required' => 'true',
                 'query_builder' => function(EntityRepository $er){
                     return $er->createQueryBuilder('u')
                             ->orderBy('u.name', 'ASC');
