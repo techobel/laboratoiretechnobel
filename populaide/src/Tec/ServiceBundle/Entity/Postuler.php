@@ -32,6 +32,20 @@ class Postuler
      */
     private $etat;
     
+    /**
+     * @var date
+     * 
+     * @ORM\Column(name="date_create", type="date")
+     */
+    private $date_create;
+    
+    /**
+     * @var date
+     * 
+     * @ORM\Column(name="date_update", type="date", nullable=true) 
+     */
+    private $date_update;
+    
     /********************************************************
      *                      RELATION TABLES                 *
      ********************************************************/
@@ -132,5 +146,53 @@ class Postuler
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set dateCreate
+     *
+     * @param \DateTime $dateCreate
+     *
+     * @return Postuler
+     */
+    public function setDateCreate($dateCreate)
+    {
+        $this->date_create = $dateCreate;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreate
+     *
+     * @return \DateTime
+     */
+    public function getDateCreate()
+    {
+        return $this->date_create;
+    }
+
+    /**
+     * Set dateUpdate
+     *
+     * @param \DateTime $dateUpdate
+     *
+     * @return Postuler
+     */
+    public function setDateUpdate($dateUpdate)
+    {
+        $this->date_update = $dateUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get dateUpdate
+     *
+     * @return \DateTime
+     */
+    public function getDateUpdate()
+    {
+        return $this->date_update;
     }
 }
