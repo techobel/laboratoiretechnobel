@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Tec\ServiceBundle\Entity\MediaRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Media
 {
@@ -191,14 +192,10 @@ class Media
   }
 
     /**
-    * @ORM\PrePersist()
-    * @ORM\PreUpdate()
-    */
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
     public function preUpload(){
-        
-        echo "preupload";
-        
-        
         // Si jamais il n'y a pas de fichier (champ facultatif)
         if (null === $this->file) {
             return;

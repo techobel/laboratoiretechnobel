@@ -4,6 +4,7 @@ namespace Tec\ServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Categorie
  *
@@ -44,7 +45,7 @@ class Categorie
      ********************************************************/
     
     /**
-     * @ORM\OneToOne(targetEntity="Media", inversedBy="categorie", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Media", inversedBy="categorie", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
      */
     private $media;
