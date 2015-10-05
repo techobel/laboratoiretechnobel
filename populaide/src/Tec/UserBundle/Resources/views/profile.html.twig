@@ -15,6 +15,13 @@
 {{ parent() }}
         {#User:
         {{ user.id ~ " " ~ user.username ~ " " ~ user.email }}#}
+    <nav>
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">Profil</a></li>
+            <li role="presentation"><a href="#">Demandes</a></li>
+            <li role="presentation"><a href="#">Offres</a></li>
+        </ul>
+    </nav>
     <section id="general">
         <div class='container'>
             <div class='row'>
@@ -89,4 +96,10 @@
         </div>
     </section>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="assets/js/test-ongletProfile.js"></script>
+    <!-- AJAX SCRIPTS   -->
 {% endblock %}

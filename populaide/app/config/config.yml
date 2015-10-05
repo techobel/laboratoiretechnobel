@@ -82,6 +82,9 @@ swiftmailer:
     spool:     { type: memory }
     
 fos_user:
-    db_driver: orm                          #le type de BDD à utiliser
-    firewall_name: main                     #le nom du firewall
-    user_class: Tec\UserBundle\Entity\User  #la classe de l'entité user que nous utilisons
+    db_driver: orm                          
+    #le type de BDD à utiliser
+    firewall_name: main                     
+    #le nom du firewall
+    user_class: Tec\UserBundle\Entity\User  
+    #la classe de l'entité user que nous utilisons

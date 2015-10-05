@@ -6,12 +6,12 @@
   {{ parent() }}
   {# On affiche les messages flash que définissent les contrôleurs du bundle #}
   
-  {# genere une exception !! 
+  {# genere une exception !! #}
   {% for key, message in app.session.flashbag.all() %}
     <div class="alert alert-{{ key }}">
       {{ message|trans({}, 'FOSUserBundle') }}
     </div>
   {% endfor %}
-  #}
+  
 
 {% endblock %}
