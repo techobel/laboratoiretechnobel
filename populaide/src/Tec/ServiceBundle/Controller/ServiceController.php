@@ -34,6 +34,8 @@ use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
+use Tec\UserBundle\Controller\UserController;
 //use FOS\UserBundle\Event\FilterUserResponseEvent;
 //
 //class DefaultController extends Controller
@@ -176,8 +178,12 @@ class ServiceController extends Controller
             $em->persist($annonce);
             //Sauvegarde en bd
             $em->flush();
+            //Ajout d'une notification
+            UserController::addNotification("Vous avez bien ajouté l'annonce.", $user->getId());            
+            
             //Ajout d'un message flash
             $this->addFlash('notice', "Ajout annonce OK.");
+            
             //Redirection
             return $this->forward('TecServiceBundle:Service:results');
         }        
@@ -246,6 +252,8 @@ class ServiceController extends Controller
             $em->remove($annonce);
             //Suppression
             $em->flush();
+            //Ajout d'une notificatoin
+            UserController::addNotification("Vous avez bien supprimé l'annonce.", $user->getId());            
             //redirection vers getAllAnnonce ( a voir)
             return $this->forward('TecServiceBundle:Service:getAllAnnonce');
         }else{
@@ -286,6 +294,8 @@ class ServiceController extends Controller
                 
                 //Sauvegarde en bdd des updates
                 $em->flush();
+                //Ajout d'une notificatoin
+                UserController::addNotification("Votre annonce a été mise à jour.", $user->getId());
                 //Ajout d'un message flash (a voir)
                 $this->addFlash('notice', "Mise a jour OK.");
                 //Redirection vers l'annonce
@@ -358,6 +368,10 @@ class ServiceController extends Controller
                 $em->persist($user);
                 //modification dans la bd
                 $em->flush();
+                //Ajout d'une notificatoin pour la personne qui postule
+                UserController::addNotification("Vous avez postule pour l'annonce ...", $user->getId());     
+                //Ajout d'une notificatoin pour la personne qui a posté l'annonce
+                UserController::addNotification("Une personne a postulé pour votre annonce ..., consulter votre profil.", $annonce->getUser()->getId());
                 //ajout d'un message flash
                 $this->addFlash('notice', "Vous avez postulé pour l'annonce.");
                 //redirection vers l'annonce
@@ -405,30 +419,53 @@ class ServiceController extends Controller
         //Mise a jour des attributs de service
         $service->setActive(true);
         $service->setDateService(new \DateTime());  //date du service à voir ou est-ce qu'on va la chercher
-        //Création d'une notification
-        //...
-        
-        //
-        
+                
         //Récupère le manager
         $em = $this->getDoctrine()->getManager();
         //Doctrine se charge de service
         $em->persist($service);
         
+        /***
+         * Explication traitement
+         */
+        //si l'annonce est de type demande
+        
+        //alors l'utilisateur qui accepte devient demander 
+        //et la personne qui a postulé devient fournir
+        
+        //sinon si l'annonce est de type offre
+        
+        //alors l'utilisateur qui accepte devient fournir
+        //et la personne qui a postulé devient demander
+        
+        //On considère qu'il y a 2 types d'annonce: (Offre/Demande)
+        
         //Création de demander
         $demander = new Demander();
-        $demander->setUser($user);
         $demander->setService($service);
+        
         //Création de fournir
         $fournir = new Fournir();
-        $fournir->setFournisseur($user);
         $fournir->setService($service);
+        
+        if($postuler->getAnnonce()->getType()->getIntitule() === "Offre"){
+            $demander->setUser($user);
+            $fournir->setFournisseur($postuler->getUser());
+        }else{
+            $fournir->setFournisseur($user);
+            $demander->setUser($user);
+        }        
         
         //doctrine se charge de demander et fournir
         $em->persist($demander);
         $em->persist($fournir);
         //Sauvegarde en bd
-        $em->flush();        
+        $em->flush();     
+        
+        //Ajout d'une notificatoin pour la personne qui accepte
+        UserController::addNotification("Vous avez accepté la demande de ... pour l'annonce ....", $user->getId());
+        //Ajout d'une notificatoin pour la personne qui a été accepte
+        UserController::addNotification("Votre annonce a été mise à jour.", $postuler->getUser()->getId());
         
         //Redirection vers la page de profil
         return $this->forward('TecServiceBundle:Service:results');
@@ -467,15 +504,17 @@ class ServiceController extends Controller
         //Change l'etat de postuler à true
         $postuler->setEtat(false);        
         $postuler->setDateUpdate(new \DateTime());
-        //Création d'une notification
-        //...
-        
-        //
         
         //Récupère le manager
         $em = $this->getDoctrine()->getManager();
         //Sauvegarde en bd
         $em->flush();
+        
+        //Ajout d'une notificatoin pour la personne qui refuse
+        UserController::addNotification("Vous avez refusé la demande de ... pour l'annonce ....", $user->getId());
+        //Ajout d'une notificatoin pour la personne qui a été refusé
+        UserController::addNotification("Votre demande a été refusé pour l'annonce ....", $postuler->getUser()->getId());
+        
         //Redirection vers la page de profil
         return $this->forward('TecServiceBundle:Service:results');
     }
@@ -626,8 +665,13 @@ class ServiceController extends Controller
                 
                 //Ajout d'un message flash
                 $this->addFlash('notice', "Ajout categorie OK.");
-            }
-            
+                
+                //Récupère l'utilisateur en session
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                
+                //Ajout d'une notificatoin à l'admin
+                UserController::addNotification("Ajout de la categorie ".$categorie->getName()."OK.", $user->getId());
+            }            
             //Redirection (a voir)
             return $this->forward('TecServiceBundle:Service:getAllCategorie');
         }        
@@ -689,6 +733,10 @@ class ServiceController extends Controller
         $em->remove($categorie);
         //Suppression
         $em->flush();
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Ajout d'une notificatoin à l'admin
+        UserController::addNotification("Suppression de la categorie ".$categorie->getName()."OK.", $user->getId());
         //redirection vers getAllCategorie ( a voir)
         return $this->forward('TecServiceBundle:Service:getAllCategorie');
     }
@@ -721,6 +769,10 @@ class ServiceController extends Controller
             $em->flush();
             //Ajout d'un message flash (a voir)
             $this->addFlash('notice', "Mise a jour OK.");
+            //Récupère l'utilisateur en session
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            //Ajout d'une notificatoin à l'admin
+            UserController::addNotification("Mise à jour de la categorie ".$categorie->getName()."OK.", $user->getId());
             //Redirection vers la categorie
             return $this->forward('TecServiceBundle:Service:getCategorie', array('id' => $id));
         }
@@ -782,6 +834,10 @@ class ServiceController extends Controller
             $em->flush();
             //Ajout d'un message flash
             $this->addFlash('notice', "Ajout sous categorie OK.");
+            //Récupère l'utilisateur en session
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            //Ajout d'une notificatoin à l'admin
+            UserController::addNotification("Ajout de la sous categorie ".$subcategorie->getName()."OK.", $user->getId());
             //Redirection (a voir)
             return $this->forward('TecServiceBundle:Service:getAllSubCategorie');
         }        
@@ -870,6 +926,10 @@ class ServiceController extends Controller
         $em->remove($subcategorie);
         //Suppression
         $em->flush();
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Ajout d'une notificatoin l'admin
+        UserController::addNotification("Suppression de la sous categorie ".$subcategorie->getName()."OK.", $user->getId());
         //redirection vers getAllCategorie ( a voir)
         return $this->forward('TecServiceBundle:Service:getAllCategorie');
     }
@@ -903,6 +963,10 @@ class ServiceController extends Controller
             $em->flush();
             //Ajout d'un message flash (a voir)
             $this->addFlash('notice', "Mise a jour OK.");
+            //Récupère l'utilisateur en session
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            //Ajout d'une notificatoin l'admin
+            UserController::addNotification("Mise à jour de la sous categorie ".$subcategorie->getName()."OK.", $user->getId());
             //Redirection vers la categorie
             return $this->forward('TecServiceBundle:Service:getSubCategorie', array('id' => $id));
         }
@@ -938,6 +1002,10 @@ class ServiceController extends Controller
             $em->flush();
             //Ajout d'un message flash
             $this->addFlash('notice', "Ajout d'un type OK.");
+            //Récupère l'utilisateur en session
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            //Ajout d'une notificatoin l'admin
+            UserController::addNotification("Ajout du type ".$type->getIntitule()."OK.", $user->getId());
             //Redirection (a voir)
             return $this->forward('TecServiceBundle:Service:results');
         }        
@@ -1018,6 +1086,10 @@ class ServiceController extends Controller
         $em->remove($type);
         //Suppression
         $em->flush();
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Ajout d'une notificatoin l'admin
+        UserController::addNotification("Suppression du type ".$type->getIntitule()."OK.", $user->getId());
         //redirection vers getAllType ( a voir)
         return $this->forward('TecServiceBundle:Service:getAllType');
     }
@@ -1051,6 +1123,10 @@ class ServiceController extends Controller
             $em->flush();
             //Ajout d'un message flash (a voir)
             $this->addFlash('notice', "Mise a jour OK.");
+            //Récupère l'utilisateur en session
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            //Ajout d'une notificatoin l'admin
+            UserController::addNotification("Mise à jour du type ".$type->getIntitule()."OK.", $user->getId());
             //Redirection vers la categorie
             return $this->forward('TecServiceBundle:Service:getType', array('id' => $id));
         }
@@ -1111,9 +1187,13 @@ class ServiceController extends Controller
         //Si le user existe
      
         //Récupère le manager de fosuser
-        $userManager = $container->get('fos_user.user_manager');
+        $userManager = $this->container->get('fos_user.user_manager');
         //Suppression de l'utilisateur
         $userManager->deleteUser($user);
+        //Récupère l'utilisateur en session
+        $userAdmin = $this->container->get('security.context')->getToken()->getUser();
+        //Ajout d'une notificatoin l'admin
+        UserController::addNotification("Suppression de l'utilisateur ".$user->getId()."OK.", $userAdmin->getId());
         //Suppression
         //$em->flush();
         //redirection vers getAllUser ( a voir)
@@ -1146,8 +1226,7 @@ class ServiceController extends Controller
         //Création du formulaire pour la mise à jour
         $form = $this->get('form.factory')->create(new UserType(), $user);
         //si le formulaire a été valide
-        if($form->handleRequest($request)->isValid()){
- 
+        if($form->handleRequest($request)->isValid()){ 
             
             //a voir
             $this->get('fos_user.user_manager')->updateUser($user, false);
@@ -1158,6 +1237,10 @@ class ServiceController extends Controller
             $em->flush();
             //Ajout d'un message flash (a voir)
             $this->addFlash('notice', "Mise a jour OK.");
+            //Récupère l'utilisateur en session
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            //Ajout d'une notificatoin l'admin
+            UserController::addNotification("Mise à jour de l'utilisteur  ".$usersess->getName()."OK.", $user->getId());
             //Redirection vers la categorie
             return $this->forward('TecServiceBundle:Service:getUser', array('id' => $id));
         }
@@ -1213,12 +1296,14 @@ class ServiceController extends Controller
             }
 
             //$dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
+            //Récupère l'utilisateur en session
+            $userAdmin = $this->container->get('security.context')->getToken()->getUser();
+            //Ajout d'une notificatoin l'admin
+            UserController::addNotification("Ajout de l'utilisateur ".$user->getName()."OK.", $userAdmin->getId());
             return $response;
         }
   
         //si le formulaire n'a pas été validé
         return $this->render('TecServiceBundle::addUser.html.twig', array('form' => $form->createView()));
-    }
-    
+    }    
 }

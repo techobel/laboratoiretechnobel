@@ -17,7 +17,7 @@
                         {{ flashMessage }}
                     {% endfor %}
                     <div class="row text-center portfolio-item annonces">
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-6 col-sm-12 half">
                             <div class="box-post"> <!--360px * 318px -->
                                 <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
                                 <ul>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-6 col-sm-12 half ">
                             <div class="box-post"> <!--360px * 318px -->
                                 <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
                                 <ul>
@@ -90,20 +90,18 @@
     <!--SERVICES SECTION END  -->
     <!--PAGES NAVIGATION-->
     <section id="how">
-        <div class="container">
-        <div class="row text-center pad-bottom">
-            <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                <ul class="pagination pagination-lg">
-                  <li class="disable"><a href="#" aria-label="Previous"><span aria-hidden="true"><</span></a></li>
-                  <li class="active"><a href="afficher_recherche.html">1</a></li>
-                  <li><a href="afficher_recherche_pp.html">2</a></li>
-                  <li><a href="afficher_recherche_pp.html">3</a></li>
-                  <li><a href="afficher_recherche_pp.html">4</a></li>
-                  <li><a href="afficher_recherche_pp.html">5</a></li>
-                  <li><a href="afficher_recherche_pp.html" aria-label="Next"><span aria-hidden="true">></span></a></li>
-                </ul>
-            </div>
-        </div> 
+        <div class="contain">
+            <div class="row text-center">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                    <ul class="pagination pagination-lg">
+                      <li class="disable"><a href="#"><img src="{{ asset('images/pictos/prev.png') }}" class="fleche-page" alt=""/></a></li>
+                      <li class="active"><a href="afficher_recherche.html">1</a></li>
+                      <li><a href="afficher_recherche_pp.html">2</a></li>
+                      <li><a href="afficher_recherche_pp.html">3</a></li>
+                      <li><a href="afficher_recherche_pp.html"><img src="{{ asset('images/pictos/next.png') }}" class="fleche-page" alt=""/></a></li>
+                    </ul>
+                </div>
+            </div> 
         </div>
     </section>    
     <!--PAGES NAVIGATION END-->

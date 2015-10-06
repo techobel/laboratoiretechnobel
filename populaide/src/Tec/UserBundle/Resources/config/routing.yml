@@ -14,5 +14,14 @@ tec_user_profile:
     path:     /user/{id}
     defaults: { _controller: TecUserBundle:User:profile } 
     
+#NOTIFICATION
+tec_user_updatenotification:
+    path:     /user/notification/update/{id}
+    defaults: { _controller: TecUserBundle:User:updateNotification } 
+    
+tec_user_delnotification:
+    path:     /user/notification/del/{id}
+    defaults: { _controller: TecUserBundle:User:delNotification } 
+    
 
     
