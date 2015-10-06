@@ -274,9 +274,15 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
     background: none;
     float: right;
 }
-@media(min-width: 992px) {
+.menu-md {
+    display: none;
+}
+@media(min-width: 800px) {
     .menu-mobile {
         display: none;
+    }
+    .menu-md {
+        display: initial;
     }
 }
 /*================================
