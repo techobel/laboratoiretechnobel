@@ -142,3 +142,15 @@ tec_service_postulerannonce:
 tec_service_adduser:
     path:     /adduser
     defaults: { _controller: TecServiceBundle:Service:addUser } 
+    
+    
+#TEST AJAX
+tec_service_testajax:
+    path:     /testajax
+    defaults: { _controller: TecServiceBundle:Service:testajax }
+    methods: [POST]
+    
+tec_service_testajax2:
+    path:     /testajax
+    defaults: { _controller: TecServiceBundle:Service:testajax }
+    methods: [GET]

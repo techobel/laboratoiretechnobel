@@ -1325,4 +1325,24 @@ class ServiceController extends Controller
         //si le formulaire n'a pas été validé
         return $this->render('TecServiceBundle::addUser.html.twig', array('form' => $form->createView()));
     }    
+    
+    public function testajaxAction(){
+       $request = $this->container->get('request');
+
+        if($request->isXmlHttpRequest())
+        {
+            /*
+            $response = array("code" => 400, "success" => true, "val" => 1);
+            return new Response(json_encode($response));
+            */
+            
+        //Récupère le repository de sub_categorie
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
+        //Récupère les sous categories de la bd
+        $subcategories = $repository->findAll();
+        //Renvoie vers la page qui affiche toutes les sous categories
+        return $this->container->get('templating')->renderResponse('TecServiceBundle::getAllSubCategorie.html.twig', array('subcategories' => $subcategories));
+            
+        }
+    }
 }

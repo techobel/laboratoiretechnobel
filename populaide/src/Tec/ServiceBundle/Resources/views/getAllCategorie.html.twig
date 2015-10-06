@@ -33,9 +33,42 @@
                 {% endfor %}
             </ul>#}
         {% endfor %}
+        
+        <div id="resultat"></div>
+        
+        
+        <button id="btn-subcategorie" name="btn-subcategorie">Afficher toutes les subcategories</button>
+        <button id="btn-load" name="btn-load">Afficher toutes les subcategories 2</button>
         </ul>
     </section>
-    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script> 
+    <script>
+       $("#btn-subcategorie").click(function(e){
+           $.ajax({
+              type: 'post',
+              url:'{{ path('tec_service_testajax')}}',
+              
+              success: function(data){
+                  //alert('ok');
+                  $('#resultat').html(data);
+                  
+                },
+              error: function(data){
+                  alert('ko');
+                  alert(data);
+                  $('#resultat').html(data);
+                }
+           });
+       }) ;  
+       
+       //idem que l'autre mais en get
+       $("#btn-load").click(function(e){
+            
+            $("#resultat").load("{{ path('tec_service_testajax') }}");
+        });
+            
+            
+    </script>
 
 
 {% endblock %}
