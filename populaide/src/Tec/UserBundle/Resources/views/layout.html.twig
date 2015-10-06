@@ -1,9 +1,9 @@
 {# On étend notre layout #}
-{% extends "::base.html.twig" %}
+{% extends "::inside_base.html.twig" %}
 
 {# Dans notre layout, il faut définir le block body #}
 {% block body %}
-    
+    {{ parent() }}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         Connecté en tant que {{ app.user.username }}
         -

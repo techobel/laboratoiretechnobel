@@ -1,5 +1,5 @@
 section:nth-child(even){
-    background-color: #EBCEA2; /*Orange clair*/
+    background-color: #eeedf6; /*Orange clair #EBCEA2*/
 }
 section{
     padding: 30px 0;
@@ -39,7 +39,7 @@ ul.nav-tabs > li{
     width: 30%;
 }
 ul.nav-tabs > li > a{
-    background-color: #EBCEA2; /*Orange clair*/
+    background-color: #eeedf6; /*Orange clair*/
     border:  none;
     border-radius: 0;
     color: #EB5E4E; /*Orange brique*/

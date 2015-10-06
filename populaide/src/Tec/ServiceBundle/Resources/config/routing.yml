@@ -5,6 +5,11 @@
 tec_service_mail:
     path:     /mail
     defaults: { _controller: TecServiceBundle:Service:mail }
+    
+tec_service_sendAdminMail:
+    path:     /contact/mail
+    defaults: { _controller: TecServiceBundle:Service:sendAdminMail }
+    methods: post
 
 tec_service_resultspage:
     path:     /results

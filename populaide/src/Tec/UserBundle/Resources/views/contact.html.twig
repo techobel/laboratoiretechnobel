@@ -9,7 +9,7 @@
 {{ parent() }}
 <section id="form_contact"  class="clearfix">
     <div class="container">
-        <form id="form form_contact" class=" form row form-inline form-one" method="post" action="">
+        <form id="form form_contact" class=" form row form-inline form-one" name="contact_form" method="post" action="{{ path('tec_service_sendAdminMail') }}">
             <!--Nom Prénom-->
             <input class="col-xs-12 col-md-4 form-control " type="text" name="names" placeholder="Nom Prénom"/>
             <!--Mail-->
@@ -17,7 +17,7 @@
             <!--Objet-->
             <input class="col-xs-12 col-md-4 form-control " type="text" name="subject" placeholder="Objet"/>
             <!--Message-->
-            <textarea class="col-xs-12 col-md-4 form-control" rows="4" name="message" placeholder="Message"></textarea>
+            <textarea class="col-xs-12 col-md-4 form-control" rows="4" name="content" placeholder="Message"></textarea>
             <input class="btn btn-primary col-md-2 form-control" type="submit" value="Envoyer"/>
             <input class="btn btn-secondary col-md-2 form-control" type="reset" value="Annuler"/>
         </form>
