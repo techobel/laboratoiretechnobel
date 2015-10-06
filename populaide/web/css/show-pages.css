@@ -1,13 +1,17 @@
     /*================================
+        HEADER STYLES
+    ==================================*/    
+    .title .overlay h3 {
+        font: 700 1.5em "HelveticaNeueLTStd-Bd",sans-serif;        
+        text-align: center;
+    }
+    /*================================
         BOX-POST STYLES
     ==================================*/  
-    #how{
-        display: initial;
-    }
-
     #results {
         padding-top: 5px;
         height: auto;
+        padding-bottom: 0;
     }
     .post {
         width: 100%;
@@ -19,7 +23,6 @@
           height: 240px;
         } 
         .profil-post-image{
-            border: 1px solid red;
             width: 35%;
             height: 80px;
             float: left;
@@ -88,15 +91,34 @@
                     height: 25%;
                     text-align: center;
                     text-decoration: none;
+                    font-weight: bold;
                     color: black;
                 }
+    /*================================
+        PAGINATION STYLE
+    ==================================*/     
+    #how{
+        display: initial;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .contain {
+        margin-bottom: 5%;
+    }
+    .fleche-page {
+        width: 12px;
+        height: 15px;
+    }
+    /*================================
+        MEDIA QUERIES STYLES
+    ==================================*/                     
     @media (min-width: 360px) {
         .box-post{
             height: 300px;
         }
         .profil-post-image{
             width: 40%;
-            height: 120px;
+            height: 110px;
             margin-right: 10px;
         }
         .user-login,
@@ -109,17 +131,32 @@
             margin-top: -20px;
         }
         .propose {
-            margin-top: 13px;
+            margin-top: 3px;
             padding-top: 8px;
             height: 30px;
+        }
+        #how .pagination > li > a {
+            font-size: 1.5em;
+        }
+        .fleche-page {
+        width: 15px;
+        height: 18px;
         }
     }
     @media(min-width: 400px) {
         .box-post{
             height: 320px;
         }        
+        .profil-post-image{
+            width: 35%;
+            height: 110px;
+            margin-right: 20px;
+        }        
     }
     @media(min-width: 640px) {
+        .title .overlay h3 {
+        font: 700 2em "HelveticaNeueLTStd-Bd",sans-serif
+        }
         .container {
             width: 80%;
         }
@@ -182,11 +219,18 @@
         .icons-post {
             margin-top: 10px;
         }
+        .col-sm-6 {
+            float: none;
+        }
     }
     @media (min-width: 980px) {
-        .col-md-6 {
+        .half {
             width: 50%;
             display: inline-block;
+        }
+        .col-sm-6 {
+            width: 60%;
+            text-align: center;
         }
         .box-post{
             height: 320px;
@@ -215,6 +259,13 @@
             padding: 10px;
             margin: -10px;
         }
+        #how .pagination > li > a {
+            font-size: 1.8em;
+        }
+        .fleche-page {
+        width: 18px;
+        height: 21px;
+        }        
     }
 
 @media(min-width: 1080px) {  
@@ -266,6 +317,13 @@
             width: 30%;
             height: 30%;
         }
+        .col-sm-6 {
+            width: 50%;
+            text-align: center;
+        }
+       .col-sm-offset-3 {
+            margin-left: 25%;
+        } 
 }
 @media(min-width: 1700px) {
     .container {
