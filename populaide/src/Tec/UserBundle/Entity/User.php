@@ -89,13 +89,13 @@ class User extends BaseUser
      ********************************************************/
     
     /**
-     * @ORM\OneToMany(targetEntity="Addresse", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Addresse", mappedBy="user", cascade={"persist", "remove"})
      */
     private $addresses;
     
     /**
-     * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Media", inversedBy="user", cascade={"persist"})
-     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Media", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $media;
     
@@ -113,18 +113,18 @@ class User extends BaseUser
     
     /**
      * l'utilisateur postule à une annonce
-     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Postuler", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Postuler", mappedBy="user", cascade={"persist", "remove"})
      */
     private $postules;
     
     /**
      * Annonce de l'utilisateur
-     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Annonce", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Tec\ServiceBundle\Entity\Annonce", mappedBy="user", cascade={"persist", "remove"})
      */
     private $annonces;
     
     /**
-     * @ORM\OneToMany(targetEntity="Notification", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Notification", mappedBy="user", cascade={"persist", "remove"})
      */
     private $notifications;
 
