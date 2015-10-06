@@ -67,7 +67,7 @@ class Addresse
     
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="addresses")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
 

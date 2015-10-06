@@ -109,19 +109,19 @@ class Annonce
     
     /**
      * @ORM\ManyToOne(targetEntity="Sub_categorie", inversedBy="annonces")
-     * @ORM\JoinColumn(name="sub_categorie_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="sub_categorie_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $sub_categorie;
     
     /**
-     * @ORM\OneToMany(targetEntity="Postuler", mappedBy="annonce")
+     * @ORM\OneToMany(targetEntity="Postuler", mappedBy="annonce", cascade={"persist", "remove"})
      */
     private $postules;
     
     //l'utilisateur qui a posté l'annonce
     /**
      * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="annonces")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;
     
