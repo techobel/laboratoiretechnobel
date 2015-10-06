@@ -14,9 +14,7 @@ use Tec\ServiceBundle\Entity\Type;
 use Tec\ServiceBundle\Entity\Postuler;
 use Tec\UserBundle\Entity\Demander;
 use Tec\UserBundle\Entity\Fournir;
-use Tec\UserBundle\Entity\User;
 use Tec\ServiceBundle\Entity\Service;
-use Tec\ServiceBundle\Entity\Media;
 
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -29,25 +27,15 @@ use Tec\ServiceBundle\Form\TypeType;
 
 use Tec\UserBundle\Form\UserType;
 
-use FOS\UserBundle\Form\Type\RegistrationFormType;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Tec\UserBundle\Controller\UserController;
-//use FOS\UserBundle\Event\FilterUserResponseEvent;
-//
-//class DefaultController extends Controller
-//{
-//    public function indexAction()
-//    {
-//        return $this->render('TecServiceBundle:Default:index.html.twig');
-//    }
-//}
+
 class ServiceController extends Controller
-{
-    
+{    
     /**
      * 
      * action pour test envoie mail
