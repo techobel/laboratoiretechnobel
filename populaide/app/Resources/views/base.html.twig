@@ -21,21 +21,28 @@
     </head>
     <body>
         {% block header %}
-            <div class="navbar navbar-fixed-top">
+            <div class="navbar">
                 <div class="container">
                     <button type="button" class="btn btn-connexion">
-                        {% block connexion %}
+{#                        {% block connexion %}
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 Bienvenue {{ app.user.username }}
                                 <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
                             {% else %}
-                                <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+                                <a href="{{ path('fos_user_security_login') }}">Connexion</a>#}
                                 {# On définit ce block, dans lequel vont venir s'insérer les autres vues du bundle #}
                                 {#{% block fos_user_content %}
                                 {% endblock fos_user_content %}#}
-                            {% endif %}
+{#                            {% endif %}
+                        {% endblock %}#}
+                    </button>
+                    <button type="button" class="menu-mobile btn-lg">
+                        <span class="glyphicon glyphicon-align-justify"></span>
+                        {% block menu_mobile %}
+                        
                         {% endblock %}
                     </button>
+                    
                 </div>
             </div>
             <!--CONNECTION NAVBAR END  -->
