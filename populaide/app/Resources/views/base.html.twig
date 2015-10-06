@@ -23,7 +23,7 @@
         {% block header %}
             <div class="navbar">
                 <div class="container">
-                    <button type="button" class="btn btn-connexion">
+{#                    <button type="button" class="btn btn-connexion">#}
 {#                        {% block connexion %}
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 Bienvenue {{ app.user.username }}
@@ -35,7 +35,13 @@
                                 {% endblock fos_user_content %}#}
 {#                            {% endif %}
                         {% endblock %}#}
-                    </button>
+ {#                   </button>#}
+                    <ul>
+                        <li><a></a></li>
+                    </ul>
+                        {% block menu %}
+                        
+                        {% endblock %}            
                     <button type="button" class="menu-mobile btn-lg">
                         <span class="glyphicon glyphicon-align-justify"></span>
                         {% block menu_mobile %}
