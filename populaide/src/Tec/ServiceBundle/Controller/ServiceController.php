@@ -50,24 +50,24 @@ class ServiceController extends Controller
      * 
      * action pour test envoie mail
      */
-    public function mailAction(){
-        $message = \Swift_Message::newInstance()
-                ->setSubject('Test mail')
-                ->setFrom('technobellaboratoire@outlook.fr')
-                ->setTo("hbenji@hotmail.com")
-                ->setContentType('text/html')
-                ->setBody("testmail");
-        
-        var_dump($this->get('mailer')->send($message));
-
-        return $this->render('TecServiceBundle::results.html.twig');
-    }
+//    public function mailAction(){
+//        $message = \Swift_Message::newInstance()
+//                ->setSubject('Test mail')
+//                ->setFrom('technobellaboratoire@outlook.fr')
+//                ->setTo("hbenji@hotmail.com")
+//                ->setContentType('text/html')
+//                ->setBody("testmail");
+//        
+////        var_dump($this->get('mailer')->send($message));
+//
+//        return $this->render('TecServiceBundle::results.html.twig');
+//    }
     
     /**
      * 
      * @param $subject  sujet du mail ('Inscription chez Popul'aide', 'Compte bloqué', ...)
      * @param $to   email de l'utilisateur 
-     * @param $body corps de l'email
+     * @param $body corps de l'email (peut-être une vue)
      * @return boolean
      */
     public function sendMail($subject, $to, $body){
@@ -82,6 +82,40 @@ class ServiceController extends Controller
         
     }
     
+    public function sendAdminMailAction(Request $request){
+//        $user = new SiteUser();
+//        $form = $this->createForm(new LoginType(), $user);
+        
+        $form = $this->getRequest()->request->get('contact_form');
+        
+        if($form->handleRequest($request)->isValid()){
+            
+            $subject = $form["subject"]->getData();
+            $admin = "tracy.brisfer@gmail.com";
+            $content = $form["message"]->getData();
+            $fromName = $form["names"]->getData();
+            $from = $form["mail"]->getData();
+            $body = $content . $fromName . $from;
+
+            $this->sendMail($subject, $admin, $body);
+        }
+        
+//        var_dump($form["subject"]->getData());
+//        die;
+        
+        
+
+//        if ($request->getMethod() == 'POST') {
+//            $form->bindRequest($request);
+//            
+//            if($form->isValid()){
+//                $data = $form->getData();
+//            }
+//            // Need to do something with the data here
+//        }
+        
+         return $this->render('TecUserBundle::index.html.twig');
+    }
     
     public function resultsAction()
     {
