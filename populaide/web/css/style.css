@@ -257,8 +257,28 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
     margin-top: 5%;
     margin-bottom: 5%;
 }
-
-
+/*======================================
+    MENU MOBIL SECTION STYLES
+=========================================*/
+.menu-mobile{
+    background-color: transparent;
+    color: #8A8381;
+/*    margin-left: 80%;
+    margin-top: 5%;*/
+    float: right;
+    border: none;
+    font-size: 3em;
+}
+.navbar {
+    margin-bottom: 0;
+    background: none;
+    float: right;
+}
+@media(min-width: 992px) {
+    .menu-mobile {
+        display: none;
+    }
+}
 /*================================
     CATEGORY SECTION STYLES
 ==================================*/
