@@ -1,9 +1,9 @@
-{# On étend notre layout #}
-{% extends "::inside_base.html.twig" %}
+{# On étend notre layout 
+{% extends "::base.html.twig" %}
     
 {# Dans notre layout, il faut définir le block body #}
-{% block body %}
-  {{ parent() }}
+{#{% block body %}
+  {{ parent() }}#}
   {# On affiche les messages flash que définissent les contrôleurs du bundle #}
   
   {# genere une exception !! #}
@@ -14,5 +14,31 @@
   {% endfor %}#}
   
 
-{% endblock %}
+{#{% endblock %}#}
 
+
+{# On étend notre layout #}
+{% extends "::base.html.twig" %}
+
+{# Dans notre layout, il faut définir le block body #}
+{% block body %}
+    {{ parent() }}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+       {# Connecté en tant que {{ app.user.username }}
+        -
+        <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>#}
+    {% else %}
+{#        <a href="{{ path('fos_user_security_login') }}">Connexion</a>#}
+        {# On définit ce block, dans lequel vont venir s'insérer les autres vues du bundle #}
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    {% endif %}
+
+  {# On affiche les messages flash que définissent les contrôleurs du bundle #}
+  {% for key, message in app.session.flashbag.all() %}
+    <div class="alert alert-{{ key }}">
+      {{ message|trans({}, 'FOSUserBundle') }}
+    </div>
+  {% endfor %}
+
+{% endblock %}

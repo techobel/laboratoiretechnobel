@@ -76,6 +76,10 @@ class ServiceController extends Controller
 //        $user = new SiteUser();
 //        $form = $this->createForm(new LoginType(), $user);
         
+        
+        
+        $form = array("names"=>"test", "subject"=>"test objet", "message"=>"dsfsdf sdfsdf", "mail"=>"test@test.com");
+        
         $form = $this->getRequest()->request->get('contact_form');
         
         if($form->handleRequest($request)->isValid()){
@@ -90,19 +94,46 @@ class ServiceController extends Controller
             $this->sendMail($subject, $admin, $body);
         }
         
-//        var_dump($form["subject"]->getData());
-//        die;
         
+//        
+//        $defaultData = array('message' => 'Type your message here');
+//        $form = $this->createFormBuilder($defaultData)
+//        ->add('name', 'text')
+//        ->add('email', 'email')
+//        ->add('subject', 'text')
+//        ->add('message', 'textarea')
+//        ->getForm();
+//        if ($request->getMethod() == 'POST') {
+//          $form->handleRequest($request);
+//          // data is an array with "name", "email", and "message" keys
+//          $data = $form->getData();
+//          
+//          var_dump($data['subject']);
+//          
+////            $subject = $data["subject"];
+////            $admin = "tracy.brisfer@gmail.com";
+////            $body = $data["message"];
+//          
+//            $subject = "subject";
+//            $admin = "tracy.brisfer@gmail.com";
+//            $body = "message sdfjqsl jflksdjf";
+//
+//            $this->sendMail($subject, $admin, $body);
+//        }
+        
+        
+        
+//        $defaultData = array('message' => 'Type your message here');
+//        $form = $this->createFormBuilder($defaultData)->add('name', 'test') -> add('email', 'test@test.com') -> add('message', 'sfsdf sdfqsd fs ')->getForm();
+//
+//        if ($request->isMethod('POST')) {
+//           $form->bind($request);
+//
+//           // data is an array with "name", "email", and "message" keys
+//           $data = $form->getData();
+//        }
         
 
-//        if ($request->getMethod() == 'POST') {
-//            $form->bindRequest($request);
-//            
-//            if($form->isValid()){
-//                $data = $form->getData();
-//            }
-//            // Need to do something with the data here
-//        }
         
          return $this->render('TecUserBundle::index.html.twig');
     }

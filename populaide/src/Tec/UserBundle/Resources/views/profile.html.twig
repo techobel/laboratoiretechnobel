@@ -1,4 +1,5 @@
-{% extends "TecUserBundle::layout.html.twig" %}
+{#{% extends "TecUserBundle::layout.html.twig" %}#}
+{% extends "::inside_base.html.twig" %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -25,7 +26,16 @@
     <section id="general">
         <div class='container'>
             <div class='row'>
-                <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
+                {% if user.media != null %}
+                    <img
+                        src="{{ asset(user.media.uploadDir ~ '/' ~ user.media.id ~ user.media.path) }}"
+                        alt="{{ user.media.alt ~ user.username }}"
+                        width="150px"
+                        heigth="150px"
+                    />
+                {% else %}
+                    <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
+                {% endif %}
                 <h4>Evaluation globale</h4>
                 <ol id="stars">
                     <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
@@ -49,7 +59,13 @@
                         </a> 
                     </li>
                 </ul>
-                <h4>Disponibilité</h4>
+                <h4>Disponibilité
+                {% if user.disponible %}
+                    <span class="user-status green"></span>
+                {% else %}
+                    <span class="user-status red"></span>
+                {% endif %}
+                </h4>
             </div>
         </div>
     </section>

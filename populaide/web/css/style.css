@@ -171,6 +171,7 @@ h4 {
     font: 700 2em "HelveticaNeueLTStd-Bd",sans-serif; 
     padding-bottom: 5px;
     padding-top: 10px;
+    position: relative;
     margin: 0 auto;
 }
 
@@ -372,6 +373,28 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
 #how .pagination > .active > span:focus {
   background-color: #23777B; /*Turquoise fonc�*/
 }
+
+
+
+/*================================
+    PROFILE PAGE STYLES
+==================================*/
+/*Tommette de disponibilité*/
+.user-status {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    margin-top: 2px;
+    margin-left: 20px;
+}
+.user-status.green{
+    background-color: green;
+}
+.user-status.red{
+    background-color: red;
+} 
+            
 
 /*================================
     FOOTER SECTION STYLES
