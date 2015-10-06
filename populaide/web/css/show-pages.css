@@ -222,6 +222,12 @@
         .col-sm-6 {
             float: none;
         }
+        .col-sm-offset-3 {
+            margin-left: 20%;
+        }
+        half {
+            margin-left: 0;
+        }
     }
     @media (min-width: 980px) {
         .half {
