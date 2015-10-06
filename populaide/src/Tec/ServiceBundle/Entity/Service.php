@@ -49,7 +49,7 @@ class Service
     private $demande;
     
     /**
-     * @ORM\OneToMany(targetEntity="Tec\UserBundle\Entity\User", mappedBy="service")
+     * @ORM\OneToMany(targetEntity="Tec\UserBundle\Entity\Fournir", mappedBy="service")
      */
     private $fournisseurs;
     

@@ -32,7 +32,7 @@ class Demander
     private $user;
     
     /**
-     * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Service", mappedBy="demande")
+     * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="demande")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      */
     private $service;

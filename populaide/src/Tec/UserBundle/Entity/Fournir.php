@@ -37,13 +37,13 @@ class Fournir
      ********************************************************/
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="fournisseur")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="fournit")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
      */
-    private $fournisseur;
+    private $user;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="fournisseur")
+     * @ORM\ManyToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="fournisseurs")
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
      */
     private $service;    
@@ -85,49 +85,31 @@ class Fournir
     {
         return $this->note;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->fournisseur_service = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
-     * Add fournisseurService
+     * Set user
      *
-     * @param \Tec\UserBundle\Entity\User $fournisseurService
+     * @param \Tec\UserBundle\Entity\User $user
      *
      * @return Fournir
      */
-    public function addFournisseurService(\Tec\UserBundle\Entity\User $fournisseurService)
+    public function setUser(\Tec\UserBundle\Entity\User $user = null)
     {
-        $this->fournisseur_service[] = $fournisseurService;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Remove fournisseurService
+     * Get user
      *
-     * @param \Tec\UserBundle\Entity\User $fournisseurService
+     * @return \Tec\UserBundle\Entity\User
      */
-    public function removeFournisseurService(\Tec\UserBundle\Entity\User $fournisseurService)
+    public function getUser()
     {
-        $this->fournisseur_service->removeElement($fournisseurService);
+        return $this->user;
     }
 
-    /**
-     * Get fournisseurService
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFournisseurService()
-    {
-        return $this->fournisseur_service;
-    }
-
-    
     /**
      * Set service
      *
@@ -150,29 +132,5 @@ class Fournir
     public function getService()
     {
         return $this->service;
-    }
-
-    /**
-     * Set fournisseur
-     *
-     * @param \Tec\UserBundle\Entity\User $fournisseur
-     *
-     * @return Fournir
-     */
-    public function setFournisseur(\Tec\UserBundle\Entity\User $fournisseur = null)
-    {
-        $this->fournisseur = $fournisseur;
-
-        return $this;
-    }
-
-    /**
-     * Get fournisseur
-     *
-     * @return \Tec\UserBundle\Entity\User
-     */
-    public function getFournisseur()
-    {
-        return $this->fournisseur;
     }
 }

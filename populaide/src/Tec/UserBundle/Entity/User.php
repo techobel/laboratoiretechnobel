@@ -89,7 +89,7 @@ class User extends BaseUser
      ********************************************************/
     
     /**
-     * @ORM\OneToMany(targetEntity="Addresse", mappedBy="User", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Addresse", mappedBy="user", cascade={"persist"})
      */
     private $addresses;
     
@@ -109,7 +109,7 @@ class User extends BaseUser
      * l'utilisateur fournit un service
      * @ORM\OneToMany(targetEntity="Fournir", mappedBy="user")
      */
-    private $fournisseur;
+    private $fournit;
     
     /**
      * l'utilisateur postule à une annonce
@@ -126,7 +126,7 @@ class User extends BaseUser
     /**
      * @ORM\OneToMany(targetEntity="Notification", mappedBy="user")
      */
-    private $notification;
+    private $notifications;
 
     /********************************************************
      *                      GETTER/SETTER                   *
@@ -391,44 +391,6 @@ class User extends BaseUser
     }
 
     /**
-     * Add serviceFournisseur
-     *
-     * @param \Tec\UserBundle\Entity\Fournir $serviceFournisseur
-     *
-     * @return User
-     */
-    public function addServiceFournisseur(\Tec\UserBundle\Entity\Fournir $serviceFournisseur)
-    {
-        $this->service_fournisseur[] = $serviceFournisseur;
-
-        return $this;
-    }
-
-    /**
-     * Remove serviceFournisseur
-     *
-     * @param \Tec\UserBundle\Entity\Fournir $serviceFournisseur
-     */
-    public function removeServiceFournisseur(\Tec\UserBundle\Entity\Fournir $serviceFournisseur)
-    {
-        $this->service_fournisseur->removeElement($serviceFournisseur);
-    }
-
-    /**
-     * Get serviceFournisseur
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getServiceFournisseur()
-    {
-        return $this->service_fournisseur;
-    }
-
-   
-
-    
-
-    /**
      * Set disponible
      *
      * @param boolean $disponible
@@ -534,39 +496,6 @@ class User extends BaseUser
         return $this->postules;
     }
 
-    /**
-     * Add fournisseur
-     *
-     * @param \Tec\UserBundle\Entity\Fournir $fournisseur
-     *
-     * @return User
-     */
-    public function addFournisseur(\Tec\UserBundle\Entity\Fournir $fournisseur)
-    {
-        $this->fournisseur[] = $fournisseur;
-
-        return $this;
-    }
-
-    /**
-     * Remove fournisseur
-     *
-     * @param \Tec\UserBundle\Entity\Fournir $fournisseur
-     */
-    public function removeFournisseur(\Tec\UserBundle\Entity\Fournir $fournisseur)
-    {
-        $this->fournisseur->removeElement($fournisseur);
-    }
-
-    /**
-     * Get fournisseur
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFournisseur()
-    {
-        return $this->fournisseur;
-    }
 
     /**
      * Add notification
@@ -600,5 +529,49 @@ class User extends BaseUser
     public function getNotification()
     {
         return $this->notification;
+    }
+
+    /**
+     * Add fournit
+     *
+     * @param \Tec\UserBundle\Entity\Fournir $fournit
+     *
+     * @return User
+     */
+    public function addFournit(\Tec\UserBundle\Entity\Fournir $fournit)
+    {
+        $this->fournit[] = $fournit;
+
+        return $this;
+    }
+
+    /**
+     * Remove fournit
+     *
+     * @param \Tec\UserBundle\Entity\Fournir $fournit
+     */
+    public function removeFournit(\Tec\UserBundle\Entity\Fournir $fournit)
+    {
+        $this->fournit->removeElement($fournit);
+    }
+
+    /**
+     * Get fournit
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFournit()
+    {
+        return $this->fournit;
+    }
+
+    /**
+     * Get notifications
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 }
