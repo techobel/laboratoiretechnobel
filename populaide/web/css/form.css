@@ -74,6 +74,33 @@ fieldset{
     margin-bottom: 45px;
 }
 
+
+/* "FIELDSET" */
+#fos_user_registration_form_birth_date{
+    margin-bottom: 30px;
+}
+#fos_user_registration_form>div:nth-child(7)>input{
+    margin-bottom: 50px;
+}
+/*Ajout "fieldset" 1: AVANT le champs pseudo*/
+#fos_user_registration_form>div:nth-child(4)>input{
+    margin-top: 10px;
+}
+#fos_user_registration_form>div:nth-child(4)::before{
+    content: "Données de connexion";
+    color: #23777B; /*Turquoise fonc�*/
+    font: 700 1.5em "HelveticaNeueLTStd-Roman", sans-serif;
+    text-transform: uppercase;
+}
+/*Ajout "fieldset" 2: APRES le champs email*/
+fos_user_registration_form_addresses input:first-of-type::before{
+    content: "Coordonnées personnelles";
+    color: #23777B; /*Turquoise fonc�*/
+    font: 700 1.5em "HelveticaNeueLTStd-Roman", sans-serif;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
 /* BOUTONS */
 .btn {
     font: 700 1.5em "HelveticaNeueLTStd-Bd",sans-serif;
@@ -249,7 +276,7 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
     .form-inline .col-xs-12, 
     input.btn-primary, 
     section.search input:last-of-type{
-        width: 42%;
+        /*width: 42%;*/
         margin-left: 2%;
     }
     /*Champs côte à côte pour tous les form sauf celui de recherche*/
@@ -257,9 +284,9 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
     #form_contact .form-inline .col-xs-12:not(textarea), 
     #form_contact input.btn-primary:not(textarea), 
     #form_contact section.search input:last-of-type:not(textarea){
-        width: 48%;
+        /*width: 48%;*/
     }
-    /*Champs objet de contact*/
+    /*Champs objet de contact qui prend toute la largeur*/
     #form_contact .form-control .col-xs-12:not(textarea):nth-child(3), 
     #form_contact .form-inline .col-xs-12:not(textarea):nth-child(3){
         width: 98%;
