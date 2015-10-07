@@ -23,18 +23,28 @@
         {% block header %}
             <header id="top" class="navbar navbar-static-top bs-docs-nav" role="banner">
                 <div class="container">
-                    <div class="navbar-header"></div>
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" aria-expanded="false" aria-controls="bs-navbar" data-target="#bs-navbar" data-toggle="collapse" type="button">
+                            <span class="sr-only">Toogle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>    
+                        <a class="navbar-brand" href="{{ path('tec_user_index') }}" title="Retour à l'accueil">
+                            <hgroup>
+                                <h1><img src="{{ asset('images/logo.png') }}" alt="Popul'Aide" width='500'/></h1>
+                                <h2>L'entraide connectée</h2>
+                            </hgroup>
+                        </a>
+                    </div>
                     <nav id="bs-navbar" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
                             <li><a href="#footer_mob" ><img src="{{ asset('images/pictos/search.png') }}" class="menu-picto" alt="Rechercher"/></a></li>
                             <li><a href="{{ path('tec_user_index') }}" ><img src="{{ asset('images/pictos/home.png') }}" class="menu-picto" alt="Home"/></a></li>
                             <li><a href="{{ path('tec_user_contact') }}" ><img src="{{ asset('images/pictos/contact.png') }}" class="menu-picto" alt="Contact"/></a></li>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 <li><a href="{{ path('tec_user_profile',{'id': app.user.id}) }}" ><img src="{{ asset('images/pictos/user.png') }}" class="menu-picto" alt="Profil"/></a></li>   
-                            {% endif %}    
+                            {% endif %}                             
                         </ul>
                     </nav>
                 </div>
@@ -43,12 +53,7 @@
             <div id="home" class="home-index">
                 <div class="overlay">
                     <div class="container">
-                        <a href="{{ path('tec_user_index') }}" title="Retour à l'accueil">
-                            <hgroup class="col-md-8 col-md-offset-2 text-center">
-                                <h1><img src="{{ asset('images/logo.png') }}" alt="Popul'Aide" width='500'/></h1>
-                                <h2>L'entraide connectée</h2>
-                            </hgroup>
-                        </a>
+
                     </div>
                 </div> 
                 {% block search %}{% endblock %}
