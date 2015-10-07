@@ -140,19 +140,10 @@ ol li:last-child span{
     }
 }
 
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-    .container{
-        width: 60%;
-    }
-}
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {  
-    .container{
-        width: 50%;
-    }
-    
+
     /*ONGLETS*/
     nav{
         font-size: 2em;
