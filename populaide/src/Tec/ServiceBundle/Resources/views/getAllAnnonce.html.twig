@@ -7,11 +7,35 @@
 {% block body %}
     {{ parent() }}
     <section id="works">
+        
+        
+        {% if is_granted("ROLE_ADMIN") %}
+            {{ app.user.username }}
+            {{ app.user.id }}
+            {% set villeuser = "" %}
+            {% for addresse in app.user.getaddresses %}
+               {% set villeuser = addresse.city %}
+            {% endfor %}
+            <div id="villeuser">{{ villeuser }}</div>
+        {% endif %}
+        
+        
         Annonces:
         <ul>
         {% for annonce in annonces%}
-            <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description ~ " " ~ annonce.getType.getIntitule }}<a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}"> Voir +</a></li>
+            {% set villeannonce = "" %}
+            {% for addresse in annonce.getUser.getAddresses %}
+               {% set villeannonce = addresse.city %}
+            {% endfor %}
+            <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description ~ " " ~ annonce.getType.getIntitule ~ " " ~ villeannonce }}<a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}"> Voir +</a></li>
         {% endfor %}
         </ul>
+        
+        
     </section>
+        
+
 {% endblock %}
+
+    
+    
