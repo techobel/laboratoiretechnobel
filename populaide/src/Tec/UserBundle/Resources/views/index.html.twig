@@ -15,6 +15,8 @@
     <div class="container">                            
     <form  class="row form-inline" action="{{ path("tec_service_searchannonce2") }}" method="POST">
         <select class="col-xs-12 col-md-4 form-control " name="categorie" autofocus>
+{#include Tec...:action (appeler action du controller) -> tester
+et une vue contenant et contruisant un select#}
             <optgroup label="Animaux">
                 <option value="" id="hidden">Choisissez une catégorie</option>
                 <option value="2">Garde chez le propriétaire</option>
@@ -84,6 +86,7 @@
 
 
 {% block body %}
+    {% block inside_title %}{% endblock %}
     <div class="post-section">
         <div class="overlay">
             <div class="container">

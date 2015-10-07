@@ -15,13 +15,33 @@ class AddresseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('street', 'text', array('attr' => array('max_length' => '170')))
-            ->add('number', 'integer')
-            ->add('box', 'integer')
-            ->add('city', 'text', array('attr' => array('max_length' => '80')))
-            ->add('cp', 'integer')
+            /*Rue*/
+            ->add('street', 'text', array(
+                'label' => false,
+                'required' => true,
+                'attr' => array('max-length' => '170', 'placeholder' => "Rue")))
+            /*Numéro*/
+            ->add('number', 'text', array(
+                'label' => false,
+                'required' => true,
+                'attr' => array('placeholder' => "Numéro")))
+            /*Boite*/
+            ->add('box', 'text', array(
+                'label' => false,
+                'required' => false,
+                'attr' => array('placeholder' => "Boîte")))
+            /*CP*/
+            ->add('cp', 'integer', array(
+                'label' => false,
+                'required' => true,
+                'attr' => array('max-length' => '4', 'placeholder' => "Code postal")))
+            /*Localité*/
+            ->add('city', 'text', array(
+                'label' => false,
+                'required' => true,
+                'attr' => array('max-length' => '80', 'placeholder' => "Localité")))
             //->add('user')
-            ->add('save', 'submit')
+            //->add('save', 'submit')
         ;
     }
     
