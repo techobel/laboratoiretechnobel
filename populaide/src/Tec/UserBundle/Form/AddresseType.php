@@ -19,27 +19,35 @@ class AddresseType extends AbstractType
             ->add('street', 'text', array(
                 'label' => false,
                 'required' => true,
-                'attr' => array('max-length' => '170', 'placeholder' => "Rue")))
+                'attr' => array('max-length' => '170', 
+                            'placeholder' => "Rue",
+                            'class' => 'col-xs-12 col-md-4 form-control text')))
             /*Numéro*/
             ->add('number', 'text', array(
                 'label' => false,
                 'required' => true,
-                'attr' => array('placeholder' => "Numéro")))
+                'attr' => array('placeholder' => "Numéro",
+                            'class' => 'col-xs-12 col-md-4 form-control text')))
             /*Boite*/
             ->add('box', 'text', array(
                 'label' => false,
                 'required' => false,
-                'attr' => array('placeholder' => "Boîte")))
+                'attr' => array('placeholder' => "Boîte",
+                            'class' => 'col-xs-12 col-md-4 form-control text')))
             /*CP*/
             ->add('cp', 'integer', array(
                 'label' => false,
                 'required' => true,
-                'attr' => array('max-length' => '4', 'placeholder' => "Code postal")))
+                'attr' => array('max-length' => '4', 
+                            'placeholder' => "Code postal",
+                            'class' => 'col-xs-12 col-md-4 form-control text')))
             /*Localité*/
             ->add('city', 'text', array(
                 'label' => false,
                 'required' => true,
-                'attr' => array('max-length' => '80', 'placeholder' => "Localité")))
+                'attr' => array('max-length' => '80', 
+                            'placeholder' => "Localité",
+                            'class' => 'col-xs-12 col-md-4 form-control text')))
             //->add('user')
             //->add('save', 'submit')
         ;

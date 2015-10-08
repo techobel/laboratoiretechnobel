@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Doctrine\ORM\Query\ResultSetMapping;
 
+use Symfony\Component\HttpFoundation\Response;
+
 use Tec\ServiceBundle\Entity\Annonce;
 use Tec\ServiceBundle\Entity\Categorie;
 use Tec\ServiceBundle\Entity\Sub_categorie;
@@ -214,10 +216,14 @@ class ServiceController extends Controller
      * Récupère les annonces de la BD
      */
     public function getAllAnnonceAction(){
+        
+           
+            
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère toutes les annonces de la bd
         $annonces = $repository->findAll();
+
         //Renvoie vers la page qui affiche toutes les annonces
         return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
     }
@@ -1344,5 +1350,31 @@ class ServiceController extends Controller
         return $this->container->get('templating')->renderResponse('TecServiceBundle::getAllSubCategorie.html.twig', array('subcategories' => $subcategories));
             
         }
+    }
+    
+    /**
+     * test calcul entre 2 villes
+     */
+    public function testcalculAction(Request $request){
+                
+        //Récupère les parametres
+        $villeuser = $request->request->get('villeuser');
+        $villeannonce = $request->request->get('villeannonce');
+        
+        
+        if($request->isXmlHttpRequest())
+        {            
+            $url = "https://maps.googleapis.com/maps/api/distancematrix/xml?origins=".$villeuser."&destinations=".$villeannonce."&language=fr-FR";
+            //$url="http://maps.google.com/maps/api/directions/xml?language=fr&origin=".$villeuser."&destination=".$villeannonce."&sensor=false";          
+           
+            $xml=file_get_contents($url);
+            $root = simplexml_load_string($xml);
+            
+            $distance = json_encode($root->row->element->distance->text);
+            $duree = json_encode($root->row->element->duration->text);
+       
+        }
+       $response = array("code" => 400, "success" => true, "distance" => $distance, "duree" => $duree);
+       return new Response(json_encode($response));
     }
 }

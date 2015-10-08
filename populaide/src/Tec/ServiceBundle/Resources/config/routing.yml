@@ -154,3 +154,8 @@ tec_service_testajax2:
     path:     /testajax
     defaults: { _controller: TecServiceBundle:Service:testajax }
     methods: [GET]
+    
+tec_service_testcalcul:
+    path:     /testcalcul
+    defaults: { _controller: TecServiceBundle:Service:testcalcul }
+    methods: [POST]
