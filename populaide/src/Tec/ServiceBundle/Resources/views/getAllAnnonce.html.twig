@@ -27,13 +27,49 @@
             {% for addresse in annonce.getUser.getAddresses %}
                {% set villeannonce = addresse.city %}
             {% endfor %}
-            <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description ~ " " ~ annonce.getType.getIntitule ~ " " ~ villeannonce }}<a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}"> Voir +</a></li>
+            <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description ~ " " ~ annonce.getType.getIntitule}} Ville: <span class="ville">{{ villeannonce }}</span><a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}"> Voir +</a></li>
         {% endfor %}
         </ul>
         
         
     </section>
-        
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script> 
+    <script>
+
+    //alert($('#villeuser').text());
+    
+    var villeuser = $('#villeuser').text();
+    
+    //alert($('li').text());
+    /*
+    $('li').each(function(index){
+        console.log("Index: " + index + " Text: " + $(this).text());
+    });
+    */
+   
+   $('.ville').each(function(index){
+        console.log("Index: " + index + " Text: " + $(this).text());
+        var villeannonce = $(this).text();
+        calculdistance(villeuser, villeannonce);
+    });
+    
+    function calculdistance(villeuser, villeannonce){
+        $.ajax({
+            dataType: "jsonp",
+            type: "GET",
+            cache: false,
+            url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins="+villeuser+"&destinations="+villeannonce+"&language=fr-FR",
+            success: function(data){
+                        console.log(data);
+                     },
+            error: function(){
+                console.log("erreur");
+            }
+        });
+    }
+          
+      
+    </script>    
 
 {% endblock %}
 

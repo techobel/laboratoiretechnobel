@@ -221,41 +221,7 @@ class ServiceController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère toutes les annonces de la bd
         $annonces = $repository->findAll();
-        
-        
-        
-        /**
-         * test calcul distance villeannonce villeuser
-         */
-            //Récupère l'utilisateur en session
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            $villeuser = $user->getAddresses()[0]->getCity();
-            
-            foreach($annonces as $a){
-                
-                $villeannonce = $a->getUser()->getAddresses()[0]->getCity();
-                $result = "http://maps.google.com/maps/api/directions/xml?language=fr&origin=".$villeuser."&destination=".$villeannonce."&sensor=false%27";
-                var_dump($result);
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $result);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                $geoloc = json_decode(curl_exec($ch), true);
-                
-                var_dump($geoloc);
-                
-            }
-        
-        /**
-         * fin calcul distance villeannonce villeuser
-         */ 
-        
-        
-        
-        
-        
-        
-        
-        
+
         //Renvoie vers la page qui affiche toutes les annonces
         return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
     }
