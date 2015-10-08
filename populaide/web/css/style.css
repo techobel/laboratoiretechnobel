@@ -146,6 +146,8 @@ a.normal:visited{
         color: #fff; 
         text-transform: uppercase;
         font-weight: bold;
+        margin: 0 auto;
+        width: 90%;
     }
     .menu li:first-child {
         background-color: rgba(234,93,79,1);
@@ -170,22 +172,42 @@ a.normal:visited{
     }
 @media (min-width: 768px) {
     .menu p {display:block; float: left;}
-    #bs-navbar {position:absolute; top:0; right:0; width:50%;}
+    #bs-navbar {position:absolute; top:10px; right:0; width:50%;}
     #bs-navbar li {background:none; margin:0 5px; text-align:center; width:75px;}
     #bs-navbar li:nth-child(1) {background:none; text-align:right; width:100%;}
     #bs-navbar li:nth-child(2) {margin-left: 10%;}
+    #bs-navbar li:first-child a{margin-top: -20px;width: 50%;}
     #bs-navbar li a {color:#8a8381; display:inline-block; font-size:12px;  padding:0;}      
     #bs-navbar li a:hover {background-color: transparent;}
     #bs-navbar li a img {display:inline-block; width:50px} 
     .user-name {color: #23777B;}
     #bs-navbar li a span {color:#EB5E4E;}
-    #bs-navbar li a .blue {color: #23777B;}
   }    
-  @media (min-width: 900px) {
-    #slogan {
-        font-size: 160%;
-    }      
+@media (min-width: 900px) {
+  #slogan {
+      font-size: 140%;
+      margin-left: 15px;
+  }   
+  #bs-navbar {
+      right: -80px;
   }
+  #bs-navbar li a {
+      font-size: 14px;
+  }
+  #bs-navbar li a img {
+      width: 70px;
+  }
+}
+@media(min-width: 1024px) {
+  #bs-navbar {
+      right: -20px;
+  }    
+}
+@media(min-width: 1700px) {
+  #bs-navbar {
+      right: -200px;
+  }    
+}
 /*================================
     HOME SECTION STYLES
 ==================================*/
@@ -263,7 +285,7 @@ h4 {
 ==================================*/
 section.search, .footer_mob{
     padding-top: 60px;
-    padding-bottom: 46px;
+    padding-bottom: 200px;
 }
 /*input localité*/
 section.search input:last-of-type, .footer_mob input:last-of-type{
