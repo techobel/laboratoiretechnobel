@@ -149,6 +149,9 @@ a.normal:visited{
         margin: 0 auto;
         width: 90%;
     }
+    .menu li a:hover {
+        background-color: transparent;
+    }
     .menu li:first-child {
         background-color: rgba(234,93,79,1);
         border-top-left-radius: 20px;
