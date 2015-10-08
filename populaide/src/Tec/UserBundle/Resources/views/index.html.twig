@@ -11,13 +11,14 @@
     {{ parent() }}
 {% endblock %} 
 {% block search %}
-<section class="search">
+<section class="search index">
     <div class="container">                            
     <form  class="row form-inline" action="{{ path("tec_service_searchannonce2") }}" method="POST">
-        <select class="col-xs-12 col-md-4 form-control " name="categorie" autofocus>
+        {#<select class="col-xs-12 col-md-4 form-control " name="categorie" autofocus>#}
 {#include Tec...:action (appeler action du controller) -> tester
 et une vue contenant et contruisant un select#}
-            <optgroup label="Animaux">
+        {% render path('tec_service_testselect') %}
+            {#<optgroup label="Animaux">
                 <option value="" id="hidden">Choisissez une catégorie</option>
                 <option value="2">Garde chez le propriétaire</option>
                 <option value="3">Garde à domicile</option>
@@ -73,8 +74,8 @@ et une vue contenant et contruisant un select#}
                 <option value="36">Réparation/Assistance/Dépannage matériel</option>
                 <option value="37">Photo/Vidéo</option>
                 <option value="38">Web</option>
-            </optgroup>
-        </select>
+            </optgroup>#}
+{#        </select>#}
         <input class="col-xs-12 col-md-4 form-control " type="text" name="localite"/>
         <button type="submit"><img src="{{ asset("images/pictos/search.png") }}" width="100" height="100"/></button>
     </form>
@@ -112,49 +113,49 @@ et une vue contenant et contruisant un select#}
             <nav class="row">
                 <ul>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 5}) }}">
                                 <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
                                 Bricolage
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 7}) }}">
                                 <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
                                 Jardinage
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 8}) }}">
                                 <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
                                 Multimédia
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
                                 <img src="{{ asset('images/pictos/pets.png') }}" width="45" alt="" class="img-responsive" />
                                 Animaux
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
                                 <img src="{{ asset('images/pictos/anim.png') }}" width="45" alt="" class="img-responsive" />
                                 Animation
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 4}) }}">
                                 <img src="{{ asset('images/pictos/wellness.png') }}" width="45" alt="" class="img-responsive" />
                                 Bien-être
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 6}) }}">
                                 <img src="{{ asset('images/pictos/cours.png') }}" width="45" alt="" class="img-responsive" />
                                 Cours
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 3}) }}">
                                 <img src="{{ asset('images/pictos/assist.png') }}" width="45" alt="" class="img-responsive" />
                                 Assistance
                             </a>
@@ -164,7 +165,7 @@ et une vue contenant et contruisant un select#}
         </div>
     </section>
     <!-- CATEGORY SECTION END-->
-    <section id="how">
+    {#<section id="how">
         <div class="container">
             <div class="row text-center pad-bottom">
                 <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
@@ -194,6 +195,135 @@ et une vue contenant et contruisant un select#}
                 </div>
             </div>
         </div>
-    </section>
+    </section>#}
     <!--HOW SECTION END  -->
+    
+    <section id="how">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="15000">
+            <!-- Indicators -->
+            {#<ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>#}
+            
+            <div class="row text-center pad-bottom">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                    <h3 class="head-set">Comment ça marche ?</h3>
+                    <div class="btn-group btn-group-lg" role="group" aria-label="how">
+                        <button type="button" class="btn btn-radio active">J'offre un service</button>
+                        <button type="button" class="btn btn-radio">J'ai besoin d'un service</button>
+                    </div>
+                    <ul class="carousel-indicators">
+                        <li data-pause="hover" data-target="#carousel-example-generic" data-slide-to="0" class="active">1</li>
+                        <li data-pause="hover" data-target="#carousel-example-generic" data-slide-to="1">2</li>
+                        <li data-pause="hover" data-target="#carousel-example-generic" data-slide-to="2">3</li>
+                        <li data-pause="hover" data-target="#carousel-example-generic" data-slide-to="3">4</li>
+                        <li data-pause="hover" data-target="#carousel-example-generic" data-slide-to="4">5</li>
+                        <li data-pause="hover" data-target="#carousel-example-generic" data-slide-to="5">6</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <!--Demandeur/Prestataire-->
+              <div class="item active">
+                <div class="container">
+                    <div class="row text-left portfolio-item">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="alert box-how clearfix">
+                                <img src="{{ asset('images/steps/01.png') }}" class="img-responsive " alt="" />
+                                <h3>Connectez-vous ou inscrivez-vous !</h3>
+                                <p>C'est facile, gratuit et vous pourrez collaborer avec des centaines de personnes dans votre région !</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <!--Demandeur 2-->
+              <div class="item">
+                <div class="container">
+                    <div class="row text-left portfolio-item">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="alert box-how clearfix">
+                                <img src="{{ asset('images/steps/02a.png') }}" class="img-responsive " alt="" />
+                                <h3>Cherchez un service</h3>
+                                <p>Vous avez besoin d'aide pour repeindre votre cuisine?</p>
+                                <p>Choisissez simplement la catégorie Bricolage et saisissez votre code postal !</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <!--Demandeur 3-->
+              <div class="item">
+                <div class="container">
+                    <div class="row text-left portfolio-item">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="alert box-how clearfix">
+                                <img src="{{ asset('images/steps/03a.png') }}" class="img-responsive " alt="" />
+                                <h3>Manifestez votre intérêt</h3>
+                                <p>Si une annonce correspond au(x) type(s) de service(s) que vous cherchez, cliquez sur l’icône représentée ci-dessus afin de communiquer vos coordonnées au membre.</p>
+                                <p>Ensuite, attendez simplement que ce dernier vous contacte par les moyens que avez rendus publics sur votre profil.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <!--Demandeur 4-->
+              <div class="item">
+                <div class="container">
+                    <div class="row text-left portfolio-item">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="alert box-how clearfix">
+                                <img src="{{ asset('images/steps/04a.png') }}" class="img-responsive " alt="" />
+                                <h3>Entrez en contact avec le prestataire</h3>
+                                <p>Convenez d'un rendez-vous avec le prestataire choisi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <!--Demandeur 5-->
+              <div class="item">
+                <div class="container">
+                    <div class="row text-left portfolio-item">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="alert box-how clearfix">
+                                <img src="{{ asset('images/steps/05a.png') }}" class="img-responsive " alt="" />
+                                <h3>La prestation</h3>
+                                <p>Prestez la tâche pour laquelle vous aviez besoin d'aide avec l'aide du prestataire que vous avez choisi.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <!--Demandeur 6-->
+              <div class="item">
+                <div class="container">
+                    <div class="row text-left portfolio-item">
+                        <div class="col-md-12 col-sm-12 ">
+                            <div class="alert box-how clearfix">
+                                <img src="{{ asset('images/steps/06a.png') }}" class="img-responsive " alt="" />
+                                <h3>Évaluez le prestataire</h3>
+                                <p>Une fois la tâche accomplie, évaluez la prestation sur le profil public du prestataire.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+    </section>
 {% endblock %}

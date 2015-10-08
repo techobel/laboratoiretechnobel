@@ -1,3 +1,91 @@
+option{
+    /*padding-left: 15px;*/
+}
+.optionGroup{
+    font-weight:700;
+    /*padding-left: -15px;*/
+}
+
+
+/*Caroussel*/
+/* PAGINATION */
+.carousel{
+    background-color: #EBCEA2;
+}
+#how .carousel-indicators{
+    margin: 35px 0 0;
+}
+#how .carousel-indicators > li {
+    background-color: #65C2C7; /*Turquoise clair*/
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font: 1em "Grobold", fantasy;
+    height: 35px;
+    margin-left: 15px;
+    padding: 0.6em;
+    text-indent: initial;
+    width: 35px;
+}
+/*.pagination-lg > li > a,
+.pagination-lg > li > span {
+    padding: 5px 10px;
+}*/
+#how .carousel-indicators > li:first-child,{
+    margin-left: 0;
+}
+#how .carousel-indicators > li:hover,
+#how .carousel-indicators > li:focus{
+  background-color: #65C2C7; /*Turquoise clair*/
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3) inset;
+  color: #23777B; /*Turquoise fonc�*/
+  cursor: pointer;
+}
+#how .carousel-indicators > li.active,
+#how .carousel-indicators > li.active:focus {
+  background-color: #23777B; /*Turquoise fonc�*/
+}
+#how .carousel-indicators > li.active:hover{
+  color: #fff;
+}
+.box-how h3{
+    margin: 2em 5em;
+}
+.item:first-child .box-how h3::before,
+.item:nth-child(2) .box-how h3::before,
+.item:nth-child(3) .box-how h3::before,
+.item:nth-child(4) .box-how h3::before,
+.item:nth-child(5) .box-how h3::before,
+.item:last-child .box-how h3::before{
+    content: "";
+    background-size: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 75px;
+    left: 2em;
+    position: absolute;
+    top: 1.5em;
+    width: 75px;
+}
+.item:first-child .box-how h3::before{
+    background-image: url("../images/pictos/user.png");
+}
+.item:nth-child(2) .box-how h3::before{
+    background-image: url("../images/pictos/search.png");
+}
+.item:nth-child(3) .box-how h3::before,
+.item:nth-child(5) .box-how h3::before{
+    background-image: url("../images/pictos/coop.png");
+}
+.item:nth-child(4) .box-how h3::before{
+    background-image: url("../images/pictos/contact.png");
+}
+.item:last-child .box-how h3::before{
+    background-image: url("../images/pictos/rate.png");
+}
+
+
 /*================================
     TITLE SECTION STYLES
 ==================================*/
@@ -80,7 +168,7 @@ fieldset{
     margin-bottom: 30px;
 }
 #fos_user_registration_form>div:nth-child(7)>input{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 /*Ajout "fieldset" 1: AVANT le champs pseudo*/
 #fos_user_registration_form>div:nth-child(4)>input{
@@ -93,7 +181,7 @@ fieldset{
     text-transform: uppercase;
 }
 /*Ajout "fieldset" 2: APRES le champs email*/
-fos_user_registration_form_addresses input:first-of-type::before{
+#fos_user_registration_form>div:nth-child(7)::after{
     content: "Coordonnées personnelles";
     color: #23777B; /*Turquoise fonc�*/
     font: 700 1.5em "HelveticaNeueLTStd-Roman", sans-serif;
@@ -113,6 +201,7 @@ fos_user_registration_form_addresses input:first-of-type::before{
     border: none;
     border-radius: 55px;
     height: 55px;
+    margin-bottom: 10px;
     text-shadow: 2px 2px #7f3028; /*Orange clair*/
     text-transform: uppercase;
 }
@@ -224,7 +313,10 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
         margin-right: 35px;
         width: auto;
     }
-}
+    
+    #fos_user_registration_form>div:nth-child(7)::after{
+        line-height: 2em;
+    }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     #tec_servicebundle_annonce.form .form-control .col-xs-12, 
@@ -275,8 +367,8 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
     .form-control .col-xs-12, 
     .form-inline .col-xs-12, 
     input.btn-primary, 
-    section.search input:last-of-type{
-        /*width: 42%;*/
+    section.search.index input:last-of-type{
+        width: 42%;
         margin-left: 2%;
     }
     /*Champs côte à côte pour tous les form sauf celui de recherche*/
