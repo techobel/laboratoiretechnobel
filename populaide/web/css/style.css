@@ -72,21 +72,7 @@ li{
 }
 .navbar-default .navbar-toggle .icon-bar {
     background-color:#fff;
-}
-
-.navbar > .container > .btn{
-    display: none; /*Connetion fixed invisible*/
-}
-    .btn-connexion {
-        color: #fff;
-        font-style: italic;
-        background-color: #65C2C7;  
-        font-size: 1.2em;
-    }
-    .btn-connexion:hover{
-        background-color: #23777B;
-    }
-    
+}    
 h2 {
     color: #65C2C7;
     font-style: italic;
@@ -103,7 +89,103 @@ a.normal:hover{
 a.normal:visited{
     color: #7F3028; /*Orange très foncé*/
 }
+/*================================
+    MENU STYLES
+==================================*/
 
+.group-logo{
+    width: 50%;
+    height: 20%;
+    float: left;
+    margin: 1%;
+}
+.header {
+    background-color: #fff;
+}
+#logo>img{
+    max-width: 150px;
+}
+#slogan {
+    font-size: 90%;
+}
+@media(min-width: 480px) {
+    #slogan {
+        font-size: 120%;
+    }
+}
+@media(min-width: 640px) {
+    #logo>img {
+        min-width: 250px;
+        max-width: 300px;
+    }
+    #slogan {
+        font-size: 140%;
+    }
+}
+.menu {
+    width: 100%;
+    margin: 0 auto;
+}
+    .img-menu {
+        display: none;
+    }
+    .menu p {
+        display: none;
+    }
+    #bs-navbar {
+        width: 100%;
+        margin: 2%;      
+    }
+    .menu li {
+        width: 100%;
+        height: 40px;
+        margin: 1% 0 1% 0;
+        margin: 0 auto;
+    }
+    .menu li a{
+        color: #fff; 
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    .menu li:first-child {
+        background-color: rgba(234,93,79,1);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .menu li:nth-child(2) {
+        background-color: rgba(234,93,79,0.9);
+    }
+    .menu li:nth-child(3) {
+        background-color: rgba(234,93,79,0.7);
+    }    
+    .menu li:nth-child(4) {
+        background-color: rgba(234,93,79,0.5);
+    }
+    .menu li:nth-child(5) {
+        background-color: rgba(234,93,79,0.4);
+    }
+    .menu li:last-child {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+@media (min-width: 768px) {
+    .menu p {display:block; float: left;}
+    #bs-navbar {position:absolute; top:0; right:0; width:50%;}
+    #bs-navbar li {background:none; margin:0 5px; text-align:center; width:75px;}
+    #bs-navbar li:nth-child(1) {background:none; text-align:right; width:100%;}
+    #bs-navbar li:nth-child(2) {margin-left: 10%;}
+    #bs-navbar li a {color:#8a8381; display:inline-block; font-size:12px;  padding:0;}      
+    #bs-navbar li a:hover {background-color: transparent;}
+    #bs-navbar li a img {display:inline-block; width:50px} 
+    .user-name {color: #23777B;}
+    #bs-navbar li a span {color:#EB5E4E;}
+    #bs-navbar li a .blue {color: #23777B;}
+  }    
+  @media (min-width: 900px) {
+    #slogan {
+        font-size: 160%;
+    }      
+  }
 /*================================
     HOME SECTION STYLES
 ==================================*/
@@ -183,12 +265,6 @@ section.search, .footer_mob{
     padding-top: 60px;
     padding-bottom: 46px;
 }
-/*.form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
-    width: 100%;
-    height: 45px;
-    margin-bottom: 15px;
-}*/
-
 /*input localité*/
 section.search input:last-of-type, .footer_mob input:last-of-type{
     width: 80%;
@@ -201,14 +277,8 @@ section.search input:last-of-type, .footer_mob input:last-of-type{
 section.search button[type="submit"], .footer_mob button[type="submit"]{
     border: none;
     background-color: transparent;
-    /*height: 50%;*/
-/*    margin-top: -30px;
-    margin-left: 5px;*/
     padding-right: 0;
     width: 55px;
-/*    width:15%;
-    min-width: 55px;
-    max-width: 85px;*/
     margin-left: 0%;
     float:right;
 }
@@ -233,24 +303,6 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
     padding: 50px 0;
     margin-bottom: 20px;
 }
-
-/*.parallax-like {
-    background: url(../img/stats.jpg) no-repeat center center;  DEFINE IMAGE PATH CAREFULLY
-    padding: 0;
-    -webkit-background-size: cover;
-    background-size: cover;
-    color: #fff;
-    background-attachment: fixed;
-}
-
-    .parallax-like .overlay {
-        min-height: 200px;
-        background: rgba(35, 133, 161,0.9);
-        font-size: 40px;
-        padding-bottom: 60px;
-        padding-top: 60px;
-    }*/
-
 /*======================================
     CONNECTION SECTION STYLES
 =========================================*/
@@ -272,8 +324,6 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
 }
 .navbar {
     margin-bottom: 0;
-    background: none;
-    float: right;
 }
 .menu-md {
     display: none;
@@ -373,9 +423,6 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
 #how .pagination > .active > span:focus {
   background-color: #23777B; /*Turquoise fonc�*/
 }
-
-
-
 /*================================
     PROFILE PAGE STYLES
 ==================================*/
@@ -393,9 +440,7 @@ section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
 }
 .user-status.red{
     background-color: red;
-} 
-            
-
+}
 /*================================
     FOOTER SECTION STYLES
 ==================================*/
@@ -437,9 +482,7 @@ footer p{
     #footer_desk a:hover{
         color: #65C2C7;
     }
-    
-
-
+   
 /* Extra-small devices (phones, 450px and up) */
 @media(min-width: 450px){
     /*TITLE*/
@@ -452,27 +495,8 @@ footer p{
     /*HOME*/
     h1 img{
         width: 60%;
-    }
-/*    .home-index{
-        height: 450px;
-        background-position-y: center;
-    }*/
-    
-    
-    /*SEARCH*/
-/*    .form-inline:last-child .form-control:last-child {
-        min-width: 11%;
-        max-width: 16%;
-    }*/
-/*    .form-control .col-md-4, .form-inline .col-md-4{
-        width: 42%;
-        height: 55px;
-        margin-right: 15px;
-    }*/
-/*    .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary{
-        width: 40%;
-    }*/
-    .form-inline{
+    } 
+   .form-inline{
         padding-left: auto;
     }
     /*input localité*/
