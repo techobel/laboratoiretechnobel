@@ -13,7 +13,10 @@ option{
     background-color: #EBCEA2;
 }
 #how .carousel-indicators{
+    bottom: initial;
+    left: initial;
     margin: 35px 0 0;
+    width: 100%;
 }
 #how .carousel-indicators > li {
     background-color: #65C2C7; /*Turquoise clair*/
@@ -83,6 +86,19 @@ option{
 }
 .item:last-child .box-how h3::before{
     background-image: url("../images/pictos/rate.png");
+}
+
+.carousel-control.left{
+    background: linear-gradient(to right, rgba(127, 48, 40, 0.9), rgba(0, 0, 0, 0.0001));
+}
+.carousel-control.right{
+    background: linear-gradient(to left, rgba(127, 48, 40, 0.9), rgba(0, 0, 0, 0.0001));
+}
+.carousel-control.left:hover, .carousel-control.left:focus{
+    background: linear-gradient(to right, rgba(235, 94, 78, 0.7), rgba(0, 0, 0, 0.0001));
+}
+.carousel-control.right:hover, .carousel-control.right:focus{
+    background: linear-gradient(to left, rgba(235, 94, 78, 0.7), rgba(0, 0, 0, 0.0001));
 }
 
 
@@ -219,6 +235,14 @@ fieldset{
     background-color: #EB5E4E;
     border: none;
     box-shadow: 5px 5px 5px #7f3028 inset; 
+    text-shadow: none;
+}
+.btn-primary:focus, .btn-secondary:focus, .btn-default:focus, .btn-radio:focus,
+.btn-group > .btn:last-child:not(:first-child):focus,
+.btn-group > .btn:first-child:not(:last-child):focus,
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle):focus{
+    background-color: #23777B; /*Turquoise fonc�*/
+    box-shadow: 5px 5px 5px #000 inset;
     text-shadow: none;
 }
 .btn-secondary:hover{
