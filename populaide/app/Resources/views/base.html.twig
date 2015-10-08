@@ -25,7 +25,7 @@
                 <a class="navbar-brand group-logo" href="{{ path('tec_user_index') }}" title="Retour à l'accueil">
                     <hgroup>
                         <h1 id="logo"><img src="{{ asset('images/logo.png') }}" alt="Popul'Aide" width='500'/></h1>
-                        <h2 id="slogan">L'entraide connectée</h2>
+                        <h2 id="slogan">Réseau d'entraide locale</h2>
                     </hgroup>
                 </a>                
                 <div class="container">
@@ -43,9 +43,9 @@
                                 {% block connexion %}
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                         <p>Bienvenue <span class="user-name">{{ app.user.username }}</span></p>
-                                        <a class="red" href="{{ path('fos_user_security_logout') }}" style="color:#EB5E4E">Deconnecter</a>
+                                        <a href="{{ path('fos_user_security_logout') }}">Deconnecter</a>
                                     {% else %}
-                                        <a class="blue" href="{{ path('fos_user_security_login') }}" style="color:#23777B">Connecter</a>
+                                        <a href="{{ path('fos_user_security_login') }}">Connecter</a>
                                    {% endif %}
                                 {% endblock %}
                             </li>
