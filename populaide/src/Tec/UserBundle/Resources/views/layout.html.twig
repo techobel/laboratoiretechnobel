@@ -23,10 +23,10 @@
     </section>
 
   {# On affiche les messages flash que définissent les contrôleurs du bundle #}
-  {% for key, message in app.session.flashbag.all() %}
+  {#{% for key, message in app.session.flashbag.all() %}
     <div class="alert alert-{{ key }}">
       {{ message|trans({}, 'FOSUserBundle') }}
     </div>
-  {% endfor %}
+  {% endfor %}#}
 
 {% endblock %}

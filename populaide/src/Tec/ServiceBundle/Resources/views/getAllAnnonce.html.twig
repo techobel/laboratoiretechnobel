@@ -50,24 +50,26 @@
    $('.ville').each(function(index){
         console.log("Index: " + index + " Text: " + $(this).text());
         var villeannonce = $(this).text();
-        calculdistance(villeuser, villeannonce);
+        calculdistance(villeuser, villeannonce, $(this));
     });
     
-    function calculdistance(villeuser, villeannonce){
-        $.ajax({
-            dataType: "jsonp",
-            type: "GET",
-            cache: false,
-            url: "https://maps.googleapis.com/maps/api/distancematrix/json?origins="+villeuser+"&destinations="+villeannonce+"&language=fr-FR",
+    function calculdistance(villeuser, villeannonce, element){
+        $.ajax({   
+            data: {villeuser: villeuser, villeannonce: villeannonce},
+            dataType: "json",
+            type: "POST",
+            url: "{{ path('tec_service_testcalcul') }}",
             success: function(data){
-                        console.log(data);
-                     },
+                    //console.log(data.distance);    
+                    
+                    element.append(" Distance: " + data.distance.substring(6, data.distance.length-2) + " Duree: " +data.duree.substring(6, data.duree.length-2));                       
+                    },
             error: function(){
                 console.log("erreur");
             }
         });
     }
-          
+         
       
     </script>    
 

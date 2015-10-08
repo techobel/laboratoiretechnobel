@@ -83,6 +83,16 @@ class User extends BaseUser
      */
     private $disponible;
     
+    /**
+     * CONSTRUCTEUR
+     */
+    
+    public function __construct(){
+        parent::__construct();
+        $this->setCreationDate(new \DateTime());
+        $this->setDisponible(true);
+    }
+    
     
     /********************************************************
      *                      RELATION TABLES                 *
@@ -127,7 +137,7 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Notification", mappedBy="user", cascade={"persist", "remove"})
      */
     private $notifications;
-
+    
     /********************************************************
      *                      GETTER/SETTER                   *
      ********************************************************/
