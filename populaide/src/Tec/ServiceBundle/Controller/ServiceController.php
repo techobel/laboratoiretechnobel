@@ -1381,16 +1381,15 @@ class ServiceController extends Controller
     
     
     //        Test select
-    public function testselectAction(){
-        //Récupère le repository de categorie
-        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
-        //Récupère toutes les categories de la bd
-        $categories = $repository->findAll();
-        
-        //Récupère le repository de sub_categorie
-        $repositorySub = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
-        //Récupère les sous categories de la bd
-        $subcategories = $repositorySub->findAll();
-        return $this->render('TecServiceBundle::constructSelectCategorie.html.twig', array('categories' => $categories, 'subcategories' => $subcategories));
+//    public function testselectAction(){
+//        //Récupère le repository de categorie
+//        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
+//        //Récupère toutes les categories de la bd
+//        $categories = $repository->findAll();
+//        
+//        //Récupère le repository de sub_categorie
+//        $repositorySub = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
+//        //Récupère les sous categories de la bd
+//        $subcategories = $repositorySub->findAll();
+//        return $this->render('TecServiceBundle::constructSelectCategorie.html.twig', array('categories' => $categories, 'subcategories' => $subcategories));
     }
-

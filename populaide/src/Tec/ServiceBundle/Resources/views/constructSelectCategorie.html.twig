@@ -56,20 +56,20 @@
                 </li>     
               {% endfor %}#}
               
-    {% for categorie in categories %}
+    {#{% for categorie in categories %}
         <li>
           <span>{{categorie.name}}</span>
           <ul>
             {% for subcategorie in subcategories[categorie.id] %}
-{#              {% if loop.index == 4 %}#}
+{#              {% if loop.index == 4 %}
                 <li><span>{{ subcategorie.name }}</span></li>
               {#{% else %}
                 <li><span>{{ subcategorie.name }}</span></li>#}
-{#              {% endif %}#}
+{#              {% endif %}
             {% endfor %}
           </ul>
         </li>     
-      {% endfor %}
+      {% endfor %}#}
 
             
             {#{% for cat, subcat in categories %}

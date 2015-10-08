@@ -160,6 +160,6 @@ tec_service_testcalcul:
     defaults: { _controller: TecServiceBundle:Service:testcalcul }
     methods: [POST]
         
-tec_service_testselect:
-    path:    /index
-    defaults: { _controller: TecServiceBundle:Service:testselect }
+#tec_service_testselect:
+#    path:    /index
+#    defaults: { _controller: TecServiceBundle:Service:testselect }
