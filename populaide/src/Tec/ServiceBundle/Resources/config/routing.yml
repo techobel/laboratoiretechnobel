@@ -2,10 +2,7 @@
 #    path:     /
 #    defaults: { _controller: TecServiceBundle:Default:index }
 
-tec_service_mail:
-    path:     /mail
-    defaults: { _controller: TecServiceBundle:Service:mail }
-    
+
 tec_service_sendAdminMail:
     path:     /contact/mail
     defaults: { _controller: TecServiceBundle:Service:sendAdminMail }
@@ -163,3 +160,4 @@ tec_service_testcalcul:
 #tec_service_testselect:
 #    path:    /index
 #    defaults: { _controller: TecServiceBundle:Service:testselect }
+

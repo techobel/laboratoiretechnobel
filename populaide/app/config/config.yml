@@ -88,3 +88,9 @@ fos_user:
     #le nom du firewall
     user_class: Tec\UserBundle\Entity\User  
     #la classe de l'entité user que nous utilisons
+
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }

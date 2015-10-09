@@ -38,23 +38,7 @@ use Tec\UserBundle\Controller\UserController;
 
 class ServiceController extends Controller
 {    
-    /**
-     * 
-     * action pour test envoie mail
-     */
-//    public function mailAction(){
-//        $message = \Swift_Message::newInstance()
-//                ->setSubject('Test mail')
-//                ->setFrom('technobellaboratoire@outlook.fr')
-//                ->setTo("hbenji@hotmail.com")
-//                ->setContentType('text/html')
-//                ->setBody("testmail");
-//        
-////        var_dump($this->get('mailer')->send($message));
-//
-//        return $this->render('TecServiceBundle::results.html.twig');
-//    }
-    
+       
     /**
      * 
      * @param $subject  sujet du mail ('Inscription chez Popul'aide', 'Compte bloqué', ...)
@@ -70,11 +54,10 @@ class ServiceController extends Controller
                 ->setContentType('text/html')
                 ->setBody($body);
         
-        return $this->get('mailer')->send($message);
-        
+        return $this->get('mailer')->send($message);        
     }
     
-    public function sendAdminMailAction(Request $request){
+     public function sendAdminMailAction(Request $request){
 //        $user = new SiteUser();
 //        $form = $this->createForm(new LoginType(), $user);
         
@@ -149,13 +132,13 @@ class ServiceController extends Controller
      *          ANNONCE         *
      ****************************/
     
-    /**
-     * Ajout d'une annonce
-     */
+    /***********************
+     * Ajout d'une annonce *
+     ***********************/
     public function addAnnonceAction(Request $request){
         //On vérifie que l'utilisateur est connecté
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-          // Sinon on déclenche une exception « Accès interdit »
+          //Sinon on déclenche une exception « Accès interdit »
           throw new AccessDeniedException('Accès limité.');
         }  
         //Si l'utilisateur est connecté
@@ -164,74 +147,56 @@ class ServiceController extends Controller
         //Ajout de la class du formulaire
         $options = array('attr' => array('class' => 'form row form-inline form-one clearfix'));        
         //Création du formulaire
-        $form = $this->get('form.factory')->create(new AnnonceType(), $annonce, $options);
-        //Si le formulaire a été validé
-        if($form->handleRequest($request)->isValid()){
-            //Récupère l'utilisateur en session
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();
-            //Initialisation des attributs = date création/active article
-            $annonce->setActive(true);
-            $annonce->setCreationDate(new \DateTime()); 
-            
-            /**
-             * Relation automatique subcategorie - annonce, type - annonce 
-             * donc pas besoin de faire ce qu'il y a en commentaire ci-dessous
-             */
-            /*
-            Récupère la subcategorie
-            $subcategorie = $form->get('sub_categorie')->getData(); 
-            Récupère le type
-            $type = $form->get('type')->getData();
-            Relation annonce - user - sub_categorie
-            
-            $annonce->setSubCategorie($subcategorie);
-            $subcategorie->addAnnonce($annonce);
-            
-            $type->addAnnonce($annonce);
-            $annonce->setType($type);
-            */
-            $user->addAnnonce($annonce);
-            $annonce->setUser($user);
-            
-            //Doctrine se charge de l'entity annonce
-            $em->persist($annonce);
-            //Sauvegarde en bd
-            $em->flush();
-            //Ajout d'une notification
-            UserController::addNotification("Vous avez bien ajouté l'annonce.", $user->getId());            
-            
-            //Ajout d'un message flash
-            $this->addFlash('notice', "Ajout annonce OK.");
-            
-            //Redirection
-            return $this->forward('TecServiceBundle:Service:results');
-        }        
+        $form = $this->get('form.factory')->create(new AnnonceType(), $annonce, $options);          
+        //Test si methode post
+        if($request->isMethod('POST')){
+            //Si le formulaire a été validé
+            if($form->handleRequest($request)->isValid()){                
+                //Récupère l'utilisateur en session
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();
+                //Initialisation des attributs = date création/active article
+                $annonce->setActive(true);
+                $annonce->setCreationDate(new \DateTime()); 
+                //Relation annonce - user
+                $user->addAnnonce($annonce);
+                $annonce->setUser($user);
+                //Doctrine se charge de l'entity annonce
+                $em->persist($annonce);
+                //Sauvegarde en bd
+                $em->flush();
+                //Ajout d'une notification
+                UserController::addNotification("Vous avez bien ajouté l'annonce.", $user->getId());     
+                //Envoie mail
+                $this->sendMail("Ajout d'une annonce", $user->getEmail(), "Votre annonce a été ajouté.");
+                //Ajout d'un message flash
+                $this->addFlash('notice', "Ajout annonce OK.");
+                //Redirection
+                return $this->redirect($this->generateUrl('tec_service_getallannonce'));
+            }else{
+               $this->addFlash('notice', "Erreur lors de l'ajout d'une annonce.");
+            }  
+        }
         //si le formulaire n'a pas été validé
-        return $this->render('TecServiceBundle::test.html.twig', array('form' => $form->createView()));
+        return $this->render('TecServiceBundle::addannonce.html.twig', array('form' => $form->createView()));
     }
     
-    /**
-     * Récupère les annonces de la BD
-     */
+    /**********************************
+     * Récupère les annonces de la BD *
+     **********************************/
     public function getAllAnnonceAction(){
-        
-           
-            
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
         //Récupère toutes les annonces de la bd
         $annonces = $repository->findAll();
-
         //Renvoie vers la page qui affiche toutes les annonces
         return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
     }
     
-    /**
-     * 
-     * Récupère l'annonce qui possède l'id id
-     */
+    /****************************************** 
+     * Récupère l'annonce qui possède l'id id *
+     ******************************************/
     public function getAnnonceAction($id){
         //Récupère le repository de annonce
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');

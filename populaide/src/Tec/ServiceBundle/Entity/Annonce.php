@@ -3,7 +3,8 @@
 namespace Tec\ServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//test
+
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Annonce
@@ -51,6 +52,8 @@ class Annonce
      * @var integer
      *
      * @ORM\Column(name="perimetre", type="integer")
+     * @Assert\length(
+     *      min = 0)
      */
     private $perimetre;
 
