@@ -71,7 +71,7 @@
                             </li>
                             <li><p class="user-location"><span class="ville">{{ villeannonce }}</span></p></li>
                             <li><p class="user-date-post"> {{ annonce.getCreationDate | date('m/d/Y') }} </p></li>
-                            <li><h3 class="post-title propose"> {{ annonce.getTitle }}</h3></li> 
+                            <li><h3 class="post-title propose"> {{ annonce.getTitle | truncate(30) }}</h3></li> 
                         </ul>
                             <p id="debut-annonce">{{ annonce.getDescription | truncate(20) }}</p>
                         <div class="icons-post">

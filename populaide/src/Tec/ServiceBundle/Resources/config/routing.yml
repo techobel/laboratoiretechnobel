@@ -135,6 +135,14 @@ tec_service_postulerannonce:
     path:     /postuler/{id}
     defaults: { _controller: TecServiceBundle:Service:postulerAnnonce }
     
+tec_service_accepterpostulerannonce:
+    path:     /postuler/accepter/{id}
+    defaults: { _controller: TecServiceBundle:Service:acceptePostuleUser }
+    
+tec_service_refuserpostulerannonce:
+    path:     /postuler/refuser/{id}
+    defaults: { _controller: TecServiceBundle:Service:refusePostuleUser }
+    
 #adduser
 tec_service_adduser:
     path:     /adduser

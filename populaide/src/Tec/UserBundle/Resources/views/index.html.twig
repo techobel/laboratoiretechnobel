@@ -111,6 +111,9 @@ et une vue contenant et contruisant un select#}
     <div class="post-section">
         <div class="overlay">
             <div class="container">
+                {% for flashMessage in app.session.flashbag.get('notice') %}
+                    {{ flashMessage }}
+                {% endfor %}
                 <div class="row">
                     <a href="{{ path("tec_service_addannonce") }}"><button class="btn btn-primary col-xs-12 post">Je poste une annonce</button></a>
                 </div>

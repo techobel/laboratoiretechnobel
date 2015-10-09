@@ -27,7 +27,7 @@
               />
             {% endif %}
             
-            {#<ul>
+            <ul>
                 {% for subcategorie in categorie.getSubCategories %}
                     <li>{{ subcategorie.id ~ " " ~ subcategorie.name ~ " " ~ subcategorie.description }}</li>
                     <ul>
@@ -36,7 +36,7 @@
                         {% endfor %}
                     </ul>
                 {% endfor %}
-            </ul>#}
+            </ul>
         {% endfor %}
         
         <div id="resultat"></div>
