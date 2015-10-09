@@ -6,7 +6,7 @@ tec_user_contact:
     defaults: { _controller: TecUserBundle:User:contact }
 #HOW
 tec_user_how:
-    path:     /comment_ça_marche
+    path:     /comment_ca_marche
     defaults: { _controller: TecUserBundle:User:how }   
     
 #PUBLIC PROFILE
@@ -23,5 +23,8 @@ tec_user_delnotification:
     path:     /user/notification/del/{id}
     defaults: { _controller: TecUserBundle:User:delNotification } 
     
-
+#CONSTRUCT SELECT CATEGORIES
+tec_service_constructSelect:
+    path:     /index
+    defaults: { _controller: TecServiceBundle:Service:constructSelect }
     
