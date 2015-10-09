@@ -8,20 +8,27 @@
 {% block title %} Home {{ parent() }}{% endblock %}
 
 {% block header %}
-    <div class="navbar navbar-fixed-top">
-        <div class="container">
-         <button type="button" class="btn btn-connexion">Connexion</button>
-        </div>
-    </div>
-    <div id="home" class="home-index ">
-        <div class="overlay">
-            <div class="container">
-                <hgroup class="col-md-8 col-md-offset-2 text-center">
-                    <h1><img src="{{ asset('images/logo.png') }}" alt="Popul'Aide" width='500'/></h1>
-                    <h2>L'entraide connectée</h2>
-                </hgroup>
-            </div>
-        </div>  
+    {% block menu %}
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav menu">
+                <li>
+                    {% block connexion %}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <p>Bienvenue <span class="user-name">{{ app.user.username }}</span></p>
+                            <a href="{{ path('fos_user_security_logout') }}">Deconnecter</a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}">Connecter</a>
+                       {% endif %}
+                    {% endblock %}
+                </li>
+                <li><a href="{{ path('tec_user_contact') }}" ><img class="img-menu" src="{{ asset('images/pictos/contact.png') }}" class="menu-picto" alt="Contact"/>Contact</a></li>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li><a href="{{ path('tec_user_profile',{'id': app.user.id}) }}" ><img class="img-menu" src="{{ asset('images/pictos/user.png') }}" class="menu-picto" alt="Profil"/>Profil</a></li>   
+                {% endif %}                             
+            </ul>
+        </nav>
+    {% endblock %}
+    <div id="home" class="home-index ">  
        <section class="search">
             <div class="container">                            
             <form  class="row form-inline">
@@ -90,9 +97,7 @@
             </div>
         </section>
         <!--SEARCH SECTION END-->
-        <div class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></div>
     </div>
- 
 {% endblock %}
 
 {% block body %}
