@@ -149,4 +149,18 @@ class UserController extends Controller
         }
     }
     
+    /*********************************************** 
+     * recupère les notifications de l'utilisateur *
+     ***********************************************/    
+    public function getAllNotificationUserConnect(){
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Récupère le repository
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
+        //Récupère toutes les notifications de l'utilisateur
+        $notificaiton = $repository->find($user->getId()->getNotifications());
+        //retourne les notifications
+        return $notificaiton;
+    }
+    
 }
