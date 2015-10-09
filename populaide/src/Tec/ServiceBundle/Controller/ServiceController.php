@@ -1357,4 +1357,25 @@ class ServiceController extends Controller
 //        //Récupère les sous categories de la bd
 //        $subcategories = $repositorySub->findAll();
 //        return $this->render('TecServiceBundle::constructSelectCategorie.html.twig', array('categories' => $categories, 'subcategories' => $subcategories));
+    
+    
+    public function constructSelectAction(){
+        //Récupère le repository de annonce
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
+        //Récupère toutes les categories de la bd
+        $categories = $repository->findAll();
+        //Renvoie vers la page qui affiche toutes les categories
+        
+        //Récupère le repository de sub_categorie
+        $repository2 = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
+        //Récupère les sous categories de la bd
+        $subcategories = $repository2->findAll();
+        //Renvoie vers la page qui affiche toutes les sous categories
+        
+        return $this->render('TecServiceBundle::constructSelectCategorie.html.twig', array('categories' => $categories, 'subcategories' => $subcategories));
     }
+    
+    }
+   
+    
+    
