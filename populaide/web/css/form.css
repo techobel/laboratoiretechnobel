@@ -1,9 +1,9 @@
-option{
-    /*padding-left: 15px;*/
+option:not(.optionGroup){
+    padding-left: 15px;
 }
 .optionGroup{
     font-weight:700;
-    /*padding-left: -15px;*/
+    padding-left: -15px;
 }
 
 
