@@ -6,21 +6,29 @@
 {% endblock %}
 {% block body %}
     {{ parent() }}
-    <section id="works">
-        
-        
-        {% if is_granted("ROLE_ADMIN") %}
-            {{ app.user.username }}
-            {{ app.user.id }}
-            {% set villeuser = "" %}
-            {% for addresse in app.user.getaddresses %}
-               {% set villeuser = addresse.city %}
+    <section id="results">             
+        <div class="container">
+            
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                {{ flashMessage }}
             {% endfor %}
-            <div id="villeuser">{{ villeuser }}</div>
-        {% endif %}
-        
-        
-        Annonces:
+            
+            {# affiche les données de l'utilisateur #}
+            {% if is_granted("ROLE_USER") %}
+                {#
+                {{ app.user.username }}
+                {{ app.user.id }}
+                #}
+                {% set villeuser = "" %}
+                {% for addresse in app.user.getaddresses %}
+                   {% set villeuser = addresse.city %}
+                {% endfor %}
+                <div id="villeuser">{{ villeuser }}</div>
+            {% endif %}
+            
+            
+        {#    
+            Annonces:
         <ul>
         {% for annonce in annonces%}
             {% set villeannonce = "" %}
@@ -30,15 +38,140 @@
             <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description ~ " " ~ annonce.getType.getIntitule}} Ville: <span class="ville">{{ villeannonce }}</span><a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}"> Voir +</a></li>
         {% endfor %}
         </ul>
-        
-        
+        #}
+            
+            
+            <div class="row text-center portfolio-item annonces">
+                {% for annonce in annonces%}
+                    {% set villeannonce = "" %}
+                    
+                    {# en attente de modification de la cardinalite user - adresse #}
+                    {% for addresse in annonce.getUser.getAddresses %}
+                        {% set villeannonce = addresse.city %}
+                    {% endfor %}
+                    
+                <div class="col-md-6 col-sm-12 half">
+                    <div class="box-post"> <!--360px * 318px -->
+                        <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
+                        <ul>
+                            <li><p class="user-login">{{ annonce.getUser.getUsername }}</p></li>  
+                            {% if annonce.getUser.getDisponible %}
+                                <li><div class="user-status green"></div></li>
+                            {% else %}
+                                <li><div class="user-status red"></div></li>
+                            {% endif %}
+                            <li>
+                                <ol id="stars">
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                </ol>
+                            </li>
+                            <li><p class="user-location"><span class="ville">{{ villeannonce }}</span></p></li>
+                            <li><p class="user-date-post"> {{ annonce.getCreationDate | date('m/d/Y') }} </p></li>
+                            <li><h3 class="post-title propose"> {{ annonce.getTitle | truncate(30) }}</h3></li> 
+                        </ul>
+                            <p id="debut-annonce">{{ annonce.getDescription | truncate(20) }}</p>
+                        <div class="icons-post">
+                            <a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
+                                Détails
+                            </a>    
+                            <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
+                                Contact
+                            </a> 
+                            {% if annonce.getUser.getId != app.user.id %}  
+                            <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
+                                Collaborer
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}                
+            </div>
+        </div>
     </section>
+    <!--SERVICES SECTION END  -->
+    <!--PAGES NAVIGATION-->
+    <section id="how">
+        <div class="contain">
+            <div class="row text-center">
+                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+                    <ul class="pagination pagination-lg">
+                      <li class="disable"><a href="#"><img src="{{ asset('images/pictos/prev.png') }}" class="fleche-page" alt=""/></a></li>
+                      <li class="active"><a href="afficher_recherche.html">1</a></li>
+                      <li><a href="afficher_recherche_pp.html">2</a></li>
+                      <li><a href="afficher_recherche_pp.html">3</a></li>
+                      <li><a href="afficher_recherche_pp.html"><img src="{{ asset('images/pictos/next.png') }}" class="fleche-page" alt=""/></a></li>
+                    </ul>
+                </div>
+            </div> 
+        </div>
+    </section>    
+    <!--PAGES NAVIGATION END-->
+    <section id="category">
+        <div class="container">
+            <nav class="row">
+                <ul>
+                    <li class="col-md-1 col-xs-4">
+                        <a>
+                            <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
+                            Bricolage
+                        </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                        <a>
+                            <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
+                            Jardinage
+                        </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                        <a>
+                            <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
+                            Multimédia
+                        </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                        <a>
+                            <img src="{{ asset('images/pictos/pets.png') }}" width="45" alt="" class="img-responsive" />
+                            Animaux
+                        </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                        <a>
+                            <img src="{{ asset('images/pictos/anim.png') }}" width="45" alt="" class="img-responsive" />
+                            Animation
+                        </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                        <a>
+                            <img src="{{ asset('images/pictos/wellness.png') }}" width="45" alt="" class="img-responsive" />
+                            Bien-être
+                        </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                        <a>
+                            <img src="{{ asset('images/pictos/cours.png') }}" width="45" alt="" class="img-responsive" />
+                            Cours
+                        </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                        <a>
+                            <img src="{{ asset('images/pictos/assist.png') }}" width="45" alt="" class="img-responsive" />
+                            Assistance
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <!-- CATEGORY SECTION END-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script> 
     <script>
 
     //alert($('#villeuser').text());
-    
-    var villeuser = $('#villeuser').text();
     
     //alert($('li').text());
     /*
@@ -46,13 +179,17 @@
         console.log("Index: " + index + " Text: " + $(this).text());
     });
     */
-   
-   $('.ville').each(function(index){
-        console.log("Index: " + index + " Text: " + $(this).text());
-        var villeannonce = $(this).text();
-        calculdistance(villeuser, villeannonce, $(this));
-    });
     
+    var villeuser = $('#villeuser').text();
+    
+    if(villeuser !== ''){
+    
+        $('.ville').each(function(index){
+            console.log("Index: " + index + " Text: " + $(this).text());
+            var villeannonce = $(this).text();
+            calculdistance(villeuser, villeannonce, $(this));
+        });
+     }
     function calculdistance(villeuser, villeannonce, element){
         $.ajax({   
             data: {villeuser: villeuser, villeannonce: villeannonce},

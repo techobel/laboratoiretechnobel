@@ -6,11 +6,102 @@
 {% endblock %}
 {% block body %}
     {{ parent() }}
-    <section id="works">
-        Annonce:
-        {{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description }}<a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}"> Postuler</a>
-        {% for flashMessage in app.session.flashbag.get('notice') %}
-            {{ flashMessage }}
-        {% endfor %}
+    <section id="results">             
+        <div class="container">            
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                {{ flashMessage }}
+            {% endfor %}
+            
+            {# affiche les données de l'utilisateur #}
+            {% if is_granted("ROLE_USER") %}                
+                {% set villeuser = "" %}
+                {% for addresse in app.user.getaddresses %}
+                   {% set villeuser = addresse.city %}
+                {% endfor %}
+                <div id="villeuser">{{ villeuser }}</div>
+            {% endif %}     
+            
+            <div class="row text-center portfolio-item annonces">
+                    {% set villeannonce = "" %}
+                    
+                    {# en attente de modification de la cardinalite user - adresse #}
+                    {% for addresse in annonce.getUser.getAddresses %}
+                        {% set villeannonce = addresse.city %}
+                    {% endfor %}
+                    
+                <div class="col-sm-12 ">
+                    <div class="box-post"> <!--360px * 318px -->
+                        <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
+                        <ul>
+                            <li><p class="user-login">{{ annonce.getUser.getUsername }}</p></li>  
+                            {% if annonce.getUser.getDisponible %}
+                                <li><div class="user-status green"></div></li>
+                            {% else %}
+                                <li><div class="user-status red"></div></li>
+                            {% endif %}
+                            <li>
+                                <ol id="stars">
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                    <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                                </ol>
+                            </li>
+                            <li><p class="user-location"><span class="ville">{{ villeannonce }}</span></p></li>
+                            <li><p class="user-date-post"> {{ annonce.getCreationDate | date('m/d/Y') }} </p></li>
+                            <li><h3 class="post-title propose"> {{ annonce.getTitle }}</h3></li> 
+                        </ul>
+                            <p id="debut-annonce">{{ annonce.getDescription }}</p>
+                        <div class="icons-post">
+                            <a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
+                                Détails
+                            </a>    
+                            <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
+                                Contact
+                            </a>    
+                            <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
+                                Collaborer
+                            </a>    
+                        </div>
+                    </div>
+                </div>               
+            </div>
+        </div>
     </section>
+    <!-- CATEGORY SECTION END-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script> 
+    <script>
+   
+    var villeuser = $('#villeuser').text();
+    
+    if(villeuser !== ''){
+    
+        $('.ville').each(function(index){
+            console.log("Index: " + index + " Text: " + $(this).text());
+            var villeannonce = $(this).text();
+            calculdistance(villeuser, villeannonce, $(this));
+        });
+     }
+    function calculdistance(villeuser, villeannonce, element){
+        $.ajax({   
+            data: {villeuser: villeuser, villeannonce: villeannonce},
+            dataType: "json",
+            type: "POST",
+            url: "{{ path('tec_service_testcalcul') }}",
+            success: function(data){
+                    //console.log(data.distance);    
+                    
+                    element.append(" Distance: " + data.distance.substring(6, data.distance.length-2) + " Duree: " +data.duree.substring(6, data.duree.length-2));                       
+                    },
+            error: function(){
+                console.log("erreur");
+            }
+        });
+    }         
+      
+    </script>    
+
 {% endblock %}
+
+    

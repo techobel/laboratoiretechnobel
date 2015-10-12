@@ -3,7 +3,8 @@
 namespace Tec\ServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//test
+
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Annonce
@@ -30,6 +31,9 @@ class Annonce
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=70)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 70)
      */
     private $title;
 
@@ -37,6 +41,9 @@ class Annonce
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 255)
      */
     private $description;
 
@@ -44,6 +51,9 @@ class Annonce
      * @var string
      *
      * @ORM\Column(name="remarques", type="string", length=150)
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 150)
      */
     private $remarques;
 
@@ -51,6 +61,8 @@ class Annonce
      * @var integer
      *
      * @ORM\Column(name="perimetre", type="integer")
+     * @Assert\Range(
+     *      min = 0)
      */
     private $perimetre;
 
