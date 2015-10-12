@@ -51,7 +51,7 @@
                                    {% endif %}
                                 {% endblock %}                                   
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    <li class="down"><a href="{{ path('tec_user_profile',{'id': app.user.id}) }}" ><img class="img-menu" src="{{ asset('images/pictos/user.png') }}" class="menu-picto" alt="Profil"/>Profil</a></li>   
+                                    <li class="down"><a href="{{ path('tec_user_profil',{'id': app.user.id}) }}" ><img class="img-menu" src="{{ asset('images/pictos/user.png') }}" class="menu-picto" alt="Profil"/>Profil</a></li>   
                                 {% endif %}
                                 <li class="contact-index down"><a href="{{ path('tec_user_contact') }}"><img class="img-menu" src="{{ asset('images/pictos/contact.png') }}" class="menu-picto" alt="Contact"/>Contact</a></li>                                                            
                             </ul>
