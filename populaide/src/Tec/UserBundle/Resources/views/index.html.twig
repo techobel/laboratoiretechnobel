@@ -13,7 +13,7 @@
 {% block search %}
 <section class="search index">
     <div class="container">                            
-    <form  class="row form-inline" action="{{ path("tec_service_searchannonce2") }}" method="POST">
+    <form  class="row form-inline" action="{{ path("tec_service_searchannonce") }}" method="POST">
 {#        Construction du select dans la vue constructSelectCategorie#}
         {% render path('tec_service_constructSelect') %}
         <input class="col-xs-12 col-md-4 form-control " type="text" name="localite"/>
