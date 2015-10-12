@@ -1,8 +1,8 @@
 footer{
     display: none;
 }
-#bs-navbar li a:hove {
-    background-color: #23777B;
+#bs-navbar li a:hover {
+    color: #23777B;
 }
 .menu li:nth-child(1),
 .menu li:nth-child(2) {
