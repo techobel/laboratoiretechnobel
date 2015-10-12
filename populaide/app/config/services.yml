@@ -3,7 +3,13 @@
 parameters:
 #    parameter_name: value
 
-services:
+# services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+services:
+    app.form.registration:
+        class: Tec\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: tec_user_registration }

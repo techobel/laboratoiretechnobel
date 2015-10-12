@@ -1,0 +1,12 @@
+{#Ce fichier écrase register.html.twig de FOS#}
+
+{% extends "FOSUserBundle::layout.html.twig" %} {#Le layout qui est dans app/FOSUserBundle#}
+
+{% block title %}Inscription {{ parent() }}{% endblock %}
+
+{# Bandeau de titre bleu #}
+{% block h3 %}Inscription{% endblock %}
+
+{% block fos_user_content %}
+{% include "TecUserBundle:Registration:register_content.html.twig" %}
+{% endblock fos_user_content %}

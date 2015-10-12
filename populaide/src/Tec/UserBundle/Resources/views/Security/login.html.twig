@@ -1,0 +1,38 @@
+
+{#Ce fichier écrase login.html.twig de FOS#}
+
+{% extends "FOSUserBundle::layout.html.twig" %} {#Le layout qui est dans app/FOSUserBundle#}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Connexion {{ parent() }}{% endblock %}
+
+{# Bandeau de titre bleu #}
+{% block h3 %}Connexion{% endblock %}
+    
+{% block fos_user_content %}
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+<section id="form_contact" class="clearfix fos_user_registration_register">
+    <div class="container">
+        <form action="{{ path("fos_user_security_check") }}" method="post" class="form row form-inline clearfix form-one">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+{#            <label for="username">{{ 'security.login.username'|trans }}</label>#}
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="col-xs-12 col-md-4 form-control" placeholder="{{ 'security.login.username'|trans }} autofocus"/>
+
+{#            <label for="password">{{ 'security.login.password'|trans }}</label>#}
+            <input type="password" id="password" name="_password" required="required" class="col-xs-12 col-md-4 form-control" placeholder="{{ 'security.login.password'|trans }}"/>
+
+            <div class="form_row_checkbox">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" class="checkbox-inline"/>
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+            </div>
+            
+            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-primary col-xs-2 col-md-2 form-control"/>
+        </form>
+    </div>
+</section>  
+{% endblock fos_user_content %}
