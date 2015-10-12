@@ -1,0 +1,35 @@
+{#Aperçu de l'annonce à inclure dans la popup de addannonce.html et dans le détail de l'annonce getAnnonce.html #}
+
+{% if annonce.getUser.media != null %}
+    <img
+        src="{{ asset(annonce.getUser.media.uploadDir ~ '/' ~ annonce.getUser.media.id ~ annonce.getUser.media.path) }}"
+        alt="{{ annonce.getUser.media.alt ~ annonce.getUser.username }}"
+        width="150px"
+        heigth="150px"
+    />
+{% else %}
+    <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
+{% endif %}
+
+<h4>{{ annonce.user.username }}</h4>
+<ol id="stars">
+    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+    <li><span>(XX votes)</span></li>
+</ol>
+
+<p>{{ annonce.type.intitule }}</p>
+
+<h4>{{ annonce.title }}</h4>
+
+<p>dans un périmètre de {{ annonce.perimetre }} km</p>
+
+<p>{{ annonce.description }}</p>
+
+{% if annonce.remarques != null %}
+    <h4>Remarques</h4>
+    <p>{{ annonce.remarques }}</p>
+{% endif %}
