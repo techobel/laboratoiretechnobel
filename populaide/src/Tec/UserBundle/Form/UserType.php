@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use Tec\ServiceBundle\Form\MediaType;
+
 class UserType extends AbstractType
 {
     /**
@@ -15,17 +17,18 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('first_name')
-            ->add('birth_date')
+            ->add('name', 'text')
+            ->add('first_name', 'text')
+            ->add('birth_date', 'date')
             ->add('sex')
-            ->add('phone')
-            ->add('creation_date')
-            ->add('update_date')
+            ->add('phone', 'text')
+            //->add('creation_date', 'date')
+            //->add('update_date', 'date')
             ->add('disponible')
-            ->add('media')
-            ->add('fournisseur')
-            ->add('postules')
+            ->add('media', new MediaType())
+            ->add('Valider', 'submit');
+                
+                //ajout des autres attributs
         ;
     }
     

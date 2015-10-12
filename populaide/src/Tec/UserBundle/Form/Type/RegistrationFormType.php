@@ -8,8 +8,8 @@ namespace Tec\UserBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Tec\UserBundle\Form\AddresseType;
-use Tec\UserBundle\Entity\Addresse;
+use Tec\UserBundle\Form\AdresseType;
+use Tec\UserBundle\Entity\Adresse;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -75,7 +75,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'col-xs-12 col-md-4 form-control text'
                     )))
             /*Adresse*/
-            ->add('addresses', new AddresseType(), array(
+            ->add('adresse', new AdresseType(), array(
                 'label' => false))
             //CGU
 //            ->add('cgu', 'checkbox', array(
