@@ -52,13 +52,13 @@ class Postuler
     
     /**
      * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="postules")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $user;
     
     /**
      * @ORM\ManyToOne(targetEntity="Annonce", inversedBy="postules")
-     * @ORM\JoinColumn(name="annonce_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="annonce_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $annonce;
 

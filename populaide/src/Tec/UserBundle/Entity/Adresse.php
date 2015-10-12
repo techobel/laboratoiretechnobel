@@ -5,12 +5,12 @@ namespace Tec\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Addresse
+ * Adresse
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Tec\UserBundle\Entity\AddresseRepository")
+ * @ORM\Entity(repositoryClass="Tec\UserBundle\Entity\AdresseRepository")
  */
-class Addresse
+class Adresse
 {
     
     /********************************************************
@@ -66,7 +66,7 @@ class Addresse
      ********************************************************/
     
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="addresses")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="adresse")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $user;

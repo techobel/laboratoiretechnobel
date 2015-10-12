@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AddresseType extends AbstractType
+class AdresseType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -59,7 +59,7 @@ class AddresseType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Tec\UserBundle\Entity\Addresse'
+            'data_class' => 'Tec\UserBundle\Entity\Adresse'
         ));
     }
 
@@ -68,6 +68,6 @@ class AddresseType extends AbstractType
      */
     public function getName()
     {
-        return 'tec_userbundle_addresse';
+        return 'tec_userbundle_adresse';
     }
 }
