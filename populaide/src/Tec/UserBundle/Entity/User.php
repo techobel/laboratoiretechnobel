@@ -549,34 +549,26 @@ class User extends BaseUser
         return $this->notifications;
     }
 
+    
+
     /**
-     * Add adresse
+     * Set adresse
      *
      * @param \Tec\UserBundle\Entity\Adresse $adresse
      *
      * @return User
      */
-    public function addAdresse(\Tec\UserBundle\Entity\Adresse $adresse)
+    public function setAdresse(\Tec\UserBundle\Entity\Adresse $adresse = null)
     {
-        $this->adresse[] = $adresse;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
     /**
-     * Remove adresse
-     *
-     * @param \Tec\UserBundle\Entity\Adresse $adresse
-     */
-    public function removeAdresse(\Tec\UserBundle\Entity\Adresse $adresse)
-    {
-        $this->adresse->removeElement($adresse);
-    }
-
-    /**
      * Get adresse
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Tec\UserBundle\Entity\Adresse
      */
     public function getAdresse()
     {
