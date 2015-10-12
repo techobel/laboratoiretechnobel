@@ -115,13 +115,13 @@ class Annonce
     
     /**
      * @ORM\ManyToOne(targetEntity="Type", inversedBy="annonces")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
      */
     private $type;
     
     /**
      * @ORM\ManyToOne(targetEntity="Sub_categorie", inversedBy="annonces")
-     * @ORM\JoinColumn(name="sub_categorie_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="sub_categorie_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $sub_categorie;
     
@@ -133,7 +133,7 @@ class Annonce
     //l'utilisateur qui a posté l'annonce
     /**
      * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="annonces")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $user;
     

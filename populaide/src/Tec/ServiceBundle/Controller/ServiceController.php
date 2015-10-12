@@ -5,8 +5,6 @@ namespace Tec\ServiceBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-use Doctrine\ORM\Query\ResultSetMapping;
-
 use Symfony\Component\HttpFoundation\Response;
 
 use Tec\ServiceBundle\Entity\Annonce;
@@ -159,9 +157,9 @@ class ServiceController extends Controller
         $nbSubCategorie = $query->getResult();
         
         if(($nbType[0][1] === '0')||($nbSubCategorie[0][1] === '0')){
-            $this->addFlash('notice', "Il faut au moins une sous-categorie et un type pour pouvoir ajouter une annonce, contacter l'administrateur.");
+            $this->addFlash('addannonce', "Il faut au moins une sous-categorie et un type pour pouvoir ajouter une annonce, ajouter une sous-categorie et/ou un type.");
             //Redirection
-            return $this->redirect($this->generateUrl('tec_user_index'));
+            return $this->redirect($request->headers->get('referer'));
         }else{   
             echo "OK";
             //Si l'utilisateur est connecté
@@ -199,9 +197,9 @@ class ServiceController extends Controller
                     return $this->redirect($this->generateUrl('tec_service_getallannonce'));
                 }  
             }
-        }
-        //si le formulaire n'a pas été validé
-        return $this->render('TecServiceBundle::addannonce.html.twig', array('form' => $form->createView()));
+            //si le formulaire n'a pas été validé
+            return $this->render('TecServiceBundle::addannonce.html.twig', array('form' => $form->createView()));
+        }        
     }
     
     /**********************************
@@ -382,8 +380,12 @@ class ServiceController extends Controller
                 $this->sendMail("Postule", $user->getEmail(), "Une personne a postulé pour votre annonce.");
                 //ajout d'un message flash
                 $this->addFlash('notice', "Vous avez postulé pour l'annonce.");
+                
+                //Redirection
+                return $this->redirect($this->generateUrl('tec_service_getannonce', array('id' => $id)));
+                
                 //redirection vers l'annonce
-                return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
+                //return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
             }
         }
     }
@@ -466,8 +468,12 @@ class ServiceController extends Controller
         //Ajout d'une notificatoin pour la personne qui a été accepte
         UserController::addNotification("Votre demande a été accepte pour l'annonce ..", $postuler->getUser()->getId());
         
+        //Redirection
+        return $this->redirect($this->generateUrl('tec_service_results'));
+        
+        
         //Redirection vers la page de profil
-        return $this->forward('TecServiceBundle:Service:results');
+        //return $this->forward('TecServiceBundle:Service:results');
     }
     
     /************************************************ 
@@ -507,8 +513,12 @@ class ServiceController extends Controller
         UserController::addNotification("Vous avez refusé la demande de ... pour l'annonce ....", $user->getId());
         //Ajout d'une notificatoin pour la personne qui a été refusé
         UserController::addNotification("Votre demande a été refusé pour l'annonce ....", $postuler->getUser()->getId());
+        
+        //Redirection
+        return $this->redirect($this->generateUrl('tec_service_results'));
+        
         //Redirection vers la page de profil
-        return $this->forward('TecServiceBundle:Service:results');
+        //return $this->forward('TecServiceBundle:Service:results');
     }
       
     /********************************************************** 
@@ -516,55 +526,74 @@ class ServiceController extends Controller
      *                                                        *
      * Recherche une annonce par categorie et/ou par localite *
      **********************************************************/
-    public function searchAnnonce2Action(Request $request){
-        //Récupère les valeurs du formulaire
-        $localite = $request->get('localite');
-        $idsubcategorie = $request->get('categorie');
-        
-        $id = intval($idsubcategorie);
-       
-        if((strlen($localite) === 0)&&($id === 0)){   //Aucun choix pour la recherche
-            return $this->forward('TecServiceBundle:Service:getAllAnnonce');
-        }else if((strlen($localite) > 0) && ($id > 0)){ //Recherche par sous-categorie et par localite
-            //Traitement            
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();
-            //Récupère le repository subcategorie
-            $repository = $em->getRepository('TecServiceBundle:Sub_categorie');
-            //Récupère la sous categorie
-            $subcategorie = $repository->find($id);
-            //création de la requete
-            $query = $em->createQuery(
-                    'SELECT a 
-                     FROM TecServiceBundle:Sub_Categorie sc, TecServiceBundle:Annonce a, TecUserBundle:User u, TecUserBundle:Addresse ad
-                     WHERE sc.name like :subcategorie AND a.user = u.id AND u.id = ad.user and ad.city like :localite
-                     ORDER BY a.title ASC')
+    public function searchAnnonceAction(Request $request){
+         /*
+         * Test s'il y a au moins une annonce en bd
+         */
+        //Récupère le manager
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+                    'SELECT COUNT(a) 
+                     FROM TecServiceBundle:Annonce a');
                     
-                    ->setParameter('subcategorie', $subcategorie->getName())
-                    ->setParameter('localite', $localite);
-                                
-            $annonces = $query->getResult();
-            return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
-        }else if(strlen($localite) > 0){   //Recherche seulement par localite
-            //Traitement
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();
-            //création de la requete
-            $query = $em->createQuery(
-                    'SELECT a 
-                     FROM TecServiceBundle:Annonce a, TecUserBundle:User u, TecUserBundle:Addresse ad
-                     WHERE a.user = u.id AND u.id = ad.user and ad.city like :localite
-                     ORDER BY a.title ASC')
-
-                    ->setParameter('localite', $localite);
-                                
-            $annonces = $query->getResult();
-            return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
-        }else{  //Recherche seulement par categorie
-            return $this->forward('TecServiceBundle:Service:getAnnonceCategorie', array('id' => $id));
-        }        
+        $nbAnnonce = $query->getResult();
         
-        return $this->render('TecServiceBundle::results.html.twig');
+        var_dump($nbAnnonce);
+        
+        if($nbAnnonce[0][1] === '0'){
+            $this->addFlash('notice', "Il n'y a aucune annonce.");
+            //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
+        }else{
+            //Récupère les valeurs du formulaire
+            $localite = $request->get('localite');
+            $idsubcategorie = $request->get('categorie');
+
+            $id = intval($idsubcategorie);
+
+            if((strlen($localite) === 0)&&($id === 0)){   //Aucun choix pour la recherche
+                return $this->forward('TecServiceBundle:Service:getAllAnnonce');
+            }else if((strlen($localite) > 0) && ($id > 0)){ //Recherche par sous-categorie et par localite
+                //Traitement            
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();
+                //Récupère le repository subcategorie
+                $repository = $em->getRepository('TecServiceBundle:Sub_categorie');
+                //Récupère la sous categorie
+                $subcategorie = $repository->find($id);
+                //création de la requete
+                $query = $em->createQuery(
+                        'SELECT a 
+                         FROM TecServiceBundle:Sub_Categorie sc, TecServiceBundle:Annonce a, TecUserBundle:User u, TecUserBundle:Adresse ad
+                         WHERE sc.name like :subcategorie AND a.user = u.id AND u.id = ad.user and ad.city like :localite
+                         ORDER BY a.title ASC')
+
+                        ->setParameter('subcategorie', $subcategorie->getName())
+                        ->setParameter('localite', $localite);
+
+                $annonces = $query->getResult();
+                return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
+            }else if(strlen($localite) > 0){   //Recherche seulement par localite
+                //Traitement
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();
+                //création de la requete
+                $query = $em->createQuery(
+                        'SELECT a 
+                         FROM TecServiceBundle:Annonce a, TecUserBundle:User u, TecUserBundle:Adresse ad
+                         WHERE a.user = u.id AND u.id = ad.user and ad.city like :localite
+                         ORDER BY a.title ASC')
+
+                        ->setParameter('localite', $localite);
+
+                $annonces = $query->getResult();
+                return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
+            }else{  //Recherche seulement par categorie
+                return $this->forward('TecServiceBundle:Service:getAnnonceCategorie', array('id' => $id));
+            }        
+
+            //return $this->render('TecServiceBundle::results.html.twig');
+        }
     }
     
     /************************
@@ -619,7 +648,9 @@ class ServiceController extends Controller
                 UserController::addNotification("Ajout de la categorie ".$categorie->getName()."OK.", $user->getId());
             }            
             //Redirection (a voir)
-            return $this->forward('TecServiceBundle:Service:getAllCategorie');
+            //return $this->forward('TecServiceBundle:Service:getAllCategorie');
+            //Redirection
+            return $this->redirect($this->generateUrl('tec_service_admin'));
         }        
         //si le formulaire n'a pas été validé
         return $this->render('TecServiceBundle::addCategorie.html.twig', array('form' => $form->createView()));
@@ -682,7 +713,9 @@ class ServiceController extends Controller
         //Ajout d'une notificatoin à l'admin
         UserController::addNotification("Suppression de la categorie ".$categorie->getName()."OK.", $user->getId());
         //redirection vers getAllCategorie ( a voir)
-        return $this->forward('TecServiceBundle:Service:getAllCategorie');
+        //return $this->forward('TecServiceBundle:Service:getAllCategorie');
+        //Redirection
+        return $this->redirect($this->generateUrl('tec_service_admin'));
     }
     
     /*******************************
@@ -702,6 +735,7 @@ class ServiceController extends Controller
         if($categorie === null){
             throw new NotFoundHttpException("La categorie n'existe pas.");
         }
+                
         //Si la categorie existe
         //Création du formulaire pour la mise à jour
         $form = $this->get('form.factory')->create(new CategorieType(), $categorie);
@@ -718,7 +752,9 @@ class ServiceController extends Controller
             //Ajout d'une notificatoin à l'admin
             UserController::addNotification("Mise à jour de la categorie ".$categorie->getName()."OK.", $user->getId());
             //Redirection vers la categorie
-            return $this->forward('TecServiceBundle:Service:getCategorie', array('id' => $id));
+            //return $this->forward('TecServiceBundle:Service:getCategorie', array('id' => $id));
+            //Redirection
+            return $this->redirect($this->generateUrl('tec_service_admin'));
         }
         return $this->render('TecServiceBundle::updateCategorie.html.twig', array('form' => $form->createView()));
     }
@@ -760,30 +796,50 @@ class ServiceController extends Controller
           // Sinon on déclenche une exception « Accès interdit »
           throw new AccessDeniedException('Accès limité.');
         }
-        //Si l'utilisateur est connecté
-        //Création de la sous categorie
-        $subcategorie = new Sub_categorie();        
-        //Création du formulaire
-        $form = $this->get('form.factory')->create(new Sub_categorieType(), $subcategorie);
-        //Si le formulaire a été validé
-        if($form->handleRequest($request)->isValid()){   
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();    
-            //Doctrine se charge de l'entity categorie
-            $em->persist($subcategorie);
-            //Sauvegarde en bd
-            $em->flush();
-            //Ajout d'un message flash
-            $this->addFlash('notice', "Ajout sous categorie OK.");
-            //Récupère l'utilisateur en session
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            //Ajout d'une notificatoin à l'admin
-            UserController::addNotification("Ajout de la sous categorie ".$subcategorie->getName()."OK.", $user->getId());
-            //Redirection (a voir)
-            return $this->forward('TecServiceBundle:Service:getAllSubCategorie');
-        }        
-        //si le formulaire n'a pas été validé
-        return $this->render('TecServiceBundle::addSubCategorie.html.twig', array('form' => $form->createView()));
+        /**
+         * TEST S'IL Y A AU MOINS UNE CATEGORIE
+         */
+        //Récupère le manager
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+                    'SELECT COUNT(cat) 
+                     FROM TecServiceBundle:Categorie cat');
+                    
+        $nbCategorie = $query->getResult();
+        
+        if($nbCategorie[0][1] === '0'){
+            $this->addFlash('addsubcategorie', "Il faut au moins une categorie pour pouvoir ajouter une sous-categorie, ajouter une categorie.");
+            //Redirection
+            return $this->redirect($request->headers->get('referer'));
+        }else{       
+        
+            //Si l'utilisateur est connecté
+            //Création de la sous categorie
+            $subcategorie = new Sub_categorie();        
+            //Création du formulaire
+            $form = $this->get('form.factory')->create(new Sub_categorieType(), $subcategorie);
+            //Si le formulaire a été validé
+            if($form->handleRequest($request)->isValid()){   
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();    
+                //Doctrine se charge de l'entity categorie
+                $em->persist($subcategorie);
+                //Sauvegarde en bd
+                $em->flush();
+                //Ajout d'un message flash
+                $this->addFlash('notice', "Ajout sous categorie OK.");
+                //Récupère l'utilisateur en session
+                $user = $this->container->get('security.context')->getToken()->getUser();
+                //Ajout d'une notificatoin à l'admin
+                UserController::addNotification("Ajout de la sous categorie ".$subcategorie->getName()."OK.", $user->getId());
+                //Redirection (a voir)
+                //return $this->forward('TecServiceBundle:Service:getAllSubCategorie');
+                //Redirection
+                return $this->redirect($this->generateUrl('tec_service_admin'));
+            }        
+            //si le formulaire n'a pas été validé
+            return $this->render('TecServiceBundle::addSubCategorie.html.twig', array('form' => $form->createView()));
+        }
     }
     
     /*****************************************
@@ -865,7 +921,9 @@ class ServiceController extends Controller
         //Ajout d'une notificatoin l'admin
         UserController::addNotification("Suppression de la sous categorie ".$subcategorie->getName()."OK.", $user->getId());
         //redirection vers getAllCategorie ( a voir)
-        return $this->forward('TecServiceBundle:Service:getAllCategorie');
+        //return $this->forward('TecServiceBundle:Service:getAllCategorie');
+        //Redirection
+        return $this->redirect($this->generateUrl('tec_service_admin'));
     }
     
     /************************************
@@ -902,7 +960,9 @@ class ServiceController extends Controller
             //Ajout d'une notificatoin l'admin
             UserController::addNotification("Mise à jour de la sous categorie ".$subcategorie->getName()."OK.", $user->getId());
             //Redirection vers la categorie
-            return $this->forward('TecServiceBundle:Service:getSubCategorie', array('id' => $id));
+            //return $this->forward('TecServiceBundle:Service:getSubCategorie', array('id' => $id));
+            //Redirection
+            return $this->redirect($this->generateUrl('tec_service_admin'));
         }
         return $this->render('TecServiceBundle::updateSubCategorie.html.twig', array('form' => $form->createView()));
     }
@@ -940,7 +1000,9 @@ class ServiceController extends Controller
             //Ajout d'une notificatoin l'admin
             UserController::addNotification("Ajout du type ".$type->getIntitule()."OK.", $user->getId());
             //Redirection (a voir)
-            return $this->forward('TecServiceBundle:Service:results');
+            //return $this->forward('TecServiceBundle:Service:panelAdmin');
+            //Redirection
+            return $this->redirect($this->generateUrl('tec_service_admin'));
         }        
         //si le formulaire n'a pas été validé
         return $this->render('TecServiceBundle::addType.html.twig', array('form' => $form->createView()));
@@ -1020,7 +1082,9 @@ class ServiceController extends Controller
         //Ajout d'une notificatoin l'admin
         UserController::addNotification("Suppression du type ".$type->getIntitule()."OK.", $user->getId());
         //redirection vers getAllType ( a voir)
-        return $this->forward('TecServiceBundle:Service:getAllType');
+        //return $this->forward('TecServiceBundle:Service:panelAdmin');
+        //Redirection
+        return $this->redirect($this->generateUrl('tec_service_admin'));
     }
     
     /*************************
@@ -1055,8 +1119,10 @@ class ServiceController extends Controller
             $user = $this->container->get('security.context')->getToken()->getUser();
             //Ajout d'une notificatoin l'admin
             UserController::addNotification("Mise à jour du type ".$type->getIntitule()."OK.", $user->getId());
-            //Redirection vers la categorie
-            return $this->forward('TecServiceBundle:Service:getType', array('id' => $id));
+            //Redirection vers le panel admin
+            //return $this->forward('TecServiceBundle:Service:panelAdmin');
+            //Redirection
+            return $this->redirect($this->generateUrl('tec_service_admin'));
         }
         return $this->render('TecServiceBundle::updateType.html.twig', array('form' => $form->createView()));
     }
@@ -1093,138 +1159,7 @@ class ServiceController extends Controller
         return $this->render('TecServiceBundle::getUser.html.twig', array('user' => $user));
     }
     
-    /**************************************** 
-     * Supprime le user qui possède l'id id *
-     ****************************************/
-    public function delUserAction($id){
-        //On vérifie que l'utilisateur est un admin
-        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
-          // Sinon on déclenche une exception « Accès interdit »
-          throw new AccessDeniedException('Accès limité.');
-        }
-        //Récupère le repository de user
-        $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
-        //Récupère le user qui possède l'id $id
-        $user = $repository->find($id);
-        //Si le user n'existe pas
-        if($user === null){
-            throw new NotFoundHttpException("Le user n'existe pas.");
-        }
-        //Si le user existe     
-        //Récupère le manager de fosuser
-        $userManager = $this->container->get('fos_user.user_manager');
-        //Suppression de l'utilisateur
-        $userManager->deleteUser($user);
-        //Récupère l'utilisateur en session
-        $userAdmin = $this->container->get('security.context')->getToken()->getUser();
-        //Ajout d'une notificatoin l'admin
-        UserController::addNotification("Suppression de l'utilisateur ".$user->getId()."OK.", $userAdmin->getId());
-        //Suppression
-        //$em->flush();
-        //redirection vers getAllUser ( a voir)
-        return $this->forward('TecServiceBundle:Service:getAllUser');
-    }
     
-    /*************************
-     * Mise a jour d'un user *
-     *************************/
-    public function updateUserAction(Request $request, $id){
-        //Recupère le repository user
-        $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
-        //Récupère le type à modifier
-        $user = $repository->find($id);
-        //Si le user n'existe pas
-        if($user === null){
-            throw new NotFoundHttpException("Le user n'existe pas.");
-        }        
-        //Récupère l'utilisateur en session
-        $usersess = $this->container->get('security.context')->getToken()->getUser();        
-        //On vérifie que l'utilisateur est un admin ou l'utilisateur veut modifier son profil
-        if ((!$this->get('security.context')->isGranted('ROLE_ADMIN'))||($usersess->getId() != $user->getId() )) {
-          // Sinon on déclenche une exception « Accès interdit »
-          throw new AccessDeniedException('Accès limité.');
-        }        
-        //Si le user existe
-        //Création du formulaire pour la mise à jour
-        $form = $this->get('form.factory')->create(new UserType(), $user);
-        //si le formulaire a été valide
-        if($form->handleRequest($request)->isValid()){             
-            //a voir
-            $this->get('fos_user.user_manager')->updateUser($user, false);            
-            //Récupère le manager
-            $em = $this->getDoctrine()->getManager();
-            //Sauvegarde en bdd des updates
-            $em->flush();
-            //Ajout d'un message flash (a voir)
-            $this->addFlash('notice', "Mise a jour OK.");
-            //Récupère l'utilisateur en session
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            //Ajout d'une notificatoin l'admin
-            UserController::addNotification("Mise à jour de l'utilisteur  ".$usersess->getName()."OK.", $user->getId());
-            //Redirection vers la categorie
-            return $this->forward('TecServiceBundle:Service:getUser', array('id' => $id));
-        }
-        return $this->render('TecServiceBundle::updateUser.html.twig', array('form' => $form->createView()));
-    }
-    
-    /********************************* 
-     * @param Request $request       *
-     * @return type                  *
-     * @throws AccessDeniedException *
-     *********************************/
-    public function addUserAction(Request $request){
-        //On vérifie que l'utilisateur est un admin
-        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
-          // Sinon on déclenche une exception « Accès interdit »
-          throw new AccessDeniedException('Accès limité.');
-        }        
-        //Si l'utilisateur est un admin
-        
-        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
-        $formFactory = $this->container->get('fos_user.registration.form.factory');
-        /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
-        $userManager = $this->container->get('fos_user.user_manager');
-        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-        $dispatcher = $this->container->get('event_dispatcher');
-
-        $user = $userManager->createUser();
-        $user->setEnabled(true);
-
-        $event = new GetResponseUserEvent($user, $request);
-        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
-
-        if (null !== $event->getResponse()) {
-            return $event->getResponse();
-        }
-
-        $form = $formFactory->createForm();
-        $form->setData($user);
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $event = new FormEvent($form, $request);
-            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-
-            $userManager->updateUser($user);
-
-            if (null === $response = $event->getResponse()) {
-                $this->addFlash('notice', "ajout de l'user ok");
-                $url = $this->generateUrl('tec_service_resultspage');
-                $response = new RedirectResponse($url);
-            }
-
-            //$dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-            //Récupère l'utilisateur en session
-            $userAdmin = $this->container->get('security.context')->getToken()->getUser();
-            //Ajout d'une notificatoin l'admin
-            UserController::addNotification("Ajout de l'utilisateur ".$user->getName()."OK.", $userAdmin->getId());
-            return $response;
-        }
-  
-        //si le formulaire n'a pas été validé
-        return $this->render('TecServiceBundle::addUser.html.twig', array('form' => $form->createView()));
-    }    
     
     public function testajaxAction(){
        $request = $this->container->get('request');
@@ -1304,7 +1239,34 @@ class ServiceController extends Controller
         return $this->render('TecServiceBundle::constructSelectCategorie.html.twig', array('categories' => $categories, 'subcategories' => $subcategories));
     }
     
+    //retourne le panel administrateur
+    public function panelAdminAction(){
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
+        
+        //recupère les annonces, categories, types, sous-categories et les users
+        //recupère le repository annonce
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
+        $users = $repository->findAll();
+        
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Annonce');
+        $annonces = $repository->findAll();
+        
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Categorie');
+        $categorie = $repository->findAll();
+        
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Sub_categorie');
+        $subcategorie = $repository->findAll();
+        
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Type');
+        $types = $repository->findAll();
+        
+        return $this->render('TecServiceBundle::admin.html.twig', array('users' => $users, 'annonces' => $annonces, 'categories' => $categorie, 'subcategories' => $subcategorie, 'types' => $types));
     }
+}
    
     
     

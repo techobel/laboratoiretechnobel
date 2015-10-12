@@ -65,7 +65,7 @@ class User extends BaseUser
     /**
      * @var date
      * 
-     * @ORM\Column(name="creation_date", type="date", nullable=true)
+     * @ORM\Column(name="creation_date", type="date", nullable=false)
      */
     private $creation_date;
     
@@ -79,7 +79,7 @@ class User extends BaseUser
     /**
      * @var disponible
      * 
-     * @ORM\Column(name="disponible", type="boolean", nullable=true)
+     * @ORM\Column(name="disponible", type="boolean", nullable=false)
      */
     private $disponible;
     
@@ -99,9 +99,9 @@ class User extends BaseUser
      ********************************************************/
     
     /**
-     * @ORM\OneToMany(targetEntity="Addresse", mappedBy="user", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="Adresse", mappedBy="user", cascade={"persist", "remove"})
      */
-    private $addresses;
+    private $adresse;
     
     /**
      * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Media", inversedBy="user", cascade={"persist", "remove"})
@@ -319,42 +319,6 @@ class User extends BaseUser
     {
         return $this->update_date;
     }
-
-    /**
-     * Add address
-     *
-     * @param \Tec\UserBundle\Entity\Addresse $address
-     *
-     * @return User
-     */
-    public function addAddress(\Tec\UserBundle\Entity\Addresse $address)
-    {
-        $this->addresses[] = $address;
-
-        return $this;
-    }
-
-    /**
-     * Remove address
-     *
-     * @param \Tec\UserBundle\Entity\Addresse $address
-     */
-    public function removeAddress(\Tec\UserBundle\Entity\Addresse $address)
-    {
-        $this->addresses->removeElement($address);
-    }
-
-    /**
-     * Get addresses
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAddresses()
-    {
-        return $this->addresses;
-    }
-
-  
 
     /**
      * Get media
@@ -583,5 +547,39 @@ class User extends BaseUser
     public function getNotifications()
     {
         return $this->notifications;
+    }
+
+    /**
+     * Add adresse
+     *
+     * @param \Tec\UserBundle\Entity\Adresse $adresse
+     *
+     * @return User
+     */
+    public function addAdresse(\Tec\UserBundle\Entity\Adresse $adresse)
+    {
+        $this->adresse[] = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Remove adresse
+     *
+     * @param \Tec\UserBundle\Entity\Adresse $adresse
+     */
+    public function removeAdresse(\Tec\UserBundle\Entity\Adresse $adresse)
+    {
+        $this->adresse->removeElement($adresse);
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
     }
 }

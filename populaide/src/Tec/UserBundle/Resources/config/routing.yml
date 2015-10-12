@@ -1,27 +1,58 @@
+#INDEX
 tec_user_index:
     path:     /
     defaults: { _controller: TecUserBundle:User:index }
+    
 tec_user_contact:
     path:     /contact
     defaults: { _controller: TecUserBundle:User:contact }
 #HOW
 tec_user_how:
-    path:     /comment_ca_marche
+    path:     /commentcamarche
     defaults: { _controller: TecUserBundle:User:how }   
     
-#PUBLIC PROFILE
-tec_user_profile:
+tec_user_myprofil:
+    path:     /profil
+    defaults: { _controller: TecUserBundle:User:getMyProfil } 
+    
+tec_user_getalluser:
+    path:     /user
+    defaults: { _controller: TecUserBundle:User:getAllUser } 
+    
+tec_user_profil:
     path:     /user/{id}
-    defaults: { _controller: TecUserBundle:User:profile } 
+    defaults: { _controller: TecUserBundle:User:getProfilUser } 
+    
+tec_service_deluser:
+    path:     /user/{id}/del
+    defaults: { _controller: TecUserBundle:User:delUser }
+    
+tec_service_updateuser:
+    path:     /user/{id}/update
+    defaults: { _controller: TecUserBundle:User:updateUser }
+    
+tec_service_adduser:
+    path:     /admin/user/add
+    defaults: { _controller: TecUserBundle:User:addUser }
     
 #NOTIFICATION
+tec_user_getnotification:
+    path:     /notification/{id}
+    defaults: { _controller: TecUserBundle:User:getNotification } 
+
+tec_user_getallnotification:
+    path:     /notification
+    defaults: { _controller: TecUserBundle:User:getAllNotification } 
+    
 tec_user_updatenotification:
-    path:     /user/notification/update/{id}
+    path:     /notification/{id}/update/
     defaults: { _controller: TecUserBundle:User:updateNotification } 
     
 tec_user_delnotification:
-    path:     /user/notification/del/{id}
+    path:     /notification/{id}/del/
     defaults: { _controller: TecUserBundle:User:delNotification } 
+    
+    
     
 #CONSTRUCT SELECT CATEGORIES
 tec_service_constructSelect:

@@ -27,7 +27,7 @@ class Demander
     
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="demandes")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
      */
     private $user;
     

@@ -7,8 +7,7 @@
 {% block body %}
     {{ parent() }}
     <section id="results">             
-        <div class="container">
-            
+        <div class="container">            
             {% for flashMessage in app.session.flashbag.get('notice') %}
                 {{ flashMessage }}
             {% endfor %}
@@ -20,34 +19,19 @@
                 {{ app.user.id }}
                 #}
                 {% set villeuser = "" %}
-                {% for addresse in app.user.getaddresses %}
-                   {% set villeuser = addresse.city %}
+                {% for adresse in app.user.getadresse %}
+                   {% set villeuser = adresse.city %}
                 {% endfor %}
                 <div id="villeuser">{{ villeuser }}</div>
-            {% endif %}
-            
-            
-        {#    
-            Annonces:
-        <ul>
-        {% for annonce in annonces%}
-            {% set villeannonce = "" %}
-            {% for addresse in annonce.getUser.getAddresses %}
-               {% set villeannonce = addresse.city %}
-            {% endfor %}
-            <li>{{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description ~ " " ~ annonce.getType.getIntitule}} Ville: <span class="ville">{{ villeannonce }}</span><a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}"> Voir +</a></li>
-        {% endfor %}
-        </ul>
-        #}
-            
+            {% endif %}         
             
             <div class="row text-center portfolio-item annonces">
                 {% for annonce in annonces%}
                     {% set villeannonce = "" %}
                     
                     {# en attente de modification de la cardinalite user - adresse #}
-                    {% for addresse in annonce.getUser.getAddresses %}
-                        {% set villeannonce = addresse.city %}
+                    {% for adresse in annonce.getUser.getAdresse %}
+                        {% set villeannonce = adresse.city %}
                     {% endfor %}
                     
                 <div class="col-md-6 col-sm-12 half">
@@ -84,6 +68,13 @@
                             {% if annonce.getUser.getId != app.user.id %}  
                             <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
                                 Collaborer
+                            </a>
+                            {% else %}
+                            <a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
+                                Modifier
+                            </a>
+                            <a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
+                                Supprimer
                             </a>
                             {% endif %}
                         </div>

@@ -46,7 +46,7 @@ class Categorie
     
     /**
      * @ORM\OneToOne(targetEntity="Media", inversedBy="categorie", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id", nullable=false)
      */
     private $media;
     
