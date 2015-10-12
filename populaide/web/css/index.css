@@ -9,32 +9,11 @@ footer{
     display: none;
 }
 @media(min-width: 768px) {
-    .menu {
-        margin: 83px 0px 0px 60px;
-        text-align: center;
-        width: auto;
-        float: right;
-    }
-    .menu p {
-        display: inline-block;
-        margin-top: 3%;
-    }
-    #bs-navbar li:nth-child(3) {
-        width: 160px;
-        margin-bottom: 5px;
-    }
-    #bs-navbar li {
-        width: 110px;    
-        text-align: center;
-    }
+
     .menu li a {
-        width: 120px;
-        min-height: 25px; 
+
     }
-    .menu li .img-menu {
-        width:25px !important;
-        margin-right: 10px;
-    }   
+  
 }    
 @media(min-width: 900px) {
     
