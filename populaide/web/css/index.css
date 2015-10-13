@@ -4,23 +4,10 @@ footer{
 #bs-navbar li a:hover {
     color: #23777B;
 }
-.menu li:nth-child(1),
-.menu li:nth-child(2) {
+.menu li:nth-child(3),
+.menu li:nth-child(4) {
     display: none;
 }   
-@media(min-width: 900px) {
-    
-    #bs-navbar li {
-        rigth: 50px;
-        width: 110px;
-    }
-    #bs-navbar li a {
-      font-size: 12px;
-    }
-    .menu {
-        margin: 83px 60px 0px 40px;
-    }
-}
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {  
     #home .overlay {
