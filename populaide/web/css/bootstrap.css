@@ -3842,7 +3842,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     border-radius: 4px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 900px) {
   .navbar-header {
     float: left;
   }
@@ -3867,11 +3867,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
             box-shadow: none;
   }
   .navbar-collapse.collapse {
-    display: block !important;
+/*    display: block !important;*/
     height: auto !important;
     padding-bottom: 0;
     overflow: visible !important;
-    visibility: visible !important;
   }
   .navbar-collapse.in {
     overflow-y: visible;
@@ -3985,9 +3984,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
 }
-@media (min-width: 768px) {
+@media (min-width: 900px) {
+  .navbar-collapse.collapse {
+    display: block !important;
+  }
   .navbar-toggle {
     display: none;
+  }
+  .navbar-collapse.collapse {
+    visibility: visible !important;
   }
 }
 .navbar-nav {
