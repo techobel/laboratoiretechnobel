@@ -297,6 +297,7 @@ a.normal:visited{
 .home-index{
 /*    height: 370px;*/
     background: url(../images/header.jpg) no-repeat center 28%; /*Full Width background image*/
+    background-size: cover;
 }   
 /*STYLE FOR OVERLAY CLASS - WHICH IS ABOVE IMAGE WITH OPACITY/TRANSPARENCY 0.75*/
     #home .overlay {
@@ -793,13 +794,16 @@ footer p{
             margin-left: 30px;
             padding: 10px 19px;
         }
-    .item:first-child .box-how h3::before,
-    .item:nth-child(2) .box-how h3::before,
-    .item:nth-child(3) .box-how h3::before,
-    .item:nth-child(4) .box-how h3::before,
-    .item:nth-child(5) .box-how h3::before,
-    .item:last-child .box-how h3::before{ 
-        display: none;
+        .item:first-child .box-how h3::before,
+        .item:nth-child(2) .box-how h3::before,
+        .item:nth-child(3) .box-how h3::before,
+        .item:nth-child(4) .box-how h3::before,
+        .item:nth-child(5) .box-how h3::before,
+        .item:last-child .box-how h3::before{ 
+            margin: 35% 0 0 0;
+        }
+
+        
     }       
    
    /*CATEGORY*/
@@ -819,6 +823,14 @@ footer p{
 @media (min-width: 800px) {
     .ccm {
         padding-left: 17%;
+    }
+    .item:first-child .box-how h3::before,
+    .item:nth-child(2) .box-how h3::before,
+    .item:nth-child(3) .box-how h3::before,
+    .item:nth-child(4) .box-how h3::before,
+    .item:nth-child(5) .box-how h3::before,
+    .item:last-child .box-how h3::before{ 
+        margin: 0 0 0 0;
     }
 }
 @media (min-width: 980px) {
