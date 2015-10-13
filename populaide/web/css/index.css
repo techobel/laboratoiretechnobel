@@ -1,9 +1,6 @@
 footer{
     display: none;
 }
-#bs-navbar li a:hover {
-    color: #23777B;
-}
 #bs-navbar .hidden-index {
     display: none;
 }
