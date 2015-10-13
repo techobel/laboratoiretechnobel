@@ -4,10 +4,13 @@ footer{
 #bs-navbar li a:hover {
     color: #23777B;
 }
-.menu li:nth-child(3),
+#bs-navbar .hidden-index {
+    display: none;
+}
+/*.menu li:nth-child(3),
 .menu li:nth-child(4) {
     display: none;
-}   
+}   */
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {  
     #home .overlay {
