@@ -155,21 +155,25 @@ a.normal:visited{
     .menu li a:hover {
         background-color: transparent;
     }
-    .menu li:first-child {
+    .connect {
+        display: none;
+    }
+    .menu li:nth-child(4) {
         background-color: rgba(234,93,79,1);
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
     }
-    .menu li:nth-child(2) {
-        background-color: rgba(234,93,79,0.9);
-    }
-    .menu li:nth-child(3) {
-        background-color: rgba(234,93,79,0.7);
-    }    
-    .menu li:nth-child(4) {
-        background-color: rgba(234,93,79,0.5);
-    }
     .menu li:nth-child(5) {
+        background-color: rgba(234,93,79,0.9);
+    }    
+    .menu li:nth-child(6) {
+        background-color: rgba(234,93,79,0.7);
+    }
+    .menu li:nth-child(7) {
+        background-color: rgba(234,93,79,0.5);
+
+    }
+    .menu li:nth-child(8) {
         background-color: rgba(234,93,79,0.4);
     }
     .menu li:last-child {
@@ -210,7 +214,7 @@ a.normal:visited{
         background:none; 
         text-align:right; 
     }
-    #bs-navbar li:nth-child(3) {
+    #bs-navbar li:nth-child(1) {
         width: 160px;
         margin-bottom: 5px;
     }    
@@ -258,6 +262,16 @@ a.normal:visited{
   .img-menu {
       width: 70px;
   }
+    #bs-navbar li {
+        rigth: 50px;
+        width: 110px;
+    }
+    #bs-navbar li a {
+      font-size: 12px;
+    }
+    .menu {
+        margin: 83px 60px 0px 40px;
+    }  
 }
 @media(min-width: 1024px) {
   #bs-navbar {
@@ -273,7 +287,7 @@ a.normal:visited{
         width: 150px;
     }    
     #bs-navbar li a {
-        font-size: 14px;
+        font-size: 12px;
     }
     #bs-navbar li p {
         font-size: 13px;
