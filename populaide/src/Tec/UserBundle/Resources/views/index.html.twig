@@ -11,6 +11,20 @@
     {{ parent() }}
 {% endblock %} 
 {% block body %}
+    {% block search %}
+        <section class="search index">
+            <div class="container">   
+            <form  class="row form-inline" action="{{ path("tec_service_searchannonce") }}" method="POST">
+        {#        Construction du select dans la vue constructSelectCategorie#}
+                {% render path('tec_service_constructSelect') %}
+                <input class="col-xs-12 col-md-4 form-control " type="text" name="localite"/>
+                <button type="submit"><img src="{{ asset("images/pictos/search.png") }}" width="100" height="100"/></button>
+            </form>
+            </div>
+        </section>
+        <!--SEARCH SECTION END-->
+
+    {% endblock %}
     {% block inside_title %}{% endblock %}
     <div class="post-section">
         <div class="overlay">
@@ -32,7 +46,10 @@
         <div class="overlay">
             <div class="container">
                 <div class="row">
-                    <button class="btn btn-secondary col-xs-12">Connexion</button>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {% else %}
+                        <button class="btn btn-secondary col-xs-12">Connexion</button>
+                    {% endif %}
                 </div>
             </div>
         </div>
