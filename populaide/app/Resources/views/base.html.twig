@@ -39,17 +39,17 @@
                     </div>
                     {% block menu %}
                         <nav id="bs-navbar" class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav menu">
-                                <li class="hidden-index"><a href="#footer_mob"><img class="img-menu" src="{{ asset('images/pictos/search.png') }}" class="menu-picto" alt="Rechercher"/>Recherche</a></li>
-                                <li class="hidden-index"><a href="{{ path('tec_user_index') }}"><img class="img-menu" src="{{ asset('images/pictos/home.png') }}" class="menu-picto" alt="Home"/>Home</a></li>                                 
+                            <ul class="nav navbar-nav menu">                               
                                 {% block connexion %}
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    <li class="connect"><p>Bienvenue Melissa <span class="user-name">{{ app.user.username }}</span></p></li>
+                                    {#<li class="connect"><p>Bienvenue Melissa <span class="user-name">{{ app.user.username }}</span></p></li>#}
                                     <li><a href="{{ path('fos_user_security_logout') }}"><img class="img-menu" src="{{ asset('images/pictos/user.png') }}" class="menu-picto" alt="Profil"/>Deconnecter</a></li>
                                     {% else %}
                                     <li><a href="{{ path('fos_user_security_login') }}">Connecter</a></li>
                                    {% endif %}
-                                {% endblock %}                                   
+                                {% endblock %}      
+                                <li class="hidden-index"><a href="#footer_mob"><img class="img-menu" src="{{ asset('images/pictos/search.png') }}" class="menu-picto" alt="Rechercher"/>Recherche</a></li>
+                                <li class="hidden-index"><a href="{{ path('tec_user_index') }}"><img class="img-menu" src="{{ asset('images/pictos/home.png') }}" class="menu-picto" alt="Home"/>Home</a></li>                                 
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                     <li class="down"><a href="{{ path('tec_user_profil',{'id': app.user.id}) }}" ><img class="img-menu" src="{{ asset('images/pictos/user.png') }}" class="menu-picto" alt="Profil"/>Profil</a></li>   
                                 {% endif %}
