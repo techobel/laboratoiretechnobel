@@ -32,7 +32,11 @@ tec_service_delannonce:
 tec_service_updateannonce:
     path:     /annonce/{id}/update
     defaults: { _controller: TecServiceBundle:Service:updateAnnonce }
-    
+
+#affiche la popup d'aperçu de l'annonce
+tec_service_previewannonce:
+    path:     /annonce/add/{bool}
+    defaults: { _controller: TecServiceBundle:Service:previewAddAnnonce }
     
 #A VOIR    
 tec_service_searchannonce:
