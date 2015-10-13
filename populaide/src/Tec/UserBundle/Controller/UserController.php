@@ -29,11 +29,35 @@ class UserController extends Controller
         
         $data = array();
         $form = $this->createFormBuilder($data)
-            ->add('name', 'text')
-            ->add('email', 'email')
-            ->add('subject', 'text')
-            ->add('message', 'text')
-            ->add('valider', 'submit')
+            ->add('name', 'text', array(
+                'label' => false, 
+                'attr' => array('max_length' => '70', 
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'placeholder' =>'Nom et prénom')))
+            ->add('email', 'email', array(
+                'label' => false, 
+                'attr' => array('max_length' => '70', 
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'placeholder' =>'Entrez votre adresse mail')))
+            ->add('subject', 'text', array(
+                'label' => false, 
+                'attr' => array('max_length' => '70',
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'placeholder' =>'Objet du message')))
+            ->add('message', 'textarea', array(
+                'label' => false, 
+                'attr' => array('max_length' => '150',
+                            'class' => 'col-xs-12 col-md-4 form-control',
+                            'placeholder' =>'Rédigez votre message',
+                            'rows'=> "4")))
+            ->add('envoyer', 'submit', array(
+                'attr' => array('id' => 'preview',
+                            'class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
+                            'value' => 'Envoyer')))
+            ->add('effacer', 'reset', array(
+                'attr' => array('id' => 'preview',
+                            'class' => "btn btn-secondary btn-lg col-xs-2 col-md-2 form-control",
+                            'value' => 'Effacer')))
         ->getForm();
 
         if ($request->isMethod('POST')) {
@@ -51,7 +75,7 @@ class UserController extends Controller
             $body = $content . $fromName . $from;
             
             ServiceController::sendMail($subject, $admin, $body);
-           $this->addFlash('notice', "Envoie OK");
+           $this->addFlash('notice', "Votre message a bien été envoyé");
         }
         
         return $this->render('TecUserBundle::contact.html.twig', array('form' => $form->createView()));

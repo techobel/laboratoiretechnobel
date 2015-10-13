@@ -1,15 +1,18 @@
-{% extends "TecServiceBundle::layout.html.twig" %}
-{% block title %}Populaide - Belgique - Results{% endblock %}
+{% extends "::base.html.twig" %}
+
+{% block title %}Résultats {{ parent() }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
+
 {% block body %}
     {{ parent() }}
     <section id="results">             
         <div class="container">            
             {% for flashMessage in app.session.flashbag.get('notice') %}
-                {{ flashMessage }}
+                <div class="alert-success has-success">{{ flashMessage }}</div>
             {% endfor %}
             
             {# affiche les données de l'utilisateur #}
@@ -36,7 +39,18 @@
                     
                 <div class="col-md-6 col-sm-12 half">
                     <div class="box-post"> <!--360px * 318px -->
-                        <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />
+{#                        <img class="profil-post-image" src="{{ asset('images/steps/01.png') }}" alt="photo de profil" />#}
+                        {% if annonce.getUser.media != null %}
+                            <img
+                                src="{{ asset(annonce.getUser.media.uploadDir ~ '/' ~ annonce.getUser.media.id ~ annonce.getUser.media.path) }}"
+                                alt="{{ annonce.getUser.media.alt ~ annonce.getUser.username }}"
+                                class="profil-post-image"
+                                width="150px"
+                                heigth="150px"
+                            />
+                        {% else %}
+                            <img src="{{ asset('images/pictos/user_carre.png') }}" class="profil-post-image" width="150" height="150"/>
+                        {% endif %}
                         <ul>
                             <li><p class="user-login">{{ annonce.getUser.getUsername }}</p></li>  
                             {% if annonce.getUser.getDisponible %}
@@ -57,23 +71,22 @@
                             <li><p class="user-date-post"> {{ annonce.getCreationDate | date('m/d/Y') }} </p></li>
                             <li><h3 class="post-title propose"> {{ annonce.getTitle | truncate(30) }}</h3></li> 
                         </ul>
-                            <p id="debut-annonce">{{ annonce.getDescription | truncate(20) }}</p>
+                            <p id="debut-annonce">{{ annonce.getDescription | truncate(200) }}</p>
                         <div class="icons-post">
                             <a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
                                 Détails
                             </a>    
-                            <a class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
+                            <a href="{{ path('tec_user_contact') }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
                                 Contact
                             </a> 
-                            {% if annonce.getUser.getId != app.user.id %}  
                             <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
                                 Collaborer
                             </a>
-                            {% else %}
-                            <a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
+                            {% if annonce.getUser.getId != app.user.id %}  
+                            <a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}" class="menu-post" >
                                 Modifier
                             </a>
-                            <a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
+                            <a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}" class="menu-post" >
                                 Supprimer
                             </a>
                             {% endif %}

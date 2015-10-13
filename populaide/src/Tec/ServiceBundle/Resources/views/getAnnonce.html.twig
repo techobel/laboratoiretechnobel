@@ -1,5 +1,4 @@
-
-{#Cette page doit inclure previewAnnonce.html à laquelle elle doit ajouter les infos sur le user#}
+{#Cette page inclut previewAnnonce.html à laquelle elle ajoute les infos sur le user#}
 
 {% extends "::base.html.twig" %}
 
@@ -7,7 +6,6 @@
     {{ parent() }}
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet" type="text/css" />
     <!-- PROFILE STYLE SHEET -->
-{#    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />#}
 {% endblock %}
 
 {% block title %}{{ annonce.getTitle }} {{ parent() }}{% endblock %}
