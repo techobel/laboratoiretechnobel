@@ -1,4 +1,3 @@
-﻿
 /*=============================================================
     Authour URL: www.designbootstrap.com
 
@@ -178,13 +177,22 @@ a.normal:visited{
         border-bottom-right-radius: 20px;
     }
 @media (min-width: 768px) {
+    .menu {
+        margin: 83px 0px 0px 60px;
+        text-align: center;
+        width: auto;
+        float: right;
+    }
     .menu p {
         display:block; 
+        margin-top: 3%;
         float: left;
     }
-    .img-menu {
+    .menu li .img-menu {
         display: inline-block;
-    }
+        width:25px !important;
+        margin-right: 10px;
+    }  
     .navbar {
         margin-top: -20px;
     }
@@ -195,23 +203,24 @@ a.normal:visited{
     }
     #bs-navbar li {
         background:none; 
-/*        margin:0 5px; */
         text-align:center; 
-        width:75px;
+        width:110px;
     }
     #bs-navbar li:nth-child(1) {
         background:none; 
         text-align:right; 
-/*        width:100%;*/
     }
-/*    #bs-navbar li:nth-child(2) {
-        margin-left: 10%;
-    }*/
+    #bs-navbar li:nth-child(3) {
+        width: 160px;
+        margin-bottom: 5px;
+    }    
     #bs-navbar li:first-child a{
         margin-top: -20px;
         width: 15%;
     }
     #bs-navbar li a{
+        width: 120px;
+        min-height: 25px;         
         color:#8a8381; 
         display:inline-block; 
         font-size:12px;  
@@ -254,11 +263,34 @@ a.normal:visited{
   #bs-navbar {
       right: -20px;
   }    
+    .menu {
+        margin: 83px 40px 0px 40px;
+    }
+    .menu li {
+        margin-left: 10px;
+    }
+    .menu li a {
+        width: 150px;
+    }    
+    #bs-navbar li a {
+        font-size: 14px;
+    }
+    #bs-navbar li p {
+        font-size: 13px;
+    }  
+}
+@media(min-width: 1480px) {
+    .menu {
+        margin: 88px 40px 0px 40px;
+    }
 }
 @media(min-width: 1700px) {
-  #bs-navbar {
-      right: -200px;
-  }    
+    #bs-navbar {
+        right: -200px;
+    }   
+    .menu {
+        margin: 95px 200px 0px 40px;
+    }  
 }
 /*================================
     HOME SECTION STYLES

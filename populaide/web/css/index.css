@@ -1,41 +1,13 @@
 footer{
     display: none;
 }
-#bs-navbar li a:hove {
-    background-color: #23777B;
+#bs-navbar li a:hover {
+    color: #23777B;
 }
 .menu li:nth-child(1),
 .menu li:nth-child(2) {
     display: none;
-}
-@media(min-width: 768px) {
-    .menu {
-        margin: 83px 0px 0px 60px;
-        text-align: center;
-        width: auto;
-        float: right;
-    }
-    .menu p {
-        display: inline-block;
-        margin-top: 3%;
-    }
-    #bs-navbar li:nth-child(3) {
-        width: 160px;
-        margin-bottom: 5px;
-    }
-    #bs-navbar li {
-        width: 110px;    
-        text-align: center;
-    }
-    .menu li a {
-        width: 120px;
-        min-height: 25px; 
-    }
-    .menu li .img-menu {
-        width:25px !important;
-        margin-right: 10px;
-    }   
-}    
+}   
 @media(min-width: 900px) {
     
     #bs-navbar li {
@@ -60,32 +32,8 @@ footer{
     -moz-background-size: cover;
     height: 350px;
     }
-@media (min-width: 1024px) {
-    .menu {
-        margin: 83px 40px 0px 40px;
-    }
-    .menu li {
-        margin-left: 10px;
-    }
-    .menu li a {
-        width: 150px;
-    }    
-    #bs-navbar li a {
-        font-size: 14px;
-    }
-    #bs-navbar li p {
-        font-size: 13px;
-    }
-}
-@media(min-width: 1480px) {
-    .menu {
-        margin: 88px 40px 0px 40px;
-    }
-}
 @media(min-width: 1700px) {
-    .menu {
-        margin: 95px 200px 0px 40px;
-    }
+
 }
 /*    section.search button[type="submit"]{
         margin-top: -30px;
