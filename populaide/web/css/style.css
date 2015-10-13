@@ -101,7 +101,7 @@ a.normal:visited{
 }
 @media(min-width: 640px) {
     #logo>img {
-        min-width: 250px;
+        min-width: 200px;
         max-width: 300px;
     }
     #slogan {
@@ -110,7 +110,7 @@ a.normal:visited{
     }
 }
 .menu {
-    width: 100%;
+/*    width: 100%;*/
     margin: 0 auto;
 }
     .menu p {
@@ -118,7 +118,7 @@ a.normal:visited{
     }
     #bs-navbar {
         width: 100%;
-        margin: 2%;      
+        margin: 0 auto;     
     }
     .menu li {
         width: 100%;
@@ -142,33 +142,32 @@ a.normal:visited{
     .connect {
         display: none;
     }
+    .menu li:first-child {
+        background-color: rgba(234, 93, 79, 0.5);
+    }
+    .menu li:nth-child(2) {
+        background-color: #EA5D4F;
+    }    
+    .menu li:nth-child(3) {
+        background-color: rgba(234, 93, 79, 0.5);
+    }
     .menu li:nth-child(4) {
-        background-color: rgba(234,93,79,1);
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        background-color: #EA5D4F;
     }
     .menu li:nth-child(5) {
-        background-color: rgba(234,93,79,0.9);
-    }    
+        background-color: rgba(234, 93, 79, 0.5);
+    }
     .menu li:nth-child(6) {
-        background-color: rgba(234,93,79,0.7);
+        background-color: #EA5D4F;
     }
     .menu li:nth-child(7) {
-        background-color: rgba(234,93,79,0.5);
-
-    }
-    .menu li:nth-child(8) {
-        background-color: rgba(234,93,79,0.4);
-    }
-    .menu li:last-child {
-        border-bottom-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+        background-color: rgba(234, 93, 79, 0.5);
     }
 @media (min-width: 768px) {
-
- 
-
-  }    
+    #bs-navbar {
+        margin-left: 80px;
+    }    
+}   
 @media (min-width: 900px) {
     .navbar {
         margin-top: -20px;
@@ -190,6 +189,7 @@ a.normal:visited{
     #bs-navbar li:nth-child(1) {
         background:none; 
         text-align:right; 
+        margin-right: 15px;
     }
     #bs-navbar li:first-child a {
         width: 120px;
@@ -220,9 +220,9 @@ a.normal:visited{
         color:#EB5E4E;
     }    
     .menu {
-        margin: 83px 0px 0px 50px;
-        text-align: center;
         float: right;
+        margin: 85px 75px 0px -150px;
+        text-align: right;
     }    
     .menu li .img-menu {
         display: inline-block;
@@ -231,7 +231,7 @@ a.normal:visited{
     } 
   #slogan {
       font-size: 100%;
-      margin-left: 35px;
+      margin-left: 5px;
   }   
   #bs-navbar {
       right: -80px;
@@ -243,23 +243,20 @@ a.normal:visited{
       width: 70px;
   }
     #bs-navbar li {
-/*        rigth: 50px;*/
-        width: 120px;
+        width: 100px;
+        margin-right: 5px;
+/*        float: right;*/
     }
     #bs-navbar li a {
       font-size: 12px;
     }
-    .menu {
-        margin: 90px 60px 0px -10px;
-        text-align: right;
-    }  
 }
 @media(min-width: 1024px) {
   #bs-navbar {
       right: -20px;
   }    
     .menu {
-        margin: 83px 40px 0px 40px;
+        margin: 90px 25px 0px 40px;
     }
     .menu li {
         margin-left: 10px;
@@ -274,9 +271,14 @@ a.normal:visited{
         font-size: 13px;
     }  
 }
+@media(min-width: 1024px) {
+    .menu {
+        margin: 100px 25px 0px 40px;
+    }    
+}
 @media(min-width: 1480px) {
     .menu {
-        margin: 88px 40px 0px 40px;
+        margin: 120px 25px 0px 40px;
     }
 }
 @media(min-width: 1700px) {
@@ -284,7 +286,7 @@ a.normal:visited{
         right: -200px;
     }   
     .menu {
-        margin: 95px 200px 0px 40px;
+        margin: 130px 200px 0px 0px;
     }  
 }
 /*================================
