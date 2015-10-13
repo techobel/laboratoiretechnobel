@@ -229,6 +229,9 @@
         half {
             margin-left: 0;
         }
+        .bigger {
+            margin: 5% 0 5% 0%;
+        }
     }
     @media (min-width: 980px) {
         .half {
@@ -239,6 +242,7 @@
             width: 60%;
             text-align: center;
         }
+ 
         .box-post{
             height: 320px;
         }        
@@ -272,9 +276,16 @@
         .fleche-page {
         width: 18px;
         height: 21px;
-        }        
+        }   
+        .bigger {
+            margin-left:20%;
+        }
     }
-
+@media (min-width: 992px) {
+        .bigger {
+            margin-left:25%;
+        }        
+}        
 @media(min-width: 1080px) {  
         .box-post{
             height: 300px;
@@ -331,6 +342,9 @@
        .col-sm-offset-3 {
             margin-left: 25%;
         } 
+        .bigger {
+            margin-left: 30%;
+        }
 }
 @media(min-width: 1700px) {
     .container {
