@@ -32,8 +32,6 @@ tec_service_delannonce:
 tec_service_updateannonce:
     path:     /annonce/{id}/update
     defaults: { _controller: TecServiceBundle:Service:updateAnnonce }
-     
-
     
 #CATEGORIE
 tec_service_addcategorie:
@@ -141,11 +139,3 @@ tec_service_testcalcul:
     defaults: { _controller: TecServiceBundle:Service:testcalcul }
     methods: [POST]
         
-#tec_service_testselect:
-#    path:    /index
-#    defaults: { _controller: TecServiceBundle:Service:testselect }
-
-tec_service_menusearch:
-    path:     /menusearch
-    defaults: { _controller: TecServiceBundle:Service:menuSearch }
-    methods: [POST]
