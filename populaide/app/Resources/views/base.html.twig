@@ -60,31 +60,10 @@
                 </div>
             </header>
             <!--HOME SECTION END  -->   
-        {% endblock %}
-        <div id="home" class="home-index">
-            <div class="overlay">
-                <div class="container">
-
-                </div>
-            </div> 
-            {% block search %}
-                <section class="search index">
-                    <div class="container">   
-                    <form  class="row form-inline" action="{{ path("tec_service_searchannonce") }}" method="POST">
-                {#        Construction du select dans la vue constructSelectCategorie#}
-                        {% render path('tec_service_constructSelect') %}
-                        <input class="col-xs-12 col-md-4 form-control " type="text" name="localite"/>
-                        <button type="submit"><img src="{{ asset("images/pictos/search.png") }}" width="100" height="100"/></button>
-                    </form>
-                    </div>
-                </section>
-                <!--SEARCH SECTION END-->
-            
-            {% endblock %}
-            <!--SEARCH SECTION END-->
-        </div>
-        
+        {% endblock %}        
         {% block body %}
+            {% block search %}
+            {% endblock %}     
             {# Bandeau de titre bleu sur les pages intérieures #}
             {% block inside_title %}
                 <div class="title">
@@ -100,8 +79,7 @@
                     </div>
                 </div>
             {% endblock %}
-        {% endblock %}
-        
+        {% endblock %}        
         {% block footer %}
         <!--FOOTER MOBILE-->
         <footer id="footer_mob" class="footer_mob search ">
