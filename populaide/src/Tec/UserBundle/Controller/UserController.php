@@ -15,6 +15,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Tec\UserBundle\Entity\Notification;
 use Tec\UserBundle\Form\UserType;
 
+use Tec\ServiceBundle\Controller\ServiceController;
+
 class UserController extends Controller
 {
     public function indexAction()
@@ -22,9 +24,37 @@ class UserController extends Controller
         return $this->render('TecUserBundle::index.html.twig');
     }
     
-    public function contactAction()
+    public function contactAction(Request $request)
     {
-        return $this->render('TecUserBundle::contact.html.twig');
+        
+        $data = array();
+        $form = $this->createFormBuilder($data)
+            ->add('name', 'text')
+            ->add('email', 'email')
+            ->add('subject', 'text')
+            ->add('message', 'text')
+            ->add('valider', 'submit')
+        ->getForm();
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            // $data is a simply array with your form fields 
+            // like "query" and "category" as defined above.
+            //$data = $form->getData();
+            
+            $subject = $form["subject"]->getData();
+            $admin = "tracy.brisfer@gmail.com";
+            $content = $form["message"]->getData();
+            $fromName = $form["name"]->getData();
+            $from = $form["email"]->getData();
+            $body = $content . $fromName . $from;
+            
+            ServiceController::sendMail($subject, $admin, $body);
+           $this->addFlash('notice', "Envoie OK");
+        }
+        
+        return $this->render('TecUserBundle::contact.html.twig', array('form' => $form->createView()));
     }
     
     public function howAction()

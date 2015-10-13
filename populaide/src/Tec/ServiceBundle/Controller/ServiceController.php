@@ -54,73 +54,7 @@ class ServiceController extends Controller
         
         return $this->get('mailer')->send($message);        
     }
-    
-     public function sendAdminMailAction(Request $request){
-//        $user = new SiteUser();
-//        $form = $this->createForm(new LoginType(), $user);
-        
-        
-        
-        $form = array("names"=>"test", "subject"=>"test objet", "message"=>"dsfsdf sdfsdf", "mail"=>"test@test.com");
-        
-        $form = $this->getRequest()->request->get('contact_form');
-        
-        if($form->handleRequest($request)->isValid()){
             
-            $subject = $form["subject"]->getData();
-            $admin = "tracy.brisfer@gmail.com";
-            $content = $form["message"]->getData();
-            $fromName = $form["names"]->getData();
-            $from = $form["mail"]->getData();
-            $body = $content . $fromName . $from;
-
-            $this->sendMail($subject, $admin, $body);
-        }
-        
-        
-//        
-//        $defaultData = array('message' => 'Type your message here');
-//        $form = $this->createFormBuilder($defaultData)
-//        ->add('name', 'text')
-//        ->add('email', 'email')
-//        ->add('subject', 'text')
-//        ->add('message', 'textarea')
-//        ->getForm();
-//        if ($request->getMethod() == 'POST') {
-//          $form->handleRequest($request);
-//          // data is an array with "name", "email", and "message" keys
-//          $data = $form->getData();
-//          
-//          var_dump($data['subject']);
-//          
-////            $subject = $data["subject"];
-////            $admin = "tracy.brisfer@gmail.com";
-////            $body = $data["message"];
-//          
-//            $subject = "subject";
-//            $admin = "tracy.brisfer@gmail.com";
-//            $body = "message sdfjqsl jflksdjf";
-//
-//            $this->sendMail($subject, $admin, $body);
-//        }
-        
-        
-        
-//        $defaultData = array('message' => 'Type your message here');
-//        $form = $this->createFormBuilder($defaultData)->add('name', 'test') -> add('email', 'test@test.com') -> add('message', 'sfsdf sdfqsd fs ')->getForm();
-//
-//        if ($request->isMethod('POST')) {
-//           $form->bind($request);
-//
-//           // data is an array with "name", "email", and "message" keys
-//           $data = $form->getData();
-//        }
-        
-
-        
-         return $this->render('TecUserBundle::index.html.twig');
-    }
-    
     public function resultsAction()
     {
         return $this->render('TecServiceBundle::results.html.twig');
