@@ -1,8 +1,3 @@
-tec_service_sendAdminMail:
-    path:     /contact/mail
-    defaults: { _controller: TecServiceBundle:Service:sendAdminMail }
-    methods: post
-
 tec_service_resultspage:
     path:     /results
     defaults: { _controller: TecServiceBundle:Service:results }
@@ -20,6 +15,11 @@ tec_service_getallannonce:
 tec_service_addannonce:
     path:     /annonce/add
     defaults: { _controller: TecServiceBundle:Service:addAnnonce }
+
+tec_service_searchannonce:
+    path:     /annonce/search
+    defaults: { _controller: TecServiceBundle:Service:searchAnnonce }
+    methods: [POST]
     
 tec_service_getannonce:
     path:     /annonce/{id}
@@ -32,13 +32,6 @@ tec_service_delannonce:
 tec_service_updateannonce:
     path:     /annonce/{id}/update
     defaults: { _controller: TecServiceBundle:Service:updateAnnonce }
-    
-    
-#A VOIR    
-tec_service_searchannonce:
-    path:     /annonce/search
-    defaults: { _controller: TecServiceBundle:Service:searchAnnonce }
-    methods: [POST]
     
 #CATEGORIE
 tec_service_addcategorie:
@@ -146,7 +139,3 @@ tec_service_testcalcul:
     defaults: { _controller: TecServiceBundle:Service:testcalcul }
     methods: [POST]
         
-#tec_service_testselect:
-#    path:    /index
-#    defaults: { _controller: TecServiceBundle:Service:testselect }
-
