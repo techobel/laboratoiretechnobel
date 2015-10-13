@@ -1,11 +1,12 @@
    
-<select class="col-xs-12 col-md-4 form-control " name="categorie" autofocus>
-    <option value="" id="hidden">Choisissez une catégorie</option>
+<select class="col-xs-12 col-md-4 form-control " name="subcategorie" autofocus>
+    <option value="" selected>Toutes les categories</option>
     {% for categorie in categories %}
-    <option value="{{ categorie.id }}" class="optionGroup">{{ categorie.name }}</option>
+    <optgroup label="{{ categorie.name }}" class="optionGroup">
         {% for subcategorie in categorie.getSubCategories %}
             <option value="{{ subcategorie.id }}">{{ subcategorie.name }}</option>
         {% endfor %}
+    </optgroup>
     {% endfor %}
 </select>
         

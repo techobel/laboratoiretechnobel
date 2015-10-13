@@ -541,13 +541,13 @@ class ServiceController extends Controller
         var_dump($nbAnnonce);
         
         if($nbAnnonce[0][1] === '0'){
-            $this->addFlash('notice', "Il n'y a aucune annonce.");
+            $this->addFlash('searchannonce', "Il n'y a aucune annonce.");
             //Redirection meme page
             return $this->redirect($request->headers->get('referer'));
         }else{
             //Récupère les valeurs du formulaire
             $localite = $request->get('localite');
-            $idsubcategorie = $request->get('categorie');
+            $idsubcategorie = $request->get('subcategorie');
 
             $id = intval($idsubcategorie);
 
@@ -589,7 +589,7 @@ class ServiceController extends Controller
                 $annonces = $query->getResult();
                 return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
             }else{  //Recherche seulement par categorie
-                return $this->forward('TecServiceBundle:Service:getAnnonceCategorie', array('id' => $id));
+                return $this->forward('TecServiceBundle:Service:getAnnonceSubCategorie', array('id' => $id));
             }        
 
             //return $this->render('TecServiceBundle::results.html.twig');
@@ -1266,6 +1266,7 @@ class ServiceController extends Controller
         
         return $this->render('TecServiceBundle::admin.html.twig', array('users' => $users, 'annonces' => $annonces, 'categories' => $categorie, 'subcategories' => $subcategorie, 'types' => $types));
     }
+    
 }
    
     
