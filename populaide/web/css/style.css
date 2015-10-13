@@ -110,7 +110,6 @@ a.normal:visited{
     }
 }
 .menu {
-/*    width: 100%;*/
     margin: 0 auto;
 }
     .menu p {
@@ -119,6 +118,10 @@ a.normal:visited{
     #bs-navbar {
         width: 100%;
         margin: 0 auto;     
+    }
+    #bs-navbar li a:hover {
+    color: #23777B;
+    transform: scale(1.1);
     }
     .menu li {
         width: 100%;
@@ -251,6 +254,12 @@ a.normal:visited{
       font-size: 12px;
     }
 }
+@media(min-width: 980px) {
+    #bs-navbar li a {
+        font-size: 13px;
+        width: 130px;
+    }
+}
 @media(min-width: 1024px) {
   #bs-navbar {
       right: -20px;
@@ -265,7 +274,8 @@ a.normal:visited{
         width: 150px;
     }    
     #bs-navbar li a {
-        font-size: 12px;
+        font-size: 14px;
+        width: 140px;
     }
     #bs-navbar li p {
         font-size: 13px;
@@ -481,8 +491,7 @@ option:not(.optionGroup){
             text-align: center;
         }
         #category li a:hover {
-            width: 120%;
-            height: 120%;
+            transform: scale(1.2);
         }
             #category li a img{
                 cursor:pointer;
@@ -891,8 +900,7 @@ footer p{
        margin-left: 0%;
    }
     #carousel-example-generic .centre {
-        margin: 0 0 5% 0;
-        padding: 5% 10% 0 0;
+        padding: 0% 10% 0px 0px;
    }
    /*CONNECTION SECTION*/
     div.connection{
