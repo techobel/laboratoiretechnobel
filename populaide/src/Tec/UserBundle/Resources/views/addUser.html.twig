@@ -1,16 +1,15 @@
-{% extends "TecServiceBundle::layout.html.twig" %}
-{% block title %}Populaide - Belgique - Results{% endblock %}
-{% block stylesheets %}
-    {{ parent() }}
-    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
-{% endblock %}
+{% extends "::base.html.twig" %}
+
+{% block title %}Ajout utilisateur {{ parent() }}{% endblock %}
+
 {% block body %}
     {{ parent() }}
-    <section id="works">
-        <h3>Ajout d'un user:</h3>
+    {% block h3 %}Ajout d'un user{% endblock %}
+    
+    <section id="form_contact" class="clearfix">
+        <div class="container">
         {{ form(form) }}
+        </div>
     </section>
     
-
-
 {% endblock %}

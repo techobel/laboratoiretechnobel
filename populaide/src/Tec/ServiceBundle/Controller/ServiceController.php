@@ -54,73 +54,7 @@ class ServiceController extends Controller
         
         return $this->get('mailer')->send($message);        
     }
-    
-     public function sendAdminMailAction(Request $request){
-//        $user = new SiteUser();
-//        $form = $this->createForm(new LoginType(), $user);
-        
-        
-        
-        $form = array("names"=>"test", "subject"=>"test objet", "message"=>"dsfsdf sdfsdf", "mail"=>"test@test.com");
-        
-        $form = $this->getRequest()->request->get('contact_form');
-        
-        if($form->handleRequest($request)->isValid()){
             
-            $subject = $form["subject"]->getData();
-            $admin = "tracy.brisfer@gmail.com";
-            $content = $form["message"]->getData();
-            $fromName = $form["names"]->getData();
-            $from = $form["mail"]->getData();
-            $body = $content . $fromName . $from;
-
-            $this->sendMail($subject, $admin, $body);
-        }
-        
-        
-//        
-//        $defaultData = array('message' => 'Type your message here');
-//        $form = $this->createFormBuilder($defaultData)
-//        ->add('name', 'text')
-//        ->add('email', 'email')
-//        ->add('subject', 'text')
-//        ->add('message', 'textarea')
-//        ->getForm();
-//        if ($request->getMethod() == 'POST') {
-//          $form->handleRequest($request);
-//          // data is an array with "name", "email", and "message" keys
-//          $data = $form->getData();
-//          
-//          var_dump($data['subject']);
-//          
-////            $subject = $data["subject"];
-////            $admin = "tracy.brisfer@gmail.com";
-////            $body = $data["message"];
-//          
-//            $subject = "subject";
-//            $admin = "tracy.brisfer@gmail.com";
-//            $body = "message sdfjqsl jflksdjf";
-//
-//            $this->sendMail($subject, $admin, $body);
-//        }
-        
-        
-        
-//        $defaultData = array('message' => 'Type your message here');
-//        $form = $this->createFormBuilder($defaultData)->add('name', 'test') -> add('email', 'test@test.com') -> add('message', 'sfsdf sdfqsd fs ')->getForm();
-//
-//        if ($request->isMethod('POST')) {
-//           $form->bind($request);
-//
-//           // data is an array with "name", "email", and "message" keys
-//           $data = $form->getData();
-//        }
-        
-
-        
-         return $this->render('TecUserBundle::index.html.twig');
-    }
-    
     public function resultsAction()
     {
         return $this->render('TecServiceBundle::results.html.twig');
@@ -550,13 +484,13 @@ class ServiceController extends Controller
         var_dump($nbAnnonce);
         
         if($nbAnnonce[0][1] === '0'){
-            $this->addFlash('notice', "Il n'y a aucune annonce.");
+            $this->addFlash('searchannonce', "Il n'y a aucune annonce.");
             //Redirection meme page
             return $this->redirect($request->headers->get('referer'));
         }else{
             //Récupère les valeurs du formulaire
             $localite = $request->get('localite');
-            $idsubcategorie = $request->get('categorie');
+            $idsubcategorie = $request->get('subcategorie');
 
             $id = intval($idsubcategorie);
 
@@ -598,7 +532,7 @@ class ServiceController extends Controller
                 $annonces = $query->getResult();
                 return $this->render('TecServiceBundle::getAllAnnonce.html.twig', array('annonces' => $annonces));
             }else{  //Recherche seulement par categorie
-                return $this->forward('TecServiceBundle:Service:getAnnonceCategorie', array('id' => $id));
+                return $this->forward('TecServiceBundle:Service:getAnnonceSubCategorie', array('id' => $id));
             }        
 
             //return $this->render('TecServiceBundle::results.html.twig');
@@ -1275,6 +1209,7 @@ class ServiceController extends Controller
         
         return $this->render('TecServiceBundle::admin.html.twig', array('users' => $users, 'annonces' => $annonces, 'categories' => $categorie, 'subcategories' => $subcategorie, 'types' => $types));
     }
+    
 }
    
     

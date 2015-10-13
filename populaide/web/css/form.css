@@ -108,6 +108,7 @@ fieldset{
     background-color: #EB5E4E; /*Orange brique*/
     border: none;
     border-radius: 55px;
+    color: #fff;
     height: 55px;
     margin-bottom: 10px;
     text-shadow: 2px 2px #7f3028; /*Orange clair*/
@@ -255,12 +256,18 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
         margin-left: 15px;
         width: 20%;
     }
+    #tec_servicebundle_annonce div:nth-child(1),
+    #tec_servicebundle_annonce div:nth-child(2),
     #tec_servicebundle_annonce div:nth-child(6){
         padding-left: 15px;
         text-align: left;
     }
     #tec_servicebundle_annonce div:nth-child(6) label{
         vertical-align: middle;
+    }
+    #tec_servicebundle_annonce div:nth-child(1),
+    #tec_servicebundle_annonce div:nth-child(2){
+        margin: 15px;
     }
     
     /*Boutons*/
