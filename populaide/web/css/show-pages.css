@@ -16,6 +16,9 @@
     .post {
         width: 100%;
     }
+    #stars {
+        visibility: hidden;
+    }
     .box-post {
           background-color: #fff;
           border-radius: 7%;
