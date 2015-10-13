@@ -294,8 +294,8 @@ a.normal:visited{
     padding: 0;
 
 }
-.search{
-/*    height: 370px;*/
+.search
+{/*    height: 370px;*/
     background: url(../images/header.jpg) no-repeat center 28%; /*Full Width background image*/
     background-size: cover;
 }   
@@ -472,6 +472,10 @@ option:not(.optionGroup){
             font-weight: 700;
             padding-bottom: 35px;
             text-align: center;
+        }
+        #category li a:hover {
+            width: 120%;
+            height: 120%;
         }
             #category li a img{
                 cursor:pointer;
