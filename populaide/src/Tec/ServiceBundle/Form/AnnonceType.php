@@ -23,18 +23,18 @@ class AnnonceType extends AbstractType
         $builder
             //Type
             ->add('type', 'entity', array(
-                'label' => false,
+                'label' => 'Mon annonce est de type :',
                 'class' => 'TecServiceBundle:Type',
                 'property' => 'intitule',
                 'query_builder' =>function(EntityRepository $er){
                     return $er->createQueryBuilder('u')
                             ->orderBy('u.intitule', 'ASC');
                 }
-            ))  
+            ))   
             //Catégorie
             //à tester (generer une liste avec les val de la BD
             ->add('sub_categorie', 'entity', array(
-                'label' => false,
+                'label' => 'Classez votre annonce dans une catégorie :',
                 'class' => 'TecServiceBundle:Sub_categorie',
                 'property' => 'name',
                 'required' => 'true',
@@ -80,11 +80,12 @@ class AnnonceType extends AbstractType
             //->add('updateDate')
             //->add('deleteDate')
             //->add('poste')
-//            ->add('visualiser', 'submit', array(
-//                'attr' => array('class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
-//                            'value' => 'visualiser',
-//                            'data-toggle' => "modal",
-//                            'data-target' => "#myModal")))
+            ->add('visualiser', 'submit', array(
+                'attr' => array('id' => 'preview',
+                            'class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
+                            'value' => 'visualiser',
+                            'data-toggle' => "modal",
+                            'data-target' => "#myModal")))
              ;
         
     }

@@ -50,21 +50,27 @@
             <div class='row'>
                 <ul id="category">
                     <li class="col-md-1 col-xs-4">
+                            <a href="{{ path('tec_service_getallannonce') }}">
+                                <img src="{{ asset('images/pictos/search.png') }}" width="45" alt="" class="img-responsive" />
+                                Retourner à la recherche
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
                             <a href="{{ path('tec_user_profil',{'id': annonce.getUser.id}) }}">
                                 <img src="{{ asset('images/pictos/user.png') }}" width="45" alt="" class="img-responsive" />
                                 Consulter le profil de {{ annonce.getUser.username }}
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
-                                <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
-                                Jardinage
+                            <a href="{{ path('tec_user_contact') }}">
+                                <img src="{{ asset('images/pictos/contact.png') }}" width="45" alt="" class="img-responsive" />
+                                Contacter le membre
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
                             <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
-                                <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
-                                Multimédia
+                                <img src="{{ asset('images/pictos/coop.png') }}" width="45" alt="" class="img-responsive" />
+                                Rendre service
                             </a>
                     </li>
                 </ul>

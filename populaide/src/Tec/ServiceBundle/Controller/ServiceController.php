@@ -137,6 +137,15 @@ class ServiceController extends Controller
     }
     
     /**********************************
+     * Pré-visualiser l'annonce       *
+     **********************************/
+    public function previewAddAnnonceAction($bool){
+        if($bool == true){
+            return $this->render('TecServiceBundle::previewAddAnnonce.html.twig');
+        }
+    }
+    
+    /**********************************
      * Récupère les annonces de la BD *
      **********************************/
     public function getAllAnnonceAction(){
