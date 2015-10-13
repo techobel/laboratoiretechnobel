@@ -36,7 +36,7 @@ class RegistrationFormType extends AbstractType
                     )))
             /*Date de naissance*/
             ->add('birth_date', 'date', array(
-                'label' => false, 
+                'label' => "Date de naissance :", 
                 'required' => true, 
                 'translation_domain' => 'FOSUserBundle', 
                 'attr' => array('placeholder' => 'Date de naissance JJ-MM-AAAA', 

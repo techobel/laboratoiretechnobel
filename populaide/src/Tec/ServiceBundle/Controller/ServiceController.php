@@ -98,11 +98,9 @@ class ServiceController extends Controller
             echo "OK";
             //Si l'utilisateur est connecté
             //Création de l'article
-            $annonce = new Annonce();
-            //Ajout de la class du formulaire
-            $options = array('attr' => array('class' => 'form row form-inline form-one clearfix'));        
+            $annonce = new Annonce();     
             //Création du formulaire
-            $form = $this->get('form.factory')->create(new AnnonceType(), $annonce, $options);          
+            $form = $this->get('form.factory')->create(new AnnonceType(), $annonce);          
             //Test si methode post
             if($request->isMethod('POST')){
                 //Si le formulaire a été validé

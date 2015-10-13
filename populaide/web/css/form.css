@@ -24,14 +24,38 @@ input[type="checkbox"]:checked, input[type="checkbox"]:focus{
 }
 
 
+/* SELECT */
+.form-one select{
+    padding-left: 5px;
+    width: 100%;
+}
+
+
+/* DATE */
+/*Invisibilité de la div qui contient les selects de date*/
+#fos_user_registration_form_birth_date{
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    height: 180px; 
+}
+/*Selects de date*/
+.form-one #fos_user_registration_form_birth_date select{
+    width: 100%;
+}
+#fos_user_registration_form>div:nth-child(7) label{
+    text-align: left;
+}
+    
+
 /* INPUT */
 .form-control .col-xs-12, .form-inline .col-xs-12, input.btn-primary,
-input.col-xs-12.col-md-4.form-control.text{
+input.col-xs-12.col-md-4.form-control.text, .form-one select{
     border-radius: 25px;
     border: 4px solid #EB5E4E;
     margin-bottom: 15px;
     height: 45px;
-    width: 98%;
+    /*width: 98%;*/
 }
 #hidden {
     display: none;  
@@ -47,6 +71,19 @@ input[type="submit"], .btn-secondary{
 input:required::after{
     content: "*";
     color: red;
+}
+
+/* LABELS */
+#tec_servicebundle_annonce div:nth-child(1),
+#tec_servicebundle_annonce div:nth-child(2),
+#tec_servicebundle_annonce div:nth-child(6){
+    margin: 15px;
+    text-align: left;
+}
+#tec_servicebundle_annonce div:nth-child(1) label,
+#tec_servicebundle_annonce div:nth-child(2) label,
+#tec_servicebundle_annonce div:nth-child(6) label{
+    margin-right: 10px;
 }
 
 
@@ -70,31 +107,48 @@ fieldset{
 }
 
 
-/* "FIELDSET" */
+/* FIELDSETS de Contact */
+/*Margin-top du champs Email*/
+#fos_user_registration_form>div:first-child>input{
+    margin-top: 20px;
+}
+/*Margin-bottom du champs Pw2*/
+#fos_user_registration_form>div:nth-child(4)>input{
+    margin-bottom: 40px;
+}
+/*Margin-top du champs Nom*/
+#fos_user_registration_form>div:nth-child(5)>input{
+    margin-top: 20px;
+}
+/*Margin-bottom du champs Birth_date
 #fos_user_registration_form_birth_date{
     margin-bottom: 30px;
-}
-#fos_user_registration_form>div:nth-child(7)>input{
-    margin-bottom: 30px;
-}
-/*Ajout "fieldset" 1: AVANT le champs pseudo*/
-#fos_user_registration_form>div:nth-child(4)>input{
+}*/
+/*Margin-top du champs Rue
+#fos_user_registration_form_adresse_street{
     margin-top: 10px;
-}
-#fos_user_registration_form>div:nth-child(4)::before{
+}*/
+#fos_user_registration_form>div:first-child::before{
     content: "Données de connexion";
     color: #23777B; /*Turquoise fonc�*/
     font: 700 1.5em "HelveticaNeueLTStd-Roman", sans-serif;
     text-transform: uppercase;
 }
-/*Ajout "fieldset" 2: APRES le champs email*/
-#fos_user_registration_form>div:nth-child(7)::after{
-    content: "Coordonnées personnelles";
+#fos_user_registration_form>div:nth-child(5)::before{
+    content: "Informations personnelles";
     color: #23777B; /*Turquoise fonc�*/
     font: 700 1.5em "HelveticaNeueLTStd-Roman", sans-serif;
-    padding-bottom: 10px;
     text-transform: uppercase;
 }
+/*Ajout "fieldset" 2: APRES le champs birth_date
+#fos_user_registration_form>div:nth-child(8)::after,
+#fos_user_registration_form_adresse_street::before{
+    content: "Coordonnées";
+    color: #23777B; Turquoise fonc�
+    font: 700 1.5em "HelveticaNeueLTStd-Roman", sans-serif;
+    padding-bottom: 30px;
+    text-transform: uppercase;
+}*/
 
 /* BOUTONS */
 .btn {
@@ -188,7 +242,8 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #c0a16b;
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #c0a16b;
 }*/
-.alert-danger, .has-error {
+.alert-danger, .has-error,
+.alert-success, .has-success{
   border-color: #a94442;
   border: 3px solid;
   border-radius: 55px;
@@ -197,7 +252,13 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
   /*background-color: #f2dede;*/
   min-height: 48px;
   min-width: 290px;
+  margin: 0 0 25px;
   padding: 2%;
+}
+.alert-success, .has-success {
+  border-color: #3c763d;
+  background-color: #dff0d8;
+  color: #3c763d;
 }
 /*.has-error .form-control:focus {
   border-color: #843534;
@@ -241,6 +302,15 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
     #fos_user_registration_form>div:nth-child(7)::after{
         line-height: 2em;
     }
+    
+    /*Selects de date*/
+    #fos_user_registration_form_birth_date{
+        height: auto;
+    }
+    .form-one #fos_user_registration_form_birth_date select{
+        width: 30%;
+    }
+}
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
     #tec_servicebundle_annonce.form .form-control .col-xs-12, 
@@ -250,24 +320,21 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
         width: 60%;
     }
     
-    /* input perimetre */
-    #tec_servicebundle_annonce_perimetre{
+    /* input perimetre et selects */
+    #tec_servicebundle_annonce_perimetre,{
         float: none;
         margin-left: 15px;
         width: 20%;
     }
-    #tec_servicebundle_annonce div:nth-child(1),
-    #tec_servicebundle_annonce div:nth-child(2),
+    .form-one select{
+        width: 50%;
+    }
     #tec_servicebundle_annonce div:nth-child(6){
-        padding-left: 15px;
+        margin: 15px;
         text-align: left;
     }
     #tec_servicebundle_annonce div:nth-child(6) label{
         vertical-align: middle;
-    }
-    #tec_servicebundle_annonce div:nth-child(1),
-    #tec_servicebundle_annonce div:nth-child(2){
-        margin: 15px;
     }
     
     /*Boutons*/
@@ -279,10 +346,17 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
     .form-control .btn-primary[value="visualiser"]{
         margin: auto;
     }
+    
+    /*Champs prennent toute la largeur*/
+    .form-inline .form-control {
+        width: 98%;
+    }
+    
+    
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {  
-    form.form-one{
+    .form-one{
         width: 60%;
         margin: 0 auto;
     }
@@ -293,10 +367,15 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
         width: 48%;
     }
     
+    /*Select*/
+    .form-one select{
+        width: 40%;
+    }
+    
     /*Champs côte à côte*/
-    .form-control .col-xs-12, 
+/*    .form-control .col-xs-12, 
     .form-inline .col-xs-12, 
-    input.btn-primary, 
+    input.btn-primary, */
     section.search.index input:last-of-type{
         width: 42%;
         margin-left: 2%;
@@ -319,5 +398,12 @@ footer .form-control .col-xs-12, footer .form-inline .col-xs-12, .footer_mob inp
         margin-top: -30px;
         width: inherit;
     }
-    
+} 
+   
+/* Large devices (desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    /*Select*/
+    .form-one select{
+        width: 50%;
+    }
 }

@@ -8,9 +8,18 @@
 
 {% block body %}
 {{ parent() }}
-    {{ form(form) }}
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-                    {{ flashMessage }}
-                {% endfor %}
+    
+    
+    <section id="form_contact" class="clearfix">
+        <div class="container">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert-success has-success">{{ flashMessage }}</div>
+            {% endfor %}
+            <div class="form row form-inline form-one clearfix">
+                {{ form(form) }}
+            </div>
+        </div>
+    </section>
+    
 <!--POST FORM SECTION END  -->
 {% endblock %}
