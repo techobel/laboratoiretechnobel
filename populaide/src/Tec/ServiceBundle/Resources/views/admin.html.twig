@@ -29,7 +29,7 @@
                       <th>#</th>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Action</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -74,7 +74,7 @@
                       <th>Active</th>
                       <th>Date création</th>
                       <th>Date suppression</th>
-                      <th>Action</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -123,7 +123,7 @@
                       <th>Nom</th>
                       <th>Description</th>   
                       <th>Image</th>
-                      <th>Action</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -169,8 +169,9 @@
                     <tr>
                       <th>#</th>
                       <th>Nom</th>
+                      <th>Catégorie</th>
                       <th>Description</th>                  
-                      <th>Action</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -179,6 +180,7 @@
                     <tr>
                       <th scope="row">{{ indice }}</th>
                       <td>{{ subcategorie.name }}</td>
+                      <td>{{ subcategorie.getCategorie.getName }}</td>
                       <td>{{ subcategorie.description }}</td>                  
                       <td><a href="{{ path('tec_service_updatesubcategorie',{'id': subcategorie.id}) }}"> Modifier</a><a href="{{ path('tec_service_delsubcategorie',{'id': subcategorie.id}) }}"> Supprimer</a></td>
                     </tr>
@@ -208,8 +210,8 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>intitule</th>                                   
-                      <th>Action</th>
+                      <th>Intitulé</th>                                   
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
