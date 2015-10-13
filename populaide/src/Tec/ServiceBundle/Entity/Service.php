@@ -53,6 +53,12 @@ class Service
      */
     private $fournisseurs;
     
+    /**
+     * @ORM\OneToOne(targetEntity="Annonce", inversedBy="service")
+     * @ORM\joinColumn(name="annonce_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $annonce;
+    
     /********************************************************
      *                      GETTER/SETTER                   *
      ********************************************************/
@@ -116,20 +122,6 @@ class Service
     }
 
     /**
-     * Set demande
-     *
-     * @param \Tec\ServiceBundle\Entity\Demander $demande
-     *
-     * @return Service
-     */
-    public function setDemande(\Tec\ServiceBundle\Entity\Demander $demande = null)
-    {
-        $this->demande = $demande;
-
-        return $this;
-    }
-
-    /**
      * Get demande
      *
      * @return \Tec\ServiceBundle\Entity\Demander
@@ -178,5 +170,43 @@ class Service
     public function getFournisseurs()
     {
         return $this->fournisseurs;
+    }
+
+    /**
+     * Set demande
+     *
+     * @param \Tec\UserBundle\Entity\Demander $demande
+     *
+     * @return Service
+     */
+    public function setDemande(\Tec\UserBundle\Entity\Demander $demande = null)
+    {
+        $this->demande = $demande;
+
+        return $this;
+    }
+
+    /**
+     * Set annonce
+     *
+     * @param \Tec\ServiceBundle\Entity\Annonce $annonce
+     *
+     * @return Service
+     */
+    public function setAnnonce(\Tec\ServiceBundle\Entity\Annonce $annonce = null)
+    {
+        $this->annonce = $annonce;
+
+        return $this;
+    }
+
+    /**
+     * Get annonce
+     *
+     * @return \Tec\ServiceBundle\Entity\Annonce
+     */
+    public function getAnnonce()
+    {
+        return $this->annonce;
     }
 }

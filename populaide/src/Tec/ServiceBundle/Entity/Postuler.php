@@ -28,7 +28,7 @@ class Postuler
     /**
      * @var boolean
      *
-     * @ORM\Column(name="etat", type="boolean")
+     * @ORM\Column(name="etat", type="boolean", nullable=true)
      */
     private $etat;
     

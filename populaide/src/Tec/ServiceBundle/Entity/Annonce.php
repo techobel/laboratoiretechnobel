@@ -137,6 +137,11 @@ class Annonce
      */
     private $user;
     
+    /**
+     * @ORM\OneToOne(targetEntity="Service", mappedBy="annonce")
+     */
+    private $service;
+    
     /********************************************************
      *                      GETTER/SETTER                   *
      ********************************************************/
@@ -503,5 +508,29 @@ class Annonce
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set service
+     *
+     * @param \Tec\ServiceBundle\Entity\Service $service
+     *
+     * @return Annonce
+     */
+    public function setService(\Tec\ServiceBundle\Entity\Service $service = null)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return \Tec\ServiceBundle\Entity\Service
+     */
+    public function getService()
+    {
+        return $this->service;
     }
 }

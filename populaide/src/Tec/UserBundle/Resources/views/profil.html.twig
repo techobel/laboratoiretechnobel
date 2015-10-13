@@ -84,7 +84,8 @@
                           <thead>
                             <tr>
                               <th>#</th>    
-                              <th>Date creation</th>
+                              <th>Date création</th>
+                              <th>Date réponse</th>
                               <th>Etat</th>
                               <th>Utilisateurs</th>
                               <th>Actions</th>
@@ -96,10 +97,21 @@
                                 {% for postule in annonce.getPostules %}
                                 <tr>
                                   <th scope="row">{{ indice }}</th>
-                                  <td>{{ postule.datecreate | date('d/m/y') }}</td>                                  
-                                  <td>{{ postule.etat }}</td>   
+                                  <td>{{ postule.datecreate | date('d/m/y') }}</td> 
+                                  <td>{{ postule.dateupdate | date('d/m/y') }}</td> 
+                                  {% if postule.etat == 1 %}
+                                      <td>{{ "Accepte" }}</td>
+                                  {% elseif postule.etat is null %}
+                                      <td>{{ "En attente" }}</td>
+                                  {% else %}
+                                      <td>{{ "Refuse" }}</td>
+                                  {% endif %}
                                   <td>{{ postule.getUser.getUsername }}</td>
-                                  <td><a href="{{ path('tec_service_accepterpostulerannonce',{'id': postule.id}) }}"> Vue</a><a href="{{ path('tec_service_refuserpostulerannonce',{'id': postule.id}) }}"> Supprimer</a></td>
+                                  {% if postule.getDateUpdate is null %}
+                                    <td><a href="{{ path('tec_service_accepterpostulerannonce',{'id': postule.id}) }}"> Accepter</a><a href="{{ path('tec_service_refuserpostulerannonce',{'id': postule.id}) }}"> Refuser</a></td>
+                                  {% else %}
+                                      <td>{{ "Vous avez deja fait un choix" }}</td>
+                                  {% endif %}
                                 </tr>
                                 {% set indice= indice + 1 %} 
                                 {% endfor %}
@@ -113,7 +125,7 @@
             <div id="offres" class="tab-pane fade">
               <h3>Offres</h3>
               <div class='row'>
-                <h3>personnes qui postulent pour mes offres</h3>
+                <h3>je postule</h3>
                 <div class='row'>
                   <div class="col-xs-12 panel panel-default">                    
                   <!-- Default panel contents -->
@@ -168,20 +180,20 @@
                               <tbody>
                                 {% set indice = 1 %}  
                                 {% for demande in user.getDemandes %}                                    
-                                    <tr>
+                                    <tr class="success">
                                       <th scope="row">{{ indice }}</th>
                                       <td>{{ demande.getService.active }}</td>
-                                      <td>{{ demande.datefin | date('d/m/y') }}</td>    
+                                      <td>{{ demande.getService.dateservice | date('d/m/y') }}</td>    
                                       <td>{{ demande.getService.getAnnonce.getTitle }}</td>
                                       <td>{{ demande.getService.getAnnonce.getUser }}</td>
                                     </tr>
                                     {% set indice= indice + 1 %}                            
                                 {% endfor %}
                                 {% for fournit in user.getFournit %}                                    
-                                    <tr>
+                                    <tr class="danger">
                                       <th scope="row">{{ indice }}</th>
                                       <td>{{ fournit.getService.active }}</td>
-                                      <td>{{ fournit.datefin | date('d/m/y') }}</td>    
+                                      <td>{{ fournit.getService.dateService | date('d/m/y') }}</td>    
                                       <td>{{ fournit.getService.getAnnonce.getTitle }}</td>
                                       <td>{{ "Moi" }}</td>                                      
                                     </tr>
