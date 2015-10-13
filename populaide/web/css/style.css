@@ -165,24 +165,17 @@ a.normal:visited{
         border-bottom-right-radius: 20px;
     }
 @media (min-width: 768px) {
-    .menu {
-        margin: 83px 0px 0px 50px;
-        text-align: center;
-        width: auto;
-        float: right;
-    }
-    .menu p {
-        display:block; 
-        margin-top: 3%;
-        float: left;
-    }
-    .menu li .img-menu {
-        display: inline-block;
-        width:20px !important;
-        margin-right: 10px;
-    }  
+
+ 
+
+  }    
+@media (min-width: 900px) {
     .navbar {
         margin-top: -20px;
+    }
+    .navbar-toggle {
+        margin-top: 30px;
+        margin-right: 10px;
     }
     #bs-navbar {
         position:absolute; 
@@ -202,7 +195,7 @@ a.normal:visited{
         width: 120px;
     }
     #bs-navbar li a{
-        width: 100px;
+        width: 120px;
         min-height: 25px;         
         color:#8a8381; 
         display:inline-block; 
@@ -225,9 +218,17 @@ a.normal:visited{
     }
     #bs-navbar li a span {
         color:#EB5E4E;
-    }
-  }    
-@media (min-width: 900px) {
+    }    
+    .menu {
+        margin: 83px 0px 0px 50px;
+        text-align: center;
+        float: right;
+    }    
+    .menu li .img-menu {
+        display: inline-block;
+        width:20px !important;
+        margin-right: 10px;
+    } 
   #slogan {
       font-size: 100%;
       margin-left: 35px;
@@ -242,14 +243,15 @@ a.normal:visited{
       width: 70px;
   }
     #bs-navbar li {
-        rigth: 50px;
-        width: 110px;
+/*        rigth: 50px;*/
+        width: 120px;
     }
     #bs-navbar li a {
       font-size: 12px;
     }
     .menu {
-        margin: 83px 60px 0px 40px;
+        margin: 90px 60px 0px -10px;
+        text-align: right;
     }  
 }
 @media(min-width: 1024px) {
@@ -299,6 +301,9 @@ a.normal:visited{
     background: url(../images/header.jpg) no-repeat center 28%; /*Full Width background image*/
     background-size: cover;
 }   
+#footer_mob .index {
+    padding-bottom: 0;
+}
 /*STYLE FOR OVERLAY CLASS - WHICH IS ABOVE IMAGE WITH OPACITY/TRANSPARENCY 0.75*/
     #home .overlay {
         /*padding-top: 90px;*/
