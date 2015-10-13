@@ -14,104 +14,264 @@
 
 {% block body %}
 {{ parent() }}
-        {#User:
-        {{ user.id ~ " " ~ user.username ~ " " ~ user.email }}#}
     <nav class="nav nav-profile">
         <ul class="nav nav-tabs nav-profile">
-            <li role="presentation" class="active"><a href="#">Profil</a></li>
-            <li role="presentation"><a href="#">Demandes</a></li>
-            <li role="presentation"><a href="#">Offres</a></li>
+            <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
+            <li><a data-toggle="tab" href="#demandes">Demandes</a></li>
+            <li><a data-toggle="tab" href="#offres">Offres</a></li>
+            <li><a data-toggle="tab" href="#services">Services</a></li>
+            <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
+            <li><a data-toggle="tab" href="#annonces">Mes annonces</a></li>
         </ul>
     </nav>
+    
     <section id="general">
         <div class='container'>
-            <div class='row'>
-                {% if user.media != null %}
-                    <img
-                        src="{{ asset(user.media.uploadDir ~ '/' ~ user.media.id ~ user.media.path) }}"
-                        alt="{{ user.media.alt ~ user.username }}"
-                        width="150px"
-                        heigth="150px"
-                    />
-                {% else %}
-                    <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
-                {% endif %}
-                <h4>Evaluation globale</h4>
-                <ol id="stars">
-                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
-                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
-                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
-                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
-                    <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
-                    <li><span>(XX votes)</span></li>
-                </ol>
-                <ul>
-                    <li>
-                        <a class="normal">
-                            <img class="img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="Contacter le membre" width="50" height="50"/>
-                            Contacter le membre
-                        </a>    
-                    </li>
-                    <li>
-                        <a class="normal">
-                            <img class="img-responsive" src="{{ asset('images/pictos/rate.png') }}" alt="Noter la prestation du membre" width="50" height="50"/>
-                            Noter sa prestation
-                        </a> 
-                    </li>
-                </ul>
-                <h4>Disponibilité
-                {% if user.disponible %}
-                    <span class="user-status green"></span>
-                {% else %}
-                    <span class="user-status red"></span>
-                {% endif %}
-                </h4>
+            <div class="tab-content">
+            <div id="profil" class="tab-pane fade in active">
+                <h3>Profil</h3>
+                <div class='row'>
+                    {% if user.media != null %}
+                        <img
+                            src="{{ asset(user.media.uploadDir ~ '/' ~ user.media.id ~ user.media.path) }}"
+                            alt="{{ user.media.alt ~ user.username }}"
+                            width="150px"
+                            heigth="150px"
+                        />
+                    {% else %}
+                        <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
+                    {% endif %}
+                    <h4>Evaluation globale</h4>
+                    <ol id="stars">
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span>(XX votes)</span></li>
+                    </ol>
+                    <ul>
+                        <li>
+                            <a class="normal">
+                                <img class="img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="Contacter le membre" width="50" height="50"/>
+                                Contacter le membre
+                            </a>    
+                        </li>
+                        <li>
+                            <a class="normal">
+                                <img class="img-responsive" src="{{ asset('images/pictos/rate.png') }}" alt="Noter la prestation du membre" width="50" height="50"/>
+                                Noter sa prestation
+                            </a> 
+                        </li>
+                    </ul>
+                    <h4>Disponibilité
+                    {% if user.disponible %}
+                        <span class="user-status green"></span>
+                    {% else %}
+                        <span class="user-status red"></span>
+                    {% endif %}
+                    </h4>
+                </div>
             </div>
+            <div id="demandes" class="tab-pane fade">
+              <h3>personnes qui postulent pour mes offres</h3>
+              <div class='row'>
+                <div class="col-xs-12 panel panel-default">                    
+                <!-- Default panel contents -->
+                    <div class="panel-heading"Service</div>                        
+                        <!-- Table -->
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>#</th>    
+                              <th>Date creation</th>
+                              <th>Etat</th>
+                              <th>Utilisateurs</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% set indice = 1 %}  
+                            {% for annonce in user.getAnnonces %}  
+                                {% for postule in annonce.getPostules %}
+                                <tr>
+                                  <th scope="row">{{ indice }}</th>
+                                  <td>{{ postule.datecreate | date('d/m/y') }}</td>                                  
+                                  <td>{{ postule.etat }}</td>   
+                                  <td>{{ postule.getUser.getUsername }}</td>
+                                  <td><a href="{{ path('tec_service_accepterpostulerannonce',{'id': postule.id}) }}"> Vue</a><a href="{{ path('tec_service_refuserpostulerannonce',{'id': postule.id}) }}"> Supprimer</a></td>
+                                </tr>
+                                {% set indice= indice + 1 %} 
+                                {% endfor %}
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>                  
+                </div>              
+            </div>
+            </div>
+            <div id="offres" class="tab-pane fade">
+              <h3>Offres</h3>
+              <div class='row'>
+                <h3>personnes qui postulent pour mes offres</h3>
+                <div class='row'>
+                  <div class="col-xs-12 panel panel-default">                    
+                  <!-- Default panel contents -->
+                      <div class="panel-heading"Service</div>                        
+                          <!-- Table -->
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>#</th>    
+                                <th>Date creation</th>
+                                <th>Etat</th>
+                                <th>Date mise a jour</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% set indice = 1 %}  
+                                {% for postule in user.getPostules %}
+                                  <tr>
+                                    <th scope="row">{{ indice }}</th>
+                                    <td>{{ postule.datecreate | date('d/m/y') }}</td>                                  
+                                    <td>{{ postule.etat }}</td>   
+                                    <td>{{ postule.getUser.getUsername }}</td>
+                                    <td></td>
+                                  </tr>
+                                  {% set indice= indice + 1 %} 
+                                {% endfor %}
+                            </tbody>
+                          </table>
+                      </div>                  
+                  </div>              
+                </div>
+              </div>
+            </div>    
+            <div id="services" class="tab-pane fade">
+                <div class='row'>
+                    <div class="col-xs-12 panel panel-default">                    
+                    <!-- Default panel contents -->
+                        <div class="panel-heading"Service</div>                        
+                            <!-- Table -->
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>#</th>                               
+                                  <th>Etat</th>
+                                  <th>Date de préstation</th>
+                                  <th>Annonce</th>
+                                  <th>Utilisateur</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% set indice = 1 %}  
+                                {% for demande in user.getDemandes %}                                    
+                                    <tr>
+                                      <th scope="row">{{ indice }}</th>
+                                      <td>{{ demande.getService.active }}</td>
+                                      <td>{{ demande.datefin | date('d/m/y') }}</td>    
+                                      <td>{{ demande.getService.getAnnonce.getTitle }}</td>
+                                      <td>{{ demande.getService.getAnnonce.getUser }}</td>
+                                    </tr>
+                                    {% set indice= indice + 1 %}                            
+                                {% endfor %}
+                                {% for fournit in user.getFournit %}                                    
+                                    <tr>
+                                      <th scope="row">{{ indice }}</th>
+                                      <td>{{ fournit.getService.active }}</td>
+                                      <td>{{ fournit.datefin | date('d/m/y') }}</td>    
+                                      <td>{{ fournit.getService.getAnnonce.getTitle }}</td>
+                                      <td>{{ "Moi" }}</td>                                      
+                                    </tr>
+                                    {% set indice= indice + 1 %}                            
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>                  
+                    </div>
+                </div>                
+            </div>
+            <div id="notifications" class="tab-pane fade">
+                <div class='row'>
+                    <div class="col-xs-12 panel panel-default">                    
+                    <!-- Default panel contents -->
+                        <div class="panel-heading"Service</div>                        
+                            <!-- Table -->
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>#</th>    
+                                  <th>Date creation</th>
+                                  <th>Commentaire</th>
+                                  <th>Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% set indice = 1 %}  
+                                {% for notification in user.getNotifications %}                                    
+                                    <tr>
+                                      <th scope="row">{{ indice }}</th>
+                                      <td>{{ notification.datecreate | date('d/m/y') }}</td>
+                                      <td>{{ notification.commentaire }}</td>   
+                                      <td><a href="{{ path('tec_user_updatenotification',{'id': notification.id}) }}"> Vue</a><a href="{{ path('tec_user_delnotification',{'id': notification.id}) }}"> Supprimer</a></td>
+                                    </tr>
+                                    {% set indice= indice + 1 %}                                                           
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>                  
+                    </div>
+                </div>
+            </div>
+            <div id="annonces" class="tab-pane fade">
+              <div class='row'>
+                    <div class="col-xs-12 panel panel-default">                    
+                    <!-- Default panel contents -->
+                        <div class="panel-heading"Service</div>                        
+                            <!-- Table -->
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>#</th>    
+                                  <th>Titre</th>
+                                  <th>Description</th>
+                                  <th>Remarques</th>
+                                  <th>Perimetre</th>
+                                  <th>Aide</th>
+                                  <th>Diffusion</th>
+                                  <th>Active</th>
+                                  <th>Date création</th>
+                                  <th>Actions</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% set indice = 1 %}  
+                                {% for annonce in user.getAnnonces %}                                    
+                                    <tr>
+                                      <th scope="row">{{ indice }}</th>
+                                      <td>{{ annonce.title }}</td>
+                                      <td>{{ annonce.description | truncate(10) }}</td>   
+                                      <td>{{ annonce.remarques | truncate (10) }}</td>   
+                                      <td>{{ annonce.perimetre }}</td>  
+                                      <td>{{ annonce.aide }}</td>  
+                                      <td>{{ annonce.diffusion }}</td>  
+                                      <td>{{ annonce.active }}</td> 
+                                      <td>{{ annonce.creationDate | date('d/m/y') }}</td>
+                                      <td><a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}"> Modifier</a><a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}"> Supprimer</a></td> 
+                                    </tr>
+                                    {% set indice= indice + 1 %}                                                           
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                        </div>                  
+                    </div>
+                </div>              
+            </div>
+          </div>
         </div>
     </section>
-    
-    <section id="about">
-        <div class='container'>
-            <div class='row'>
-                <h4>&Agrave; propos de {{ user.username }}</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non eros at enim mattis ornare. 
-                    Cras porttitor bibendum ligula a interdum. 
-                    Donec feugiat risus eget enim volutpat, a pellentesque massa mollis. 
-                    Praesent posuere fermentum ex sed interdum. 
-                    Fusce dignissim ante neque, et scelerisque diam laoreet ac.
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <section id="skill">
-        <div class='container'>
-            <div class='row'>
-                <h4>Compétences de {{ user.username }}</h4>
-                <ul id="category">
-                    <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
-                                <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
-                                Bricolage
-                            </a>
-                    </li>
-                    <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
-                                <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
-                                Jardinage
-                            </a>
-                    </li>
-                    <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
-                                <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
-                                Multimédia
-                            </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
 {% endblock %}
 
 {% block javascripts %}
