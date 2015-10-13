@@ -192,7 +192,7 @@ a.normal:visited{
         display: inline-block;
         width:25px !important;
         margin-right: 10px;
-    } 
+    }  
     .navbar {
         margin-top: -20px;
     }
@@ -263,11 +263,34 @@ a.normal:visited{
   #bs-navbar {
       right: -20px;
   }    
+    .menu {
+        margin: 83px 40px 0px 40px;
+    }
+    .menu li {
+        margin-left: 10px;
+    }
+    .menu li a {
+        width: 150px;
+    }    
+    #bs-navbar li a {
+        font-size: 14px;
+    }
+    #bs-navbar li p {
+        font-size: 13px;
+    }  
+}
+@media(min-width: 1480px) {
+    .menu {
+        margin: 88px 40px 0px 40px;
+    }
 }
 @media(min-width: 1700px) {
-  #bs-navbar {
-      right: -200px;
-  }    
+    #bs-navbar {
+        right: -200px;
+    }   
+    .menu {
+        margin: 95px 200px 0px 40px;
+    }  
 }
 /*================================
     HOME SECTION STYLES
