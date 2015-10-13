@@ -63,22 +63,22 @@
         {% endblock %}        
         {% block body %}
             {% block search %}
-            {% endblock %}     
             {# Bandeau de titre bleu sur les pages intérieures #}
-            {% block inside_title %}
-                <div class="title">
-                    <div class="overlay">
-                        <div class="container">
-                            <div class="row">
-                                <h3>
-                                    <img {% block img_h3 %}{% endblock %}/>
-                                    {% block h3 %}{% endblock %}
-                                </h3>
+                {% block inside_title %}
+                    <div class="title">
+                        <div class="overlay">
+                            <div class="container">
+                                <div class="row">
+                                    <h3>
+                                        <img {% block img_h3 %}{% endblock %}/>
+                                        {% block h3 %}{% endblock %}
+                                    </h3>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {% endblock %}
+                {% endblock %}
+            {% endblock %}    
         {% endblock %}        
         {% block footer %}
         <!--FOOTER MOBILE-->
