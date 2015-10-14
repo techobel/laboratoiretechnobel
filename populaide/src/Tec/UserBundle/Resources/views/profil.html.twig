@@ -18,8 +18,8 @@
         <div class="container">
             <ul class="profile">
                 <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
-                <li><a data-toggle="tab" href="#demandes">Réponses</a></li>
-                <li><a data-toggle="tab" href="#offres">Propositions</a></li>
+                <li><a data-toggle="tab" href="#reponses">Réponses</a></li>
+                <li><a data-toggle="tab" href="#propositions">Propositions</a></li>
                 <li><a data-toggle="tab" href="#services">Services</a></li>
                 <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
                 <li><a data-toggle="tab" href="#annonces">Mes annonces</a></li>
@@ -79,10 +79,21 @@
                     <a class="normal" href="{{ path('tec_service_updateuser', {'id': user.id})}}">Modifier</a>
                 </div>
             </div>
-            <div id="demandes" class="tab-pane fade">
+            <div id="reponses" class="tab-pane fade">
               <h3>Ces personnes ont répondu à vos annonces</h3>
               <div class='row'>
-                <div class="col-xs-12 panel panel-default">                    
+                <div class="col-xs-12 panel panel-default">
+                    {% set testnbval = 0 %}
+                    {% if user.getAnnonces is empty%}
+                        {{ "Vous n'avez pas d'annonce donc aucune réponse." }}
+                    {% else %}                        
+                        {% for annonce in user.getAnnonces %}  
+                            {% if annonce.getPostules is not empty%}
+                                {% set testnbval = 1 %}
+                            {% endif %}
+                        {% endfor%}
+                    {% endif %}
+                    {% if testnbval == 1 %}                                               
                 <!-- Default panel contents -->
                     <div class="panel-heading"Service</div> 
                     <div class="panel-body">
@@ -129,16 +140,18 @@
                             {% endfor %}
                           </tbody>
                         </table>
-                    </div>                  
+                    </div>  
+                    {% endif %}
                 </div>              
             </div>
             </div>
-            <div id="offres" class="tab-pane fade">
-              <h3>Offres</h3>
+            <div id="propositions" class="tab-pane fade">
               <div class='row'>
                 <h3>Vous avez répondu à ces annonces</h3>
                 <div class='row'>
-                  <div class="col-xs-12 panel panel-default">                    
+                  <div class="col-xs-12 panel panel-default"> 
+                    {% set testnbval = 0 %}
+                    {% if user.getPostules is not empty%} 
                   <!-- Default panel contents -->
                       <div class="panel-heading"Service</div>                        
                           <!-- Table -->
@@ -173,14 +186,18 @@
                                 {% endfor %}
                             </tbody>
                           </table>
-                      </div>                  
+                      </div>   
+                      {% else %}
+                          {{ "Vous n'avez postulé pour aucune annonce." }}
+                      {% endif%}
                   </div>              
                 </div>
               </div>
             </div>    
             <div id="services" class="tab-pane fade">
                 <div class='row'>
-                    <div class="col-xs-12 panel panel-default">                    
+                    <div class="col-xs-12 panel panel-default">
+                        {% if (user.getDemandes is not empty) and (user.getFournit is not empty) %} 
                     <!-- Default panel contents -->
                         <div class="panel-heading"Service</div>                        
                             <!-- Table -->
@@ -219,13 +236,17 @@
                                 {% endfor %}
                               </tbody>
                             </table>
-                        </div>                  
+                        </div>
+                        {% else%}
+                            {{ "Vous n'avez aucun service." }}
+                        {% endif %}
                     </div>
                 </div>                
             </div>
             <div id="notifications" class="tab-pane fade">
                 <div class='row'>
-                    <div class="col-xs-12 panel panel-default">                    
+                    <div class="col-xs-12 panel panel-default">    
+                        {% if user.getNotifications is not empty %} 
                     <!-- Default panel contents -->
                         <div class="panel-heading"Service</div>                        
                             <!-- Table -->
@@ -256,13 +277,17 @@
                                 {% endfor %}
                               </tbody>
                             </table>
-                        </div>                  
+                        </div>  
+                        {% else %}
+                            {{ "Vous n'avez aucune notification" }}
+                        {% endif%}
                     </div>
                 </div>
             </div>
             <div id="annonces" class="tab-pane fade">
               <div class='row'>
-                    <div class="col-xs-12 panel panel-default">                    
+                    <div class="col-xs-12 panel panel-default">   
+                        {% if user.getAnnonces is not empty%} 
                     <!-- Default panel contents -->
                         <div class="panel-heading"Service</div>                        
                             <!-- Table -->
@@ -300,7 +325,10 @@
                                 {% endfor %}
                               </tbody>
                             </table>
-                        </div>                  
+                        </div>
+                        {% else %}
+                            {{ "Vous n'avez aucune annonce." }}
+                        {% endif %}
                     </div>
                 </div>              
             </div>
