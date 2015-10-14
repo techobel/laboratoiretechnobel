@@ -144,7 +144,7 @@ class UserController extends Controller
      * @throws NotFoundHttpException
      * Mise a jour d'une notification, change l'attribut vue à true
      */
-    public function updateNotificationAction($id){
+    public function updateNotificationAction(Request $request, $id){
         //récupère le repository notification
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:Notification');
         //Récupère la notification
@@ -167,8 +167,8 @@ class UserController extends Controller
             //sauvegarde en bd
             $em->flush();		
             
-            //redirection vers profil
-            return $this->forward('TecUserBundle:User:profil', array('id' => $user->getId()));
+            //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
             //return $this->render('TecUserBundle::index.html.twig');
         }else{
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException("Limite.");
@@ -181,7 +181,7 @@ class UserController extends Controller
      * @throws NotFoundHttpException
      * Supprime une notification
      */
-    public function delNotificationAction($id){
+    public function delNotificationAction(Request $request, $id){
         //recupère le repository notification
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:Notification');
         //récupère la notification
@@ -204,8 +204,8 @@ class UserController extends Controller
             //sauvegarde en bd
             $em->flush();
 
-            //redirection vers profil
-            return $this->forward('TecUserBundle:User:profil', array('id' => $user->getId()));
+            //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
         }else{
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException("Limite.");
         }

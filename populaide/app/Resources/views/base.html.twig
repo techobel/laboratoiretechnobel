@@ -44,7 +44,7 @@
                                 <li class="hidden-index"><a href="#footer_mob"><img class="img-menu" src="{{ asset('images/pictos/search.png') }}" class="menu-picto" alt="Recherche"/>Recherche</a></li>                              
                                 <li class="contact-index down"><a href="{{ path('tec_user_contact') }}"><img class="img-menu" src="{{ asset('images/pictos/contact.png') }}" class="menu-picto" alt="Contact"/>Contact</a></li>                                                            
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    <li class="down"><a href="{{ path('tec_user_profil',{'id': app.user.id}) }}" ><img class="img-menu" src="{{ asset('images/pictos/user.png') }}" class="menu-picto" alt="Profil"/>Profil</a></li>   
+                                    <li class="down"><a href="{{ path('tec_user_myprofil') }}" ><img class="img-menu" src="{{ asset('images/pictos/user.png') }}" class="menu-picto" alt="Profil"/>Profil</a></li>   
                                 {% endif %}  
                                 {% if is_granted("ROLE_ADMIN") %}
                                     <li><a href="{{ path('tec_service_admin') }}"><img class="img-menu" src="{{ asset('images/pictos/admin2.png') }}" class="menu-picto" alt="admin"/>admin</a></li>

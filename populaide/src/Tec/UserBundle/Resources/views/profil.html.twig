@@ -99,14 +99,16 @@
                                 {% for postule in annonce.getPostules %}
                                 <tr>
                                   <th scope="row">{{ indice }}</th>
-                                  <td>{{ postule.datecreate | date('d/m/y') }}</td> 
-                                  <td>{{ postule.dateupdate | date('d/m/y') }}</td> 
-                                  {% if postule.etat == 1 %}
-                                      <td>{{ "Accepte" }}</td>
+                                  <td>{{ postule.datecreate | date('d/m/y') }}</td>                                    
+                                  {% if postule.etat == true %}
+                                      <td>{{ postule.dateupdate | date('d/m/y') }}</td>
+                                      <td>{{ "Accepte" }}</td>                                      
                                   {% elseif postule.etat is null %}
                                       <td>{{ "En attente" }}</td>
+                                      <td>{{ "-"}}</td>
                                   {% else %}
-                                      <td>{{ "Refuse" }}</td>
+                                      <td>{{ "Refuse" }}</td> 
+                                      <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
                                   {% endif %}
                                   <td>{{ postule.getUser.getUsername }}</td>
                                   {% if postule.getDateUpdate is null %}
@@ -147,12 +149,19 @@
                               {% set indice = 1 %}  
                                 {% for postule in user.getPostules %}
                                   <tr>
-                                    <th scope="row">{{ indice }}</th>
-                                    <td>{{ postule.datecreate | date('d/m/y') }}</td>                                  
-                                    <td>{{ postule.etat }}</td>   
-                                    <td>{{ postule.getUser.getUsername }}</td>
-                                    <td></td>
-                                  </tr>
+                                  <th scope="row">{{ indice }}</th>
+                                  <td>{{ postule.datecreate | date('d/m/y') }}</td>                                    
+                                  {% if postule.etat == true %}
+                                      <td>{{ postule.dateupdate | date('d/m/y') }}</td>
+                                      <td>{{ "Accepte" }}</td>                                      
+                                  {% elseif postule.etat is null %}
+                                      <td>{{ "En attente" }}</td>
+                                      <td>{{ "-"}}</td>
+                                  {% else %}
+                                      <td>{{ "Refuse" }}</td> 
+                                      <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
+                                  {% endif %}   
+                                </tr>
                                   {% set indice= indice + 1 %} 
                                 {% endfor %}
                             </tbody>
@@ -229,7 +238,12 @@
                                       <th scope="row">{{ indice }}</th>
                                       <td>{{ notification.datecreate | date('d/m/y') }}</td>
                                       <td>{{ notification.commentaire }}</td>   
-                                      <td><a href="{{ path('tec_user_updatenotification',{'id': notification.id}) }}"> Vue</a><a href="{{ path('tec_user_delnotification',{'id': notification.id}) }}"> Supprimer</a></td>
+                                      <td>
+                                          {% if notification.vue == 0 %}
+                                          <a href="{{ path('tec_user_updatenotification',{'id': notification.id}) }}"> Vue</a>
+                                          {% endif %}
+                                          <a href="{{ path('tec_user_delnotification',{'id': notification.id}) }}"> Supprimer</a>
+                                      </td>
                                     </tr>
                                     {% set indice= indice + 1 %}                                                           
                                 {% endfor %}
