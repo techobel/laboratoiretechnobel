@@ -16,9 +16,19 @@ class Sub_categorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array('attr' => array('max_length' => '50')))
-            ->add('description', 'textarea', array('attr' => array('max_length' => '150')))
+            ->add('name', 'text', array(
+                'label' => false, 
+                'attr' => array('max_length' => '50', 
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'placeholder' =>'Intitulé de la sous-catégorie')))
+            ->add('description', 'textarea', array(
+                'label' => false,
+                'attr' => array('max_length' => '150', 
+                            'class' => 'col-xs-12 col-md-4 form-control', 
+                            'placeholder' => "Brève description de la sous-catégorie",
+                            'rows'=> "8")))
             ->add('categorie', 'entity', array(
+                'label' => 'La sous-catégorie appartient à la catégorie :',
                 'class' => 'TecServiceBundle:Categorie',
                 'property' => 'name',
                 //'multiple' => 'false',
@@ -29,7 +39,13 @@ class Sub_categorieType extends AbstractType
                         ->orderBy('u.name', 'ASC');
                 }
             ))
-            ->add('save', 'submit')
+            ->add('Ajouter a la categorie', 'submit', array(
+                'attr' => array('class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
+                            'value' => 'Ajouter à la catégorie')))
+            //Reset
+            ->add("Annuler", "reset", array(
+                'attr' => array('class' => "btn btn-secondary col-md-2 form-control",
+                            'value' => 'annuler')))    
         ;
     }
     

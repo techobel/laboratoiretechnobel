@@ -71,8 +71,9 @@ class RegistrationFormType extends AbstractType
             ))
             /*Phone*/
             ->add('phone', 'text', array(
+                'label' => false,
                 'attr' => array('placeholder' => 'Numéro de téléphone',
-                    'class' => 'col-xs-12 col-md-4 form-control text')
+                                'class' => 'col-xs-12 col-md-4 form-control text')
             ))
             /*Mail*/
             ->add('email', 'email', array(

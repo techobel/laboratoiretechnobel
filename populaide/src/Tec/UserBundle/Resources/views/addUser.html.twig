@@ -7,6 +7,10 @@
 {% block body %}
     {{ parent() }}
     
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+                    {{ flashMessage }}
+                {% endfor %}
+                
     <section id="form_contact" class="clearfix">
         <div class="container">
             <div class="form row form-inline form-one clearfix">

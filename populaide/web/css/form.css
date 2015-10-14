@@ -32,8 +32,9 @@ input[type="checkbox"]:checked, input[type="checkbox"]:focus{
 
 
 /* DATE */
-/*Invisibilité de la div qui contient les selects de date*/
-#fos_user_registration_form_birth_date{
+/*Invisibilité de la div qui contient les selects de date, et de celle qui contient le file browser*/
+#fos_user_registration_form_birth_date,
+#tec_servicebundle_categorie_media{
     background-color: transparent;
     border: none;
     box-shadow: none;
@@ -43,7 +44,8 @@ input[type="checkbox"]:checked, input[type="checkbox"]:focus{
 .form-one #fos_user_registration_form_birth_date select{
     width: 100%;
 }
-#fos_user_registration_form>div:nth-child(7) label{
+#fos_user_registration_form>div:nth-child(7) label,
+#tec_servicebundle_categorie>div:nth-of-type(3) label{
     text-align: left;
 }
     
@@ -85,6 +87,14 @@ input:required::after{
 #tec_servicebundle_annonce div:nth-child(6) label{
     margin-right: 10px;
 }
+/*Label du file browser*/
+#tec_servicebundle_categorie_media div label{
+    display: none;
+}
+#tec_servicebundle_categorie_media{
+    display: inline-block;
+    height: 80px;
+}
 
 
 /* FOCUS */
@@ -117,7 +127,8 @@ fieldset{
     margin-bottom: 40px;
 }
 /*Margin-top du champs Nom*/
-#fos_user_registration_form>div:nth-child(5)>input{
+#fos_user_registration_form>div:nth-child(5)>input,
+#fos_user_registration_form>div:nth-child(8)>input{
     margin-top: 20px;
 }
 /*Margin-bottom du champs Birth_date
@@ -136,6 +147,12 @@ fieldset{
 }
 #fos_user_registration_form>div:nth-child(5)::before{
     content: "Informations personnelles";
+    color: #23777B; /*Turquoise fonc�*/
+    font: 700 1.5em "HelveticaNeueLTStd-Roman", sans-serif;
+    text-transform: uppercase;
+}
+#fos_user_registration_form>div:nth-child(8)::before{
+    content: "Données de contact";
     color: #23777B; /*Turquoise fonc�*/
     font: 700 1.5em "HelveticaNeueLTStd-Roman", sans-serif;
     text-transform: uppercase;

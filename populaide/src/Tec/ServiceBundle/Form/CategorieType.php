@@ -26,8 +26,17 @@ class CategorieType extends AbstractType
                             'class' => 'col-xs-12 col-md-4 form-control', 
                             'placeholder' => "Brève description de la catégorie",
                             'rows'=> "8")))
-            ->add('media', new MediaType())
-            ->add('save', 'submit');
+            ->add('media', new MediaType(), array(
+                'label' => 'Choisissez un picto', 
+                'attr' => array('class' => 'col-xs-12 col-md-4 form-control')))
+            ->add('Ajouter la categorie', 'submit', array(
+                'attr' => array('class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
+                            'value' => 'Ajouter la catégorie')))
+            //Reset
+            ->add("Annuler", "reset", array(
+                'attr' => array('class' => "btn btn-secondary col-md-2 form-control",
+                            'value' => 'annuler')))
+            ;
         
     }
     
