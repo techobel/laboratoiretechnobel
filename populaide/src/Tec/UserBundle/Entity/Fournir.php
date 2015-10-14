@@ -44,7 +44,7 @@ class Fournir
     
     /**
      * @ORM\ManyToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="fournisseurs")
-     * @ORM\JoinColumn(name="service_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="service_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $service;    
     
