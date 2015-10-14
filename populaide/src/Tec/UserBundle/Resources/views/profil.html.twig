@@ -18,8 +18,8 @@
         <div class="container">
             <ul class="profile">
                 <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
-                <li><a data-toggle="tab" href="#demandes">Demandes</a></li>
-                <li><a data-toggle="tab" href="#offres">Offres</a></li>
+                <li><a data-toggle="tab" href="#demandes">Réponses</a></li>
+                <li><a data-toggle="tab" href="#offres">Propositions</a></li>
                 <li><a data-toggle="tab" href="#services">Services</a></li>
                 <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
                 <li><a data-toggle="tab" href="#annonces">Mes annonces</a></li>
@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div id="demandes" class="tab-pane fade">
-              <h3>personnes qui postulent pour mes offres</h3>
+              <h3>Ces personnes ont répondu à vos annonces</h3>
               <div class='row'>
                 <div class="col-xs-12 panel panel-default">                    
                 <!-- Default panel contents -->
@@ -107,8 +107,8 @@
                                       <td>{{ postule.dateupdate | date('d/m/y') }}</td>
                                       <td>{{ "Accepte" }}</td>                                      
                                   {% elseif postule.etat is null %}
+                                      <td>{{ "-"}}</td>                                      
                                       <td>{{ "En attente" }}</td>
-                                      <td>{{ "-"}}</td>
                                   {% else %}
                                       <td>{{ "Refuse" }}</td> 
                                       <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
@@ -132,7 +132,7 @@
             <div id="offres" class="tab-pane fade">
               <h3>Offres</h3>
               <div class='row'>
-                <h3>je postule</h3>
+                <h3>Vous avez répondu à ces annonces</h3>
                 <div class='row'>
                   <div class="col-xs-12 panel panel-default">                    
                   <!-- Default panel contents -->
