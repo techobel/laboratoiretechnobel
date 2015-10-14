@@ -297,7 +297,7 @@ class ServiceController extends Controller
                 //création de postuler
                 $postuler = new Postuler();
                 //modification deS l'attribut de postuler
-                $postuler->setEtat(false);
+                $postuler->setEtat(null);
                 $postuler->setDateCreate(new \DateTime());                
                 //ajout de l'utilisateur a postuler
                 $postuler->setUser($user);
@@ -422,7 +422,7 @@ class ServiceController extends Controller
      * id est l'id de postuler                      *
      * l'utilisateur qui a posté une annonce refuse *
      ************************************************/
-    public function refusePostuleUserAction($id){
+    public function refusePostuleUserAction(Request $request, $id){
         //On vérifie que l'utilisateur est connecté
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
           // Sinon on déclenche une exception « Accès interdit »
@@ -440,7 +440,7 @@ class ServiceController extends Controller
         //Récupère l'utilisateur en session
         $user = $this->container->get('security.context')->getToken()->getUser();        
         //test si l'utilisateur en session est le proprietaire de l'annonce
-        if($user->getId() != $postuler->getAnnonce()->getUser->getId()){
+        if($user->getId() != $postuler->getAnnonce()->getUser()->getId()){
             throw new AccessDeniedException("Vous n'etes pas l'auteur de l'annonce.");
         }        
         //Change l'etat de postuler à true
@@ -455,8 +455,8 @@ class ServiceController extends Controller
         //Ajout d'une notificatoin pour la personne qui a été refusé
         UserController::addNotification("Votre demande a été refusé pour l'annonce ....", $postuler->getUser()->getId());
         
-        //Redirection
-        return $this->redirect($this->generateUrl('tec_service_results'));
+        //Redirection meme page
+        return $this->redirect($request->headers->get('referer'));
         
         //Redirection vers la page de profil
         //return $this->forward('TecServiceBundle:Service:results');
@@ -478,9 +478,7 @@ class ServiceController extends Controller
                      FROM TecServiceBundle:Annonce a');
                     
         $nbAnnonce = $query->getResult();
-        
-        var_dump($nbAnnonce);
-        
+                
         if($nbAnnonce[0][1] === '0'){
             $this->addFlash('searchannonce', "Il n'y a aucune annonce.");
             //Redirection meme page

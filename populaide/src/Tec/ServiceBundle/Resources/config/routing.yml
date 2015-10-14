@@ -1,137 +1,137 @@
 tec_service_resultspage:
-    path:     /results
+    path:     /results/
     defaults: { _controller: TecServiceBundle:Service:results }
     
 #affiche le pannel administrateur
 tec_service_admin:
-    path:     /admin
+    path:     /admin/
     defaults: { _controller: TecServiceBundle:Service:panelAdmin }
    
 #ANNONCE
 tec_service_getallannonce:
-    path:     /annonce
+    path:     /annonce/
     defaults: { _controller: TecServiceBundle:Service:getAllAnnonce }
 
 tec_service_addannonce:
-    path:     /annonce/add
+    path:     /annonce/add/
     defaults: { _controller: TecServiceBundle:Service:addAnnonce }
 
 tec_service_searchannonce:
-    path:     /annonce/search
+    path:     /annonce/search/
     defaults: { _controller: TecServiceBundle:Service:searchAnnonce }
     methods: [POST]
     
 tec_service_getannonce:
-    path:     /annonce/{id}
+    path:     /annonce/{id}/
     defaults: { _controller: TecServiceBundle:Service:getAnnonce }
     
 tec_service_delannonce:
-    path:     /annonce/{id}/del
+    path:     /annonce/{id}/del/
     defaults: { _controller: TecServiceBundle:Service:delAnnonce }
     
 tec_service_updateannonce:
-    path:     /annonce/{id}/update
+    path:     /annonce/{id}/update/
     defaults: { _controller: TecServiceBundle:Service:updateAnnonce }
 
 #affiche la popup d'aperçu de l'annonce
 tec_service_previewannonce:
-    path:     /annonce/add/{bool}
+    path:     /annonce/add/{bool}/
     defaults: { _controller: TecServiceBundle:Service:previewAddAnnonce }
     
 #A VOIR    
 tec_service_searchannonce:
-    path:     /annonce/search
+    path:     /annonce/search/
     defaults: { _controller: TecServiceBundle:Service:searchAnnonce }
     methods: [POST]
     
 #CATEGORIE
 tec_service_addcategorie:
-    path:     /admin/categorie/add
+    path:     /admin/categorie/add/
     defaults: { _controller: TecServiceBundle:Service:addCategorie }
     
 tec_service_getallcategorie:
-    path:     /categorie
+    path:     /categorie/
     defaults: { _controller: TecServiceBundle:Service:getAllCategorie }
     
 tec_service_getcategorie:
-    path:     /categorie/{id}
+    path:     /categorie/{id}/
     defaults: { _controller: TecServiceBundle:Service:getCategorie }
     
 tec_service_delcategorie:
-    path:     /admin/categorie/{id}/del
+    path:     /admin/categorie/{id}/del/
     defaults: { _controller: TecServiceBundle:Service:delCategorie }
     
 tec_service_updatecategorie:
-    path:     /admin/categorie/{id}/update
+    path:     /admin/categorie/{id}/update/
     defaults: { _controller: TecServiceBundle:Service:updateCategorie }
 
 #les annonces de la categorie
 tec_service_getannoncecategorie:
-    path:     /categorie/{id}/annonce
+    path:     /categorie/{id}/annonce/
     defaults: { _controller: TecServiceBundle:Service:getAnnonceCategorie }
     
 #SUBCATEGORIE
 tec_service_addsubcategorie:
-    path:     /admin/subcategorie/add
+    path:     /admin/subcategorie/add/
     defaults: { _controller: TecServiceBundle:Service:addSubCategorie }
     
 tec_service_getallsubcategorie:
-    path:     /subcategorie
+    path:     /subcategorie/
     defaults: { _controller: TecServiceBundle:Service:getAllSubCategorie }
     
 tec_service_getsubcategorie:
-    path:     /subcategorie/{id}
+    path:     /subcategorie/{id}/
     defaults: { _controller: TecServiceBundle:Service:getSubCategorie }
     
 tec_service_delsubcategorie:
-    path:     /admin/subcategorie/{id}/del
+    path:     /admin/subcategorie/{id}/del/
     defaults: { _controller: TecServiceBundle:Service:delSubCategorie }
     
 tec_service_updatesubcategorie:
-    path:     /admin/subcategorie/{id}/update
+    path:     /admin/subcategorie/{id}/update/
     defaults: { _controller: TecServiceBundle:Service:updateSubCategorie }
     
 #les annonces des subcategories
 tec_service_getannoncesubcategorie:
-    path:     /subcategorie/{id}/annonce
+    path:     /subcategorie/{id}/annonce/
     defaults: { _controller: TecServiceBundle:Service:getAnnonceSubCategorie }
     
 #TYPE
 tec_service_addtype:
-    path:     /admin/type/add
+    path:     /admin/type/add/
     defaults: { _controller: TecServiceBundle:Service:addType }
     
 tec_service_getalltype:
-    path:     /admin/type
+    path:     /admin/type/
     defaults: { _controller: TecServiceBundle:Service:getAllType }
     
 tec_service_gettype:
-    path:     /admin/type/{id}
+    path:     /admin/type/{id}/
     defaults: { _controller: TecServiceBundle:Service:getType }
     
 tec_service_deltype:
-    path:     /admin/type/{id}/del
+    path:     /admin/type/{id}/del/
     defaults: { _controller: TecServiceBundle:Service:delType }
     
 tec_service_updatetype:
-    path:     /admin/type/{id}/update
+    path:     /admin/type/{id}/update/
     defaults: { _controller: TecServiceBundle:Service:updateType }
     
 #POSTULER
 tec_service_postulerannonce:
-    path:     /annonce/{id}/postuler
+    path:     /annonce/{id}/postuler/
     defaults: { _controller: TecServiceBundle:Service:postulerAnnonce }
     
 tec_service_postulerannonce:
-    path:     /annonce/{id}/demande
+    path:     /annonce/{id}/demande/
     defaults: { _controller: TecServiceBundle:Service:annonceDemande }
     
 tec_service_accepterpostulerannonce:
-    path:     /annonce/{id}/demande/accepter
+    path:     /annonce/{id}/demande/accepter/
     defaults: { _controller: TecServiceBundle:Service:acceptePostuleUser }
     
 tec_service_refuserpostulerannonce:
-    path:     /annonce/{id}/demande/refuser
+    path:     /annonce/{id}/demande/refuser/
     defaults: { _controller: TecServiceBundle:Service:refusePostuleUser }
     
 #TEST AJAX

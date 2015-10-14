@@ -46,7 +46,7 @@ class Sub_categorie
     
     /**
      * @ORM\ManyToOne(targetEntity="Categorie", inversedBy="sub_categories")
-     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="categorie_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $categorie;
     

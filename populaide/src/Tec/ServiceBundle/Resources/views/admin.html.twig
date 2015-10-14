@@ -14,6 +14,9 @@
 {% block body %}
 {{ parent() }}
     <div class="container">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="alert-success has-success">{{ flashMessage }}</div>
+        {% endfor %}
         {# TAB GESTION USERS #}
         <div class="col-xs-12 panel panel-default">        
             <div class="panel panel-default">

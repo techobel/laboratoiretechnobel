@@ -1,0 +1,106 @@
+{#{% extends "TecUserBundle::layout.html.twig" %}#}
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet" type="text/css" />
+    <!-- PROFILE STYLE SHEET -->
+{% endblock %}
+
+{% block title %}{{ user.username }} {{ parent() }}{% endblock %}
+
+{% block img_h3 %}src="{{ asset('images/pictos/user.png') }}" alt="Nous contacter" width="100" height="100"{% endblock %}
+{% block h3 %}{{ user.username }}{% endblock %}
+
+{% block body %}
+{{ parent() }}
+    <nav class="nav nav-profile">
+        <ul class="nav nav-tabs nav-profile">
+            <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
+        </ul>
+    </nav>    
+    <section id="general">
+        <div class='container'>
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert-success has-success">{{ flashMessage }}</div>
+            {% endfor %}
+            <div class="tab-content">
+            <div id="profil" class="tab-pane fade in active">
+                <h3>Profil</h3>
+                <div class='row'>
+                    {% if user.media != null %}
+                        <img
+                            src="{{ asset(user.media.uploadDir ~ '/' ~ user.media.id ~ user.media.path) }}"
+                            alt="{{ user.media.alt ~ user.username }}"
+                            width="150px"
+                            heigth="150px"
+                        />
+                    {% else %}
+                        <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
+                    {% endif %}
+                    <h4>Evaluation globale</h4>
+                    <ol id="stars">
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                        <li><span>(XX votes)</span></li>
+                    </ol>
+                    <ul>
+                        <li>
+                            <button type="button" class="btn" data-toggle="modal" data-target="#myModal">  
+                                <a class="normal">
+                                    <img class="img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="Contacter le membre" width="50" height="50"/>
+                                    Contacter le membre 
+                                </a>
+                            </button>
+                        </li>
+                        <li>
+                            <a class="normal">
+                                <img class="img-responsive" src="{{ asset('images/pictos/rate.png') }}" alt="Noter la prestation du membre" width="50" height="50"/>
+                                Noter sa prestation
+                            </a> 
+                        </li>
+                    </ul>
+                    <h4>Disponibilité
+                    {% if user.disponible %}
+                        <span class="user-status green"></span>
+                    {% else %}
+                        <span class="user-status red"></span>
+                    {% endif %}
+                    </h4>
+                    
+                    <!-- Modal -->
+                    <div id="myModal" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Formulaire de contact</h4>
+                          </div>
+                          <div class="modal-body">
+                              <p>
+                                  {{form(form)}}
+                                  
+                              </p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>            
+          </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="assets/js/test-ongletProfile.js"></script>
+    <!-- AJAX SCRIPTS   -->
+{% endblock %}

@@ -132,7 +132,7 @@ class Annonce
     
     //l'utilisateur qui a posté l'annonce
     /**
-     * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="annonces")
+     * @ORM\ManyToOne(targetEntity="Tec\UserBundle\Entity\User", inversedBy="annonces", cascade={"persist"})
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
      */
     private $user;
