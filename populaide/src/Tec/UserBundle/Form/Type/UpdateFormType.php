@@ -13,7 +13,7 @@ use Tec\UserBundle\Entity\Adresse;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class RegistrationFormType extends AbstractType
+class UpdateFormType extends AbstractType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -74,6 +74,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => array('placeholder' => 'Numéro de téléphone',
                     'class' => 'col-xs-12 col-md-4 form-control text')
             ))
+            ->add('disponible', 'checkbox')
             /*Mail*/
             ->add('email', 'email', array(
                 'label' => false, 
@@ -81,7 +82,7 @@ class RegistrationFormType extends AbstractType
                 'translation_domain' => 'FOSUserBundle', 
                 'attr' => array('placeholder' => 'Email', 
                     'class' => 'col-xs-12 col-md-4 form-control text'
-                    )))
+                    )))            
             /*Adresse*/
             ->add('adresse', new AdresseType(), array(
                 'label' => false))
@@ -91,7 +92,7 @@ class RegistrationFormType extends AbstractType
 //                'attr' => array('class' => 'checkbox-inline',
 //                            'required' => true)))
             //Submit
-            ->add("Je m'inscris", 'submit', array(
+            ->add("Valider les changements", 'submit', array(
                 'attr' => array('class' => "btn btn-primary col-xs-2 col-md-2 form-control",
                             'value' => 'inscrire')))
             //Reset
