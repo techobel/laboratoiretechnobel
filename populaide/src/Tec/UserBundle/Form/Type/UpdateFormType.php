@@ -9,6 +9,7 @@ namespace Tec\UserBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Tec\UserBundle\Form\AdresseType;
+use Tec\ServiceBundle\Form\MediaType;
 use Tec\UserBundle\Entity\Adresse;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -91,6 +92,8 @@ class UpdateFormType extends AbstractType
 //                'label' => 'J\'ai pris connaissance des conditions générales d\'utilisation', 
 //                'attr' => array('class' => 'checkbox-inline',
 //                            'required' => true)))
+            /*Image*/
+            ->add('media', new MediaType())
             //Submit
             ->add("Valider les changements", 'submit', array(
                 'attr' => array('class' => "btn btn-primary col-xs-2 col-md-2 form-control",
