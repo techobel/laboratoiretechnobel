@@ -18,8 +18,8 @@
         <div class="container">
             <ul class="profile">
                 <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
-                <li><a data-toggle="tab" href="#demandes">Demandes</a></li>
-                <li><a data-toggle="tab" href="#offres">Offres</a></li>
+                <li><a data-toggle="tab" href="#demandes">Réponses</a></li>
+                <li><a data-toggle="tab" href="#offres">Propositions</a></li>
                 <li><a data-toggle="tab" href="#services">Services</a></li>
                 <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
                 <li><a data-toggle="tab" href="#annonces">Mes annonces</a></li>
@@ -28,7 +28,7 @@
     </div>
     
     <section id="general">
-        <div class='container'>
+        <div class="container">
             <div class="tab-content">
             <div id="profil" class="tab-pane fade in active">
                 <h3>Profil</h3>
@@ -53,19 +53,21 @@
                         <li><span>(XX votes)</span></li>
                     </ol>
                     <ul>
-                        <li>
-                            <a class="normal">
-                                <img class="img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="Contacter le membre" width="50" height="50"/>
-                                Contacter le membre
-                            </a>    
-                        </li>
-                        <li>
-                            <a class="normal">
-                                <img class="img-responsive" src="{{ asset('images/pictos/rate.png') }}" alt="Noter la prestation du membre" width="50" height="50"/>
-                                Noter sa prestation
-                            </a> 
-                        </li>
-                    </ul>
+                        <li> {{ "Login: " ~ user.username }} </li>
+                        <li> {{ "Email: " ~ user.email }}</li>
+                        {% if user.name is not null %}
+                        <li>{{ "Nom: " ~ user.name }}</li>
+                        {% endif %}
+                        {% if user.firstname is not null %}
+                        <li>{{ "Prenom: " ~ user.firstname }}</li>
+                        {% endif %}
+                        {% if user.birthdate is not null %}
+                        <li>{{ "Date naissance: " ~ user.birthdate | date('d/m/Y') }}</li>
+                        {% endif %}
+                        {% if user.creationdate is not null %}
+                        <li>{{ "Date de création: " ~ user.creationdate | date('d/m/Y') }}</li>
+                        {% endif %}                        
+                    </ul>                     
                     <h4>Disponibilité
                     {% if user.disponible %}
                         <span class="user-status green"></span>
@@ -73,10 +75,12 @@
                         <span class="user-status red"></span>
                     {% endif %}
                     </h4>
+                    
+                    <a class="normal" href="{{ path('tec_service_updateuser', {'id': user.id})}}">Modifier</a>
                 </div>
             </div>
             <div id="demandes" class="tab-pane fade">
-              <h3>personnes qui postulent pour mes offres</h3>
+              <h3>Ces personnes ont répondu à vos annonces</h3>
               <div class='row'>
                 <div class="col-xs-12 panel panel-default">                    
                 <!-- Default panel contents -->
@@ -107,8 +111,8 @@
                                       <td>{{ postule.dateupdate | date('d/m/y') }}</td>
                                       <td>{{ "Accepte" }}</td>                                      
                                   {% elseif postule.etat is null %}
+                                      <td>{{ "-"}}</td>                                      
                                       <td>{{ "En attente" }}</td>
-                                      <td>{{ "-"}}</td>
                                   {% else %}
                                       <td>{{ "Refuse" }}</td> 
                                       <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
@@ -132,7 +136,7 @@
             <div id="offres" class="tab-pane fade">
               <h3>Offres</h3>
               <div class='row'>
-                <h3>je postule</h3>
+                <h3>Vous avez répondu à ces annonces</h3>
                 <div class='row'>
                   <div class="col-xs-12 panel panel-default">                    
                   <!-- Default panel contents -->
