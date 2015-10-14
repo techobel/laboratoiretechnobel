@@ -72,6 +72,7 @@ class UpdateFormType extends AbstractType
             ))
             /*Phone*/
             ->add('phone', 'text', array(
+                'required' => false,
                 'attr' => array('placeholder' => 'Numéro de téléphone',
                     'class' => 'col-xs-12 col-md-4 form-control text')
             ))

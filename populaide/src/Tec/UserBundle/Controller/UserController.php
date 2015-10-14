@@ -27,8 +27,7 @@ class UserController extends Controller
     }
     
     public function contactAction(Request $request)
-    {
-        
+    {        
         $data = array();
         $form = $this->createFormBuilder($data)
             ->add('name', 'text', array(
@@ -329,15 +328,10 @@ class UserController extends Controller
           // Sinon on déclenche une exception « Accès interdit »
           throw new AccessDeniedException('Accès limité.');
         }        
-                
-        //Si le user existe
-        //Création du formulaire pour la mise à jour
-        //
-       // $form = $this->get('form.factory')->create(new UserType(), $user);
-       // 
+
        $form = $this->get('form.factory')->create(new UpdateFormType(), $user);
         //si le formulaire a été valide
-        if($form->handleRequest($request)->isValid()){             
+        if($form->handleRequest($request)->isValid()){
             //a voir
             $this->get('fos_user.user_manager')->updateUser($user, false);            
             //Récupère le manager
@@ -390,6 +384,20 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            
+            //Recupère l'adresse de l'utilisateur
+            $adresse = $form->get('adresse')->getData();
+            //Relation adresse - user
+            $adresse->setUser($user);
+            $user->setAdresse($adresse);
+            
+            var_dump($adresse);
+            //recupère le manager
+            //$em->$this->getDoctrine()->getManager();
+            //doctrine se charge de adresse
+            
+            
+            
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 

@@ -402,12 +402,14 @@ section.search button[type="submit"], .footer_mob button[type="submit"]{
     border: none;
     background-color: transparent;
     padding-right: 0;
-    width: 55px;
     margin-left: 0%;
-    max-height: 55px;
     float:right;
+    width: 55px;    
 }
-
+.btn-footer {
+    width: 55px;
+    height: 55px;
+}
 section.search button[type="submit"] img, .footer_mob button[type="submit"] img{
     height: 100%;
     width: 100%;
