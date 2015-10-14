@@ -61,9 +61,11 @@
                             
                             <li><p class="user-date-post"> {{ annonce.getCreationDate | date('d/m/Y') }} </p></li>
                             <li><p class="user-type"> {{ annonce.getType.getIntitule }} </p></li>
-                            <li><h3 class="post-title {% if annonce.getType.getIntitule == "offre" %}offre{% else %}propose{% endif %}"> {{ annonce.getTitle | truncate(30) }}</h3></li> 
+                            <li><h3 class="post-title> {% if annonce.getType.getIntitule == "offre" %}offre{% else %}propose{% endif %}"> {{ annonce.getTitle | truncate(30) }}</h3></li> 
+                            <li><p id="debut-annonce">{{ annonce.getDescription | truncate(100) }}</p></li>
+                            <li>{{ "Catégorie: " ~ annonce.getSubCategorie.getCategorie.getName ~ " - Sous-categorie: " ~ annonce.getSubCategorie.getName }}</li>
                         </ul>
-                            <p id="debut-annonce">{{ annonce.getDescription | truncate(200) }}</p>
+                            
                         <div class="icons-post">
                             <a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
                                 Détails
