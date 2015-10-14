@@ -26,9 +26,8 @@ class UserType extends AbstractType
             //->add('update_date', 'date')
             ->add('disponible')
             ->add('media', new MediaType())
-            ->add('Valider', 'submit');
-                
-                //ajout des autres attributs
+            //->add('Valider', 'submit');
+            //ajout des autres attributs
         ;
     }
     

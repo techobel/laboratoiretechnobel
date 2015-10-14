@@ -15,6 +15,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Tec\UserBundle\Entity\Notification;
 use Tec\UserBundle\Form\UserType;
 
+use Tec\UserBundle\Form\Type\UpdateFormType;
+
 use Tec\ServiceBundle\Controller\ServiceController;
 
 class UserController extends Controller
@@ -307,6 +309,11 @@ class UserController extends Controller
      * Mise a jour d'un user *
      *************************/
     public function updateUserAction(Request $request, $id){
+        //On vérifie que l'utilisateur est un admin
+        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
         //Recupère le repository user
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
         //Récupère le type à modifier
@@ -325,7 +332,10 @@ class UserController extends Controller
                 
         //Si le user existe
         //Création du formulaire pour la mise à jour
-        $form = $this->get('form.factory')->create(new UserType(), $user);
+        //
+       // $form = $this->get('form.factory')->create(new UserType(), $user);
+       // 
+       $form = $this->get('form.factory')->create(new UpdateFormType(), $user);
         //si le formulaire a été valide
         if($form->handleRequest($request)->isValid()){             
             //a voir
