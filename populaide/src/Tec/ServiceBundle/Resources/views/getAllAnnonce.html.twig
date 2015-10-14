@@ -67,9 +67,14 @@
                                     <li class="stars"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
                                 </ol>
                             </li>
-                            <li><p class="user-location"><span class="ville">{{ villeannonce }}</span></p></li>
+                            {#
+                            {% if annonce.getUser.getAdresse.getCity != null %}
+                            <li><p class="user-location"><span class="ville">{{ annonce.getUser.getAdresse.getCity }}</span></p></li>
+                            {% endif %}
+                                #}
                             <li><p class="user-date-post"> {{ annonce.getCreationDate | date('m/d/Y') }} </p></li>
-                            <li><h3 class="post-title propose"> {{ annonce.getTitle | truncate(30) }}</h3></li> 
+                            <li><p class="user-type"> {{ annonce.getType.getIntitule }} </p></li>
+                            <li><h3 class="post-title {% if annonce.getType.getIntitule == "offre" %}offre{% else %}propose{% endif %}"> {{ annonce.getTitle | truncate(30) }}</h3></li> 
                         </ul>
                             <p id="debut-annonce">{{ annonce.getDescription | truncate(200) }}</p>
                         <div class="icons-post">
@@ -82,7 +87,8 @@
                             <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
                                 Collaborer
                             </a>
-                            {% if annonce.getUser.getId != app.user.id %}  
+                            {% if is_granted("ROLE_ADMIN") %}
+{#                            {% if annonce.getUser.getId != app.user.id %}  #}
                             <a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}" class="menu-post" >
                                 Modifier
                             </a>
@@ -120,52 +126,52 @@
             <nav class="row">
                 <ul>
                     <li class="col-md-1 col-xs-4">
-                        <a>
-                            <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
-                            Bricolage
-                        </a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
+                                <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
+                                Bricolage
+                            </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                        <a>
-                            <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
-                            Jardinage
-                        </a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 3}) }}">
+                                <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
+                                Jardinage
+                            </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                        <a>
-                            <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
-                            Multimédia
-                        </a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 5}) }}">
+                                <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
+                                Multimédia
+                            </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                        <a>
-                            <img src="{{ asset('images/pictos/pets.png') }}" width="45" alt="" class="img-responsive" />
-                            Animaux
-                        </a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                                <img src="{{ asset('images/pictos/pets.png') }}" width="45" alt="" class="img-responsive" />
+                                Animaux
+                            </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                        <a>
-                            <img src="{{ asset('images/pictos/anim.png') }}" width="45" alt="" class="img-responsive" />
-                            Animation
-                        </a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 6}) }}">
+                                <img src="{{ asset('images/pictos/anim.png') }}" width="45" alt="" class="img-responsive" />
+                                Animation
+                            </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                        <a>
-                            <img src="{{ asset('images/pictos/wellness.png') }}" width="45" alt="" class="img-responsive" />
-                            Bien-être
-                        </a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 4}) }}">
+                                <img src="{{ asset('images/pictos/wellness.png') }}" width="45" alt="" class="img-responsive" />
+                                Bien-être
+                            </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                        <a>
-                            <img src="{{ asset('images/pictos/cours.png') }}" width="45" alt="" class="img-responsive" />
-                            Cours
-                        </a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 7}) }}">
+                                <img src="{{ asset('images/pictos/cours.png') }}" width="45" alt="" class="img-responsive" />
+                                Cours
+                            </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                        <a>
-                            <img src="{{ asset('images/pictos/assist.png') }}" width="45" alt="" class="img-responsive" />
-                            Assistance
-                        </a>
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 8}) }}">
+                                <img src="{{ asset('images/pictos/assist.png') }}" width="45" alt="" class="img-responsive" />
+                                Assistance
+                            </a>
                     </li>
                 </ul>
             </nav>
