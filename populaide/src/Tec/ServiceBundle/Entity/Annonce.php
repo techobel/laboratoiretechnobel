@@ -50,7 +50,7 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="remarques", type="string", length=150)
+     * @ORM\Column(name="remarques", type="string", length=150, nullable=true)
      * @Assert\Length(
      *      min = 3,
      *      max = 150)

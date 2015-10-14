@@ -68,6 +68,7 @@ class AnnonceType extends AbstractType
             //Remarques
             ->add('remarques', 'textarea', array(
                 'label' => false,
+                'required' => false,
                 'attr' => array('max_length' => '150', 
                             'class' => 'col-xs-12 col-md-4 form-control', 
                             'placeholder' =>'Remarques',
