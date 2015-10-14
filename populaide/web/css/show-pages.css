@@ -17,11 +17,12 @@
         width: 100%;
     }
     #stars {
-        visibility: hidden;
+        /*visibility: hidden;*/
+        display: none;
     }
     .box-post {
           background-color: #fff;
-          border-radius: 7%;
+          border-radius: 45px;
           margin: 5% 0;
           height: 240px;
         } 
@@ -30,7 +31,7 @@
             height: 80px;
             float: left;
             margin-right: 10px;
-            border-top-left-radius: 18%;
+            border-top-left-radius: 45px;
         }
         .user-login,
         .user-location,
@@ -41,15 +42,18 @@
         .post-title {
             margin: 0 auto;
         }
-        .propose {
+        .propose, .offre {
             height: 25px;
             padding-top: 5px;
-            background-color: #23777B;
+            background-color: #23777B; /*Turquoise*/
             color: #fff;
             text-transform: uppercase;
             text-align: center;
             font-size: 1em;
             font-weight: bold;
+        }
+        .offre{
+            background-color: #EB5E4E; /*Orange*/
         }
         .box-post ul {
             text-decoration: none;
@@ -199,7 +203,7 @@
         .user-status {
             margin-top: -40px;
         }
-        .propose {
+        .propose, .offre {
             margin-top: 12px;
             height: 40px;
             padding-top: 10px;
@@ -330,7 +334,7 @@
         .user-date-post {
             margin: 12px;
         }
-        .propose {
+        .propose, .offre {
             margin-top: -8px;
             font-size: 1.2em;
         }

@@ -336,14 +336,10 @@ class UserController extends Controller
             $em->flush();
             //Ajout d'un message flash (a voir)
             $this->addFlash('notice', "Mise a jour OK.");
-            //Récupère l'utilisateur en session
-            $user = $this->container->get('security.context')->getToken()->getUser();
-            //Ajout d'une notificatoin l'admin
-            UserController::addNotification("Mise à jour de l'utilisteur  ".$usersess->getName()."OK.", $user->getId());
-            //Redirection vers la categorie
-            //return $this->forward('TecUserBundle:User:getUser', array('id' => $id));
-            //Redirection
-            return $this->redirect($this->generateUrl('tec_service_admin'));
+            //Ajout d'une notificatoin 
+            UserController::addNotification("Mise à jour de l'utilisteur  ".$usersess->getName()."OK.", $usersess->getId());
+            //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
         }
         return $this->render('TecUserBundle::updateUser.html.twig', array('form' => $form->createView()));
     }

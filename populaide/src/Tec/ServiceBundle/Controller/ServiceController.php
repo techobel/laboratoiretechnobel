@@ -239,7 +239,9 @@ class ServiceController extends Controller
             //si le formulaire a été valide
             if($form->handleRequest($request)->isValid()){
                 //Récupère le manager
-                $em = $this->getDoctrine()->getManager();                
+                $em = $this->getDoctrine()->getManager();  
+                //mise a jour de l'attribut update
+                $annonce->setUpdateDate(new \DateTime());                
                 //Sauvegarde en bdd des updates
                 $em->flush();
                 //Ajout d'une notificatoin
