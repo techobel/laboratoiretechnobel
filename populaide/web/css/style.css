@@ -381,7 +381,7 @@ h4 {
 ==================================*/
 .search{
     /*    height: 370px;*/
-    background: url(../images/header.jpg) no-repeat center 90px; /*Full Width background image*/
+    background: url(../images/header.jpg) no-repeat center 35px; /*Full Width background image*/
     background-color: #fff;
     background-size: cover;
 } 
@@ -404,6 +404,7 @@ section.search button[type="submit"], .footer_mob button[type="submit"]{
     padding-right: 0;
     width: 55px;
     margin-left: 0%;
+    max-height: 55px;
     float:right;
 }
 
@@ -676,6 +677,13 @@ option:not(.optionGroup){
 }
 .user-status.red{
     background-color: red;
+}
+
+/*======================================
+    ANNONCE PAGE STYLES
+=========================================*/
+#stars{
+    visibility: hidden;
 }
 /*================================
     FOOTER SECTION STYLES

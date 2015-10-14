@@ -15,8 +15,17 @@ class CategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array('attr' => array('max_length' => '50')))
-            ->add('description', 'textarea', array('attr' => array('max_length' => '150')))
+            ->add('name', 'text', array(
+                'label' => false, 
+                'attr' => array('max_length' => '50', 
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'placeholder' =>'Intitulé de la catégorie')))
+            ->add('description', 'textarea', array(
+                'label' => false,
+                'attr' => array('max_length' => '150', 
+                            'class' => 'col-xs-12 col-md-4 form-control', 
+                            'placeholder' => "Brève description de la catégorie",
+                            'rows'=> "8")))
             ->add('media', new MediaType())
             ->add('save', 'submit');
         
