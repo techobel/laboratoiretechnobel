@@ -68,14 +68,16 @@ class UserController extends Controller
             //$data = $form->getData();
             
             $subject = $form["subject"]->getData();
-            $admin = "tracy.brisfer@gmail.com";
+            $admin = "technobellaboratoire@outlook.fr";
             $content = $form["message"]->getData();
             $fromName = $form["name"]->getData();
             $from = $form["email"]->getData();
             $body = $content . $fromName . $from;
             
             ServiceController::sendMail($subject, $admin, $body);
-           $this->addFlash('notice', "Votre message a bien été envoyé");
+            $this->addFlash('notice', "Votre message a bien été envoyé");
+           //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
         }
         
         return $this->render('TecUserBundle::contact.html.twig', array('form' => $form->createView()));
@@ -92,7 +94,7 @@ class UserController extends Controller
     /*
      * Récupère le user qui possède l'id id et affiche son profil
      */
-    public function getProfilUserAction($id){
+    public function getProfilUserAction(Request $request, $id){
         //Récupère le repository de user
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
         //Récupère l'user qui possède l'id $id
@@ -101,8 +103,50 @@ class UserController extends Controller
         if($user === null){
             throw new NotFoundHttpException("Le user n'existe pas");  //genere une exception
         }
+        
+        $data = array();
+        $form = $this->createFormBuilder($data)           
+            ->add('subject', 'text', array(
+                'label' => false, 
+                'attr' => array('max_length' => '70',
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'placeholder' =>'Objet du message')))
+            ->add('message', 'textarea', array(
+                'label' => false, 
+                'attr' => array('max_length' => '150',
+                            'class' => 'col-xs-12 col-md-4 form-control',
+                            'placeholder' =>'Rédigez votre message',
+                            'rows'=> "4")))
+            ->add('envoyer', 'submit', array(
+                'attr' => array('id' => 'preview',
+                            'class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
+                            'value' => 'Envoyer')))
+            ->add('effacer', 'reset', array(
+                'attr' => array('id' => 'preview',
+                            'class' => "btn btn-secondary btn-lg col-xs-2 col-md-2 form-control",
+                            'value' => 'Effacer')))
+        ->getForm();
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+            
+            //Récupère l'utilisateur en session
+            $usersession = $this->container->get('security.context')->getToken()->getUser();
+            
+            $subject = $form["subject"]->getData();            
+            $content = "Contact depuis PopulAide: " . $form["message"]->getData();
+            $fromName = $usersession->getUsername();
+            $from = $user->getEmail();
+            $body = $content . $fromName . $from;
+            
+            ServiceController::sendMail($subject, $from, $body);
+            $this->addFlash('notice', "Votre message a bien été envoyé");
+            //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
+        }
+        
         //Renvoie vers la page qui affiche la sous categorie
-        return $this->render('TecUserBundle::profil.html.twig', array('user' => $user));
+        return $this->render('TecUserBundle::profilpublic.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
 	
     /**

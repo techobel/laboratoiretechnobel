@@ -4,44 +4,44 @@ tec_user_index:
     defaults: { _controller: TecUserBundle:User:index }
     
 tec_user_contact:
-    path:     /contact
+    path:     /contact/
     defaults: { _controller: TecUserBundle:User:contact }
 #HOW
 tec_user_how:
-    path:     /commentcamarche
+    path:     /commentcamarche/
     defaults: { _controller: TecUserBundle:User:how }   
     
 tec_user_myprofil:
-    path:     /profil
+    path:     /profil/
     defaults: { _controller: TecUserBundle:User:getMyProfil } 
     
 tec_user_getalluser:
-    path:     /user
+    path:     /user/
     defaults: { _controller: TecUserBundle:User:getAllUser } 
     
 tec_user_profil:
-    path:     /user/{id}
+    path:     /user/{id}/
     defaults: { _controller: TecUserBundle:User:getProfilUser } 
     
 tec_service_deluser:
-    path:     /user/{id}/del
+    path:     /user/{id}/del/
     defaults: { _controller: TecUserBundle:User:delUser }
     
 tec_service_updateuser:
-    path:     /user/{id}/update
+    path:     /user/{id}/update/
     defaults: { _controller: TecUserBundle:User:updateUser }
     
 tec_service_adduser:
-    path:     /admin/user/add
+    path:     /admin/user/add/
     defaults: { _controller: TecUserBundle:User:addUser }
     
 #NOTIFICATION
 tec_user_getnotification:
-    path:     /notification/{id}
+    path:     /notification/{id}/
     defaults: { _controller: TecUserBundle:User:getNotification } 
 
 tec_user_getallnotification:
-    path:     /notification
+    path:     /notification/
     defaults: { _controller: TecUserBundle:User:getAllNotification } 
     
 tec_user_updatenotification:
