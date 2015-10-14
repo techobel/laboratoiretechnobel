@@ -1,35 +1,95 @@
-{% extends "TecServiceBundle::layout.html.twig" %}
-{% block title %}Populaide - Belgique - Results{% endblock %}
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ annonce.title }} {{ parent() }}{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet" type="text/css" />
+    <!-- PROFILE STYLE SHEET -->
 {% endblock %}
+
+{% block h3 %}Détails de 
+    {% if annonce.type.intitule == "offre" %}
+        l'offre
+    {% else %}
+        la demande
+    {% endif %}
+{% endblock %}
+
 {% block body %}
     {{ parent() }}
            
-    <section id="works">
+    <section id="general">
         <div class="container"> 
-            Annonce:
-            {{ annonce.id ~ " " ~ annonce.title ~ " " ~ annonce.description }}<a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}"> Postuler</a>
-            {% if annonce.getUser.getId == app.user.id %}  
-                <a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}" class="menu-post" >
-                    Modifier
-                </a>
-                <a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}" class="menu-post" >
-                    Supprimer
-                </a>
-                {% else %}
-                    <a href="{{ path('tec_user_profil', {'id' : annonce.getUser.getId}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
-                        Contact
-                    </a>
-                    <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
-                        Collaborer
-                    </a>
-                {% endif %}
-            {% for flashMessage in app.session.flashbag.get('notice') %}
-                {{ flashMessage }}
-            {% endfor %}
+            {% if annonce.getUser.media != null %}
+            <img
+                src="{{ asset(annonce.getUser.media.uploadDir ~ '/' ~ annonce.getUser.media.id ~ annonce.getUser.media.path) }}"
+                alt="{{ annonce.getUser.media.alt ~ annonce.getUser.username }}"
+                width="150px"
+                heigth="150px"
+            />
+            {% else %}
+                <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
+            {% endif %}
+
+            <h4>{{ annonce.user.username }}</h4>
+            <ol id="stars">
+                <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
+                <li><span>(XX votes)</span></li>
+            </ol>
+
+            <p>{{ annonce.type.intitule }}</p>
+
+            <h4>{{ annonce.title }}</h4>
+
+            <p>dans un périmètre de {{ annonce.perimetre }} km</p>
+
+            <p>{{ annonce.description }}</p>
+
+            {% if annonce.remarques != null %}
+                <h4>Remarques</h4>
+                <p>{{ annonce.remarques }}</p>
+            {% endif %}
         </div>
     </section>
+    
+    <!--LINKS SECTION la même que category-->
+    <section id="category">
+        <div class="container">
+            <nav class="row">
+                <ul>
+                    <li class="col-md-1 col-xs-4">
+                            <a href="{{ path('tec_service_getallannonce') }}">
+                                <img src="{{ asset('images/pictos/search.png') }}" width="45" alt="" class="img-responsive" />
+                                Retourner à la recherche
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a href="{{ path('tec_user_profil',{'id': annonce.user.id }) }}">
+                                <img src="{{ asset('images/pictos/user.png') }}" width="45" alt="" class="img-responsive" />
+                                Consulter le profil de {{ annonce.user.username }}
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a href="{{ path('tec_user_contact') }}">
+                                <img src="{{ asset('images/pictos/contact.png') }}" width="45" alt="" class="img-responsive" />
+                                Contacter {{ annonce.user.username }}
+                            </a>
+                    </li>
+                    <li class="col-md-1 col-xs-4">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                                <img src="{{ asset('images/pictos/coop.png') }}" width="45" alt="" class="img-responsive" />
+                                Rendre service à {{ annonce.user.username }}
+                            </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <!-- CATEGORY SECTION END-->
         
 {% endblock %}

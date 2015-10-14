@@ -66,6 +66,9 @@ p{
 /*================================
     GENERAL SECTION STYLES
 ==================================*/
+#general+section{
+    padding-top: 35px;
+}
 
 /*Image du user*/
 #general img{
