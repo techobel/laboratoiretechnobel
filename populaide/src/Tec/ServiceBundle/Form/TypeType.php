@@ -15,8 +15,16 @@ class TypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('intitule', 'text', array('attr' => array('max_length' => '20')))
-            ->add('save', 'submit');
+            ->add('intitule', 'text', array(
+                'label' => false, 
+                'attr' => array('max_length' => '20', 
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'placeholder' =>'Type')))
+            //Submit
+            ->add('Ajouter le type', 'submit', array(
+                'attr' => array('class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
+                            'value' => 'Ajouter le type')))
+            ;
         
     }
     

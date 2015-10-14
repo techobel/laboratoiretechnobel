@@ -1,12 +1,18 @@
-{% extends "TecServiceBundle::layout.html.twig" %}
-{% block title %}Populaide - Belgique - Results{% endblock %}
-{% block stylesheets %}
-    {{ parent() }}
-    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
-{% endblock %}
+{% extends "::base.html.twig" %}
+
+{% block title %}Mise à jour type {{ parent() }}{% endblock %}
+
+{% block h3 %}Mise à jour du type{% endblock %}
+    
 {% block body %}
     {{ parent() }}
-    <h3>Mise a jour du type:</h3>
-    {{ form(form) }}
-
+    
+    <section id="form_contact" class="clearfix">
+        <div class="container">
+            <div class="form row form-inline form-one clearfix">
+                {{ form(form) }}
+            </div>
+        </div> 
+    </section>
+    
 {% endblock %}

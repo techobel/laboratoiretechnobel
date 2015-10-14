@@ -29,6 +29,7 @@ class CategorieType extends AbstractType
             ->add('media', new MediaType(), array(
                 'label' => 'Choisissez un picto', 
                 'attr' => array('class' => 'col-xs-12 col-md-4 form-control')))
+            //Submit
             ->add('Ajouter la categorie', 'submit', array(
                 'attr' => array('class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
                             'value' => 'Ajouter la catégorie')))
