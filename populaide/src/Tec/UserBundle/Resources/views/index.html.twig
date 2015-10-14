@@ -17,7 +17,7 @@
             <form  class="row form-inline" action="{{ path("tec_service_searchannonce") }}" method="POST">
         {#        Construction du select dans la vue constructSelectCategorie#}
                 {% render path('tec_service_constructSelect') %}
-                <input class="col-xs-12 col-md-4 form-control " type="text" name="localite"/>
+                <input class="col-xs-12 col-md-4 col-lg-5 form-control " type="text" name="localite"/>
                 <button type="submit"><img src="{{ asset("images/pictos/search.png") }}" width="100" height="100"/></button>
             </form>
             </div>
@@ -59,31 +59,31 @@
             <nav class="row">
                 <ul>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 5}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
                                 <img src="{{ asset('images/pictos/brico.png') }}" width="45" alt="" class="img-responsive" />
                                 Bricolage
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 7}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 3}) }}">
                                 <img src="{{ asset('images/pictos/jardi.png') }}" width="45" alt="" class="img-responsive" />
                                 Jardinage
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 8}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 5}) }}">
                                 <img src="{{ asset('images/pictos/media.png') }}" width="45" alt="" class="img-responsive" />
                                 Multimédia
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 1}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
                                 <img src="{{ asset('images/pictos/pets.png') }}" width="45" alt="" class="img-responsive" />
                                 Animaux
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 6}) }}">
                                 <img src="{{ asset('images/pictos/anim.png') }}" width="45" alt="" class="img-responsive" />
                                 Animation
                             </a>
@@ -95,13 +95,13 @@
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 6}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 7}) }}">
                                 <img src="{{ asset('images/pictos/cours.png') }}" width="45" alt="" class="img-responsive" />
                                 Cours
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 3}) }}">
+                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 8}) }}">
                                 <img src="{{ asset('images/pictos/assist.png') }}" width="45" alt="" class="img-responsive" />
                                 Assistance
                             </a>
