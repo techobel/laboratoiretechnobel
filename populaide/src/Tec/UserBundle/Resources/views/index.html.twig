@@ -53,8 +53,18 @@
             </div>
         </div>
     </div>
+        <section id="category">
+            <div class="container">
+                <nav class="row">  
+                    <ul>   
+                    {#Construction des pictos de catégorie#}   
+                    {% render controller('TecServiceBundle:Service:getAllCategorie') %}
+                    </ul>
+               </nav>
+            </div>    
+        </section>
     <!--CONNECTION SECTION END  -->
-    <section id="category">
+{#    <section id="category">
         <div class="container">
             <nav class="row">
                 <ul>
@@ -109,7 +119,7 @@
                 </ul>
             </nav>
         </div>
-    </section>
+    </section>#}
     <!-- CATEGORY SECTION END-->
     <section id="how">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="15000">
