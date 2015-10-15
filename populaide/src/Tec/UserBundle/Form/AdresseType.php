@@ -18,16 +18,17 @@ class AdresseType extends AbstractType
             /*Rue*/
             ->add('street', 'text', array(
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => array('max-length' => '170', 
                             'placeholder' => "Rue",
                             'class' => 'col-xs-12 col-md-4 form-control text')))
             /*Numéro*/
             ->add('number', 'text', array(
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => array('placeholder' => "Numéro",
-                            'class' => 'col-xs-12 col-md-4 form-control text')))
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'min' => 0)))
             /*Boite*/
             ->add('box', 'text', array(
                 'label' => false,
@@ -37,14 +38,14 @@ class AdresseType extends AbstractType
             /*CP*/
             ->add('cp', 'integer', array(
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => array('max-length' => '4', 
                             'placeholder' => "Code postal",
                             'class' => 'col-xs-12 col-md-4 form-control text')))
             /*Localité*/
             ->add('city', 'text', array(
                 'label' => false,
-                'required' => true,
+                'required' => false,
                 'attr' => array('max-length' => '80', 
                             'placeholder' => "Localité",
                             'class' => 'col-xs-12 col-md-4 form-control text')))

@@ -84,8 +84,8 @@ class RegistrationFormType extends AbstractType
                     'class' => 'col-xs-12 col-md-4 form-control text'
                     )))
             /*Adresse*/
-            ->add('adresse', new AdresseType(), array(
-                'label' => false))
+            //->add('adresse', new AdresseType(), array(
+            //    'label' => false))
             //CGU
 //            ->add('cgu', 'checkbox', array(
 //                'label' => 'J\'ai pris connaissance des conditions générales d\'utilisation', 

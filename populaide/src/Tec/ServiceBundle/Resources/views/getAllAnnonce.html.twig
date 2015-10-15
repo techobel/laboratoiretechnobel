@@ -22,8 +22,10 @@
             
             <div class="row text-center portfolio-item annonces">
                 {% for annonce in annonces%}
-                    {% set villeannonce = "" %}                    
+                    {% set villeannonce = "" %}         
+                    {% if annonce.getUser.getAdresse is not null %}
                     {% set villeannonce = annonce.getUser.getAdresse.getCity %}
+                    {% endif %}
                     
                     
                 <div class="col-md-6 col-sm-12 half">
@@ -71,7 +73,7 @@
                                 Détails
                             </a>    
                             {% if (annonce.getUser.getId != app.user.id) %}
-                            <a href="{{ path('tec_user_contact') }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
+                            <a href="{{ path('tec_user_profil', {'id':app.user.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
                                 Contact
                             </a> 
                             <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />

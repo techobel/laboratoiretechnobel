@@ -368,11 +368,12 @@ class ServiceController extends Controller
             //Supprime postule du service
             foreach($service->getAnnonce()->getPostules() as $postule){
                 $em->remove($postule);
-            } 
-            //Suppression du service
-            $em->remove($service);
+            }             
             //Suppression
             $em->flush();
+            //Suppression du service
+            $em->remove($service);
+            
             //Ajout d'un message flash en sesssion
             $this->addFlash('notice', "Vous avez bien supprimé le service");
             //Ajout d'une notificatoin
