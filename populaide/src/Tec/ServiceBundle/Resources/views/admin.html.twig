@@ -114,8 +114,8 @@
                       <td>{{ annonce.aide }}</td>
                       <td>{{ annonce.diffusion }}</td>
                       <td>{{ annonce.active }}</td>
-                      <td>{{ annonce.creationDate | date('d/m/y') }}</td>
-                      <td>{{ annonce.deleteDate | date('d/m/y') }}</td>
+                      <td>{{ annonce.creationDate | date('d/m/Y') }}</td>
+                      <td>{{ annonce.deleteDate | date('d/m/Y') }}</td>
                       <td><a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}"> Modifier</a><a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}"> Supprimer</a></td>
                     </tr>
                     {% set indice= indice + 1 %}
@@ -269,10 +269,11 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Date création</th>     
-                      <th>Date mise à jour</th>
+                      <th>Date création</th>    
+                      <th>Etat</th>
+                      <th>Date mise à jour</th>                      
                       <th>Annonce</th>
-                      <th>Utilisateur</th>
+                      <th>Utilisateur</th>                      
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -281,8 +282,17 @@
                     {% for postule in postules %}
                     <tr>
                       <th scope="row">{{ indice }}</th>
-                      <td>{{ postule.datecreate | date('d/m/Y')}}</td>     
-                      <td>{{ postule.dateupdate | date('d/m/Y')}}</td> 
+                      <td>{{ postule.datecreate | date('d/m/Y')}}</td>                                    
+                          {% if postule.etat == true %}
+                              <td>{{ postule.dateupdate | date('d/m/y') }}</td>
+                              <td>{{ "Accepte" }}</td>                                      
+                          {% elseif postule.etat is null %}
+                              <td>{{ "En attente" }}</td>
+                              <td>{{ "-"}}</td>
+                          {% else %}
+                              <td>{{ "Refuse" }}</td> 
+                              <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
+                          {% endif %} 
                       <td><a href="{{path('tec_service_getannonce', {'id': postule.getAnnonce.getId})}}">{{ postule.getAnnonce.getTitle }}</a></td>  
                       <td><a href="{{path('tec_user_profil', {'id': postule.getUser.getId})}}">{{ postule.getUser.getUsername }}</a></td>
                       <td><a href="{{ path('tec_service_delpostule',{'id': postule.id}) }}"> Supprimer</a></td>
@@ -292,9 +302,6 @@
                   </tbody>
                 </table>
             </div>
-        </div>
-         <div class="col-xs-12">          
-            <a href="{{ path('tec_service_addtype') }}"><input type="button" class="btn btn-primary" value="Ajouter"/></a>
         </div>
                   
         {# TAB GESTION SERVICES #}
@@ -336,16 +343,13 @@
                               <a href="{{path('tec_user_profil', {'id':fournit.getUser.getId})}}">{{ fournit.getUser.getUsername ~ " " }}</a>
                           {% endfor %}
                       </td>
-                      <td><a href="{{ path('tec_service_deltype',{'id': service.id}) }}"> Supprimer</a></td>
+                      <td><a href="{{ path('tec_service_delservice',{'id': service.id}) }}"> Supprimer</a></td>
                     </tr>
                     {% set indice= indice + 1 %}
                     {% endfor %}
                   </tbody>
                 </table>
             </div>
-        </div>
-        <div class="col-xs-12">          
-            <a href="{{ path('tec_service_addtype') }}"><input type="button" class="btn btn-primary" value="Ajouter"/></a>
         </div>
         
     </div>

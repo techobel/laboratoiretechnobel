@@ -240,6 +240,7 @@
                                       <td>{{ demande.getService.dateservice | date('d/m/y') }}</td>    
                                       <td><a href="{{ path('tec_service_getannonce', {'id': demande.getService.getAnnonce.getId})}}">{{ demande.getService.getAnnonce.getTitle }}</a></td>
                                       <td>{{ demande.getService.getAnnonce.getUser }}</td>
+                                      <td><a href="{{path('tec_service_delservice', {'id':demande.getService.getId})}}">Supprimer</a></td>
                                     </tr>
                                     {% set indice= indice + 1 %}                            
                                 {% endfor %}

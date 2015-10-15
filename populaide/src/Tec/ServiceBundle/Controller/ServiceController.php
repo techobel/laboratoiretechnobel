@@ -354,8 +354,11 @@ class ServiceController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUser();
         //Test si l'utilisateur possède le service (personne qui a posté l'annonce) ou si c'est un admin
         if(($this->get('security.context')->isGranted('ROLE_ADMIN'))||($service->getAnnonce()->getUser()->getId() === $user->getId())){
-            //Recupère l'user qui a postulé
-            $userpostule = $service->getFournir()->getUser();
+            //Recupère les user 
+            foreach($service->getFournisseurs() as $userpostule){
+                //Ajout d'une notification pour la personne qui a postulé
+                UserController::addNotification("Un de vos services a été supprimé", $userpostule->getId());
+            }
             //Traitement
             //Récupère le manager
             $em = $this->getDoctrine()->getManager();
@@ -367,8 +370,7 @@ class ServiceController extends Controller
             $this->addFlash('notice', "Vous avez bien supprimé le service");
             //Ajout d'une notificatoin
             UserController::addNotification("Vous avez bien supprimé le service", $user->getId());
-            //Ajout d'une notification pour la personne qui a postulé
-            UserController::addNotification("Un de vos services a été supprimé", $userpostule);
+            
             //Redirection meme page
             return $this->redirect($request->headers->get('referer'));
         }else{
@@ -448,11 +450,11 @@ class ServiceController extends Controller
         $fournir->setService($service);
         
         if($postuler->getAnnonce()->getType()->getIntitule() === "Offre"){
-            $demander->setUser($user);
-            $fournir->setUser($postuler->getUser());
-        }else{
             $demander->setUser($postuler->getUser());
-            $fournir->setUser($user);            
+            $fournir->setUser($user);
+        }else{
+            $demander->setUser($user);
+            $fournir->setUser($postuler->getUser());            
         }                
         //doctrine se charge de demander et fournir
         $em->persist($demander);
