@@ -29,35 +29,35 @@ class Adresse
     /**
      * @var string
      *
-     * @ORM\Column(name="street", type="string", length=170)
+     * @ORM\Column(name="street", type="string", length=170, nullable=true)
      */
     private $street;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="number", type="integer")
+     * @ORM\Column(name="number", type="integer", nullable=true)
      */
     private $number;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="box", type="integer")
+     * @ORM\Column(name="box", type="integer", nullable=true)
      */
     private $box;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=80)
+     * @ORM\Column(name="city", type="string", length=80, nullable=true)
      */
     private $city;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="cp", type="integer")
+     * @ORM\Column(name="cp", type="integer", nullable=true)
      */
     private $cp;
     
