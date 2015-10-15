@@ -299,6 +299,21 @@ a.normal:visited{
         margin: 130px 200px 0px 0px;
     }  
 }
+
+
+/*======================================
+    TABLEAU STYLES
+=========================================*/
+.panel-heading{
+    font-weight: 700;
+    font-size: 1.5em;
+    text-align: left;
+}
+.table th, .table td{
+    text-align: left;
+}
+
+
 /*================================
     HOME SECTION STYLES
 ==================================*/
@@ -687,6 +702,7 @@ option:not(.optionGroup){
 #stars{
     visibility: hidden;
 }
+
 /*================================
     FOOTER SECTION STYLES
 ==================================*/
