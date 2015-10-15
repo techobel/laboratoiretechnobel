@@ -33,6 +33,7 @@
             <div id="profil" class="tab-pane fade in active">
                 <h3>Profil</h3>
                 <div class='row'>
+                    <!--Image de profil-->
                     {% if user.media != null %}
                         <img
                             src="{{ asset(user.media.uploadDir ~ '/' ~ user.media.id ~ user.media.path) }}"
@@ -43,7 +44,12 @@
                     {% else %}
                         <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
                     {% endif %}
-                    <h4>Evaluation globale</h4>
+                    
+                    <!--Username-->
+                    <h4 class='titre'>{{ user.username }}</h4>
+                    
+                    <!--Evaluation (visibility: hidden)-->
+{#                    <h4>Evaluation globale</h4>#}
                     <ol id="stars">
                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
@@ -52,8 +58,13 @@
                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
                         <li><span>(XX votes)</span></li>
                     </ol>
+                    
+                    <!--Username-->
+                    <h4 class='titre'>{{ user.username }}</h4>
                     <ul>
-                        <li> {{ "Login: " ~ user.username }} </li>
+
+                        
+                        
                         <li> {{ "Email: " ~ user.email }}</li>
                         {% if user.name is not null %}
                         <li>{{ "Nom: " ~ user.name }}</li>

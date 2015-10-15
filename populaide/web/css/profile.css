@@ -10,6 +10,9 @@ h4{
     margin-bottom: 5px; 
     text-align: left;
 }
+h4.titre{
+    font-size: 2em;
+}
 p{
     text-align: left;
 }
