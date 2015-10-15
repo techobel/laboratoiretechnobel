@@ -14,11 +14,13 @@
 
 {% block body %}
 {{ parent() }}
-    <nav class="nav nav-profile">
-        <ul class="nav nav-tabs nav-profile">
-            <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
-        </ul>
-    </nav>    
+    <div class="profile-block">
+        <div class="container">
+            <ul class="profile">
+                <li class="active"><a data-toggle="tab" href="#profil">Profil</a></li>
+            </ul>
+        </div>    
+    </div>   
     <section id="general">
         <div class='container'>
             {% for flashMessage in app.session.flashbag.get('notice') %}
@@ -26,7 +28,7 @@
             {% endfor %}
             <div class="tab-content">
             <div id="profil" class="tab-pane fade in active">
-                <h3>Profil</h3>
+               {# <h3>Profil</h3>#}
                 <div class='row'>
                     {% if user.media != null %}
                         <img
@@ -38,7 +40,7 @@
                     {% else %}
                         <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
                     {% endif %}
-                    <h4>Evaluation globale</h4>
+                    {#<h4>Evaluation globale</h4>#}
                     <ol id="stars">
                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
@@ -47,22 +49,22 @@
                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
                         <li><span>(XX votes)</span></li>
                     </ol>
-                    <ul>
-                        <li>
-                            <button type="button" class="btn" data-toggle="modal" data-target="#myModal">  
+{#                    <ul>#}
+{#                        <li>#}
+                            <button type="button" class="btn profil-btn" data-toggle="modal" data-target="#myModal">  
                                 <a class="normal">
                                     <img class="img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="Contacter le membre" width="50" height="50"/>
-                                    Contacter le membre 
+                                    <p>Contacter le membre </p>
                                 </a>
                             </button>
-                        </li>
-                        <li>
+{#                        </li>#}
+{#                        <li>
                             <a class="normal">
                                 <img class="img-responsive" src="{{ asset('images/pictos/rate.png') }}" alt="Noter la prestation du membre" width="50" height="50"/>
                                 Noter sa prestation
                             </a> 
-                        </li>
-                    </ul>
+                        </li>#}
+{#                    </ul>#}
                     <h4>Disponibilité
                     {% if user.disponible %}
                         <span class="user-status green"></span>
@@ -70,7 +72,8 @@
                         <span class="user-status red"></span>
                     {% endif %}
                     </h4>
-                    
+                    <h4 class="desc">Description</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. </p>
                     <!-- Modal -->
                     <div id="myModal" class="modal fade" role="dialog">
                       <div class="modal-dialog">

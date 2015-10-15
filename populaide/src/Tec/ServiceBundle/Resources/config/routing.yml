@@ -134,6 +134,14 @@ tec_service_refuserpostulerannonce:
     path:     /annonce/{id}/demande/refuser/
     defaults: { _controller: TecServiceBundle:Service:refusePostuleUser }
     
+tec_service_delpostule:
+    path:     /proposition/del/{id}
+    defaults: { _controller: TecServiceBundle:Service:delPostule }
+
+tec_service_delservice:
+    path:     /service/del/{id}
+    defaults: { _controller: TecServiceBundle:Service:delService }
+    
 #TEST AJAX
 tec_service_testajax:
     path:     /testajax

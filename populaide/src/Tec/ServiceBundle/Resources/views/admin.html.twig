@@ -9,18 +9,14 @@
 
 {% block title %} {{ parent() }}{% endblock %}
 
-{% block img_h3 %}src="{{ asset('images/pictos/admin2.png') }}" alt="Administration" width="100" height="100"{% endblock %}
 {% block h3 %}Administration{% endblock %}
 
 {% block body %}
 {{ parent() }}
-{# USERS #}
-<section>
-    {% for flashMessage in app.session.flashbag.get('notice') %}
-        <div class="alert-success has-success">{{ flashMessage }}</div>
-    {% endfor %}
-    
     <div class="container">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="alert-success has-success">{{ flashMessage }}</div>
+        {% endfor %}
         {# TAB GESTION USERS #}
         <div class="col-xs-12 panel panel-default">        
             <div class="panel panel-default">
@@ -34,8 +30,17 @@
                   <thead>
                     <tr>
                       <th>#</th>
-                      <th>Name</th>
+                      <th>Login</th>
+                      <th>Nom</th>
+                      <th>Prenom</th>
+                      <th>Date de naissance</th>
+                      <th>Sexe</th>
+                      <th>Num tel</th>
                       <th>Email</th>
+                      <th>Etat</th>
+                      <th>Derniere connexion</th>   
+                      <th>Date création</th>
+                      <th>Date mise à jour</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -45,7 +50,20 @@
                     <tr>
                       <th scope="row">{{ indice }}</th>
                       <td>{{ user.username }}</td>
+                      <td>{{ user.name }}</td>
+                      <td>{{ user.firstname }}</td>
+                      <td>{{ user.birthdate | date('d/m/Y') }}</td>
+                      <td>{{ user.sex }}</td>
+                      <td>{{ user.phone }}</td>
                       <td>{{ user.email }}</td>
+                      {% if user.enabled == 1 %}
+                          <td>{{ "Actif" }}</td>
+                      {% else %}
+                          <td>{{ "Inactif" }}</td>
+                      {% endif %}
+                      <td>{{ user.lastlogin | date('d/m/Y')}}</td>
+                      <td>{{ user.creationdate | date('d/m/Y') }}</td>
+                      <td>{{ user.updatedate | date('d/m/Y') }}</td>
                       <td><a href="{{ path('tec_service_updateuser',{'id': user.id}) }}"> Modifier</a><a href="{{ path('tec_service_deluser',{'id': user.id}) }}"> Supprimer</a></td>
                     </tr>
                     {% set indice= indice + 1 %}
@@ -55,14 +73,8 @@
             </div>              
         </div>
         <div class="col-xs-12">          
-            <a href="{{ path('tec_service_adduser') }}"><input type="button" class="btn btn-primary btn-lg col-xs-2 col-md-2 form-control" value="Ajouter un utilisateur"/></a>
+            <a href="{{ path('tec_service_adduser') }}"><input type="button" class="btn btn-primary" value="Ajouter"/></a>
         </div>
-    </div>
-</section>
-        
-{# ANNONCES #}
-<section>
-    <div class='container'>
         {# TAB GESTION ANNONCES #}
         <div class="col-xs-12 panel panel-default">        
             <div class="panel panel-default">
@@ -102,8 +114,8 @@
                       <td>{{ annonce.aide }}</td>
                       <td>{{ annonce.diffusion }}</td>
                       <td>{{ annonce.active }}</td>
-                      <td>{{ annonce.creationDate | date('d/m/y') }}</td>
-                      <td>{{ annonce.deleteDate | date('d/m/y') }}</td>
+                      <td>{{ annonce.creationDate | date('d/m/Y') }}</td>
+                      <td>{{ annonce.deleteDate | date('d/m/Y') }}</td>
                       <td><a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}"> Modifier</a><a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}"> Supprimer</a></td>
                     </tr>
                     {% set indice= indice + 1 %}
@@ -116,14 +128,9 @@
             {% for flashMessage in app.session.flashbag.get('addannonce') %}
                 {{ flashMessage }}
             {% endfor %}
-            <a href="{{ path('tec_service_addannonce') }}"><input type="button" class="btn btn-primary btn-lg col-xs-2 col-md-2 form-control" value="Ajouter une annonce"/></a>
-        </div>
-    </div>
-</section>
+            <a href="{{ path('tec_service_addannonce') }}"><input type="button" class="btn btn-primary" value="Ajouter"/></a>
+        </div>          
 
-{# CATEGORIES #}
-<section>
-    <div class='container'>
         {# TAB GESTION CATEGORIES #}
         <div class="col-xs-12 panel panel-default">        
             <div class="panel panel-default">
@@ -169,14 +176,9 @@
             </div>
         </div>  
         <div class="col-xs-12">          
-            <a href="{{ path('tec_service_addcategorie') }}"><input type="button" class="btn btn-primary btn-lg col-xs-2 col-md-2 form-control" value="Ajouter une categorie"/></a>
+            <a href="{{ path('tec_service_addcategorie') }}"><input type="button" class="btn btn-primary" value="Ajouter"/></a>
         </div>
-    </div>
-</section>
-        
-{# SOUS-CATEGORIE #}
-<section>
-    <div class='container'>
+
         {# TAB GESTION SOUS-CATEGORIES #}
         <div class="col-xs-12 panel panel-default">        
             <div class="panel panel-default">
@@ -216,15 +218,10 @@
             {% for flashMessage in app.session.flashbag.get('addsubcategorie') %}
                 {{ flashMessage }}
             {% endfor %}
-            <a href="{{ path('tec_service_addsubcategorie') }}"><input type="button" class="btn btn-primary btn-lg col-xs-2 col-md-2 form-control" value="Ajouter une sous-catégorie"/></a>
+            <a href="{{ path('tec_service_addsubcategorie') }}"><input type="button" class="btn btn-primary" value="Ajouter"/></a>
         </div>
-    </div>
-</section>
 
-{# TYPES #}
-<section>
-    <div class='container'>
-        {# TAB GESTION TYPES #}
+        {# TAB GESTION SOUS-CATEGORIES #}
         <div class="col-xs-12 panel panel-default">        
             <div class="panel panel-default">
                 <!-- Default panel contents -->
@@ -256,11 +253,106 @@
             </div>
         </div>
         <div class="col-xs-12">          
-            <a href="{{ path('tec_service_addtype') }}"><input type="button" class="btn btn-primary btn-lg col-xs-2 col-md-2 form-control" value="Ajouter un type"/></a>
+            <a href="{{ path('tec_service_addtype') }}"><input type="button" class="btn btn-primary" value="Ajouter"/></a>
         </div>
-    </div>
-</section>
+                 
+        {# TAB GESTION POSTULES #}
+        <div class="col-xs-12 panel panel-default">        
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Gestion des propositions</div>
+                <div class="panel-body">
+                  <p>blabla ... gestion propositions</p>
+                </div>
+                <!-- Table -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Date création</th>    
+                      <th>Etat</th>
+                      <th>Date mise à jour</th>                      
+                      <th>Annonce</th>
+                      <th>Utilisateur</th>                      
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% set indice = 1 %}  
+                    {% for postule in postules %}
+                    <tr>
+                      <th scope="row">{{ indice }}</th>
+                      <td>{{ postule.datecreate | date('d/m/Y')}}</td>                                    
+                          {% if postule.etat == true %}
+                              <td>{{ postule.dateupdate | date('d/m/y') }}</td>
+                              <td>{{ "Accepte" }}</td>                                      
+                          {% elseif postule.etat is null %}
+                              <td>{{ "En attente" }}</td>
+                              <td>{{ "-"}}</td>
+                          {% else %}
+                              <td>{{ "Refuse" }}</td> 
+                              <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
+                          {% endif %} 
+                      <td><a href="{{path('tec_service_getannonce', {'id': postule.getAnnonce.getId})}}">{{ postule.getAnnonce.getTitle }}</a></td>  
+                      <td><a href="{{path('tec_user_profil', {'id': postule.getUser.getId})}}">{{ postule.getUser.getUsername }}</a></td>
+                      <td><a href="{{ path('tec_service_delpostule',{'id': postule.id}) }}"> Supprimer</a></td>
+                    </tr>
+                    {% set indice= indice + 1 %}
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
+                  
+        {# TAB GESTION SERVICES #}
+        <div class="col-xs-12 panel panel-default">        
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Gestion des services</div>
+                <div class="panel-body">
+                  <p>blabla ... gestion services</p>
+                </div>
+                <!-- Table -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Etat</th>     
+                      <th>Date du service</th>
+                      <th>Annonce</th>
+                      <th>Demandeur</th>
+                      <th>Fournisseur(s)<th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% set indice = 1 %}  
+                    {% for service in services %}
+                    <tr>
+                      <th scope="row">{{ indice }}</th>
+                      {% if service.active == true %}
+                        <td>{{ "Actif" }}</td>    
+                      {% else %}
+                        <td>{{ "Inactif" }}</td>  
+                      {% endif %}
+                      <td>{{ service.dateservice | date('d/m/Y') }}</td>  
+                      <td><a href="{{path('tec_service_getannonce', {'id': service.getAnnonce.getId})}}">{{ service.getAnnonce.getTitle }}</a></td>
+                      <td><a href=""{{path('tec_user_profil', {'id': service.getDemande.getUser.getId })}}>{{ service.getDemande.getUser.username }}</a></td>
+                      <td>
+                          {% for fournit in service.getFournisseurs %}
+                              <a href="{{path('tec_user_profil', {'id':fournit.getUser.getId})}}">{{ fournit.getUser.getUsername ~ " " }}</a>
+                          {% endfor %}
+                      </td>
+                      <td><a href="{{ path('tec_service_delservice',{'id': service.id}) }}"> Supprimer</a></td>
+                    </tr>
+                    {% set indice= indice + 1 %}
+                    {% endfor %}
+                  </tbody>
+                </table>
+            </div>
+        </div>
         
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script> 
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script> 
 {% endblock %}
 

@@ -95,7 +95,6 @@ class ServiceController extends Controller
             //Redirection
             return $this->redirect($request->headers->get('referer'));
         }else{   
-            echo "OK";
             //Si l'utilisateur est connecté
             //Création de l'article
             $annonce = new Annonce();     
@@ -253,7 +252,7 @@ class ServiceController extends Controller
                 //Redirection vers l'annonce
                 //return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
             }
-            return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView(), 'annonce' => $annonce));
+            return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView()));
         }else{
           throw new AccessDeniedException("Vous n'avez pas les droits sur cette annonce.");
         }
@@ -335,13 +334,59 @@ class ServiceController extends Controller
         }
     }
     
+    /******************************************
+     * Supprime le service possède l'id id *
+     ******************************************/
+    public function delServiceAction(Request $request, $id){
+        //On vérifie que l'utilisateur est connecté
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
+        //Récupère le repository de service
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Service');
+        //Récupère le service qui possède l'id $id
+        $service = $repository->find($id);
+        //Si l'annonce n'existe pas
+        if($service === null){
+            throw new NotFoundHttpException("Le service n'existe pas.");
+        }
+        //Si le service existe
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Test si l'utilisateur possède le service (personne qui a posté l'annonce) ou si c'est un admin
+        if(($this->get('security.context')->isGranted('ROLE_ADMIN'))||($service->getAnnonce()->getUser()->getId() === $user->getId())){
+            //Recupère les user 
+            foreach($service->getFournisseurs() as $userpostule){
+                //Ajout d'une notification pour la personne qui a postulé
+                UserController::addNotification("Un de vos services a été supprimé", $userpostule->getId());
+            }
+            //Traitement
+            //Récupère le manager
+            $em = $this->getDoctrine()->getManager();
+            //Suppression du service
+            $em->remove($service);
+            //Suppression
+            $em->flush();
+            //Ajout d'un message flash en sesssion
+            $this->addFlash('notice', "Vous avez bien supprimé le service");
+            //Ajout d'une notificatoin
+            UserController::addNotification("Vous avez bien supprimé le service", $user->getId());
+            
+            //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
+        }else{
+          throw new AccessDeniedException("Vous n'avez pas les droits sur ce service.");
+        }
+    }
+    
     /************************************************** 
      * @param type $id                                *
      * id est l'id de postuler                        *
      * L'utilisateur qui a posté une annonce accepte  *
      * Création d'un service                          *
      **************************************************/
-    public function acceptePostuleUserAction($id){
+    public function acceptePostuleUserAction(Request $request, $id){
         //On vérifie que l'utilisateur est connecté
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
           // Sinon on déclenche une exception « Accès interdit »
@@ -365,11 +410,21 @@ class ServiceController extends Controller
         //Change l'etat de postuler à true
         $postuler->setEtat(true);
         $postuler->setDateUpdate(new \DateTime());
-        //Création du service
-        $service = new Service();
-        //Mise a jour des attributs de service
-        $service->setActive(true);
-        $service->setDateService(new \DateTime());  //date du service à voir ou est-ce qu'on va la chercher                
+        
+        if($postuler->getAnnonce()->getService() === null){ //s'il n'y a pas de service
+            //création d'un service
+            $service = new Service();
+            //Mise a jour des attributs de service
+            $service->setActive(true);
+            $service->setDateService(new \DateTime());  //date du service à voir ou est-ce qu'on va la chercher
+            //Relation service - annonce
+            $postuler->getAnnonce()->setService($service);
+            $service->setAnnonce($postuler->getAnnonce());
+        }else{  //il y a deja un service
+            $service = $postuler->getAnnonce()->getService();
+        }
+        
+        
         //Récupère le manager
         $em = $this->getDoctrine()->getManager();
         //Doctrine se charge de service
@@ -397,11 +452,11 @@ class ServiceController extends Controller
         $fournir->setService($service);
         
         if($postuler->getAnnonce()->getType()->getIntitule() === "Offre"){
-            $demander->setUser($user);
-            $fournir->setUser($postuler->getUser());
-        }else{
+            $demander->setUser($postuler->getUser());
             $fournir->setUser($user);
+        }else{
             $demander->setUser($user);
+            $fournir->setUser($postuler->getUser());            
         }                
         //doctrine se charge de demander et fournir
         $em->persist($demander);
@@ -413,12 +468,59 @@ class ServiceController extends Controller
         //Ajout d'une notificatoin pour la personne qui a été accepte
         UserController::addNotification("Votre demande a été accepte pour l'annonce ..", $postuler->getUser()->getId());
         
-        //Redirection
-        return $this->redirect($this->generateUrl('tec_service_results'));
-        
+        //Redirection meme page
+        return $this->redirect($request->headers->get('referer'));       
         
         //Redirection vers la page de profil
         //return $this->forward('TecServiceBundle:Service:results');
+    }
+    
+    
+     /******************************************
+     * Supprime postule quii possède l'id id *
+     ******************************************/
+    public function delPostuleAction(Request $request, $id){
+        //On vérifie que l'utilisateur est connecté
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
+        //Récupère le repository de postule
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Postuler');
+        //Récupère postule qui possède l'id $id
+        $postule = $repository->find($id);
+        //Si postule n'existe pas
+        if($postule === null){
+            throw new NotFoundHttpException("La proposition n'existe pas.");
+        }
+        //Si postule existe
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Test si l'utilisateur est la personne qui a postulé ou si c'est un admin
+        if(($this->get('security.context')->isGranted('ROLE_ADMIN'))||($postule->getUser()->getId() === $user->getId())){
+            //test si la demande a été accetpé
+            if($postule->getEtat()){
+                //Ajout d'un message flash en sesssion
+                $this->addFlash('notice', "La proposition vient d'être acceptée, un service a été créé");
+            }else{
+                //Traitement
+                //Récupère le manager
+                $em = $this->getDoctrine()->getManager();
+                //Suppression de l'annonce
+                $em->remove($postule);
+                //Suppression
+                $em->flush();
+                //Ajout d'un message flash en sesssion
+                $this->addFlash('notice', "Vous avez bien supprimé la proposition");
+                //Ajout d'une notificatoin
+                UserController::addNotification("Vous avez bien supprimé la proposition", $user->getId());
+            }
+             //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
+            
+        }else{
+          throw new AccessDeniedException("Vous n'avez pas les droits sur cette proposition.");
+        }
     }
     
     /************************************************ 
@@ -699,7 +801,7 @@ class ServiceController extends Controller
             //Redirection
             return $this->redirect($this->generateUrl('tec_service_admin'));
         }
-        return $this->render('TecServiceBundle::updateCategorie.html.twig', array('form' => $form->createView(), 'categorie' => $categorie));
+        return $this->render('TecServiceBundle::updateCategorie.html.twig', array('form' => $form->createView()));
     }
     
     /****************************************************************************** 
@@ -907,7 +1009,7 @@ class ServiceController extends Controller
             //Redirection
             return $this->redirect($this->generateUrl('tec_service_admin'));
         }
-        return $this->render('TecServiceBundle::updateSubCategorie.html.twig', array('form' => $form->createView(), 'subcategorie' => $subcategorie));
+        return $this->render('TecServiceBundle::updateSubCategorie.html.twig', array('form' => $form->createView()));
     }
     
     /************************
@@ -1067,7 +1169,7 @@ class ServiceController extends Controller
             //Redirection
             return $this->redirect($this->generateUrl('tec_service_admin'));
         }
-        return $this->render('TecServiceBundle::updateType.html.twig', array('form' => $form->createView(), 'type' => $type));
+        return $this->render('TecServiceBundle::updateType.html.twig', array('form' => $form->createView()));
     }
     
     /*******************
@@ -1207,7 +1309,13 @@ class ServiceController extends Controller
         $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Type');
         $types = $repository->findAll();
         
-        return $this->render('TecServiceBundle::admin.html.twig', array('users' => $users, 'annonces' => $annonces, 'categories' => $categorie, 'subcategories' => $subcategorie, 'types' => $types));
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Postuler');
+        $postules = $repository->findAll();
+        
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Service');
+        $services = $repository->findAll();
+        
+        return $this->render('TecServiceBundle::admin.html.twig', array('users' => $users, 'annonces' => $annonces, 'categories' => $categorie, 'subcategories' => $subcategorie, 'types' => $types, 'postules' => $postules, 'services' => $services));
     }
     
 }

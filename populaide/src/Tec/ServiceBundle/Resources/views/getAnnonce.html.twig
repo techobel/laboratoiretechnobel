@@ -44,7 +44,7 @@
 
             <p>{{ annonce.type.intitule }}</p>
 
-            <h4>{{ annonce.title }}</h4>
+            <h4 class='titre'>{{ annonce.title }}</h4>
 
             <p>dans un périmètre de {{ annonce.perimetre }} km</p>
 
@@ -81,9 +81,9 @@
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_service_getannoncecategorie',{'id': 2}) }}">
+                            <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}">
                                 <img src="{{ asset('images/pictos/coop.png') }}" width="45" alt="" class="img-responsive" />
-                                Rendre service à {{ annonce.user.username }}
+                                Collaborer avec {{ annonce.user.username }}
                             </a>
                     </li>
                 </ul>

@@ -29,10 +29,12 @@
     
     <section id="general">
         <div class="container">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert-success has-success">{{ flashMessage }}</div>
+            {% endfor %}
             <div class="tab-content">
             <div id="profil" class="tab-pane fade in active">
                 <div class='row'>
-                    <!--Image de profil-->
                     {% if user.media != null %}
                         <img
                             src="{{ asset(user.media.uploadDir ~ '/' ~ user.media.id ~ user.media.path) }}"
@@ -43,12 +45,7 @@
                     {% else %}
                         <img src="{{ asset('images/pictos/user_carre.png') }}" width="150" height="150"/>
                     {% endif %}
-                    
-                    <!--Username-->
-                    <h4 class='titre'>{{ user.username }}</h4>
-                    
-                    <!--Evaluation (visibility: hidden)-->
-{#                    <h4>Evaluation globale</h4>#}
+                    <h4>Evaluation globale</h4>
                     <ol id="stars">
                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
                         <li><span class="glyphicon glyphicon-star" aria-hidden="true"></span></li>
@@ -125,33 +122,37 @@
                             {% set indice = 1 %}  
                             {% for annonce in user.getAnnonces %}  
                                 {% for postule in annonce.getPostules %}
-                                <tr>
-                                  <th scope="row">{{ indice }}</th>
-                                  <td>{{ postule.datecreate | date('d/m/y') }}</td>                                    
-                                  {% if postule.etat == true %}
-                                      <td>{{ postule.dateupdate | date('d/m/y') }}</td>
-                                      <td>{{ "Accepte" }}</td>                                      
-                                  {% elseif postule.etat is null %}
-                                      <td>{{ "-"}}</td>                                      
-                                      <td>{{ "En attente" }}</td>
-                                  {% else %}
-                                      <td>{{ "Refuse" }}</td> 
-                                      <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
-                                  {% endif %}
-                                  <td>{{ postule.getUser.getUsername }}</td>
-                                  {% if postule.getDateUpdate is null %}
-                                    <td><a href="{{ path('tec_service_accepterpostulerannonce',{'id': postule.id}) }}"> Accepter</a><a href="{{ path('tec_service_refuserpostulerannonce',{'id': postule.id}) }}"> Refuser</a></td>
-                                  {% else %}
-                                      <td>{{ "Vous avez deja fait un choix" }}</td>
-                                  {% endif %}
-                                </tr>
-                                {% set indice= indice + 1 %} 
+                                    {% if (postule.etat is null) and (postule.getUser.getId !=  app.user.id) %}
+                                    <tr>
+                                      <th scope="row">{{ indice }}</th>
+                                      <td>{{ postule.datecreate | date('d/m/y') }}</td>                                    
+                                      {% if postule.etat == true %}
+                                          <td>{{ postule.dateupdate | date('d/m/y') }}</td>
+                                          <td>{{ "Accepte" }}</td>                                      
+                                      {% elseif postule.etat is null %}
+                                          <td>{{ "-"}}</td>                                      
+                                          <td>{{ "En attente" }}</td>
+                                      {% else %}
+                                          <td>{{ "Refuse" }}</td> 
+                                          <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
+                                      {% endif %}
+                                      <td>{{ postule.getUser.getUsername }}</td>
+                                      {% if postule.getDateUpdate is null %}
+                                        <td><a href="{{ path('tec_service_accepterpostulerannonce',{'id': postule.id}) }}"> Accepter</a><a href="{{ path('tec_service_refuserpostulerannonce',{'id': postule.id}) }}"> Refuser</a></td>
+                                      {% else %}
+                                          <td>{{ "Vous avez deja fait un choix" }}</td>
+                                      {% endif %}
+                                    </tr>
+                                    {% set indice= indice + 1 %} 
+                                {% endif %}
                                 {% endfor %}
                             {% endfor %}
                           </tbody>
                         </table>
                     </div>  
-                    {% endif %}
+                    {% else %}
+                          {{ "Vous n'avez aucune réponse." }}
+                    {% endif%}
                 </div>              
             </div>
             </div>
@@ -172,6 +173,7 @@
                                 <th>Date creation</th>
                                 <th>Etat</th>
                                 <th>Date mise a jour</th>
+                                <th>Annonce</th>
                                 <th>Actions</th>
                               </tr>
                             </thead>
@@ -191,6 +193,16 @@
                                       <td>{{ "Refuse" }}</td> 
                                       <td>{{ postule.dateupdate | date('d/m/y') }}</td>                                                                           
                                   {% endif %}   
+                                  <td><a href="{{path('tec_service_getannonce', {'id': postule.getAnnonce.getId})}}">{{ postule.getAnnonce.getTitle }}</a></td>
+                                  <td>{#                                       
+                                      si l'etat est différent de true il peut la supprimer
+                                      l'attribut true ne sert a rien
+                                      postule sera supprimé si elle est acceptée
+                                      ou 
+                                      si elle a été refusée et que l'user clic sur Annuler
+                                      #}
+                                      {#<a href="{{path('tec_service_delpostule', {'id': postule.id})}}">{{ Annuler la proposition }}</a>#}
+                                  </td>
                                 </tr>
                                   {% set indice= indice + 1 %} 
                                 {% endfor %}
@@ -207,7 +219,8 @@
             <div id="services" class="tab-pane fade">
                 <div class='row'>
                     <div class="col-xs-12 panel panel-default">
-                        {% if (user.getDemandes is not empty) and (user.getFournit is not empty) %} 
+                        {# test si l'user a au moins un service #}
+                        {% if (user.getDemandes is not empty) or (user.getFournit is not empty) %} 
                     <!-- Default panel contents -->
                         <div class="panel-heading"Service</div>                        
                             <!-- Table -->
@@ -229,8 +242,9 @@
                                       <th scope="row">{{ indice }}</th>
                                       <td>{{ demande.getService.active }}</td>
                                       <td>{{ demande.getService.dateservice | date('d/m/y') }}</td>    
-                                      <td>{{ demande.getService.getAnnonce.getTitle }}</td>
+                                      <td><a href="{{ path('tec_service_getannonce', {'id': demande.getService.getAnnonce.getId})}}">{{ demande.getService.getAnnonce.getTitle }}</a></td>
                                       <td>{{ demande.getService.getAnnonce.getUser }}</td>
+                                      <td><a href="{{path('tec_service_delservice', {'id':demande.getService.getId})}}">Supprimer</a></td>
                                     </tr>
                                     {% set indice= indice + 1 %}                            
                                 {% endfor %}
@@ -349,6 +363,13 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="assets/js/test-ongletProfile.js"></script>
+    
+    <script>
+        $( document ).ready(function(){
+            // Détecte le hash dans l'url, l'utilise pour sélectionner le lien correspondant, déclenche le clique
+            //alert("a[href='" + window.location.hash + "']");
+            $("a[href='" + window.location.hash + "']").trigger('click');
+        });
+</script>
     <!-- AJAX SCRIPTS   -->
 {% endblock %}

@@ -309,8 +309,8 @@ a.normal:visited{
     TABLEAU STYLES
 =========================================*/
 .panel-heading{
-    font-weight: 700;
-    font-size: 1.5em;
+/*    font-weight: 700;
+    font-size: 1.5em;*/
     text-align: left;
 }
 .table th, .table td{
