@@ -27,7 +27,8 @@ class AdresseType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'attr' => array('placeholder' => "Numéro",
-                            'class' => 'col-xs-12 col-md-4 form-control text')))
+                            'class' => 'col-xs-12 col-md-4 form-control text',
+                            'min' => 0)))
             /*Boite*/
             ->add('box', 'text', array(
                 'label' => false,

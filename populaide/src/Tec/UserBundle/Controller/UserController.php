@@ -310,11 +310,7 @@ class UserController extends Controller
      * Mise a jour d'un user *
      *************************/
     public function updateUserAction(Request $request, $id){
-        //On vérifie que l'utilisateur est un admin
-        if (!$this->get('security.context')->isGranted('ROLE_ADMIN')) {
-          // Sinon on déclenche une exception « Accès interdit »
-          throw new AccessDeniedException('Accès limité.');
-        }
+
         //Recupère le repository user
         $repository = $this->getDoctrine()->getManager()->getRepository('TecUserBundle:User');
         //Récupère le type à modifier
@@ -325,11 +321,11 @@ class UserController extends Controller
         }        
         //Récupère l'utilisateur en session
         $usersess = $this->container->get('security.context')->getToken()->getUser();        
-        //On vérifie que l'utilisateur est un admin ou l'utilisateur veut modifier son profil
+         //On vérifie que l'utilisateur est un admin ou l'utilisateur veut modifier son profil
         if ((!$this->get('security.context')->isGranted('ROLE_ADMIN'))&&($usersess->getId() != $user->getId() )) {
           // Sinon on déclenche une exception « Accès interdit »
           throw new AccessDeniedException('Accès limité.');
-        }        
+        }      
 
        $form = $this->get('form.factory')->create(new UpdateFormType(), $user);
         //si le formulaire a été valide

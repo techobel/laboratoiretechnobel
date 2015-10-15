@@ -75,8 +75,7 @@
                             </a>
                     </li>
                     <li class="col-md-1 col-xs-4">
-                            <a href="{{ path('tec_user_contact') }}">
-                                <img src="{{ asset('images/pictos/contact.png') }}" width="45" alt="" class="img-responsive" />
+                            <a href="{{ path('tec_user_profil', {'id':app.user.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
                                 Contacter {{ annonce.user.username }}
                             </a>
                     </li>
