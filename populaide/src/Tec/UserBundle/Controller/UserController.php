@@ -25,7 +25,9 @@ class UserController extends Controller
     {
         return $this->render('TecUserBundle::index.html.twig');
     }
-    
+    public function cguAction() {
+        return $this->render('TecUserBundle::cgu.html.twig');
+    }
     public function contactAction(Request $request)
     {        
         $data = array();
