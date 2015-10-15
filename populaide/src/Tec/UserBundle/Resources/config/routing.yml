@@ -28,7 +28,7 @@ tec_service_deluser:
     defaults: { _controller: TecUserBundle:User:delUser }
     
 tec_service_updateuser:
-    path:     /user/{id}/update/
+    path:     /user/update/{id}/
     defaults: { _controller: TecUserBundle:User:updateUser }
     
 tec_service_adduser:

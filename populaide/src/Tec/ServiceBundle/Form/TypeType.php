@@ -21,9 +21,9 @@ class TypeType extends AbstractType
                             'class' => 'col-xs-12 col-md-4 form-control text',
                             'placeholder' =>'Type')))
             //Submit
-            ->add('Ajouter le type', 'submit', array(
+            ->add('Enregistrer le type', 'submit', array(
                 'attr' => array('class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
-                            'value' => 'Ajouter le type')))
+                            'value' => 'Enregistrer le type')))
             ;
         
     }

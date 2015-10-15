@@ -92,9 +92,9 @@ class RegistrationFormType extends AbstractType
 //                'attr' => array('class' => 'checkbox-inline',
 //                            'required' => true)))
             //Submit
-            ->add("Je m'inscris", 'submit', array(
+            ->add("Enregistrer", 'submit', array(
                 'attr' => array('class' => "btn btn-primary col-xs-2 col-md-2 form-control",
-                            'value' => 'inscrire')))
+                            'value' => 'Enregistrer')))
             //Reset
             ->add("Annuler", "reset", array(
                 'attr' => array('class' => "btn btn-secondary col-md-2 form-control",

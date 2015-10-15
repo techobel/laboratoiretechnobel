@@ -81,10 +81,10 @@ class AnnonceType extends AbstractType
             //->add('updateDate')
             //->add('deleteDate')
             //->add('poste')
-            ->add('visualiser', 'submit', array(
+            ->add('Enregistrer', 'submit', array(
                 'attr' => array('id' => 'preview',
                             'class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
-                            'value' => 'visualiser',
+                            'value' => 'Enregistrer',
                             'data-toggle' => "modal",
                             'data-target' => "#myModal")))
              ;

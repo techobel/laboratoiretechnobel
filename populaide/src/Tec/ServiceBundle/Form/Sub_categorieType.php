@@ -39,9 +39,9 @@ class Sub_categorieType extends AbstractType
                         ->orderBy('u.name', 'ASC');
                 }
             ))
-            ->add('Ajouter a la categorie', 'submit', array(
+            ->add('Enregistrer', 'submit', array(
                 'attr' => array('class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
-                            'value' => 'Ajouter à la catégorie')))
+                            'value' => 'Enregistrer')))
             //Reset
             ->add("Annuler", "reset", array(
                 'attr' => array('class' => "btn btn-secondary col-md-2 form-control",

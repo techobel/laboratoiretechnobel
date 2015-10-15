@@ -1,4 +1,4 @@
-{% extends "::base.html.twig"%}
+{#{% extends "::base.html.twig"%}
 {% block title %}Populaide - Belgique - Results{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
@@ -20,4 +20,23 @@
             </div>    
     </section>   
 
+{% endblock %}#}
+
+{% extends "::base.html.twig" %}
+
+{% block title %}Mise à jour de {{ user.username }} {{ parent() }}{% endblock %}
+
+{% block h3 %}Mise à jour de {{ user.username }}{% endblock %}
+    
+{% block body %}
+    {{ parent() }}
+    
+    <section id="form_contact" class="clearfix">
+        <div class="container">
+            <div class="form row form-inline form-one clearfix">
+                {{ form(form) }}
+            </div>
+        </div>
+    </section>
+    
 {% endblock %}

@@ -345,7 +345,7 @@ class UserController extends Controller
             //Redirection meme page
             return $this->redirect($request->headers->get('referer'));
         }
-        return $this->render('TecUserBundle::updateUser.html.twig', array('form' => $form->createView()));
+        return $this->render('TecUserBundle::updateUser.html.twig', array('form' => $form->createView(), 'user' => $user));
     }
     
     /********************************* 
