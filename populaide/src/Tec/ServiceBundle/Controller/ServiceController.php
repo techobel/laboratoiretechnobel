@@ -380,6 +380,52 @@ class ServiceController extends Controller
         }
     }
     
+    /******************************************
+     * Supprime le service possède l'id id *
+     ******************************************/
+    public function delServiceAction(Request $request, $id){
+        //On vérifie que l'utilisateur est connecté
+        if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+          // Sinon on déclenche une exception « Accès interdit »
+          throw new AccessDeniedException('Accès limité.');
+        }
+        //Récupère le repository de service
+        $repository = $this->getDoctrine()->getManager()->getRepository('TecServiceBundle:Service');
+        //Récupère le service qui possède l'id $id
+        $service = $repository->find($id);
+        //Si l'annonce n'existe pas
+        if($service === null){
+            throw new NotFoundHttpException("Le service n'existe pas.");
+        }
+        //Si le service existe
+        //Récupère l'utilisateur en session
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        //Test si l'utilisateur possède le service (personne qui a posté l'annonce) ou si c'est un admin
+        if(($this->get('security.context')->isGranted('ROLE_ADMIN'))||($service->getAnnonce()->getUser()->getId() === $user->getId())){
+            //Recupère les user 
+            foreach($service->getFournisseurs() as $userpostule){
+                //Ajout d'une notification pour la personne qui a postulé
+                UserController::addNotification("Un de vos services a été supprimé", $userpostule->getId());
+            }
+            //Traitement
+            //Récupère le manager
+            $em = $this->getDoctrine()->getManager();
+            //Suppression du service
+            $em->remove($service);
+            //Suppression
+            $em->flush();
+            //Ajout d'un message flash en sesssion
+            $this->addFlash('notice', "Vous avez bien supprimé le service");
+            //Ajout d'une notificatoin
+            UserController::addNotification("Vous avez bien supprimé le service", $user->getId());
+            
+            //Redirection meme page
+            return $this->redirect($request->headers->get('referer'));
+        }else{
+          throw new AccessDeniedException("Vous n'avez pas les droits sur ce service.");
+        }
+    }
+    
     /************************************************** 
      * @param type $id                                *
      * id est l'id de postuler                        *
