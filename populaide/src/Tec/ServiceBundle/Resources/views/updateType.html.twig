@@ -10,7 +10,7 @@
     <section id="form_contact" class="clearfix">
         <div class="container">
             {% for flashMessage in app.session.flashbag.get('notice') %}
-                {{ flashMessage }}
+                <div class="alert-success has-success">{{ flashMessage }}</div>
             {% endfor %}
             <div class="form row form-inline form-one clearfix">
                 {{ form(form) }}

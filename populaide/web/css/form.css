@@ -194,7 +194,8 @@ fieldset{
 .btn-primary:visited, .btn-secondary:visited, .btn-default:visited, .btn-radio:visited,
 .btn-group > .btn:last-child:not(:first-child),
 .btn-group > .btn:first-child:not(:last-child),
-.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
+.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle),
+.primary{
     background-color: #EB5E4E; /*Orange brique*/
     border: none;
     border-radius: 55px;
@@ -204,6 +205,13 @@ fieldset{
     text-shadow: 2px 2px #7f3028; /*Orange clair*/
     text-transform: uppercase;
     transition: box-shadow 0.5s, text-shadow 0.5s;
+}
+.primary:hover{
+    cursor: default;
+}
+.primary{
+    margin-bottom: 55px;
+    margin-top: 10px;
 }
 .btn-secondary, .btn-secondary:visited{
     color: #fff;

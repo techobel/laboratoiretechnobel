@@ -8,14 +8,18 @@
 
 {% block body %}
 {{ parent() }}
-    
+
     
     <section id="form_contact" class="clearfix">
         <div class="container">
             {% for flashMessage in app.session.flashbag.get('notice') %}
                 <div class="alert-success has-success">{{ flashMessage }}</div>
             {% endfor %}
+            
+            
             <div class="form row form-inline form-one clearfix">
+                <h3>Assistance téléphonique gratuite</h3>
+                <div class='btn primary btn-lg col-xs-2 col-md-2 form-control'>0800 52 600</div>
                 {{ form(form) }}
             </div>
         </div>
