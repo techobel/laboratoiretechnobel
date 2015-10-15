@@ -1,16 +1,21 @@
-{% extends "TecServiceBundle::layout.html.twig" %}
-{% block title %}Populaide - Belgique - Results{% endblock %}
-{% block stylesheets %}
-    {{ parent() }}
-    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
-{% endblock %}
+{% extends "::base.html.twig" %}
+
+{% block title %}Mise à jour de {{ categorie.name }} {{ parent() }}{% endblock %}
+
+{% block h3 %}Mise à jour de <span class='exergue'>{{ categorie.name }}</span>{% endblock %}
+    
 {% block body %}
     {{ parent() }}
-        <section id="works">
-                <h3>Mise a jour categorie:</h3>
-                    {{ form(form) }}
-                </div>
-            </div>    
+    
+    <section id="form_contact" class="clearfix">
+        <div class="container">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                {{ flashMessage }}
+            {% endfor %}
+            <div class="form row form-inline form-one clearfix">
+                {{ form(form) }}
+            </div>
+        </div>
     </section>
-
+    
 {% endblock %}

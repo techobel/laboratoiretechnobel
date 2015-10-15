@@ -1,24 +1,22 @@
-{% extends "TecServiceBundle::layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
-{% block title %}Modifier une annonce {{ parent() }}{% endblock %}
+{% block title %}Mise à jour de {{ annonce.title }} {{ parent() }}{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
-{% endblock %}
+{% block h3 %}Mise à jour d'une <span class='exergue'>annonce</span>{% endblock %}
+    
 {% block body %}
     {{ parent() }}
-        <section id="works">
-                <h3>Mise a jour d'une annonce:</h3>
-                <div class="container">
-                
+    
+    <section id="form_contact" class="clearfix">
+        <div class="container">
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                {{ flashMessage }}
+            {% endfor %}
+            <div class="form row form-inline form-one clearfix">
+                {% form_theme form 'form/field.html.twig' %}
                 {{ form(form) }}
-                    
-                {% for flashMessage in app.session.flashbag.get('notice') %}
-                    {{ flashMessage }}
-                {% endfor %}
-                </div>
-            </div>    
+            </div>
+        </div>
     </section>
-
+    
 {% endblock %}

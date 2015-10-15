@@ -253,7 +253,7 @@ class ServiceController extends Controller
                 //Redirection vers l'annonce
                 //return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
             }
-            return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView()));
+            return $this->render('TecServiceBundle::updateAnnonce.html.twig', array('form' => $form -> createView(), 'annonce' => $annonce));
         }else{
           throw new AccessDeniedException("Vous n'avez pas les droits sur cette annonce.");
         }
@@ -697,7 +697,7 @@ class ServiceController extends Controller
             //Redirection
             return $this->redirect($this->generateUrl('tec_service_admin'));
         }
-        return $this->render('TecServiceBundle::updateCategorie.html.twig', array('form' => $form->createView()));
+        return $this->render('TecServiceBundle::updateCategorie.html.twig', array('form' => $form->createView(), 'categorie' => $categorie));
     }
     
     /****************************************************************************** 
@@ -905,7 +905,7 @@ class ServiceController extends Controller
             //Redirection
             return $this->redirect($this->generateUrl('tec_service_admin'));
         }
-        return $this->render('TecServiceBundle::updateSubCategorie.html.twig', array('form' => $form->createView()));
+        return $this->render('TecServiceBundle::updateSubCategorie.html.twig', array('form' => $form->createView(), 'subcategorie' => $subcategorie));
     }
     
     /************************
@@ -1065,7 +1065,7 @@ class ServiceController extends Controller
             //Redirection
             return $this->redirect($this->generateUrl('tec_service_admin'));
         }
-        return $this->render('TecServiceBundle::updateType.html.twig', array('form' => $form->createView()));
+        return $this->render('TecServiceBundle::updateType.html.twig', array('form' => $form->createView(), 'type' => $type));
     }
     
     /*******************

@@ -30,9 +30,9 @@ class CategorieType extends AbstractType
                 'label' => 'Choisissez un picto', 
                 'attr' => array('class' => 'col-xs-12 col-md-4 form-control')))
             //Submit
-            ->add('Enregistrer la categorie', 'submit', array(
+            ->add('Enregistrer', 'submit', array(
                 'attr' => array('class' => "btn btn-primary btn-lg col-xs-2 col-md-2 form-control",
-                            'value' => 'Enregistrer la catégorie')))
+                            'value' => 'Enregistrer')))
             //Reset
             ->add("Annuler", "reset", array(
                 'attr' => array('class' => "btn btn-secondary col-md-2 form-control",

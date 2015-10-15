@@ -87,10 +87,10 @@ class RegistrationFormType extends AbstractType
             ->add('adresse', new AdresseType(), array(
                 'label' => false))
             //CGU
-            ->add('cgu', 'checkbox', array(
-                'label' => 'J\'ai pris connaissance des conditions générales d\'utilisation', 
-                'attr' => array('class' => 'checkbox-inline',
-                            'required' => true)))
+//            ->add('cgu', 'checkbox', array(
+//                'label' => 'J\'ai pris connaissance des conditions générales d\'utilisation', 
+//                'attr' => array('class' => 'checkbox-inline',
+//                            'required' => true)))
             //Submit
             ->add("Enregistrer", 'submit', array(
                 'attr' => array('class' => "btn btn-primary col-xs-2 col-md-2 form-control",
