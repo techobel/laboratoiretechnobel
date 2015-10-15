@@ -330,6 +330,13 @@ class UserController extends Controller
        $form = $this->get('form.factory')->create(new UpdateFormType(), $user);
         //si le formulaire a été valide
         if($form->handleRequest($request)->isValid()){
+            
+            //Recupère l'adresse de l'utilisateur
+            $adresse = $form->get('adresse')->getData();
+            //Relation adresse - user
+            $adresse->setUser($user);
+            $user->setAdresse($adresse);
+          
             //a voir
             $this->get('fos_user.user_manager')->updateUser($user, false);            
             //Récupère le manager
@@ -381,19 +388,7 @@ class UserController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            
-            //Recupère l'adresse de l'utilisateur
-            $adresse = $form->get('adresse')->getData();
-            //Relation adresse - user
-            $adresse->setUser($user);
-            $user->setAdresse($adresse);
-            
-            var_dump($adresse);
-            //recupère le manager
-            //$em->$this->getDoctrine()->getManager();
-            //doctrine se charge de adresse
-            
+        if ($form->isValid()) {          
             
             
             $event = new FormEvent($form, $request);

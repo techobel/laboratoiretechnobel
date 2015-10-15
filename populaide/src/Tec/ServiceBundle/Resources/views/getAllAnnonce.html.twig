@@ -59,8 +59,9 @@
                                 </ol>
                             </li>
                             
+                            {% if annonce.getUser.getAdresse is not null %}
                             <li><p class="user-location"><span class="ville">{{ annonce.getUser.getAdresse.getCity }}</span></p></li>
-                            
+                            {% endif %}
                             <li><p class="user-date-post"> {{ annonce.getCreationDate | date('d/m/Y') }} </p></li>
                             <li><p class="user-type"> {{ annonce.getType.getIntitule }} </p></li>
                             <li><h3 class="post-title> {% if annonce.getType.getIntitule == "offre" %}offre{% else %}propose{% endif %}"> {{ annonce.getTitle | truncate(30) }}</h3></li> 
