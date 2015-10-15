@@ -381,19 +381,7 @@ class UserController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            
-            //Recupère l'adresse de l'utilisateur
-            $adresse = $form->get('adresse')->getData();
-            //Relation adresse - user
-            $adresse->setUser($user);
-            $user->setAdresse($adresse);
-            
-            var_dump($adresse);
-            //recupère le manager
-            //$em->$this->getDoctrine()->getManager();
-            //doctrine se charge de adresse
-            
+        if ($form->isValid()) {           
             
             
             $event = new FormEvent($form, $request);
