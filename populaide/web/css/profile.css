@@ -16,9 +16,26 @@ h4.titre{
 p{
     text-align: left;
 }
-
+.profil-btn {
+    background-color: #EEEDF6;
+    margin-left: 60px;
+    display: block;
+    padding-top: 20px;
+}
+.profil-btn:hover {
+    transform: scale(1.05);
+}
+.profil-btn p{
+    margin: 15px 0 0 0;
+}
+#category li a{
+    padding-bottom: 0;
+}
+.desc {
+    margin-top: 70px;
+}   
 /*================================
-    NAV ONGLET STYLES
+    ONGLET STYLES
 ==================================*/
 .profile-block{
     background-color: #EB5E4E; /*Orange brique*/
@@ -127,10 +144,7 @@ ol li:last-child span{
 /*================================
     SKILL SECTION STYLES
 ==================================*/
-#category li a{
-    padding-bottom: 0;
-}
-    
+ 
     
 /* Extra-small devices (phones, 450px and up) */
 @media(min-width: 450px){
