@@ -48,6 +48,7 @@ class UpdateFormType extends AbstractType
                 )))
             /*Image*/
             ->add('media', new MediaType(), array(
+                'required' => false,
                 'label' => 'Choisissez une photo pour votre profil', 
                 'attr' => array('class' => 'col-xs-12 col-md-4 form-control')))
             /*Pseudo*/
@@ -95,6 +96,7 @@ class UpdateFormType extends AbstractType
             /*Disponibilité*/
             ->add('disponible', 'checkbox', array(
                 'label' => 'Disponible',
+                'required' => true,
                 'attr' => array('class'=> "checkbox-inline")))
             //Submit
             ->add("Valider les changements", 'submit', array(

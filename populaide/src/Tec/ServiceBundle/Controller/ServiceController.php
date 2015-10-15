@@ -262,7 +262,7 @@ class ServiceController extends Controller
      * @param type $id                                    *
      * Permet à un utilisateur de postuler à une annonce  *
      ******************************************************/
-    public function postulerAnnonceAction($id){
+    public function postulerAnnonceAction(Request $request, $id){
         //On vérifie que l'utilisateur est connecté
         if (!$this->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
           // Sinon on déclenche une exception « Accès interdit »
@@ -361,9 +361,14 @@ class ServiceController extends Controller
                 //Ajout d'une notification pour la personne qui a postulé
                 UserController::addNotification("Un de vos services a été supprimé", $userpostule->getUser()->getId());
             }
+                       
             //Traitement
             //Récupère le manager
             $em = $this->getDoctrine()->getManager();
+            //Supprime postule du service
+            foreach($service->getAnnonce()->getPostules() as $postule){
+                $em->remove($postule);
+            } 
             //Suppression du service
             $em->remove($service);
             //Suppression

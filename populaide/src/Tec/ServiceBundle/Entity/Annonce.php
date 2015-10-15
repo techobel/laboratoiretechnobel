@@ -138,7 +138,7 @@ class Annonce
     private $user;
     
     /**
-     * @ORM\OneToOne(targetEntity="Service", mappedBy="annonce")
+     * @ORM\OneToOne(targetEntity="Service", mappedBy="annonce", cascade={"persist"})
      */
     private $service;
     
