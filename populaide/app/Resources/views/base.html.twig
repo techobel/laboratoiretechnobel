@@ -7,6 +7,25 @@
         <meta name="author" content="" />        
         <title>{% block title %}| Populaide | Belgique{% endblock %}</title>
         {% block stylesheets %}
+        <style type='text/css'>
+            @font-face {
+                font-family: 'HelveticaNeueLTStd-Roman';
+                src: url({{asset('fonts/HelveticaNeueLTStd-Roman.woff')}}) format('woff');
+            }
+        </style>
+        <style type='text/css'>
+            @font-face {
+                font-family: 'HelveticaNeueLTStd-Bd';
+                src: url({{asset('fonts/HelveticaNeueLTStd-Bd.woff')}}) format('woff');
+            }
+        </style>
+        <style type='text/css'>
+            @font-face {
+                font-family: 'Grobold';
+                src: url({{asset('fonts/GROBOLD.ttf')}}) format('truetype');
+            }
+        </style>
+        <!-- POLICES EMBARQUEES -->
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <!-- BOOTSTRAP STYLE SHEET -->
         <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css" />

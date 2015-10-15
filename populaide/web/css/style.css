@@ -44,6 +44,9 @@ li{
 /*================================
     NAVBAR STYLES
 ==================================*/
+.navbar-collapse.in{
+    overflow-y: hidden;
+}
 .navbar-default {
     background-color: rgb(35, 133, 161);
     border-color: transparent;

@@ -1,5 +1,5 @@
    
-<select class="col-xs-12 col-md-4 col-lg-5 form-control " name="subcategorie">
+<select class="col-xs-12 col-md-4 col-lg-5 form-control" name="subcategorie">
     <option value="" selected>Choisissez une catégorie</option>
     {% for categorie in categories %}
     <optgroup label="{{ categorie.name }}" class="optionGroup">
@@ -9,5 +9,67 @@
     </optgroup>
     {% endfor %}
 </select>
+
+{# test select json #}
+<select id="selectjson" class="col-xs-12 col-md-4 col-lg-5 form-control" name="selectjson">
+    <option value="" selected>Entrez votre localité</option>
+</select>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js" type="text/javascript"></script> 
+<script>
+   //test select json
+    //Genere un select avec les villes de belgique
+    $.ajax({
+        //dataType: "json",
+        url: "{{ asset('/uploads/villes.json') }}",
+        success: function(data){
+            //console.log("ok");
+            //console.log(data);
+            $.each(data, function(a, b){
+                //console.log(b.cp);
+                $("#selectjson").append($("<option></option>").attr("value", b.cp).text(b.localite));
+
+
+            });
+        },
+        error: function(){
+            console.log("erreur");
+            }
+  });
+  /**
+   * fin genere select avec les villes de belgique
+   */
+{#
+$.getJSON("{{ asset('/uploads/villes.json') }}", function(data){
+      console.log(data);
+  });#}
+
+
+   $("#btn-subcategorie").click(function(e){
+       $.ajax({
+          type: 'post',
+          url:'{{ path('tec_service_testajax')}}',
+
+          success: function(data){
+              //alert('ok');
+              $('#resultat').html(data);
+
+            },
+          error: function(data){
+              alert('ko');
+              alert(data);
+              $('#resultat').html(data);
+            }
+       });
+   }) ;  
+
+   //idem que l'autre mais en get
+   $("#btn-load").click(function(e){
+
+        $("#resultat").load("{{ path('tec_service_testajax') }}");
+    });
+
+
+</script>
         
         
