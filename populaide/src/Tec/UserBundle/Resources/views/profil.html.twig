@@ -215,7 +215,8 @@
             <div id="services" class="tab-pane fade">
                 <div class='row'>
                     <div class="col-xs-12 panel panel-default">
-                        {% if (user.getDemandes is not empty) and (user.getFournit is not empty) %} 
+                        {# test si l'user a au moins un service #}
+                        {% if (user.getDemandes is not empty) or (user.getFournit is not empty) %} 
                     <!-- Default panel contents -->
                         <div class="panel-heading"Service</div>                        
                             <!-- Table -->
@@ -237,7 +238,7 @@
                                       <th scope="row">{{ indice }}</th>
                                       <td>{{ demande.getService.active }}</td>
                                       <td>{{ demande.getService.dateservice | date('d/m/y') }}</td>    
-                                      <td>{{ demande.getService.getAnnonce.getTitle }}</td>
+                                      <td><a href="{{ path('tec_service_getannonce', {'id': demande.getService.getAnnonce.getId})}}">{{ demande.getService.getAnnonce.getTitle }}</a></td>
                                       <td>{{ demande.getService.getAnnonce.getUser }}</td>
                                     </tr>
                                     {% set indice= indice + 1 %}                            
