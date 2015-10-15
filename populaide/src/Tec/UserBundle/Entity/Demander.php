@@ -32,7 +32,7 @@ class Demander
     private $user;
     
     /**
-     * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="demande")
+     * @ORM\OneToOne(targetEntity="Tec\ServiceBundle\Entity\Service", inversedBy="demande", cascade={"persist"})
      * @ORM\JoinColumn(name="service_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $service;
