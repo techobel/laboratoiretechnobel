@@ -359,7 +359,7 @@ class ServiceController extends Controller
             //Recupère les user 
             foreach($service->getFournisseurs() as $userpostule){
                 //Ajout d'une notification pour la personne qui a postulé
-                UserController::addNotification("Un de vos services a été supprimé", $userpostule->getId());
+                UserController::addNotification("Un de vos services a été supprimé", $userpostule->getUser()->getId());
             }
             //Traitement
             //Récupère le manager
