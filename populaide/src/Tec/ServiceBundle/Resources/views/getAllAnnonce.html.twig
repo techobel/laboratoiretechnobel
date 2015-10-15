@@ -70,24 +70,31 @@
                         </ul>
                             
                         <div class="icons-post">
-                            <a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
-                                Détails
-                            </a>    
-                            {% if (annonce.getUser.getId != app.user.id) %}
-                            <a href="{{ path('tec_user_profil', {'id':app.user.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
-                                Contact
-                            </a> 
-                            <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
-                                Collaborer
-                            </a>
-                            {% endif %}
-                            {% if (annonce.getUser.getId == app.user.id) or (is_granted("ROLE_ADMIN")) %}
-                            <a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}" class="menu-post" >
-                                Modifier
-                            </a>
-                            <a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}" class="menu-post" >
-                                Supprimer
-                            </a>
+                            {% if app.user is not null %}
+                                {% if (annonce.getUser.getId != app.user.id) %}
+                                <a href="{{ path('tec_service_getannonce',{'id': annonce.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/details.png') }}" alt="plus de détails" />
+                                    Détails
+                                </a>   
+                                <a href="{{ path('tec_user_profil', {'id':app.user.id}) }}" class="menu-post"><img class="icon-box img-responsive" src="{{ asset('images/pictos/contact.png') }}" alt="contact de l'annonceur" />
+                                    Contact
+                                </a> 
+                                <a href="{{ path('tec_service_postulerannonce',{'id': annonce.id}) }}" class="menu-post" ><img class="icon-box img-responsive" src="{{ asset('images/pictos/coop.png') }}" alt="coopération" />
+                                    Collaborer
+                                </a>
+                                {% endif %}
+
+                                {% if (annonce.getUser.getId == app.user.id) or (is_granted("ROLE_ADMIN")) %}
+                                <a href="{{ path('tec_service_updateannonce',{'id': annonce.id}) }}" class="menu-post" >
+                                    Modifier
+                                </a>
+                                <a href="{{ path('tec_service_delannonce',{'id': annonce.id}) }}" class="menu-post" >
+                                    Supprimer
+                                </a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}" class="menu-post"><img class="btn icon-box img-responsive profil-btn" src="{{ asset('images/pictos/login.png') }}" alt="contact de l'annonceur" />
+                                    Pour en savoir plus
+                                </a> 
                             {% endif %}
                         </div>
                     </div>

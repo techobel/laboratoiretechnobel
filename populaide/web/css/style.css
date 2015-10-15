@@ -37,6 +37,11 @@ li{
 .btn:hover{
     color: #fff;
 }
+profil-btn{
+    background-color: #eeedf6;
+    display: block;
+    padding-top: 20px;
+}
 
 .exergue{
     color: #65C2C7 ;
