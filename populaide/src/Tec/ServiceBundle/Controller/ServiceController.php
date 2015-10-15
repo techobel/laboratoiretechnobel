@@ -325,7 +325,9 @@ class ServiceController extends Controller
                 $this->addFlash('notice', "Vous avez postulé pour l'annonce.");
                 
                 //Redirection
-                return $this->redirect($this->generateUrl('tec_service_getannonce', array('id' => $id)));
+//                return $this->redirect($this->generateUrl('tec_service_getannonce', array('id' => $id)));
+                //Redirection meme page
+                return $this->redirect($request->headers->get('referer'));
                 
                 //redirection vers l'annonce
                 //return $this->forward('TecServiceBundle:Service:getAnnonce', array('id' => $id));
