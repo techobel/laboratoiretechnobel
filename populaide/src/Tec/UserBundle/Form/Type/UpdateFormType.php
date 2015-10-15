@@ -39,13 +39,17 @@ class UpdateFormType extends AbstractType
             ->add('birth_date', 'date', array(
                 'label' => "Date de naissance :", 
                 'required' => true, 
-                'format' => 'dd-MM-yyyy',
+                'format' => 'dd MM yyyy',
                 'years' => range(date('Y') - 100, date('Y')),
                 'months' => range(1,12),
                 'translation_domain' => 'FOSUserBundle', 
                 'attr' => array('placeholder' => 'Date de naissance JJ-MM-AAAA', 
                     'class' => 'col-xs-12 col-md-4 form-control'
                 )))
+            /*Image*/
+            ->add('media', new MediaType(), array(
+                'label' => 'Choisissez une photo pour votre profil', 
+                'attr' => array('class' => 'col-xs-12 col-md-4 form-control')))
             /*Pseudo*/
             ->add('username', null, array(
                 'label' => false, 
@@ -72,11 +76,11 @@ class UpdateFormType extends AbstractType
             ))
             /*Phone*/
             ->add('phone', 'text', array(
+                'label' => false,
                 'required' => false,
                 'attr' => array('placeholder' => 'Numéro de téléphone',
                     'class' => 'col-xs-12 col-md-4 form-control text')
             ))
-            ->add('disponible', 'checkbox')
             /*Mail*/
             ->add('email', 'email', array(
                 'label' => false, 
@@ -88,13 +92,10 @@ class UpdateFormType extends AbstractType
             /*Adresse*/
             ->add('adresse', new AdresseType(), array(
                 'label' => false))
-            //CGU
-//            ->add('cgu', 'checkbox', array(
-//                'label' => 'J\'ai pris connaissance des conditions générales d\'utilisation', 
-//                'attr' => array('class' => 'checkbox-inline',
-//                            'required' => true)))
-            /*Image*/
-            ->add('media', new MediaType())
+            /*Disponibilité*/
+            ->add('disponible', 'checkbox', array(
+                'label' => 'Disponible',
+                'attr' => array('class'=> "checkbox-inline")))
             //Submit
             ->add("Valider les changements", 'submit', array(
                 'attr' => array('class' => "btn btn-primary col-xs-2 col-md-2 form-control",

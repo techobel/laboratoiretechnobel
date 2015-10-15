@@ -1,32 +1,8 @@
-{#{% extends "::base.html.twig"%}
-{% block title %}Populaide - Belgique - Results{% endblock %}
-{% block stylesheets %}
-    {{ parent() }}
-    <link href="{{ asset('css/show-pages.css') }}" rel="stylesheet" type="text/css" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css"/>
-{% endblock %}
-{% block body %}
-    {{ parent() }}
-        <section id="works">
-                <h3>Mise a jour d'un user:</h3>
-                <div class="container">
-                
-                {{ form(form) }}
-                    
-                {% for flashMessage in app.session.flashbag.get('notice') %}
-                    {{ flashMessage }}
-                {% endfor %}
-                </div>
-            </div>    
-    </section>   
-
-{% endblock %}#}
-
 {% extends "::base.html.twig" %}
 
 {% block title %}Mise à jour de {{ user.username }} {{ parent() }}{% endblock %}
 
-{% block h3 %}Mise à jour de {{ user.username }}{% endblock %}
+{% block h3 %}Mise à jour de <span class='exergue'>{{ user.username }}</span>{% endblock %}
     
 {% block body %}
     {{ parent() }}

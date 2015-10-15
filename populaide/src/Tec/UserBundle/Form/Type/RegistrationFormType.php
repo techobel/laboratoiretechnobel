@@ -38,7 +38,7 @@ class RegistrationFormType extends AbstractType
             ->add('birth_date', 'date', array(
                 'label' => "Date de naissance :", 
                 'required' => true, 
-                'format' => 'dd-MM-yyyy',
+                'format' => 'dd MM yyyy',
                 'years' => range(date('Y') - 100, date('Y')),
                 'months' => range(1,12),
                 'translation_domain' => 'FOSUserBundle', 
