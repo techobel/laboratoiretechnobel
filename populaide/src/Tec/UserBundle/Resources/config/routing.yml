@@ -59,3 +59,9 @@ tec_service_constructSelect:
     path:     /index
     defaults: { _controller: TecServiceBundle:Service:constructSelect }
     
+
+#AFFICHAGE CGU
+#CGU
+tec_user_cgu:
+    path:     /cgu/
+    defaults: { _controller:  TecUserBundle:User:cgu }
