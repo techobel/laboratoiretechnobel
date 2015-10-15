@@ -31,7 +31,6 @@
         <div class="container">
             <div class="tab-content">
             <div id="profil" class="tab-pane fade in active">
-                <h3>Profil</h3>
                 <div class='row'>
                     <!--Image de profil-->
                     {% if user.media != null %}
@@ -59,26 +58,23 @@
                         <li><span>(XX votes)</span></li>
                     </ol>
                     
-                    <!--Username-->
-                    <h4 class='titre'>{{ user.username }}</h4>
-                    <ul>
+                    <!--Prénom Nom-->
+                    <h4>{{ user.firstname }} {{ user.name }}</h4>
+                    
+                    <!--Date de naissance-->
+                    <p>{{ user.birthdate | date('d/m/Y') }}</p>
+                    
+                    <!--Adresse-->
+{#                    <p>{{ user.getAdresse.getStreet }} {{ user.getAdresse.getNumber }} {% if user.getAdresse.getBox is not null %}{{ user.getAdresse.getBox }} {% endif %}</p>#}
+ 
+                    <!--Mail-->
+                    <p>{{ user.email }}</p>
+                    
+                    <!--Phone-->
+                    {% if user.phone is not null %}
+                    <p>{{ user.phone }}</p>
+                    {% endif %}
 
-                        
-                        
-                        <li> {{ "Email: " ~ user.email }}</li>
-                        {% if user.name is not null %}
-                        <li>{{ "Nom: " ~ user.name }}</li>
-                        {% endif %}
-                        {% if user.firstname is not null %}
-                        <li>{{ "Prenom: " ~ user.firstname }}</li>
-                        {% endif %}
-                        {% if user.birthdate is not null %}
-                        <li>{{ "Date naissance: " ~ user.birthdate | date('d/m/Y') }}</li>
-                        {% endif %}
-                        {% if user.creationdate is not null %}
-                        <li>{{ "Date de création: " ~ user.creationdate | date('d/m/Y') }}</li>
-                        {% endif %}                        
-                    </ul>                     
                     <h4>Disponibilité
                     {% if user.disponible %}
                         <span class="user-status green"></span>
@@ -87,7 +83,10 @@
                     {% endif %}
                     </h4>
                     
-                    <a class="normal" href="{{ path('tec_service_updateuser', {'id': user.id})}}">Modifier</a>
+                    <!--Date de création-->
+                    <p>Inscrit depuis le {{ user.creationdate | date('d/m/Y') }}</p>  
+                    
+                    <a class="btn btn-primary btn-lg col-xs-2 col-md-2 form-control" href="{{ path('tec_service_updateuser', {'id': user.id})}}">Modifier le profil</a>
                 </div>
             </div>
             <div id="reponses" class="tab-pane fade">
